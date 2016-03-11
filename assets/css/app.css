@@ -1,0 +1,149 @@
+.c-play :nth-child(1n + 1),
+.c-1,
+.c-color-3,
+.c-1-hover:hover,
+.c-color-3-hover:hover,
+.sc-1 *,
+.sc-color-3 * {
+  color: #D8D8D8 !important;
+}
+.bg-play :nth-child(1n + 1),
+.bg-1,
+.bg-color-3,
+.bg-1-hover:hover,
+.bg-color-3-hover:hover,
+.sbg-1 *,
+.sbg-color-3 * {
+  background-color: #D8D8D8 !important;
+}
+.border-1,
+.border-color-3,
+.sborder-1 *,
+.sborder-color-3 * {
+  border-color: #D8D8D8 !important;
+}
+.c-play :nth-child(2n + 2),
+.c-2,
+.c-color-0,
+.c-2-hover:hover,
+.c-color-0-hover:hover,
+.sc-2 *,
+.sc-color-0 * {
+  color: #EDEDED !important;
+}
+.bg-play :nth-child(2n + 2),
+.bg-2,
+.bg-color-0,
+.bg-2-hover:hover,
+.bg-color-0-hover:hover,
+.sbg-2 *,
+.sbg-color-0 * {
+  background-color: #EDEDED !important;
+}
+.border-2,
+.border-color-0,
+.sborder-2 *,
+.sborder-color-0 * {
+  border-color: #EDEDED !important;
+}
+.c-play :nth-child(3n + 3),
+.c-3,
+.c-color-1,
+.c-3-hover:hover,
+.c-color-1-hover:hover,
+.sc-3 *,
+.sc-color-1 * {
+  color: #F16000 !important;
+}
+.bg-play :nth-child(3n + 3),
+.bg-3,
+.bg-color-1,
+.bg-3-hover:hover,
+.bg-color-1-hover:hover,
+.sbg-3 *,
+.sbg-color-1 * {
+  background-color: #F16000 !important;
+}
+.border-3,
+.border-color-1,
+.sborder-3 *,
+.sborder-color-1 * {
+  border-color: #F16000 !important;
+}
+.c-play :nth-child(4n + 4),
+.c-4,
+.c-color-2,
+.c-4-hover:hover,
+.c-color-2-hover:hover,
+.sc-4 *,
+.sc-color-2 * {
+  color: #2F3E47 !important;
+}
+.bg-play :nth-child(4n + 4),
+.bg-4,
+.bg-color-2,
+.bg-4-hover:hover,
+.bg-color-2-hover:hover,
+.sbg-4 *,
+.sbg-color-2 * {
+  background-color: #2F3E47 !important;
+}
+.border-4,
+.border-color-2,
+.sborder-4 *,
+.sborder-color-2 * {
+  border-color: #2F3E47 !important;
+}
+.c-play :nth-child(5n + 5),
+.c-5,
+.c-color-4,
+.c-5-hover:hover,
+.c-color-4-hover:hover,
+.sc-5 *,
+.sc-color-4 * {
+  color: #9AA7AD !important;
+}
+.bg-play :nth-child(5n + 5),
+.bg-5,
+.bg-color-4,
+.bg-5-hover:hover,
+.bg-color-4-hover:hover,
+.sbg-5 *,
+.sbg-color-4 * {
+  background-color: #9AA7AD !important;
+}
+.border-5,
+.border-color-4,
+.sborder-5 *,
+.sborder-color-4 * {
+  border-color: #9AA7AD !important;
+}
+body {
+  background-color: #D8D8D8;
+}
+body * {
+  color: #2F3E47;
+}
+.btn-box {
+  line-height: 96px;
+  font-weight: bolder;
+  margin: 15px 0px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(154, 167, 173, 0.25);
+  color: #2F3E47;
+}
+.btn-box input {
+  opacity: 0;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+.navbar,
+.navbar i,
+.navbar .btn,
+.navbar .form-control {
+  color: #9AA7AD;
+  background-color: #2F3E47;
+  border-color: rgba(154, 167, 173, 0.25);
+}

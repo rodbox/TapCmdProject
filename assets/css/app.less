@@ -1,0 +1,106 @@
+// Rodbox.fr
+// Title : starto
+// Date : 11 03 2016 - 01:56
+@colors : #D8D8D8, #EDEDED, #F16000, #2F3E47, #9AA7AD;
+@names : color-3, color-0, color-1, color-2, color-4;
+
+
+
+.bga(@color, @alpha: 1) {
+  background-color: rgba( red(@color), green(@color), blue(@color), @alpha);
+}
+
+.ca(@color, @alpha: 1) {
+  background-color: rgba( red(@color), green(@color), blue(@color), @alpha);
+}
+
+.mixin-loop (@i:1) when (@i <= length(@colors)){
+    @name: extract(@names,@i);
+
+    .c-play :nth-child(@{i}n+@{i}),
+    .c-@{i},
+    .c-@{name},
+    .c-@{i}-hover:hover,
+    .c-@{name}-hover:hover,
+    .sc-@{i} *,
+    .sc-@{name} *{
+        color: extract(@colors,@i) !important;
+    }
+
+    .bg-play :nth-child(@{i}n+@{i}),
+    .bg-@{i},
+    .bg-@{name},
+    .bg-@{i}-hover:hover,
+    .bg-@{name}-hover:hover,
+    .sbg-@{i} *,
+    .sbg-@{name} *{
+        background-color: extract(@colors,@i) !important;
+    }
+
+    .border-@{i},
+    .border-@{name} ,
+    .sborder-@{i} *,
+    .sborder-@{name} *,
+    {
+        border-color: extract(@colors,@i) !important;
+    }
+    .mixin-loop(@i + 1);
+}
+
+.mixin-loop();
+
+@cPrimary1:extract(@colors,1);
+@cPrimary2:extract(@colors,4);
+
+@cDefault1:extract(@colors,4);
+@cDefault2:extract(@colors,5);
+
+@cInverse1:extract(@colors,1);
+@cInverse2:extract(@colors,4);
+
+@cSuccess1:extract(@colors,1);
+@cSuccess2:extract(@colors,4);
+
+@cDanger1:extract(@colors,1);
+@cDanger2:extract(@colors,4);
+
+@body1:extract(@colors,4);
+@body2:extract(@colors,1);
+
+
+body{
+    *{
+        color:@body1;
+    }
+    background-color: @body2;
+}
+
+.btn-box{
+    // width: 96px;
+    line-height: 96px;
+    font-weight: bolder;
+    // display: inline-block;
+    margin:15px 0px;
+    width:100%;
+    text-align: center;
+    background-color: fade(@cDefault2,25%);
+    color: @cDefault1;
+    input{
+        opacity: 0;
+        position: absolute;
+        height: 1px;
+           width: 1px;
+    }
+}
+
+.navbar{
+    &,
+    i,
+    .btn,
+    .form-control{
+        color: @cDefault2;
+        background-color: @cPrimary2;
+        border-color: fade(@cDefault2,25%);
+    }
+
+}
