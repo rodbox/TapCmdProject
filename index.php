@@ -3,7 +3,7 @@
     include('controller/controller.php');
 
     if($c->isAsync()):
-        $c->page($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index');
+        $c->pageAsync($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index');
 ?>
 
 <?php else: ?>

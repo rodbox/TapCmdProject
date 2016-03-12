@@ -151,6 +151,9 @@ html[data-context-a="false"] .btn {
 #app-content {
   margin-top: 10px;
 }
+.subtitle {
+  color: #D8D8D8;
+}
 .btn-box {
   line-height: 96px;
   font-weight: bolder;
@@ -190,9 +193,19 @@ html[data-context-a="false"] .btn {
 .text-right {
   text-align: right;
 }
+.pull-right {
+  float: right !important;
+}
 .warning,
 .warning * {
   background: #F16000 !important;
+  border-color: #F16000 !important;
+  color: #D8D8D8 !important;
+}
+.success,
+.success * {
+  background: #2F3E47 !important;
+  border-color: #2F3E47 !important;
   color: #D8D8D8 !important;
 }
 fieldset {
@@ -205,4 +218,20 @@ fieldset {
   color: #9AA7AD;
   background-color: #2F3E47;
   border-color: rgba(154, 167, 173, 0.25);
+}
+.nav-tabs {
+  margin-top: 15px;
+}
+.nav-tabs .nav-link.active,
+.tab-content {
+  background-color: rgba(154, 167, 173, 0.25) !important;
+  border-color: rgba(154, 167, 173, 0.25) !important;
+  color: #2F3E47 !important;
+}
+.nav-tabs .nav-link:hover {
+  background-color: rgba(154, 167, 173, 0.15) !important;
+  border-color: rgba(154, 167, 173, 0.15) !important;
+}
+.tab-content {
+  padding: 15px;
 }

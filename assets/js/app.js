@@ -17,8 +17,17 @@ $(document).ready(function($) {
             $.lock.on(t);
 
             $.post(t.attr('href'), data, function(json) {
-                $("#result").html(json.shell);
-                $.lock.off(t);
+                $(t.data('target')).html(json.shell);
+                $.lock.success(t,json.msg);
+
+                $(".cmd-item")
+                    .removeClass('active')
+                    .attr('aria-expanded',false);
+
+                $(".cmd-item-"+t.attr('data-cmd'))
+                    .addClass('active')
+                    .attr('aria-expanded',true);
+
             },'json').error(function (err){
                 $.lock.alert(t);
             });
@@ -44,7 +53,62 @@ $(document).ready(function($) {
                 $.lock.alert(t);
             });
         }
+    });
+
+
+
+    $(document).on("click",".btn-exec",function (e){
+        e.preventDefault();
+        var t = $(this);
+
+        var form = $(t.attr('data-form'));
+        var data = form.serialize();
+
+        if(!$.lock.is(t)){
+
+            $.lock.on(t);
+
+            $.post(t.attr('href'), data, function(json) {
+                $.lock.success(t,json.msg);
+            },'json').error(function (err){
+                $.lock.alert(t);
+            });
+        }
     })
+
+
+
+    $(document).on("click",".btn-modal",function (e){
+        e.preventDefault();
+        var t     = $(this);
+
+        if(!$.lock.is(t)){
+
+            $.lock.on(t);
+
+            var modal = $("#myModal");
+            modal.find('#modal-title .title').html(t.attr('title'));
+
+            if(t.data('form') != "")
+                data = $(t.data('form')).serialize();
+            else
+                data = {};
+
+
+            $.get(t.attr('href'), data, function(json) {
+                $.lock.off(t);
+                $.page.init();
+                modal.find('.modal-body').html(json.page);
+
+                if (json.title != undefined){
+                    modal.find('#modal-title .title').append(" : ");
+                    modal.find('#modal-title .subtitle').html(json.title);
+                }
+
+                modal.modal(t.data());
+            },'json');
+        }
+    });
 
 
 
@@ -65,22 +129,6 @@ $(document).ready(function($) {
             $.page.init();
         });
     })
-
-
-
-    $(document).on("click",".btn-modal",function (e){
-        e.preventDefault();
-        var t = $(this);
-        var modal = $("#myModal");
-        modal.find('#modal-title').html(t.attr('title'));
-        $.get(t.attr('href'), function(data) {
-            $.page.init();
-            modal.find('.modal-body').html(data);
-            modal.modal({
-            // backdrop: 'static'
-            });
-        });
-    });
 
 
 
@@ -113,29 +161,54 @@ $(document).ready(function($) {
 
 
     $.lock = {
-        on:function(t){
-            t.attr('data-html',t.html());
+        on:function(t, msg){
             var loader = $('<i>',{'id':'id','class':'fa fa-refresh fa-spin fa-spin-2x '});
+
+            t.attr('data-html',t.html());
+            t.css({
+                'min-width':t.outerWidth()
+            });
+            t.html(loader);
             t.attr('disabled','disabled');
             t.addClass('onLoad');
-            t.html(loader);
+
+            if (msg != undefined)
+                t.append(' '+msg);
         },
         off:function(t){
-            t.removeAttr('disabled');
-            t.removeClass('onLoad');
-            t.html(t.attr('data-html'));
-            t.removeClass('warning');
+            setTimeout(function(){
+                t.removeAttr('disabled');
+                t.removeClass('onLoad');
+                t.html(t.attr('data-html'));
+                t.removeClass('warning');
+                t.removeClass('success');
+            },400);
         },
-        alert:function(t){
-
+        alert:function(t, msg){
             var warning = $('<i>',{'id':'id','class':'fa fa-exclamation-triangle '});
+
             t.html(warning);
+            t.removeClass('onLoad');
             t.addClass('warning');
+            if (msg != undefined)
+                t.append(' '+msg);
+
             setTimeout(function(){
                 $.lock.off(t);
             },3000);
+        },
+        success:function(t, msg){
+            var success = $('<i>',{'id':'id','class':'fa fa-check '});
 
-            // t.html(t.attr('data-html'));
+            t.html(success);
+            t.removeClass('onLoad');
+            t.addClass('success');
+            if (msg != undefined)
+                t.append(' '+msg);
+
+            setTimeout(function(){
+                $.lock.off(t);
+            },3000);
         },
         is:function(t){
             return (t.attr('disabled')=='disabled');

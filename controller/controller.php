@@ -1,6 +1,11 @@
 <?php
 include('config.php');
 
+include("mod/mod-zip.php");
+include("mod/mod-file.php");
+
+include(APP_LOADER);
+
 /**
 * controller
 */
@@ -25,10 +30,17 @@ class controller
 
         $file = DIR_APP.'/'.$app.'/views/'.$view.'.php';
 
-        if($model != '')
-            $this->model($app, $model);
+        // si le model est un string on charge le fichier du model
+        if($model != '' && is_string($model))
+            $this->model($app, $model, $dataSend);
+
+        // sinon il sagit de donnée prédéfinis
+        else
+            $this->data = $model;
 
         $c = $this;
+        $d = $this->data;
+        $s = $this->dataSend;
 
         include($file);
 
@@ -47,6 +59,8 @@ class controller
         return $this->data = $d;
     }
 
+
+
     public function page($app='app', $page='index', $dataSend = '')
     {
         $this->dataSend = $s = $dataSend;
@@ -54,6 +68,27 @@ class controller
         $c = $this;
 
         include(DIR_APP.'/'.$app.'/pages/'.$page.'.php');
+    }
+
+
+
+    public function pageAsync($app='app', $page='index', $dataSend = '')
+    {
+        $title = $_GET["name"] ?? $_GET["project"] ?? '';
+
+        ob_start();
+        $this->page($app,$page,$dataSend);
+
+        $out = ob_get_clean();
+
+        $r = array(
+            'infotype' => "success",
+            'msg'      => "ok",
+            'title'    => $title,
+            'page'     => $out
+        );
+
+        echo json_encode($r);
     }
 
 
@@ -91,7 +126,7 @@ class controller
 
 
     public function setJson($dirJson,$arrayToJson){
-        file_put_contents($dirJson,json_encode($arrayToJson,JSON_PRETTY_PRINT));
+        return file_put_contents($dirJson,json_encode($arrayToJson,JSON_PRETTY_PRINT));
     }
 }
 

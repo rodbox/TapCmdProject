@@ -66,6 +66,10 @@
 @body2:extract(@colors,1);
 
 
+@cMute1:extract(@colors,1);
+@cMute2:lighten(@cMute1,5%);
+
+
 body{
     *{
         color:@body1;
@@ -91,6 +95,10 @@ html[data-context-a="false"]{
 }
 #app-content{
     margin-top: 10px;
+}
+
+.subtitle{
+    color: @cMute1;
 }
 .btn-box{
     line-height: 96px;
@@ -138,11 +146,26 @@ html[data-context-a="false"]{
     text-align: right;
 }
 
+.pull-right{
+    float: right !important;
+}
+
 .warning{
     &,
     *{
         background: @cDanger1 !important;
+        border-color: @cDanger1 !important;
         color: @cDanger2 !important;
+    }
+}
+
+
+.success{
+    &,
+    *{
+        background: @cSuccess2 !important;
+        border-color: @cSuccess2 !important;
+        color: @cSuccess1 !important;
     }
 }
 
@@ -160,4 +183,24 @@ fieldset{
         border-color: fade(@cDefault2,25%);
     }
 
+}
+
+.nav-tabs{
+    margin-top: 15px;
+}
+.nav-tabs .nav-link.active,
+.tab-content
+{
+    background-color: fade(@cDefault2,25%) !important;
+    border-color: fade(@cDefault2,25%) !important;
+    color: @cDefault1 !important;
+}
+
+.nav-tabs .nav-link:hover{
+    background-color: fade(@cDefault2,15%) !important;
+    border-color: fade(@cDefault2,15%) !important;
+}
+
+.tab-content{
+    padding: 15px;
 }
