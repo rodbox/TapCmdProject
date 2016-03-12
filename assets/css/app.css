@@ -124,6 +124,33 @@ body {
 body * {
   color: #2F3E47;
 }
+html[data-context-a=""] *,
+html[data-context-a="false"] *,
+html[data-context-a=""] select,
+html[data-context-a="false"] select,
+html[data-context-a=""] option,
+html[data-context-a="false"] option,
+html[data-context-a=""] input,
+html[data-context-a="false"] input,
+html[data-context-a=""] label,
+html[data-context-a="false"] label,
+html[data-context-a=""] textarea,
+html[data-context-a="false"] textarea,
+html[data-context-a=""] a,
+html[data-context-a="false"] a,
+html[data-context-a=""] button,
+html[data-context-a="false"] button,
+html[data-context-a=""] :focus,
+html[data-context-a="false"] :focus,
+html[data-context-a=""] :active,
+html[data-context-a="false"] :active,
+html[data-context-a=""] .btn,
+html[data-context-a="false"] .btn {
+  outline: none !important;
+}
+#app-content {
+  margin-top: 10px;
+}
 .btn-box {
   line-height: 96px;
   font-weight: bolder;
@@ -132,12 +159,44 @@ body * {
   text-align: center;
   background-color: rgba(154, 167, 173, 0.25);
   color: #2F3E47;
+  -webkit-transition: all 125ms linear;
+  -moz-transition: all 125ms linear;
+  -ms-transition: all 125ms linear;
+  -o-transition: all 125ms linear;
+  transition: all 125ms linear;
 }
-.btn-box input {
+.btn-box input[type="checkbox"],
+.btn-box input[type="radio"] {
   opacity: 0;
   position: absolute;
+  margin: -2000px;
   height: 1px;
   width: 1px;
+}
+.btn-box.mDown,
+.btn-box.onLoad {
+  -moz-transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  -o-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  -webkit-box-shadow: inset 0 0 50px 50px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 50px 50px rgba(0, 0, 0, 0.1);
+}
+.fa-spin-2x {
+  -webkit-animation: fa-spin 1s infinite linear;
+  animation: fa-spin 1s infinite linear;
+}
+.text-right {
+  text-align: right;
+}
+.warning,
+.warning * {
+  background: #F16000 !important;
+  color: #D8D8D8 !important;
+}
+fieldset {
+  padding-top: 15px;
 }
 .navbar,
 .navbar i,

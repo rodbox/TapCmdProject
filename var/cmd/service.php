@@ -1,0 +1,1 @@
+php <?php echo DIR_PROJECT.'/'.$project ?>/bin/console debug:container

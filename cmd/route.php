@@ -1,1 +1,0 @@
-<?php     echo 'php /Applications/MAMP/htdocs/'.$project.'/bin/console debug:router'; ?>
