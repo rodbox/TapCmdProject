@@ -6,6 +6,9 @@
 class zip_dir
 {
 
+  var $list;
+  var $filter;
+  var $exclude;
 
   /**
    * Zip a folder (include itself).
@@ -24,6 +27,8 @@ class zip_dir
     $parentPath = $pathInfo['dirname'];
     $dirName    = $pathInfo['basename'];
 
+    $this->filter = $filter;
+
     $z          = new ZipArchive();
     $z->open($outZipPath, ZIPARCHIVE::CREATE);
 
@@ -37,6 +42,11 @@ class zip_dir
 
     self::folderToZip($sourcePath, $z, $parentPath,$filter);
     $z->close();
+
+    return [
+    'list'    => $this->list,
+    'exclude' => $this->exclude
+    ];
   }
 
 
@@ -58,12 +68,13 @@ class zip_dir
       foreach ($handle as $key => $value) {
         $path =  $folder."/".$value;
 
-        if(!in_array($path, $filter) && !in_array($path,array(".","..",".DS_Store"))){
+        if(!in_array($path, $this->filter)){
           $localPath = str_replace($sourcePath, "", $path);
           if (is_file($path))
             $zipFile->addFile($path, $localPath);
 
           elseif (is_dir($path)) {
+
             $zipFile->addEmptyDir($localPath);
             self::folderToZip($path, $zipFile, $sourcePath,$filter);
           }

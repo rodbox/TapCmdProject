@@ -21,17 +21,4 @@ define("DIR_PROJECTS", DIR_VAR."/project");
 
 define("DIR_TMP", DIR_VAR."/tmp");
 
-define("PROJECTS", [
-    "__rodbox_sources__",
-    "minutephone_shop"
-]);
-
-define("CMDS", [
-    "cache",
-    "doctrine",
-    "dump",
-    "route",
-    "service"
-]);
-
 ?>

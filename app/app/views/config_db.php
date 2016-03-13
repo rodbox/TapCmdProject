@@ -8,6 +8,15 @@
     </div>
     <!-- end input : database_host -->
 
+    <!-- input : ftp_host -->
+    <div class="form-group row">
+            <label for="ftp_host" class="col-sm-3 form-control-label text-right">Basename</label>
+            <div class="col-sm-9">
+                <input type="text" name="database[basename]" value="<?php echo $d['database']['basename'] ?? ''; ?>" class="form-control" id="database_host" placeholder="Basename">
+        </div>
+    </div>
+    <!-- end input : database_host -->
+
     <!-- input : user -->
     <div class="form-group row">
         <label for="database_user" class="col-sm-3 form-control-label text-right">User</label>
