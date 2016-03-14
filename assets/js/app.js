@@ -132,6 +132,10 @@ $(document).ready(function($) {
 
 
 
+
+
+
+
     $(document).on("submit",".form-live",function (e){
         e.preventDefault();
         var t = $(this);

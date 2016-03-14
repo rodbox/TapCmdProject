@@ -2,7 +2,11 @@
     include('../../controller/controller.php');
 
     /**
-    * TODO : model loader
+    * TODO :
     **/
 
+
+    $d = $c->model($app='app', $model, $dataSend = '');
+
+    echo json_encode($d, JSON_PRETTY_PRINT);
 ?>

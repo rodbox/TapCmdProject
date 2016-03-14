@@ -13,7 +13,7 @@
      <li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#conf-tab-3" aria-expanded="false">Database</a>
      </li>
-     <li class="nav-item pull-right">
+     <li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#conf-tab-4" aria-expanded="false">Infos</a>
      </li>
  </ul>

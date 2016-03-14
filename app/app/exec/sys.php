@@ -1,5 +1,7 @@
 <?php
-// $last_line = proc_open('ls');
+    /**
+     * Execute une commande system
+     */
 
 
 // sys

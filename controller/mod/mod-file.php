@@ -1,4 +1,12 @@
 <?php
+    /**
+     * Fonction de gestion de fichier
+     */
+
+
+    /**
+    * TODO : Créer une class PROPRE pour gerer les fichiers les scans et les filtres.
+    **/
 
     function scan_dir_filter($dir, $filter = "")
     {

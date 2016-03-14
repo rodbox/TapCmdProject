@@ -2,7 +2,6 @@
 
 
 
-
 class zip_dir
 {
 
@@ -23,22 +22,22 @@ class zip_dir
   public  function __construct($sourcePath, $outZipPath, $filter =[], $inFolder=true) {
 
 
-    $pathInfo   = pathInfo($sourcePath);
-    $parentPath = $pathInfo['dirname'];
-    $dirName    = $pathInfo['basename'];
+    $pathInfo     = pathInfo($sourcePath);
+    $parentPath   = $pathInfo['dirname'];
+    $dirName      = $pathInfo['basename'];
 
     $this->filter = $filter;
 
-    $z          = new ZipArchive();
+    $z            = new ZipArchive();
     $z->open($outZipPath, ZIPARCHIVE::CREATE);
 
     if($inFolder){
       $z->addEmptyDir($dirName);
-      $parentPath   = $pathInfo['dirname'];
+      $parentPath = $pathInfo['dirname'];
     }
-    else{
-      $parentPath= $sourcePath;
-    }
+    else
+      $parentPath = $sourcePath;
+
 
     self::folderToZip($sourcePath, $z, $parentPath,$filter);
     $z->close();
@@ -74,7 +73,6 @@ class zip_dir
             $zipFile->addFile($path, $localPath);
 
           elseif (is_dir($path)) {
-
             $zipFile->addEmptyDir($localPath);
             self::folderToZip($path, $zipFile, $sourcePath,$filter);
           }

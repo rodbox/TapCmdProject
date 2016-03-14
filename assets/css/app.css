@@ -196,6 +196,12 @@ html[data-context-a="false"] .btn {
 .pull-right {
   float: right !important;
 }
+.form-control-label {
+  text-align: right !important;
+}
+.btn-group-vertical label {
+  margin-bottom: 0px;
+}
 .warning,
 .warning * {
   background: #F16000 !important;

@@ -1,6 +1,6 @@
 <?php
 
-    include('controller/controller.php');
+    include_once('controller/controller.php');
 
     if($c->isAsync()):
         $c->pageAsync($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index');
@@ -27,7 +27,10 @@
         <?php $c->view('app','modal'); ?>
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+        <script src="assets/vendor/clipboard/dist/js/clipboard.min.js" ></script>
         <script src="assets/js/app.js" type="text/javascript"> </script>
+        <script src="assets/js/app-tictac.js" type="text/javascript"> </script>
+        <script src="assets/js/app-context.js" type="text/javascript"> </script>
     </body>
 </html>
 <?php endif; ?>

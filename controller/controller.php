@@ -1,10 +1,11 @@
 <?php
 include('config.php');
 
+include(APP_LOADER);
+
 include("mod/mod-zip.php");
 include("mod/mod-file.php");
-
-include(APP_LOADER);
+include("mod/mod-tictac.php");
 
 /**
 * controller
@@ -43,7 +44,6 @@ class controller
         $s = $this->dataSend;
 
         include($file);
-
     }
 
     public function model($app='app', $model, $dataSend = '')
@@ -115,12 +115,52 @@ class controller
     }
 
 
+    public function attr($attrs = [])
+    {
+        $r = '';
+        foreach ($attrs as $attr => $value)
+            $r .= $attr.' ="'.$value.'" ';
+
+        return $r;
+    }
+
+
+
+    public function btn_combo($title='combo', $combos, $form='', $dataSend='', $css='btn btn-primary btn-sm')
+    {
+        $get       = (is_array($dataSend))?http_build_query($dataSend):'';
+        $getCombos = http_build_query(['combos'=>$combos]);
+
+        $titacId   = substr( md5(rand()), 0, 8);
+
+        $urlCombo  = WEB_COMBO.'/?combo=true&'.$getCombos.'&'.$get.'&tictac='.$titacId;
+
+        $urlTicTac = WEB_TICTAC.'/?tictac='.$titacId;
+
+        $attr      = [
+            'href'        => $urlCombo,
+            'data-url'    => $urlTicTac,
+            'data-tictac' => $titacId,
+            'class'       => 'btn-combo '.$css,
+            'data-form'   => $form,
+            'title'       => $title ?? ''
+        ];
+
+
+        echo "<a ";
+        echo $this->attr($attr);
+        echo ">";
+        echo $title;
+        echo "</a>";
+    }
+
+
 
     public function getJson($dirJson){
       if(file_exists($dirJson))
         return json_decode(file_get_contents($dirJson), true);
       else
-         return ["LE FICHIER N'EXISTE PAS"];
+        return ["LE FICHIER N'EXISTE PAS"];
     }
 
 
@@ -128,6 +168,9 @@ class controller
     public function setJson($dirJson,$arrayToJson){
         return file_put_contents($dirJson,json_encode($arrayToJson,JSON_PRETTY_PRINT));
     }
+
+
+
 }
 
 $c = new controller();

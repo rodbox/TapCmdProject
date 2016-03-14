@@ -1,5 +1,9 @@
 <?php
 
+    /**
+     * Execute une commande shell dans le dossier du projet selectionné.
+     */
+
     $dir_project = DIR_SRC.'/'.$project;
     $dir_cmd     = DIR_CMDS.'/'.$cmd.'.php';
 

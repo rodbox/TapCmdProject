@@ -1,4 +1,9 @@
 <?php
+
+    /**
+     * Test les log PHP
+     */
+
     extract($_POST['ftp']);
 
     $ftp_conn = ftp_connect($host) or die("Could not connect to $host");

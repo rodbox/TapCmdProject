@@ -1,36 +1,47 @@
 <?php
 
-$dir_tmp_same = DIR_TMP.'/'.$project;
+    /**
+     * Renome les fichiers de configuration distant.
+     */
 
-$parameters_file = $dir_tmp_same.'/app/config/parameters.yml';
-$parameters_file_dist = $dir_tmp_same.'/app/config/parameters.yml.dist';
+    $dir_tmp_same = DIR_TMP.'/'.$project;
 
-unlink($parameters_file);
-rename($parameters_file_dist,$parameters_file);
+    $parameters_file      = $dir_tmp_same.'/app/config/parameters.yml';
+    $parameters_file_dist = $dir_tmp_same.'/app/config/parameters.yml.dist';
 
-// $yaml = yaml_parse($dir_tmp_same.$parameters_file);
-
- ?>
-
-
- <?php
- // yml
- if (true) {
+    unlink($parameters_file);
+    rename($parameters_file_dist,$parameters_file);
 
 
-     $r = [
-         'infotype' => "success",
-         'msg'      => "ok yml",
-         'data'     => $dir_tmp_same.$parameters_file
-     ];
- }
+    $rb_config_file      = $dir_tmp_same.'/app/config/rb_config.yml';
+    $rb_config_file_dist = $dir_tmp_same.'/app/config/rb_config.yml.dist';
+
+    if(file_exists($rb_config_file)){
+        unlink($rb_config_file);
+        rename($rb_config_file_dist, $rb_config_file);
+    }
+
+    /**
+    * TODO : Le faire par le parse du yaml et pas par le renommage de fichier
+    * $yaml = yaml_parse($dir_tmp_same.$parameters_file);
+    *
+    **/
+
+    // yml
+    if (true) {
+        $r = [
+            'infotype' => "success",
+            'msg'      => "ok yml",
+            'data'     => $dir_tmp_same.$parameters_file
+        ];
+    }
 
 
- else{
-     $r = [
-         'infotype' => "error",
-         'msg'      => "error yml ",
-         'data'     => ''
-     ];
- }
- ?>
+    else{
+        $r = [
+            'infotype' => "error",
+            'msg'      => "error yml ",
+            'data'     => ''
+        ];
+    }
+?>

@@ -1,0 +1,150 @@
+parameters:
+
+    title_web: RodboxSource
+    title_admin: RB
+    title_business: # title_business
+    mail_business: # mail_business
+    addr_business_1: # addr_business_1
+    addr_business_2: # addr_business_2
+    slogan_business: # slogan_business
+    tel_business: # phone number
+
+    currency: €
+
+    dir_src: #dir src
+
+    dir_root:  %dir_src%/web
+
+
+    # web_root:  http://shop.minutephone.fr
+    web_root:  http://localhost:8000
+
+    dir_cdn: /Applications/MAMP/htdocs/minutephone_cdn
+    # dir_cdn: http://cdn.minutephone.fr
+    web_cdn: http://localhost:8888/minutephone_cdn
+    # web_cdn: http://cdn.minutephone.fr
+
+    dir_import: %dir_root%/import
+    web_import: %web_root%/import
+
+    dir_media: %dir_cdn%/media
+    web_media: %web_cdn%/media
+
+    dir_upload: %dir_root%/upload
+    web_upload: %web_root%/upload
+
+    dir_cdn_products: %dir_cdn%/media/products
+    web_cdn_products: %web_cdn%/media/products
+
+    dir_meta: %dir_import%/meta
+
+    dir_invoice: %dir_import%/invoices
+    dir_invoice_rule: %dir_import%/rules.json
+
+    dir_rules: %dir_import%/rules
+    dir_rules_convert: %dir_rules%/convert
+    dir_rules_export: %dir_rules%/export
+
+    dir_import_wait: %dir_import%/wait
+    dir_import_archive: %dir_import%/archive
+
+    dir_invoice_export_model: %dir_import%/export-model.json
+    metas: [name, brand, model, brand_model, color]
+
+    dir_counter: %dir_root%/meta/counter.json
+
+    # UserBundle
+    dir_users: %dir_cdn%/users
+    web_users: %web_cdn%/users
+
+    # ProductBundle / ProductAdminBundle
+    dir_products: %dir_cdn_products%
+    web_products: %web_cdn_products%
+
+    # ProductBundle / ProductAdminBundle
+    dir_attr: %dir_cdn%/media/attr
+    web_attr: %web_cdn%/media/attr
+
+    # ProductBundle / ProductAdminBundle
+    dir_attr_licence: %dir_cdn%/attr/licence
+    web_attr_licence: %web_cdn%/attr/licence
+
+    # InputBundle / InputAdminBundle
+    dir_inputs: %dir_cdn%/inputs
+    web_inputs: %web_cdn%/inputs
+
+    dir_key: %dir_cdn%/key
+    web_key: %web_cdn%/key
+
+    # ColorsBundle / ColorsAdminBundle
+    dir_palettes: %dir_cdn%/palettes
+    web_palettes: %web_cdn%/palettes
+
+    # SnippetsBundle / SnippetsAdminBundle
+    dir_snippets: %dir_cdn%/snippets
+    web_snippets: %web_cdn%/snippets
+
+
+    dir_sound: %dir_cdn%/sound
+    web_sound: %web_cdn%/sound
+
+    dir_scripts: %dir_cdn%/scripts
+    web_scripts: %web_cdn%/scripts
+
+    dir_templates: %dir_cdn%/templates
+    dir_templates_folders: %dir_templates%/folders
+    dir_templates_files: %dir_templates%/files
+
+    dir_inputs_view: %dir_inputs%/view
+
+    dir_pdf: %dir_cdn%/pdf
+    dir_pdf_fix: %dir_pdf%/fix
+
+    dir_bower: %dir_root%/assets/vendor
+    web_bower: %web_root%/assets/vendor
+
+    dir_bower_init: %dir_root%/assets/init
+    web_bower_init: %web_root%/assets/init
+
+    dir_bower_combo: %dir_root%/assets/combo
+    web_bower_combo: %web_root%/assets/combo
+
+
+    # on attribut un editeur en fonction de l'extension
+    editor:
+        default: default
+        txt: txt
+        md: txt
+        pdf: pdf
+        svg: img
+        jpg: img
+        jpeg: img
+        png: img
+        gif: img
+        php: code
+        js: code
+        css: code
+        less: code
+        html: code
+        htm: code
+        json: code
+        xml: code
+        ini: code
+        mp3: player
+        wav: player
+        zip: zip
+        sublime-snippet: code
+
+    # on attribut la source a envoyer a l'editeur en fonction de son type.
+    editor_src:
+        default: content
+        txt: content
+        pdf: web
+        img: web
+        code: content
+        zip: dir
+
+    dir_expose: ['dir_import','dir_media','dir_templates','dir_upload','dir_users','dir_products']
+
+    cropper:
+        size: [[100,100],[250,250],[250,450]]

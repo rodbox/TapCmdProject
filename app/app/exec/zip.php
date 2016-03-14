@@ -1,4 +1,9 @@
 <?php
+
+    /**
+     * Zip le dossier du clone tmp du projet.
+     */
+
 $app = new app;
 
 /**
@@ -10,7 +15,12 @@ $app = new app;
 
     $dir_project = DIR_TMP.'/'.$project;
     $dir_tmp     = DIR_TMP.'/'.$tmpName;
-    $dir_zip     = DIR_TMP.'/'.$tmpName.'.zip';
+
+
+    /**
+    * TODO : attention le fichier dir zip ne peux pas etre identifié par son nom.
+    **/
+    $dir_zip     = DIR_TMP.'/'.$project.'.zip';
     $file_zip    = $tmpName.'.zip';
 
 
@@ -18,7 +28,7 @@ $app = new app;
 
     delTree($dir_project);
 
-    $app->uploadProject($project, $dir_zip, $file_zip);
+
 
 
 

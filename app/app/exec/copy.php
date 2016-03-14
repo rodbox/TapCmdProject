@@ -1,7 +1,7 @@
 <?php
-// copy
-//
-
+    /**
+     * Copie un projet dans le dossier tmp
+     */
         set_time_limit(18000);
 
 
@@ -38,7 +38,8 @@
             'service.bat',
             'service.sh',
             'service.txt',
-            'upd.sh'
+            'upd.sh',
+            'web/bundles/'
         ];
 
         $filters = array_merge($filters,$filter_default);
@@ -56,7 +57,7 @@
 
 
         //
-        $list = copy_dir($dir_project,$dir_tmp_same,$filter);
+        $list = copy_dir($dir_project, $dir_tmp_same, $filter);
 
 if (true) {
 
