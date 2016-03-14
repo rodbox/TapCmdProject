@@ -179,7 +179,13 @@ html[data-context-a="false"]{
 }
 
 fieldset{
-    padding-top: 15px;
+    // padding-top: 15px;
+    legend{
+        margin-bottom: 0.5rem;
+    }
+    + fieldset{
+        margin-top: 2rem;
+    }
 }
 
 .navbar{
@@ -196,6 +202,9 @@ fieldset{
 
 .nav-tabs{
     margin-top: 15px;
+    .nav-link{
+        padding : 0.4em 0.7em !important;
+    }
 }
 .nav-tabs .nav-link.active,
 .tab-content
@@ -213,3 +222,28 @@ fieldset{
 .tab-content{
     padding: 15px;
 }
+
+ .colorpicker-2x .colorpicker-saturation {
+        width: 200px;
+        height: 200px;
+    }
+    .colorpicker-2x .colorpicker-hue,
+    .colorpicker-2x .colorpicker-alpha {
+        width: 30px;
+        height: 200px;
+    }
+    .colorpicker-2x .colorpicker-color,
+    .colorpicker-2x .colorpicker-color div{
+        height: 30px;
+    }
+
+    .colorpicker-element {
+        .input-group-addon {
+            padding: 0rem;
+            i,
+            .add-on i{
+                height: 36px;
+                width:42px;
+            }
+        }
+    }

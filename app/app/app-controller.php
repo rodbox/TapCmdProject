@@ -16,8 +16,7 @@ class app extends controller
 
     public function getProject($name='')
     {
-        $file = DIR_PROJECTS.'/'.$name.'.json';
-
+        $file = DIR_PROJECTS.'/'.$name.'/'.$name.'.json';
         return $this->project = $this->getJson($file);
     }
 
@@ -25,11 +24,11 @@ class app extends controller
 
     public function setProject($name, $dataSend)
     {
-        $d = $this->project($name);
+        $d = $this->getProject($name);
 
-        $d = array_merge_recursive($dataSend, $d);
+        $d = array_replace_recursive($dataSend, $d);
 
-        $file = DIR_PROJECTS.'/'.$name.'.json';
+        $file = DIR_PROJECTS.'/'.$name.'/'.$name.'.json';
 
         return $this->project = $this->setJson($file,$d);
 
@@ -94,6 +93,16 @@ class app extends controller
     // }
 
 
+
+    public function getIcon($project = '')
+    {
+        echo '<img src="'.WEB_PROJECTS.'/'.$project.'/file/logo_'.$project.'.png" class="project_icon" alt="'.$project.'">';
+    }
+
+    public function getFav($project = '')
+    {
+        echo '<img src="'.WEB_PROJECTS.'/'.$project.'/file/fav_'.$project.'.png" class="project_icon" alt="'.$project.'">';
+    }
 
 
 

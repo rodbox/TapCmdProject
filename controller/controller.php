@@ -1,6 +1,8 @@
 <?php
 include('config.php');
 
+include(COMPOSER);
+
 include(APP_LOADER);
 
 include("mod/mod-zip.php");

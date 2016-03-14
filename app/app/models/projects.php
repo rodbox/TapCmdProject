@@ -1,7 +1,7 @@
 <?php
 
-    $projects = file_list_mono(DIR_PROJECTS);
+    $projects = folder_list(DIR_PROJECTS);
     foreach ($projects as $key => $name)
-        $d[] = basename($name,'.json');
+        $d[] = basename($name);
 
 ?>

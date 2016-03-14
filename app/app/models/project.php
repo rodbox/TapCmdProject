@@ -1,5 +1,5 @@
 <?php
 
-    $d = $app->project($s['project']);
+    $d = $app->getProject($s['project']);
 
 ?>

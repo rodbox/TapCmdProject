@@ -1,0 +1,10 @@
+{
+    "name": "root/___cmd___",
+    "description": "Project deploy",
+    "type": "PHP",
+    "require": {
+        "imagine/imagine": "^0.6.3",
+        "twig/twig": "^1.24",
+        "symfony/yaml": "^3.0"
+    }
+}

@@ -214,8 +214,11 @@ html[data-context-a="false"] .btn {
   border-color: #2F3E47 !important;
   color: #D8D8D8 !important;
 }
-fieldset {
-  padding-top: 15px;
+fieldset legend {
+  margin-bottom: 0.5rem;
+}
+fieldset + fieldset {
+  margin-top: 2rem;
 }
 .navbar,
 .navbar i,
@@ -227,6 +230,9 @@ fieldset {
 }
 .nav-tabs {
   margin-top: 15px;
+}
+.nav-tabs .nav-link {
+  padding: 0.4em 0.7em !important;
 }
 .nav-tabs .nav-link.active,
 .tab-content {
@@ -240,4 +246,25 @@ fieldset {
 }
 .tab-content {
   padding: 15px;
+}
+.colorpicker-2x .colorpicker-saturation {
+  width: 200px;
+  height: 200px;
+}
+.colorpicker-2x .colorpicker-hue,
+.colorpicker-2x .colorpicker-alpha {
+  width: 30px;
+  height: 200px;
+}
+.colorpicker-2x .colorpicker-color,
+.colorpicker-2x .colorpicker-color div {
+  height: 30px;
+}
+.colorpicker-element .input-group-addon {
+  padding: 0rem;
+}
+.colorpicker-element .input-group-addon i,
+.colorpicker-element .input-group-addon .add-on i {
+  height: 36px;
+  width: 42px;
 }

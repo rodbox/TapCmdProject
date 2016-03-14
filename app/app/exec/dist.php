@@ -27,11 +27,20 @@
     *
     **/
 
+
+    use Symfony\Component\Yaml\Parser;
+
+    $yaml = new Parser();
+
+    $value = $yaml->parse(file_get_contents($parameters_file));
+
+
     // yml
     if (true) {
         $r = [
             'infotype' => "success",
             'msg'      => "ok yml",
+            'yml'      => $value,
             'data'     => $dir_tmp_same.$parameters_file
         ];
     }

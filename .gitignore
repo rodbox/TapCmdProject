@@ -2,3 +2,4 @@ var/tmp/
 var/project/
 var/cmd/
 var/tictac/
+/vendor/

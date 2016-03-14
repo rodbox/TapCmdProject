@@ -97,7 +97,7 @@ $(document).ready(function($) {
 
             $.get(t.attr('href'), data, function(json) {
                 $.lock.off(t);
-                $.page.init();
+
                 modal.find('.modal-body').html(json.page);
 
                 if (json.title != undefined){
@@ -106,6 +106,7 @@ $(document).ready(function($) {
                 }
 
                 modal.modal(t.data());
+                $.page.init('.modal-body');
             },'json');
         }
     });
@@ -158,10 +159,30 @@ $(document).ready(function($) {
 
     // init a chaque chargement de page
     $.page = {
-        init: function (){
+        init: function (container){
+            if (container != undefined)
+                var cont = $(container);
+            else
+                var cont = $('body');
 
+            cont.find('.input-colors').colorpicker({
+                  customClass: 'colorpicker-2x',
+                  sliders: {
+                    saturation: {
+                      maxLeft: 200,
+                      maxTop: 200
+                    },
+                    hue: {
+                      maxTop: 200
+                    },
+                    alpha: {
+                      maxTop: 200
+                    }
+                  }
+            })
         }
-    }
+    };
+
 
 
     $.lock = {
