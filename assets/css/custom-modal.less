@@ -1,0 +1,103 @@
+/** Modal **/
+
+.modal-dialog{
+    -webkit-box-shadow: 0 0 0 1500px rgba(0,0,0,0.5);
+    box-shadow: 0 0 0 1500px rgba(0,0,0,0.5);
+    .z-max(1);
+    .modal-header{
+        color:@cModal2;
+        border-bottom: 0px;
+        .close{
+            color:@cModal2;
+        }
+    }
+    .modal-body{
+
+        .col-lg-4{
+            width: 100%;
+            clear: both;
+            float: none !important;
+
+        }
+
+        .bg-inverse{
+            background-color: @cModal1;
+        }
+        table.table{
+            border-top: 0px;
+            tr{
+                th{
+                    background-color: @cTable1;
+                    &,
+                    *{
+                        &:not('.active'){
+                            color:@cTable2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#modalSm{
+    .z-max(21) !important;
+    .modal-dialog{
+        margin-top: 60px;
+        width: 450px !important;
+    }
+}
+
+#modalM{
+    .z-max(11) !important;
+    .modal-dialog{
+        margin-top: 45px;
+        width: 650px !important;
+    }
+}
+
+#modalLg{
+    .z-max(1)!important;
+    .modal-dialog{
+
+        width: 85% !important;
+    }
+}
+
+.modal-backdrop{
+    &.in{
+        opacity:0.4 !important;
+
+        + .select2-container{
+            .z-max(150) !important;
+        }
+    }
+    .z-max(-1);
+    + .modal-backdrop{
+        .z-max(9);
+        + .modal-backdrop{
+            .z-max(19);
+        }
+    }
+}
+.note-editor{
+    .modal{
+        .z-max(21)!important;
+    }
+}
+.modal-open {
+    .select2-container{
+        .z-normal(-1)!important;
+    }
+
+    .modal{
+        .select2-container{
+            .z-max(22)!important;
+        }
+    }
+}
+
+
+.modal-body{
+    padding-top: 0px;
+}
+/** END : Modal **/

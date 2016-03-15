@@ -4,6 +4,7 @@ define("TITLE", "Rodbox DeepTap");
 
 define("DIR_PROJECT", "/Applications/MAMP/htdocs");
 define("WEB_SRC", "http://localhost:8888/___cmd___");
+define("REL_SRC", ".");
 
 define("DIR_SRC", DIR_PROJECT."/___cmd___");
 
@@ -33,7 +34,13 @@ define("WEB_COMBO", WEB_APP."/exec_combo.php");
 
 define("WEB_TICTAC", WEB_APP."/tictac.php");
 define("DIR_TICTAC", DIR_VAR."/tictac");
+
+define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
+
+
+
 define("COLORS_SETTING", [
+    'body'      => ['#000','#fff'],
     'primary'   => ['#000','#fff'],
     'danger'    => ['#CE0000','#fff'],
     'info'      => ['#000','#fff'],

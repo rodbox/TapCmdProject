@@ -12,18 +12,22 @@
 <!-- END COL : col-md-2 col-lg-2  -->
 <!-- BEGIN COL : col-md-10 col-lg-10  -->
 <div class="col-md-10 col-lg-10 ">
+
+
+
+
     <div class="form-group">
-         <div class="input-group">
+      <div class="input-group">
       <input type="text" name="shortname" class="form-control" id="shortname" placeholder="Short Name"  value="<?php echo $d['shortname'] ?? ''; ?>" />
       <span class="input-group-btn">
-       <a href="<?php $c->urlExec('app','icon') ?>" class="btn btn-secondary btn-sm btn-exec " title="icon" data-form='#form-config'>gen</a>
+       <a href="<?php $c->urlPage('app','icon_generator'); ?>" class="btn btn-secondary btn-sm btn-modal " data-modal="modalSm" title="icon" data-form='#form-config'><i class="fa fa-magic"></i></a>
       </span>
-    </div>
+        </div>
     </div>
 <!-- BEGIN ROW  -->
 <div class="row ">
 
-         <!-- BEGIN COL : col-md-6 col-lg-6  -->
+    <!-- BEGIN COL : col-md-6 col-lg-6  -->
     <div class="col-md-6 col-lg-6 ">
     <div class="input-group input-colors">
         <input type="text" name="color[color]" value="<?php echo $d['color']['color'] ?? '#fff'; ?>" class="form-control" />
@@ -51,10 +55,10 @@
 <!-- input : type -->
 <div class="btn-group">
     <label for="type_sf" class="btn btn-secondary">Symfony
-        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? 'Symfony' =='Symfony')?'checked="checked"':'' ?> id="type_sf" placeholder="Symfony" value="Symfony" />
+        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? '' =='Symfony')?'checked="checked"':'' ?> id="type_sf" value="Symfony" />
         </label>
     <label for="type_rb" class="btn btn-secondary">Rodbox
-        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? '' =='Rodbox')?'checked="checked"':'' ?> id="type_rb" placeholder="Rodbox" value="Rodbox" />
+        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? '' =='Rodbox')?'checked="checked"':'' ?> id="type_rb" value="Rodbox" />
         </label>
 </div>
 <!-- end input : type -->

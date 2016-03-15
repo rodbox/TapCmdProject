@@ -105,7 +105,7 @@ class controller
     public function urlPage($app='app', $page='index', $data='')
     {
         $get = (is_array($data))?http_build_query($data):'';
-        echo WEB_SRC.'/?app='.$app.'&page='.$page.'&'.$get;
+        echo REL_SRC.'/?app='.$app.'&page='.$page.'&'.$get;
     }
 
 

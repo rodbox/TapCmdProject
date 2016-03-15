@@ -1,79 +1,11 @@
-// Rodbox.fr
-// Title : starto
-// Date : 11 03 2016 - 01:56
-@colors : #D8D8D8, #EDEDED, #F16000, #2F3E47, #9AA7AD;
-@names : color-3, color-0, color-1, color-2, color-4;
-
-.bga(@color, @alpha: 1) {
-  background-color: rgba( red(@color), green(@color), blue(@color), @alpha);
-}
-
-.ca(@color, @alpha: 1) {
-  background-color: rgba( red(@color), green(@color), blue(@color), @alpha);
-}
-
-.mixin-loop (@i:1) when (@i <= length(@colors)){
-    @name: extract(@names,@i);
-
-    .c-play :nth-child(@{i}n+@{i}),
-    .c-@{i},
-    .c-@{name},
-    .c-@{i}-hover:hover,
-    .c-@{name}-hover:hover,
-    .sc-@{i} *,
-    .sc-@{name} *{
-        color: extract(@colors,@i) !important;
-    }
-
-    .bg-play :nth-child(@{i}n+@{i}),
-    .bg-@{i},
-    .bg-@{name},
-    .bg-@{i}-hover:hover,
-    .bg-@{name}-hover:hover,
-    .sbg-@{i} *,
-    .sbg-@{name} *{
-        background-color: extract(@colors,@i) !important;
-    }
-
-    .border-@{i},
-    .border-@{name} ,
-    .sborder-@{i} *,
-    .sborder-@{name} *,
-    {
-        border-color: extract(@colors,@i) !important;
-    }
-    .mixin-loop(@i + 1);
-}
-
-.mixin-loop();
-
-@cPrimary1:extract(@colors,1);
-@cPrimary2:extract(@colors,4);
-
-@cDefault1:extract(@colors,4);
-@cDefault2:extract(@colors,5);
-
-@cInverse1:extract(@colors,1);
-@cInverse2:extract(@colors,4);
-
-@cSuccess1:extract(@colors,1);
-@cSuccess2:extract(@colors,4);
-
-@cDanger1:extract(@colors,3);
-@cDanger2:extract(@colors,1);
-
-@body1:extract(@colors,4);
-@body2:extract(@colors,1);
-
-
-@cMute1:extract(@colors,1);
-@cMute2:lighten(@cMute1,5%);
+@import 'vars.less';
+@import 'import.less';
+@import 'custom-color.less';
+@import 'custom-modal.less';
 
 
 body{
-    *{
-        color:@body1;
-    }
+    color:@body1;
     background-color: @body2;
 }
 
@@ -247,3 +179,6 @@ fieldset{
             }
         }
     }
+canvas{
+    background-color: fade(#000,5%);
+}

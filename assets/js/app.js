@@ -74,7 +74,41 @@ $(document).ready(function($) {
                 $.lock.alert(t);
             });
         }
-    })
+    });
+
+
+    $(document).on("click",".btn-canvas",function (e){
+        e.preventDefault();
+        var t = $(this);
+
+        var canvasId    = t.attr("data-canvas");
+        var img         = document.getElementById(canvasId);
+        var context     = img.getContext('2d');
+        var ext         = 'png';
+        var imgData     = img.toDataURL("image/"+ext);
+        var img        = {
+                ext   : ext,
+                img   : imgData
+        }
+
+        var form = $(t.attr('data-form'));
+        var data = {
+            project:$("#project").val(),
+            img:img
+
+        };
+
+        if(!$.lock.is(t)){
+
+            $.lock.on(t);
+
+            $.post(t.attr('href'), data, function(json) {
+                $.lock.success(t,json.msg);
+            },'json').error(function (err){
+                $.lock.alert(t);
+            });
+        }
+    });
 
 
 
@@ -86,8 +120,13 @@ $(document).ready(function($) {
 
             $.lock.on(t);
 
-            var modal = $("#myModal");
-            modal.find('#modal-title .title').html(t.attr('title'));
+
+            if(t.data('modal'))
+                var modal = $(".modal#"+t.data('modal'));
+            else
+                var modal = $("#modalM");
+
+            modal.find('.title').html(t.attr('title'));
 
             if(t.data('form') != "")
                 data = $(t.data('form')).serialize();
@@ -101,12 +140,12 @@ $(document).ready(function($) {
                 modal.find('.modal-body').html(json.page);
 
                 if (json.title != undefined){
-                    modal.find('#modal-title .title').append(" : ");
-                    modal.find('#modal-title .subtitle').html(json.title);
+                    modal.find('.title').append(" : ");
+                    modal.find('.subtitle').html(json.title);
                 }
 
                 modal.modal(t.data());
-                $.page.init('.modal-body');
+                $.page.init('#'+modal.attr('id'));
             },'json');
         }
     });
@@ -178,12 +217,13 @@ $(document).ready(function($) {
                     alpha: {
                       maxTop: 200
                     }
-                  }
+                  },
+
             })
         }
     };
 
-
+    $.page.init();
 
     $.lock = {
         on:function(t, msg){
