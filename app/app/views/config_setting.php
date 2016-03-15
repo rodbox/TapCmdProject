@@ -12,15 +12,11 @@
 <!-- END COL : col-md-2 col-lg-2  -->
 <!-- BEGIN COL : col-md-10 col-lg-10  -->
 <div class="col-md-10 col-lg-10 ">
-
-
-
-
     <div class="form-group">
       <div class="input-group">
       <input type="text" name="shortname" class="form-control" id="shortname" placeholder="Short Name"  value="<?php echo $d['shortname'] ?? ''; ?>" />
       <span class="input-group-btn">
-       <a href="<?php $c->urlPage('app','icon_generator'); ?>" class="btn btn-secondary btn-sm btn-modal " data-modal="modalSm" title="icon" data-form='#form-config'><i class="fa fa-magic"></i></a>
+       <a href="<?php $c->urlPage('app','icon_generator'); ?>" class="btn btn-secondary btn-modal " data-modal="modalSm" title="icon" data-form='#form-config' data-backdrop="static"><i class="fa fa-magic"></i></a>
       </span>
         </div>
     </div>
@@ -65,25 +61,24 @@
 </fieldset>
 
 <fieldset>
-    <legend>Color</legend>
-
-    <table class="table-condesed">
+    <legend>Color <a href="<?php $c->urlExec('app','less') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="less">less</a></legend>
+    <table class="table table-sm">
         <tbody>
-            <?php foreach (COLORS_SETTING as $colorName => $colorValue): ?>
+            <?php foreach (CSS_SETTING_COLORS as $colorName => $colorValue): ?>
                 <tr>
                     <th>
                         <?php echo $colorName; ?>
                     </th>
                     <td>
                         <div class="input-group input-colors">
-                            <input type="text" name="colors[<?php echo $colorName ?>][1]" value="<?php echo $d['colors']['<?php echo $colorName ?>'][1] ?? COLORS_SETTING[$colorName][0]; ?>" class="form-control" />
+                            <input type="text" name="css[colors][<?php echo $colorName ?>][1]" value="<?php echo $d['css']['colors']['<?php echo $colorName ?>'][1] ?? CSS_SETTING_COLORS[$colorName][0]; ?>" class="form-control" />
                             <span class="input-group-addon"><i></i></span>
                         </div>
                     </td>
                     <td>
                         <div class="input-group input-colors">
                             <span class="input-group-addon"><i></i></span>
-                            <input type="text" name="colors[<?php echo $colorName ?>][2]" value="<?php echo $d['colors']['<?php echo $colorName ?>'][2] ?? COLORS_SETTING[$colorName][1]; ?>" class="form-control" />
+                            <input type="text" name="css[colors][<?php echo $colorName ?>][2]" value="<?php echo $d['css']['colors']['<?php echo $colorName ?>'][2] ?? CSS_SETTING_COLORS[$colorName][1]; ?>" class="form-control" />
 
                         </div>
                     </td>
@@ -92,4 +87,31 @@
         </tbody>
     </table>
 
+
+<legend>Vars</legend>
+<table class="table table-sm">
+<tbody>
+<?php foreach (CSS_SETTING_VARS as $varName => $varValue): ?>
+                <tr>
+                    <th>
+                        <?php echo $varName; ?>
+                    </th>
+
+                    <td>
+                    <?php if (is_array($varValue)): ?>
+                     <!--  -->
+                    <?php else: ?>
+                        <div class="input-group ">
+                            <input type="text" name="css[vars][<?php echo $varName ?>]" value="<?php echo $d['css']['vars']['<?php echo $varName ?>'][2] ?? CSS_SETTING_VARS[$varName]; ?>" class="form-control" />
+                        </div>
+                    <?php endif ?>
+
+                    </td>
+                </tr>
+            <?php endforeach ?>
+
+
+        </tbody>
+    </2>
+</table>
 </fieldset>

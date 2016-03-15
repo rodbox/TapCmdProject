@@ -15,13 +15,16 @@
         <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
         <link href="assets/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" >
         <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/icomoon/style.css" rel="stylesheet">
         <link href="assets/css/app.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/img/favicon.png" />
-                <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+
+        <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     </head>
     <body>
+        <?php $c->view('app','header'); ?>
         <div id="wrapper" >
-            <?php $c->view('app','header'); ?>
+
             <div id="app-page">
                 <?php $c->page($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index'); ?>
             </div>
@@ -34,6 +37,7 @@
         <script src="assets/js/app.js" type="text/javascript"> </script>
         <script src="assets/js/app-tictac.js" type="text/javascript"> </script>
         <script src="assets/js/app-context.js" type="text/javascript"> </script>
+        <script src="app/app/assets/js/app-cb.js" type="text/javascript"> </script>
         <!-- <script src="assets/js/app-paper.js" type="text/paperscript" canvas="labs"> </script> -->
     </body>
 </html>

@@ -8,25 +8,31 @@
 @cPrimary1:extract(@colors,1);
 @cPrimary2:extract(@colors,4);
 
-@cDefault1:extract(@colors,4);
+@cDefault1:extract(@colors,2);
 @cDefault2:extract(@colors,5);
 
 @cInverse1:extract(@colors,1);
 @cInverse2:extract(@colors,4);
 
-@cSuccess1:extract(@colors,1);
-@cSuccess2:extract(@colors,4);
+@cSuccess1:extract(@colors,4);
+@cSuccess2:extract(@colors,2);
+
+@cInfo1:extract(@colors,4);
+@cInfo2:extract(@colors,5);
+
+@cWarning1:extract(@colors,2);
+@cWarning2:extract(@colors,3);
+
 
 @cDanger1:extract(@colors,3);
-@cDanger2:extract(@colors,1);
+@cDanger2:extract(@colors,2);
 
 @body1:extract(@colors,4);
-@body2:extract(@colors,1);
+@body2:extract(@colors,2);
 
 
 @cMute1:extract(@colors,1);
 @cMute2:lighten(@cMute1,5%);
-
 
 @cLoader1:extract(@colors,1);
 @cLoader2:lighten(@cMute1,5%);
@@ -38,5 +44,6 @@
 
 @cModal1:@cInverse1;
 @cModal2:@cInverse2;
+
 @cTable1:@cInverse1;
 @cTable2:@cInverse2;

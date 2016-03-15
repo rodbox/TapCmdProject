@@ -21,6 +21,12 @@ class app extends controller
     }
 
 
+    public function dirProject($name)
+    {
+        return DIR_PROJECTS.'/'.$name;
+    }
+
+
 
     public function setProject($name, $dataSend)
     {

@@ -22,10 +22,10 @@
     <!-- BEGIN COL : col-md-9 col-lg-9  -->
     <div class="col-md-9 col-lg-9 ">
         <input type="hidden" name="project" value="<?php echo $_GET['project']; ?>">
-        <a href="<?php $c->urlExec('app','copy') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="copy">copy</a>
+        <a href="<?php $c->urlExec('app','copy') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="copy"><i class="fa fa-copi-o"></i> copy</a>
         <a href="<?php $c->urlExec('app','dist') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="dist">dist</a>
-        <a href="<?php $c->urlExec('app','zip') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="zip">zip</a>
-        <a href="<?php $c->urlExec('app','upl') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="upl">upl</a>
+        <a href="<?php $c->urlExec('app','zip') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="zip"><i class="fa fa-file-archive-o"></i> zip</a>
+        <a href="<?php $c->urlExec('app','upl') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="upl"><i class="fa fa-cloud-upload"></i> upl</a>
         <a href="<?php $c->urlExec('app','unzip') ?>" class="btn btn-default btn-exec" data-form="#form-ftp" title="unzip">unzip</a>
     </div>
     <!-- END COL : col-md-9 col-lg-9  -->

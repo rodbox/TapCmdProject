@@ -1,6 +1,7 @@
 $(document).ready(function($) {
 
-
+    // Stock les callbacks des fichiers app-cb.js
+    $.cb = {};
 
     $(document).on("click",".btn-cmd ",function (e){
         e.preventDefault();
@@ -27,6 +28,8 @@ $(document).ready(function($) {
                 $(".cmd-item-"+t.attr('data-cmd'))
                     .addClass('active')
                     .attr('aria-expanded',true);
+
+                $.cb['app']['cmd'](t, json, e);
 
             },'json').error(function (err){
                 $.lock.alert(t);
@@ -70,6 +73,11 @@ $(document).ready(function($) {
 
             $.post(t.attr('href'), data, function(json) {
                 $.lock.success(t,json.msg);
+                if (t.data('cb'))
+                    $.cb['app'][t.data('cb')](t, json, e);
+                else
+                    $.cb['app']['default'](t, json, e);
+
             },'json').error(function (err){
                 $.lock.alert(t);
             });
@@ -77,16 +85,17 @@ $(document).ready(function($) {
     });
 
 
+
     $(document).on("click",".btn-canvas",function (e){
         e.preventDefault();
         var t = $(this);
 
-        var canvasId    = t.attr("data-canvas");
-        var img         = document.getElementById(canvasId);
-        var context     = img.getContext('2d');
-        var ext         = 'png';
-        var imgData     = img.toDataURL("image/"+ext);
-        var img        = {
+        var canvasId = t.attr("data-canvas");
+        var img      = document.getElementById(canvasId);
+        var context  = img.getContext('2d');
+        var ext      = 'png';
+        var imgData  = img.toDataURL("image/"+ext);
+        var img      = {
                 ext   : ext,
                 img   : imgData
         }
@@ -120,7 +129,6 @@ $(document).ready(function($) {
 
             $.lock.on(t);
 
-
             if(t.data('modal'))
                 var modal = $(".modal#"+t.data('modal'));
             else
@@ -132,7 +140,6 @@ $(document).ready(function($) {
                 data = $(t.data('form')).serialize();
             else
                 data = {};
-
 
             $.get(t.attr('href'), data, function(json) {
                 $.lock.off(t);
@@ -154,9 +161,9 @@ $(document).ready(function($) {
 
     $(document).on("mouseup mousedown",".btn-cmd",function (e){
         if(e.type=='mousedown')
-            $(this).addClass('onLoad');
+            $(this).addClass('onPress');
         else
-            $(this).removeClass('onLoad');
+            $(this).removeClass('onPress');
     });
 
 
@@ -172,7 +179,15 @@ $(document).ready(function($) {
 
 
 
+    $(document).on("click",".btn-cb",function (e){
+        e.preventDefault();
+        var t = $(this);
 
+        if (t.data('cb'))
+            $.cb['app'][t.data('cb')](t, json, e);
+        else
+            $.cb['app']['default'](t, json, e);
+    })
 
 
 
@@ -188,12 +203,23 @@ $(document).ready(function($) {
 
             $.post(t.attr('action'), data, function(json, textStatus, xhr) {
                $.lock.off(submit);
+
+
+                if (t.data('cb'))
+                    $.cb['app'][t.data('cb')](t, json, e);
+                else
+                    $.cb['app']['default'](t, json, e);
             },'json').error(function(err){
                 $.lock.alert(submit);
             });
 
         };
     })
+
+
+
+
+
 
 
     // init a chaque chargement de page
@@ -204,22 +230,7 @@ $(document).ready(function($) {
             else
                 var cont = $('body');
 
-            cont.find('.input-colors').colorpicker({
-                  customClass: 'colorpicker-2x',
-                  sliders: {
-                    saturation: {
-                      maxLeft: 200,
-                      maxTop: 200
-                    },
-                    hue: {
-                      maxTop: 200
-                    },
-                    alpha: {
-                      maxTop: 200
-                    }
-                  },
-
-            })
+            cont.find('.input-colors').colorpicker()
         }
     };
 
@@ -247,7 +258,7 @@ $(document).ready(function($) {
                 t.html(t.attr('data-html'));
                 t.removeClass('warning');
                 t.removeClass('success');
-            },400);
+            },200);
         },
         alert:function(t, msg){
             var warning = $('<i>',{'id':'id','class':'fa fa-exclamation-triangle '});
@@ -279,4 +290,7 @@ $(document).ready(function($) {
             return (t.attr('disabled')=='disabled');
         }
     }
+
+
+
 });

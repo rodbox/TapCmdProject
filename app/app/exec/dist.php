@@ -4,7 +4,7 @@
      * Renome les fichiers de configuration distant.
      */
 
-    $dir_tmp_same = DIR_TMP.'/'.$project;
+    $dir_tmp_same = DIR_TMP.'/'.$name.'/'.$tmp;
 
     $parameters_file      = $dir_tmp_same.'/app/config/parameters.yml';
     $parameters_file_dist = $dir_tmp_same.'/app/config/parameters.yml.dist';

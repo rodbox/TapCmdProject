@@ -37,16 +37,23 @@ define("DIR_TICTAC", DIR_VAR."/tictac");
 
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 
+define("PROJECT_TYPE",[
+    "Symfony" => "Symfony",
+    "Rodbox"  => "Rodbox"
+    ]);
 
+define("CSS_SETTING_COLORS", [
+    'body'      => ['#ecf0f1','#242424'],
+    'primary'   => ['#2980b9','#fff'],
+    'danger'    => ['#C0272D','#fff'],
+    'info'      => ['#008C9A','#fff'],
+    'warning'   => ['#f39c12','#fff'],
+    'inverse'   => ['#242424','#ecf0f1'],
+    'secondary' => ['#bdc3c7','#242424']
+    ]);
 
-define("COLORS_SETTING", [
-    'body'      => ['#000','#fff'],
-    'primary'   => ['#000','#fff'],
-    'danger'    => ['#CE0000','#fff'],
-    'info'      => ['#000','#fff'],
-    'warning'   => ['#000','#fff'],
-    'inverse'   => ['#000','#fff'],
-    'secondary' => ['#000','#fff']
+define("CSS_SETTING_VARS", [
+    'padSize'      => '5'
     ]);
 
 ?>

@@ -172,6 +172,11 @@ class controller
     }
 
 
+    public function test($app='app', $test, $dataSend = [])
+    {
+        $d = $dataSend;
+        include(DIR_APP.'/'.$app.'/test/'.$test.'/index.php');
+    }
 
 }
 

@@ -1,1 +1,5 @@
-page de test
+<?php
+
+    $c->test('app','file-iterator');
+
+ ?>

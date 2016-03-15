@@ -34,30 +34,38 @@
 <form id="form-paper" action="#"> <!-- BEGIN COL : col-md-2 col-lg-2  -->
 
         <nav>
-            <button class='btn-tools btn btn-sm btn-default'><i class="fa fa-magic"></i></button>
-            <a href="<?php $c->urlExec('app','icon') ?>" data-form='#form-project' class="btn btn-primary btn-sm btn-canvas" data-canvas="icon75" title="save"><i class="fa fa-floppy-o"></i></a>
+            <button class='btn-tools btn btn-sm btn-secondary'><i class="fa fa-magic"></i></button>
+            <a href="<?php $c->urlExec('app','icon') ?>" data-form='#form-project' class="btn btn-secondary btn-sm btn-canvas" data-canvas="icon75" title="save"><i class="fa fa-floppy-o"></i></a>
         </nav>
         <hr>
 
         <!-- BEGIN COL : col-md-2 col-lg-2  -->
-        <div class="col-md-2 col-lg-2 ">
+        <div class="col-sm-3 ">
             <canvas id="icon75" height="75" width="75"></canvas>
         </div>
-        <!-- END COL : col-md-4 col-lg-4  -->
+        <!-- BEGIN COL : col-sm-9  -->
+        <div class="col-sm-9 ">
 
-        <!-- BEGIN COL : col-md-8 col-lg-8  -->
-        <div class="col-md-8 col-lg-8 ">
-            <label for="size" class="block">font size
-        <input type="range" min="7" max="75" id="size">
+
+        <!-- END COL : col-sm-9  -->
+        <!-- END COL : col-md-4 col-lg-4  -->
+        <div class="form-group">
+        <label for="size" class="col-sm-2 form-control-label"><i class="fa fa-font"></i>
         </label>
-        <label for="top" class="block">Top
-        <input type="range" min="0" max="75" id="top">
-        </label>
+            <input type="range" min="7" max="75" id="size">
+        </div>
+        <div class="form-group">
+        <label for="top" class="col-sm-2 form-control-label">Top</label>
+            <input type="range" min="0" max="75" id="top">
+        </div>
         </div>
         <!-- END COL : col-md-8 col-lg-8  -->
-<div class="clearfix"></div>
-        <label for="shortname" class="block ">shortname</label>
-        <input type="text" name="shortname" class="form-control" id="shortname" placeholder="" value="<?php echo $d['shortname'] ?? '';?>" />
+        <div class="clearfix"></div>
+<hr>
+    <div class="form-group">
+        <input type="text" name="shortname" class="form-control" id="shortname" placeholder="Texte Icone" value="<?php echo $d['shortname'] ?? 'RB';?>" />
+        </div>
+        <div class="form-group">
         <select id="font" name="font" class="form-control c-select">
             <option value="League Spartan">League Spartan</option>
             <option value="Minecraftia">Minecraftia</option>
@@ -66,14 +74,19 @@
             <option value="Rock Salt">Rock Salt</option>
             <option value="Times New Roman">Times New Roman</option>
         </select>
-        <div class="input-group input-colors">
-            <input type="text" name="color1" class="form-control" id="color1" placeholder="" value="<?php echo $d['color1'] ?? '#242424';?>" />
-            <span class="input-group-addon"><i></i></span>
         </div>
-        <div class="input-group input-colors">
-            <input type="text" name="color2" class="form-control" id="color2" placeholder="" value="<?php echo $d['color2'] ?? '#fff';?>" />
-            <span class="input-group-addon"><i></i></span>
+        <!-- BEGIN ROW  -->
+        <div class="row ">
+            <div class="input-group input-colors col-sm-6 ">
+                <input type="text" name="color1" class="form-control" id="color1" placeholder="" value="<?php echo $d['color1'] ?? '#242424';?>" />
+                <span class="input-group-addon"><i></i></span>
+            </div>
+            <div class="input-group input-colors col-sm-6 ">
+                <span class="input-group-addon"><i></i></span>
+                <input type="text" name="color2" class="form-control" id="color2" placeholder="" value="<?php echo $d['color2'] ?? '#fff';?>" />
+            </div>
         </div>
+        <!-- END ROW  -->
 
 
 

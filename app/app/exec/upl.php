@@ -5,18 +5,17 @@
 
     $app = new app();
 
-    $dir_zip     = DIR_TMP.'/'.$project.'.zip';
-    $file_zip    = $project.'.zip';
-
-    $app->uploadProject($project, $dir_zip, $file_zip);
+    $dir_zip     = DIR_TMP.'/'.$name.'.zip';
+    $file_zip    = $name.'.zip';
+    $upl        = date('d m Y H:i:s');
+    // $app->uploadProject($name, $dir_zip, $file_zip);
 
 if (true) {
-
-
     $r = [
         'infotype' => "success",
         'msg'      => "ok upl",
-        'data'     => ''
+        'data'     => '',
+        'upl'     => $upl
     ];
 }
 

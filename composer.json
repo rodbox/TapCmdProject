@@ -4,7 +4,8 @@
     "type": "PHP",
     "require": {
         "imagine/imagine": "^0.6.3",
-        "twig/twig": "^1.24",
-        "symfony/yaml": "^3.0"
+        "phpunit/php-file-iterator": "~1.4",
+        "symfony/yaml": "^3.0",
+        "symfony/filesystem": "^3.0"
     }
 }

@@ -4,29 +4,32 @@
      * Zip le dossier du clone tmp du projet.
      */
 
-$app = new app;
+    use Symfony\Component\Filesystem\Filesystem;
+    $app = new app;
+    $fs  = new Filesystem();
 
 /**
 * TODO : Gestion du zip de projet
     **/
     $rand        = substr( md5(rand()), 0, 8);
     $time        = date('d_m_Y__H_i');
-    $tmpName     = $project.'_'.$time.'_'.$rand;
+    $tmpName     = $name.'_'.$time.'_'.$rand;
 
-    $dir_project = DIR_TMP.'/'.$project;
+    $dir_project = DIR_TMP.'/'.$name.'/'.$tmp;
     $dir_tmp     = DIR_TMP.'/'.$tmpName;
 
 
     /**
     * TODO : attention le fichier dir zip ne peux pas etre identifié par son nom.
     **/
-    $dir_zip     = DIR_TMP.'/'.$project.'.zip';
+    $dir_zip     = DIR_TMP.'/'.$name.'.zip';
     $file_zip    = $tmpName.'.zip';
 
 
     $list        = new zip_dir($dir_project,$dir_zip);
 
-    delTree($dir_project);
+    // delTree($dir_project);
+    $fs->remove($dir_project);
 
 
 
@@ -39,7 +42,8 @@ $app = new app;
      $r = [
          'infotype' => "success",
          'msg'      => "ok zip",
-         'data'     => ''
+         'data'     => '',
+         'upload'   => $time
      ];
  }
 

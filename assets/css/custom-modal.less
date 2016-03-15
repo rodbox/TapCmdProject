@@ -12,7 +12,6 @@
         }
     }
     .modal-body{
-
         .col-lg-4{
             width: 100%;
             clear: both;
@@ -65,7 +64,7 @@
 
 .modal-backdrop{
     &.in{
-        opacity:0.4 !important;
+        opacity:0 !important;
 
         + .select2-container{
             .z-max(150) !important;
@@ -100,4 +99,16 @@
 .modal-body{
     padding-top: 0px;
 }
+
+.modal-open {
+    .select2-container{
+        z-index: 2050;
+        min-width: 100% !important;
+    }
+}
+
+.modal-content{
+ border-width: 0px !important;
+}
+
 /** END : Modal **/

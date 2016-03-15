@@ -1,6 +1,7 @@
 @import 'vars.less';
 @import 'import.less';
 @import 'custom-color.less';
+@import 'custom-bootstrap.less';
 @import 'custom-modal.less';
 
 
@@ -39,7 +40,7 @@ html[data-context-a="false"]{
     width:100%;
     text-align: center;
     background-color: fade(@cDefault2,25%);
-    color: @cDefault1;
+    color: @cDefault2;
     input[type="checkbox"],
     input[type="radio"]
     {
@@ -56,7 +57,7 @@ html[data-context-a="false"]{
     -o-transition: all 125ms linear;
     transition: all 125ms linear;
 
-    &.mDown,
+    &.onPress,
     &.onLoad{
         // opacity:0.9;
         -moz-transform: scale(0.9);
@@ -94,9 +95,9 @@ html[data-context-a="false"]{
 .warning{
     &,
     *{
-        background: @cDanger1 !important;
-        border-color: @cDanger1 !important;
-        color: @cDanger2 !important;
+        background: @cWarning1 !important;
+        border-color: @cWarning1 !important;
+        color: @cWarning2 !important;
     }
 }
 
@@ -104,9 +105,9 @@ html[data-context-a="false"]{
 .success{
     &,
     *{
-        background: @cSuccess2 !important;
-        border-color: @cSuccess2 !important;
-        color: @cSuccess1 !important;
+        background: @cSuccess1 !important;
+        border-color: @cSuccess1 !important;
+        color: @cSuccess2 !important;
     }
 }
 
@@ -120,40 +121,6 @@ fieldset{
     }
 }
 
-.navbar{
-    &,
-    i,
-    .btn,
-    .form-control{
-        color: @cDefault2;
-        background-color: @cPrimary2;
-        border-color: fade(@cDefault2,25%);
-    }
-
-}
-
-.nav-tabs{
-    margin-top: 15px;
-    .nav-link{
-        padding : 0.4em 0.7em !important;
-    }
-}
-.nav-tabs .nav-link.active,
-.tab-content
-{
-    background-color: fade(@cDefault2,25%) !important;
-    border-color: fade(@cDefault2,25%) !important;
-    color: @cDefault1 !important;
-}
-
-.nav-tabs .nav-link:hover{
-    background-color: fade(@cDefault2,15%) !important;
-    border-color: fade(@cDefault2,15%) !important;
-}
-
-.tab-content{
-    padding: 15px;
-}
 
  .colorpicker-2x .colorpicker-saturation {
         width: 200px;
@@ -181,4 +148,27 @@ fieldset{
     }
 canvas{
     background-color: fade(#000,5%);
+}
+
+a{
+    &,
+    *,{
+        color: @cPrimary2;
+        &:hover{
+            color: lighten(@cPrimary2,5%);
+        }
+    }
+}
+a.btn-primary{
+    color : @cPrimary1;
+}
+
+.navbar-fixed-top{
+    padding:1rem;
+    + #wrapper {
+         margin-top: 5rem;
+    }
+    *{
+        border-color: transparent !important;
+    }
 }

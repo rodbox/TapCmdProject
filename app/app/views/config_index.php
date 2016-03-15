@@ -1,4 +1,4 @@
-<form action="<?php $c->urlExec('app', 'config') ?>" id="form-config" class="form-live">
+<form action="<?php $c->urlExec('app', 'config') ?>" id="form-config" class="form-live" data-cb="config">
 
 <input type="hidden" name="name" class="form-control" id="name"  value="<?php echo $d['name']; ?>">
 
@@ -14,13 +14,15 @@
          <a class="nav-link" data-toggle="tab" href="#conf-tab-2" aria-expanded="false">Mail</a>
      </li>
      <li class="nav-item">
-         <a class="nav-link" data-toggle="tab" href="#conf-tab-3" aria-expanded="false">Database</a>
+         <a class="nav-link" data-toggle="tab" href="#conf-tab-3" aria-expanded="false">DB</a>
      </li>
      <li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#conf-tab-4" aria-expanded="false">Setting</a>
      </li>
      <li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#conf-tab-5" aria-expanded="false">Fichiers</a>
+     </li><li class="nav-item">
+         <a class="nav-link" data-toggle="tab" href="#conf-tab-7" aria-expanded="false">Req</a>
      </li><li class="nav-item">
          <a class="nav-link" data-toggle="tab" href="#conf-tab-6" aria-expanded="false">Infos</a>
      </li>
@@ -48,6 +50,9 @@
      </div>
      <div id="conf-tab-6" class="tab-pane">
         <?php $c->view('app', 'config_info', $d) ?>
+     </div>
+     <div id="conf-tab-7" class="tab-pane">
+        <?php $c->view('app', 'config_req', $d) ?>
      </div>
  </div>
  <!-- END TABSCONTENT conf -->
