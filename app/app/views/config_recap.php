@@ -11,6 +11,29 @@
         <a href="<?php $c->urlExec('app','zip') ?>" data-helper="Compresse le projet." class="btn btn-secondary btn-exec btn-sm" data-form="#form-config" title="zip"><i class="fa fa-file-archive-o"></i> zip</a>
         <a href="<?php $c->urlExec('app','upl') ?>" data-helper="Upload le projet" class="btn btn-secondary btn-exec btn-sm" data-form="#form-config" title="upl" data-cb="upl"><i class="fa fa-cloud-upload"></i> upl</a>
         <a href="<?php $c->urlExec('app','unzip') ?>" data-helper="Décompresse le projet sur le server" class="btn btn-secondary btn-exec btn-sm disabled" data-form="#form-config" title="unzip"><i class="icomoon-stackoverflow "></i>unzip</a>
+
+
+        <div class="checkdown checkdown-success " data-delay="200">
+        <a href="<?php $c->urlExec('app','copy') ?>" class="btn checkdown-btn btn-exec btn-sm"  data-cb="copy" data-form="#form-config"> <i class="fa fa-cloud-upload"></i>Upload</a>
+        <div class="checkdown-list">
+            <label class="checkdown-item">
+                <input name="filters[]" type="checkbox" value="vendor">
+                <span class="checkdown-label">vendor</span>
+            </label>
+            <label class="checkdown-item">
+                <input name="filters[]" type="checkbox" value="web/assets">
+                <span class="checkdown-label">assets</span>
+            </label>
+            <label class="checkdown-item">
+                <input name="filters[]" type="checkbox" value="web/bundles">
+                <span class="checkdown-label">bundles</span>
+            </label>
+            <label class="checkdown-item">
+                <input name="filters[]" type="checkbox" value="var">
+                <span class="checkdown-label">var</span>
+            </label>
+        </div>
+    </div>
 </div>
 
 </div>

@@ -1,0 +1,40 @@
+{
+  "name": "checkdown",
+  "authors": [
+    "rodbox <jacquemin.rodolphe@hotmail.fr>"
+  ],
+  "description": "Show Checklist on hover, click for submit",
+  "main": [
+    "dist/js/checkdown.js",
+    "dist/css/checkdown.css"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "html",
+    "css",
+    "forms",
+    "checkbox",
+    "radio",
+    "button",
+    "submit"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rodbox/checkdown",
+  "ignore": [
+    ".*",
+    "docs.css",
+    "font/"
+  ],
+  "_release": "f821c2a1cc",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f821c2a1cc4e3b48dcb2b5f50f02b6410992910e"
+  },
+  "_source": "git://github.com/rodbox/checkdown.git",
+  "_target": "*",
+  "_originalSource": "checkdown",
+  "_direct": true
+}

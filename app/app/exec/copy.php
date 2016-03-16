@@ -4,20 +4,18 @@
      */
         set_time_limit(18000);
 
-
         $rand        = substr( md5(rand()), 0, 8);
         $time        = date('H_i___d_m_Y_');
         $tmpName     = $time.'___'.$rand;
 
         $dir_project = DIR_PROJECT.'/'.$name;
-
         $dir_tmp     = DIR_TMP.'/'.$name.'/'.$tmpName;
-
 
         $file_zip    = $time.'_'.$rand.'.zip';
         $dir_zip     = DIR_TMP.'/'.$file_zip;
 
         $filter_default = [
+            '/.com.apple.timemachine.supported',
             '/*.php',
             '/.DS_Store',
             '/sftp-config.json',
@@ -37,20 +35,17 @@
             '/service.bat',
             '/service.sh',
             '/service.txt',
-            '/upd.sh',
-            '/web/bundles/',
-            '/web/assets/',
-            // '/vendor',
-            '/var'
+            '/upd.sh'
         ];
 
-    $file = new file();
-    $list = $file->copy($dir_project, $dir_tmp, $filter_default);
+        $filters_all = array_merge($filter_default, $filters);
+
+        $file = new file();
+        $list = $file->copy($dir_project, $dir_tmp, $filters_all);
+
 
 
 if (true) {
-
-
     $r = [
         'infotype' => "success",
         'msg'      => "ok copy",
@@ -58,7 +53,6 @@ if (true) {
         'tmp'      => $tmpName
     ];
 }
-
 
 else{
     $r = [

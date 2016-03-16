@@ -1,5 +1,5 @@
 <?php
 
-    $c->test('app','file-iterator');
+    $c->test('app','checkdown');
 
  ?>

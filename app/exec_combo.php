@@ -10,23 +10,27 @@
     extract($_GET);
 
     // Return combo
-    $rc = [];
+        $rc    = [];
 
-    $tc = new tictac($tictac);
-    $tc->init();
+        $app   = new app();
 
-    $count = count($combos);
-    $i     = 0;
+        $tc    = new tictac($tictac);
+        $tc->init();
+
+        $count = count($combos);
+        $i     = 0;
 
     foreach ($combos as $key => $combos) {
         $i++;
-        $progess = ceil($i / $count) * 100;
-        $msg      = $i. '/'. $count;
+        $progess   = ceil($i / $count) * 100;
+        $msg       = $i. '/'. $count;
 
-        $app      = $combos[0];
-        $exec     = $combos[1];
+        $appCombo  = $combos[0];
+        $execCombo = $combos[1];
 
-        include(DIR_APP.'/'.$app.'/exec/'.$exec.'.php');
+        include(DIR_APP.'/'.$appCombo.'/exec/'.$execCombo.'.php');
+
+        $c->pushR($r, $appCombo.'_'.$execCombo);
 
         $tc->upd($key, $msg, $progess);
     }
@@ -36,13 +40,13 @@
     // $tc->clear($tictac);
 
 
-    $r == [
-        'infotype' => "info",
+    $r = [
+        'infotype' => "success",
         'msg'      => "pas de retour",
         'cb'       => '',
         'dom'      => '',
         'data'     => '',
-        'combo'    => $rc
+        'combo'    => $c->getR()
     ];
 
     echo json_encode($r);

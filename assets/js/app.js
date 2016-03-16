@@ -238,14 +238,16 @@ $(document).ready(function($) {
 
     $.lock = {
         on:function(t, msg){
-            var loader = $('<i>',{'id':'id','class':'fa fa-refresh fa-spin fa-spin-2x '});
+            var loader = $('<i>',{'id':'id','class':'fa fa-refresh fa-spin fa-spin-2x loader'});
 
             t.attr('data-html',t.html());
             t.css({
                 'min-width':t.outerWidth()
             });
-            t.html(loader);
+            t.find('i').hide();
+            t.prepend(loader);
             t.attr('disabled','disabled');
+            t.addClass('disabled');
             t.addClass('onLoad');
 
             if (msg != undefined)
@@ -255,6 +257,9 @@ $(document).ready(function($) {
             setTimeout(function(){
                 t.removeAttr('disabled');
                 t.removeClass('onLoad');
+                t.removeClass('disabled');
+                t.find('i').show();
+                t.find('.loader').remove();
                 t.html(t.attr('data-html'));
                 t.removeClass('warning');
                 t.removeClass('success');

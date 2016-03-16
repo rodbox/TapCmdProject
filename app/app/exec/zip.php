@@ -5,31 +5,27 @@
      */
 
     use Symfony\Component\Filesystem\Filesystem;
-    $app = new app;
+    // $app = new app;
     $fs  = new Filesystem();
 
-/**
-* TODO : Gestion du zip de projet
+    /**
+    * TODO : Gestion du zip de projet
     **/
-    $rand        = substr( md5(rand()), 0, 8);
+    // $rand        = substr( md5(rand()), 0, 8);
     $time        = date('d_m_Y__H_i');
-    $tmpName     = $name.'_'.$time.'_'.$rand;
+    // $tmpName     = $name.'_'.$time.'_'.$rand;
 
-    $dir_project = DIR_TMP.'/'.$name.'/'.$tmp;
-    $dir_tmp     = DIR_TMP.'/'.$tmpName;
-
+    $dir_project = DIR_TMP.'/'.$name.'/'.$tmpName;
+    $dir_del     = DIR_TMP.'/'.$name;
 
     /**
     * TODO : attention le fichier dir zip ne peux pas etre identifié par son nom.
     **/
     $dir_zip     = DIR_TMP.'/'.$name.'.zip';
-    $file_zip    = $tmpName.'.zip';
-
 
     $list        = new zip_dir($dir_project,$dir_zip);
 
-    // delTree($dir_project);
-    $fs->remove($dir_project);
+    $fs->remove($dir_del);
 
 
 

@@ -16,6 +16,7 @@ class controller
 {
     var $data;
     var $dataSend;
+    var $r = [];
 
     function __construct()
     {
@@ -143,7 +144,7 @@ class controller
             'href'        => $urlCombo,
             'data-url'    => $urlTicTac,
             'data-tictac' => $titacId,
-            'class'       => 'btn-combo '.$css,
+            'class'       => 'btn-combo btn '.$css,
             'data-form'   => $form,
             'title'       => $title ?? ''
         ];
@@ -167,9 +168,10 @@ class controller
 
 
 
-    public function setJson($dirJson,$arrayToJson){
+    public function setJson($dirJson, $arrayToJson){
         return file_put_contents($dirJson,json_encode($arrayToJson,JSON_PRETTY_PRINT));
     }
+
 
 
     public function test($app='app', $test, $dataSend = [])
@@ -178,6 +180,21 @@ class controller
         include(DIR_APP.'/'.$app.'/test/'.$test.'/index.php');
     }
 
+
+    public function pushR($r, $key = '')
+    {
+        $this->r[$key] = $r;
+    }
+
+    public function setR($r)
+    {
+        $this->r = $r;
+    }
+
+    public function getR()
+    {
+        return $this->r;
+    }
 }
 
 $c = new controller();

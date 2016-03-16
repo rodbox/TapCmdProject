@@ -1,5 +1,9 @@
-var/tmp/
-var/project/
-var/cmd/
-var/tictac/
-/vendor/
+var/tmp/*
+var/project/*
+var/cmd/*
+var/tictac/*
+/vendor/*
+
+var/project/fez.json
+
+var/project/__rodbox_sources__.json

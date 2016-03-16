@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Checkdown Demo</title>
+        <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="dist/css/checkdown.css" rel="stylesheet">
+        <link href="demo.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar navbar-inverse no-radius no-marg">
+                <ul class="nav navbar-nav navbar-right ">
+                    <li class="nav-item">
+                        <!-- Primary -->
+                        <div class="checkdown checkdown-primary">
+                            <a class="btn checkdown-btn "></i>Checkdown btn</a>
+                            <div class="checkdown-list">
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Primary -->
+                    </li>
+                    <li class="nav-item">
+                        <!-- Default -->
+                        <div class="checkdown checkdown-default">
+                            <a class="btn checkdown-btn "></i>Checkdown btn</a>
+                            <div class="checkdown-list">
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Default -->
+                    </li>
+                    <li class="nav-item">
+                        <!-- Success -->
+                        <div class="checkdown checkdown-success">
+                            <a class="btn checkdown-btn "></i>Checkdown btn</a>
+                            <div class="checkdown-list">
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="check[]" type="checkbox" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Success -->
+                    </li>
+                    <li class="nav-item">
+                        <!-- Info -->
+                        <div class="checkdown checkdown-info">
+                            <a class="btn checkdown-btn "></i>Checkdown radio btn</a>
+                            <div class="checkdown-list">
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Info -->
+                    </li>
+                    <li class="nav-item">
+                        <!-- Warning -->
+                        <div class="checkdown checkdown-warning">
+                            <a class="btn checkdown-btn "></i>Checkdown radio btn</a>
+                            <div class="checkdown-list">
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                                <label class="checkdown-item">
+                                    <input name="radio[]" type="radio" value="checkValue">
+                                    <span class="checkdown-label">Label</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Warning -->
+                    </li>
+                </ul>
+            </div>
+            <!-- BEGIN ROW  -->
+            <div class="row ">
+                <!-- BEGIN COL : col-md-12 col-lg-12  -->
+                <div class="col-md-12 col-lg-12 ">
+                    <div class="alert alert-info" role="alert">
+  Show checklist on hover and submit on click.
+</div>
+
+<figure class="highlight">
+    <pre>
+    <code>
+    // checkdown-(primary, default, success, info, warning)
+    // checkbox or radio
+    &lt;div class=&quot;checkdown checkdown-primary&quot;&gt;
+        &lt;a class=&quot;btn checkdown-btn &quot;&gt;&lt;/i&gt;Checkdown btn&lt;/a&gt;
+        &lt;div class=&quot;checkdown-list&quot;&gt;
+            &lt;label class=&quot;checkdown-item&quot;&gt;
+                &lt;input name=&quot;check[]&quot; type=&quot;checkbox&quot; value=&quot;checkValue&quot;&gt;
+                &lt;span class=&quot;checkdown-label&quot;&gt;Label&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;label class=&quot;checkdown-item&quot;&gt;
+                &lt;input name=&quot;check[]&quot; type=&quot;checkbox&quot; value=&quot;checkValue&quot;&gt;
+                &lt;span class=&quot;checkdown-label&quot;&gt;Label&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;label class=&quot;checkdown-item&quot;&gt;
+                &lt;input name=&quot;check[]&quot; type=&quot;checkbox&quot; value=&quot;checkValue&quot;&gt;
+                &lt;span class=&quot;checkdown-label&quot;&gt;Label&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;label class=&quot;checkdown-item&quot;&gt;
+                &lt;input name=&quot;check[]&quot; type=&quot;checkbox&quot; value=&quot;checkValue&quot;&gt;
+                &lt;span class=&quot;checkdown-label&quot;&gt;Label&lt;/span&gt;
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    <!-- Primary -->
+    </code>
+    </pre>
+</figure>
+                </div>
+                <!-- END COL : col-md-12 col-lg-12  -->
+            </div>
+            <!-- END ROW  -->
+        </div>
+        <script type="text/javascript" src="./assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="./assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/js/checkdown.js"></script>
+    </body>
+</html>

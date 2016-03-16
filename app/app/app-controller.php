@@ -74,9 +74,12 @@ class app extends controller
     {
         $this->logProject($name);
 
+        $ftp_control       = DIR_TEMPLATE."/files/ftp_control.php";
+
+        $control       = ftp_put($this->ftp_conn, 'a.php', $ftp_control, FTP_ASCII);
         $eval_put_file = ftp_put($this->ftp_conn, $file_zip, $dir_zip, FTP_ASCII);
 
-        if(!$eval_put_file)
+        if(!$control)
             $error[]= "le fichier n'a pas été chargé !!!";
 
         $this->closeProject();

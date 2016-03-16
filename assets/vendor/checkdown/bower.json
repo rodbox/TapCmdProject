@@ -1,0 +1,30 @@
+{
+  "name": "checkdown",
+  "authors": [
+    "rodbox <jacquemin.rodolphe@hotmail.fr>"
+  ],
+  "description": "Show Checklist on hover, click for submit",
+  "main": [
+    "dist/js/checkdown.js",
+    "dist/css/checkdown.css"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "html",
+    "css",
+    "forms",
+    "checkbox",
+    "radio",
+    "button",
+    "submit"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    ".*",
+    "docs.css",
+    "font/"
+  ]
+}

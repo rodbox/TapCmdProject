@@ -40,7 +40,7 @@ $(document).ready(function($) {
                 $.get(t.data('url'), function(json) {
                      $($.tictac.status[id]).html(json.msg);
                 },'json');
-            },1000);
+            },2500);
         },
         stop    : function (t, status){
             var id      = t.attr('data-tictac');
