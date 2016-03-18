@@ -2,8 +2,12 @@
 @import 'import.less';
 @import 'custom-color.less';
 @import 'custom-bootstrap.less';
+@import 'custom-checkdown.less';
+@import 'custom-context.less';
 @import 'custom-modal.less';
-
+@import 'custom-todo.less';
+@import 'custom-codemirror.less';
+@import 'custom-files.less';
 
 body{
     color:@body1;
@@ -40,7 +44,12 @@ html[data-context-a="false"]{
     width:100%;
     text-align: center;
     background-color: fade(@cDefault2,25%);
-    color: @cDefault2;
+
+    &,
+    &.disabled,
+    &.active{
+      color: @cDefault2;
+    }
     input[type="checkbox"],
     input[type="radio"]
     {
@@ -163,8 +172,23 @@ a.btn-primary{
     color : @cPrimary1;
 }
 
+.context-sidebar{
+    background-color: @cSuccess1 !important;
+    color: @cSuccess2 !important;
+}
+
+.navbar-fixed-bottom{
+    background-color: darken(@cSuccess1,3%) !important;
+    i{
+        font-size: large;
+    }
+}
 .navbar-fixed-top{
-    padding:1rem;
+    background-color: darken(@cSuccess1,3%) !important;
+    i{
+        font-size: large;
+    }
+    padding:0.5rem;
     + #wrapper {
          margin-top: 5rem;
     }

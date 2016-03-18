@@ -1,0 +1,254 @@
+@import 'vars.less';
+
+.checkdown{
+    display:inline-block;
+    position: relative;
+    vertical-align:middle;
+    .checkdown-btn{
+        width:100%;
+        display:block;
+        border-radius: @radius;
+
+    }
+    .checkdown-list{
+        margin-top: -1px;
+        width:100%;
+        top:100%;
+        z-index: @zMax;
+        position:absolute;
+        border-bottom-left-radius: @radius !important;
+        border-bottom-right-radius: @radius !important;
+        display: none;
+
+        :first-child{
+            border-top-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+        }
+        .checkdown-item{
+
+
+            padding: 0.5rem;
+            padding-left: 1rem;
+            margin-bottom: 0px;
+            display:block;
+            cursor: pointer;
+            input{
+                position:absolute;
+                opacity: 0;
+                margin:0px;
+                padding:0px;
+                width:1px;
+                heigth:1px;
+
+                &[type="checkbox"]{
+                    + .checkdown-label{
+                        &:after{
+                            content:@icoCheckbox;
+                        }
+                    }
+                }
+                &[type="radio"]{
+
+                    + .checkdown-label{
+                        &:after{
+                            content:@icoRadio;
+                        }
+                    }
+                }
+
+                + .checkdown-label{
+                    opacity: 0.5;
+                    font-size: 1em !important;
+                    &:after{
+                        font-family: @icoWebFont;
+
+                        float:left;
+                        position:relative;
+                        margin-right: 0.5rem;
+                        opacity:0.3;
+                    }
+                }
+                &:checked{
+                    + .checkdown-label{
+                        &,
+                        &:after{
+                            opacity:1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.open{
+        .checkdown-btn{
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+        }
+        .checkdown-list{
+            display:block;
+            .checkdown-item{
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+}
+
+
+
+/**
+ *
+ * COLOR SETTING
+ *
+ */
+
+
+
+
+
+// Primary
+.checkdown-primary{
+    .checkdown-btn{
+        background-color: @cPrimary1;
+        &,
+        i{
+            color: @cPrimary2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cPrimary1,5%);
+        .checkdown-item{
+            color: @cPrimary2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cPrimary2 !important;
+            }
+        }
+    }
+}
+
+// default
+.checkdown-default{
+    .checkdown-btn{
+        background-color: @cDefault1;
+        &,
+        i{
+            color: @cDefault2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cDefault1,5%);
+        .checkdown-item{
+            color: @cDefault2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cDefault2 !important;
+            }
+        }
+    }
+}
+
+// success
+.checkdown-success{
+    .checkdown-btn{
+        background-color: @cSuccess1;
+        &,
+        i{
+            color: @cSuccess2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cSuccess1,5%);
+        .checkdown-item{
+            color: @cSuccess2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cSuccess2 !important;
+            }
+        }
+    }
+}
+
+
+// info
+.checkdown-info{
+    .checkdown-btn{
+        background-color: @cInfo1;
+        &,
+        i{
+            color: @cInfo2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cInfo1,5%);
+        .checkdown-item{
+            color: @cInfo2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cInfo2 !important;
+            }
+        }
+    }
+}
+
+// warning
+.checkdown-warning{
+    .checkdown-btn{
+        background-color: @cWarning1;
+        &,
+        i{
+            color: @cWarning2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cWarning1,5%);
+        .checkdown-item{
+            color: @cWarning2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cWarning2 !important;
+            }
+        }
+    }
+}
+
+// danger
+.checkdown-danger{
+    .checkdown-btn{
+        background-color: @cDanger1;
+        &,
+        i{
+            color: @cDanger2;
+        }
+    }
+    .checkdown-list{
+        background-color: lighten(@cDanger1,5%);
+        .checkdown-item{
+            color: @cDanger2;
+            &:hover{
+                background-color: fade(#000,5%);
+            }
+
+            .checkdown-label{
+                color: @cDanger2 !important;
+            }
+        }
+    }
+}

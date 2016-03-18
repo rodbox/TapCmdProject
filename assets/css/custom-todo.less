@@ -1,0 +1,22 @@
+/**
+ * Custom todo
+ */
+#todo-list{
+    .btn-del{
+        display: none;
+    }
+
+    .todo-checked{
+        opacity: 0.3;
+        text-decoration: line-through;
+        .btn-del{
+            display: inline;
+        }
+        .btn-check{
+            display: none;
+        }
+    }
+    .todo-new{
+        background-color: fade(#CEA500, 20%);
+    }
+}

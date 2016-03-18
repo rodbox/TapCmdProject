@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Test les log PHP
      */

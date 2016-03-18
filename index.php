@@ -8,13 +8,13 @@
 
 <?php else: ?>
 <!DOCTYPE html>
-<html lang="fr" data-context-a="false">
+<html lang="fr" data-context-a="false" <?php $c->attrContext(); ?> >
     <head>
         <meta charset="UTF-8">
         <title><?php $c->title(); ?></title>
         <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
         <link href="assets/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" >
-        <link href="assets/vendor/checkdown/dist/css/checkdown.css" rel="stylesheet">
+        <!-- <link href="assets/vendor/checkdown/dist/css/checkdown.css" rel="stylesheet"> -->
         <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- <link href="assets/vendor/wtf-forms/wtf-forms.css" rel="stylesheet"> -->
         <link href="assets/css/icomoon/style.css" rel="stylesheet">
@@ -31,7 +31,10 @@
                 <?php $c->page($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index'); ?>
             </div>
         </div>
+        <?php $c->view('app','footer'); ?>
         <?php $c->view('app','modal'); ?>
+
+        <?php $c->view('app','context_nav'); ?>
 
         <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
         <script src="assets/vendor/clipboard/dist/js/clipboard.min.js" ></script>
@@ -41,6 +44,65 @@
         <script src="assets/js/app-tictac.js" type="text/javascript"> </script>
         <script src="assets/js/app-context.js" type="text/javascript"> </script>
         <script src="app/app/assets/js/app-cb.js" type="text/javascript"> </script>
+
+
+
+        <!-- Code mirror css -->
+        <link rel="stylesheet" href="assets/vendor/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="assets/vendor/codemirror/theme/twilight.css">
+        <!-- end Code mirror css -->
+
+
+
+        <!-- Code mirror JS-->
+        <script src="assets/vendor/codemirror/lib/codemirror.js"></script>
+
+        <!-- Addon codemirror -->
+        <script src="assets/vendor/codemirror/addon/search/searchcursor.js"></script>
+        <script src="assets/vendor/codemirror/addon/search/search.js"></script>
+        <script src="assets/vendor/codemirror/addon/dialog/dialog.js"></script>
+        <script src="assets/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+        <script src="assets/vendor/codemirror/addon/edit/closebrackets.js"></script>
+        <script src="assets/vendor/codemirror/addon/comment/comment.js"></script>
+        <script src="assets/vendor/codemirror/addon/wrap/hardwrap.js"></script>
+        <script src="assets/vendor/codemirror/addon/fold/foldcode.js"></script>
+        <script src="assets/vendor/codemirror/addon/fold/brace-fold.js"></script>
+        <!-- Code mirror mode -->
+        <script src="assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="assets/vendor/codemirror/mode/xml/xml.js"></script>
+        <script src="assets/vendor/codemirror/mode/clike/clike.js"></script>
+        <script src="assets/vendor/codemirror/mode/php/php.js"></script>
+        <script src="assets/vendor/codemirror/mode/css/css.js"></script>
+        <script src="assets/vendor/codemirror/mode/markdown/markdown.js"></script>
+        <script src="assets/vendor/codemirror/mode/javascript/javascript.js"></script>
+        <!-- Code mirror keymap -->
+        <script src="assets/vendor/codemirror/keymap/sublime.js"></script>
+        <!-- end Code mirror -->
+
+        <script>
+
+       $(document).ready(function($) {
+            /* CODE MIRROR  */
+        $.editor = CodeMirror.fromTextArea(myTextarea, {
+            theme         : "twilight",
+            lineNumbers        : true,
+            tabSize        : 8,
+            lineWrapping    : true,
+            mode        : "php",
+            keyMap        : "sublime",
+            matchBrackets    : true
+        });
+        /* Mise a jour du textarea d'origine */
+        $.editor.on("change",function(editor, change){
+            $.editor.save();
+        });
+       });
+
+
+        </script>
+
+
+
         <!-- <script src="assets/js/app-paper.js" type="text/paperscript" canvas="labs"> </script> -->
     </body>
 </html>

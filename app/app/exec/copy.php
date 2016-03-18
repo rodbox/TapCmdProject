@@ -2,6 +2,7 @@
     /**
      * Copie un projet dans le dossier tmp
      */
+
         set_time_limit(18000);
 
         $rand        = substr( md5(rand()), 0, 8);
@@ -45,20 +46,21 @@
 
 
 
-if (true) {
-    $r = [
-        'infotype' => "success",
-        'msg'      => "ok copy",
-        'data'     => $list,
-        'tmp'      => $tmpName
-    ];
-}
+    if (true) {
+        $r = [
+            'infotype' => "success",
+            'msg'      => "ok copy",
+            'data'     => $list,
+            'k'        => $rand,
+            'tmp'      => $tmpName
+        ];
+    }
 
-else{
-    $r = [
-        'infotype' => "error",
-        'msg'      => "error copy ",
-        'data'     => ''
-    ];
-}
+    else{
+        $r = [
+            'infotype' => "error",
+            'msg'      => "error copy ",
+            'data'     => ''
+        ];
+    }
 ?>

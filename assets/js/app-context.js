@@ -18,42 +18,23 @@ $(document).ready(function($) {
 			return $('html').attr('data-context-'+key);
 		},
 		set	: function (key, value){
+
+			var urlSession = './app/app/exec/context.php';
+
+			var data       = {
+				key : key,
+				value: value
+			}
+			// data['context'][key] = value;
+
+			$.get(urlSession, data);
+
 			return $('html').attr('data-context-'+key,value);
 		},
 		is	: function (key, value){
 			return ($('html').attr('data-context-'+key)==value);
 		}
 	}
-
-	$(document).on("change",".context-me",function (e){
-		e.preventDefault();
-
-		var t       = $(this);
-		var id      = t.attr('data-context');
-		var context = t.attr('data-context');
-
-		var val     = t.val();
-		var checked = t.prop('checked');
-		if(checked=== undefined)
-			var checked = true;
-
-		t.parent('.btn').toggleClass('active');
-
-		// $.context[id](context, val);
-		var url       = Routing.generate('session');
-		var data={
-			key 	: context,
-			value 	: val,
-			checked : checked
-		}
-		$.get(url,data, function(json) {
-
-			$.context.set(t.data('context'),(checked)?val:false);
-
-			if (t.attr('data-callback'))
-				$.callback[t.attr('data-callback')](t,e,json);
-		},'json');
-	});
 
 	$.setIframe = function (url){
 		$.context.set('n','iframe');
@@ -69,9 +50,16 @@ $(document).ready(function($) {
 		$.setDefault();
 	})
 
-	$(document).on("click",".btn-iframe",function (e){
+	$(document).on("click", ".btn-context", function (e){
 		e.preventDefault();
 		var t = $(this);
-		$.setIframe(t.attr('href'));
+		t.toggleClass('active');
+		$.context.set(t.attr('data-k'),t.hasClass('active'));
+
+		if (t.data('cb'))
+            $.cb['app'][t.data('cb')](t, e);
+
 	});
+
+
 });

@@ -153,7 +153,9 @@ $(document).ready(function($) {
 
                 modal.modal(t.data());
                 $.page.init('#'+modal.attr('id'));
-            },'json');
+            },'json').error(function (err){
+                $.lock.alert(t);
+            });
         }
     });
 
@@ -196,7 +198,7 @@ $(document).ready(function($) {
         var t = $(this);
         var data  = t.serialize();
 
-        var submit = $("[type=submit]");
+        var submit = t.find("[type=submit]");
 
         if(!$.lock.is(submit)){
             $.lock.on(submit);
@@ -204,11 +206,11 @@ $(document).ready(function($) {
             $.post(t.attr('action'), data, function(json, textStatus, xhr) {
                $.lock.off(submit);
 
-
                 if (t.data('cb'))
                     $.cb['app'][t.data('cb')](t, json, e);
                 else
                     $.cb['app']['default'](t, json, e);
+
             },'json').error(function(err){
                 $.lock.alert(submit);
             });

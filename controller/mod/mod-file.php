@@ -90,42 +90,61 @@
 
             return $r;
         }
+
+        function files($dir) {
+            $filter     = array(".", "..","__MACOSX", "nbproject", "_notes", ".DS_Store", ".komodotools", "_tmp",".git",".gitignore"); //list des nom de fichier ou de dossier a ne pas indexer
+            $list       = scandir($dir); // on scan le dossier
+            $r          = array_diff($list, $filter); // on filtre le resultat
+            $files      = [];
+            foreach ($r as $key => $val) { //on parcour chaque element
+                if (is_dir($dir . "/" . $val)) {
+                    unset($r[$key]); // on supprime le nom du dossier dans la liste de resultat car elle utilisé en clé pour les sous dossiers
+                    $r[$val] = $this->files($dir . "/" . $val);
+                }else{
+                    unset($r[$key]);
+                    // $files[] = $val;
+                    $r["zzz".$val] = $val;
+                }
+            }
+            ksort($r);
+            return $r;
+        }
     }
 
 
 
 
-    function scan_dir_filter($dir, $filter = "")
-    {
-        $list = scandir($dir);
+    // function scan_dir_filter($dir, $filter = "")
+    // {
+    //     $list = scandir($dir);
 
-         // on scan le dossier
-        $filterDefault = [
-            ".",
-            "..",
-            "__MACOSX",
-            "nbproject",
-            "_notes",
-            ".DS_Store",
-            ".komodotools",
-            "_tmp",
-            "_INC_",
-            "_EXEC_",".git"
-        ];
+    //      // on scan le dossier
+    //     $filterDefault = [
+    //         ".",
+    //         "..",
+    //         "__MACOSX",
+    //         "nbproject",
+    //         "_notes",
+    //         ".DS_Store",
+    //         ".komodotools",
+    //         "_tmp",
+    //         "_INC_",
+    //         "_EXEC_",".git"
+    //     ];
 
-        //list des nom de fichier ou de dossier a ne pas indexer
-        if (is_array($filter))
-            $filterMerge = array_merge($filter, $filterDefault);
-        else
-            $filterMerge = $filterDefault;
-
-
-        // on filtre le resultat
-        $r = array_diff($list, $filterDefault);
+    //     //list des nom de fichier ou de dossier a ne pas indexer
+    //     if (is_array($filter))
+    //         $filterMerge = array_merge($filter, $filterDefault);
+    //     else
+    //         $filterMerge = $filterDefault;
 
 
-        return $r;
-    }
+    //     // on filtre le resultat
+    //     $r = array_diff($list, $filterDefault);
+
+
+    //     return $r;
+    // }
 
 
 
@@ -236,53 +255,53 @@
 
 
 
-    function copy_dir($dir2copy, $dir_paste, $filters = [])
-    {
-        // On vérifie si $dir2copy est un dossier
-        if (is_dir($dir2copy) && !in_array($dir2copy, $filters)) {
+    // function copy_dir($dir2copy, $dir_paste, $filters = [])
+    // {
+    //     // On vérifie si $dir2copy est un dossier
+    //     if (is_dir($dir2copy) && !in_array($dir2copy, $filters)) {
 
-            // Si oui, on l'ouvre
-            if ($dh = opendir($dir2copy)) {
+    //         // Si oui, on l'ouvre
+    //         if ($dh = opendir($dir2copy)) {
 
-                // On liste les dossiers et fichiers de $dir2copy
-                while (($file = readdir($dh)) !== false) {
+    //             // On liste les dossiers et fichiers de $dir2copy
+    //             while (($file = readdir($dh)) !== false) {
 
-                    // Si le dossier dans lequel on veut coller n'existe pas, on le créé
-                    if (!is_dir($dir_paste)) mkdir($dir_paste, 0777);
+    //                 // Si le dossier dans lequel on veut coller n'existe pas, on le créé
+    //                 if (!is_dir($dir_paste)) mkdir($dir_paste, 0777);
 
-                    // S'il s'agit d'un dossier, on relance la fonction récursive
-                    if (is_dir($dir2copy . '/' . $file) && $file != '..' && $file != '.' && !in_array($file, $filters)) {
-                        copy_dir($dir2copy . '/' . $file . '/', $dir_paste . '/' . $file . '/', $filters);
-                    }
+    //                 // S'il s'agit d'un dossier, on relance la fonction récursive
+    //                 if (is_dir($dir2copy . '/' . $file) && $file != '..' && $file != '.' && !in_array($file, $filters)) {
+    //                     copy_dir($dir2copy . '/' . $file . '/', $dir_paste . '/' . $file . '/', $filters);
+    //                 }
 
-                    // S'il sagit d'un fichier, on le copie simplement
-                    elseif ($file != '..' && $file != '.' && !in_array($file, $filters))
-                        copy($dir2copy . '/' . $file, $dir_paste . '/' . $file);
-                }
+    //                 // S'il sagit d'un fichier, on le copie simplement
+    //                 elseif ($file != '..' && $file != '.' && !in_array($file, $filters))
+    //                     copy($dir2copy . '/' . $file, $dir_paste . '/' . $file);
+    //             }
 
-                // On ferme $dir2copy
-                closedir($dh);
-                return true;
-            }
-        }
+    //             // On ferme $dir2copy
+    //             closedir($dh);
+    //             return true;
+    //         }
+    //     }
 
-        function replace_Key_Val_File($data, $fileModel, $fileDest = true)
-        {
-            foreach ($data as $key => $val) {
-                $find[]    = "[" . $key . "]";
-                $replace[] = $val;
-            }
+    //     function replace_Key_Val_File($data, $fileModel, $fileDest = true)
+    //     {
+    //         foreach ($data as $key => $val) {
+    //             $find[]    = "[" . $key . "]";
+    //             $replace[] = $val;
+    //         }
 
-            $contentModel   = file_get_contents($fileModel,true);
+    //         $contentModel   = file_get_contents($fileModel,true);
 
-            $content        = str_replace($find, $replace, $contentModel);
+    //         $content        = str_replace($find, $replace, $contentModel);
 
-            if($fileDest)
-                file_put_contents($fileModel, $content);
-            else
-                return $content;
-        }
-    }
+    //         if($fileDest)
+    //             file_put_contents($fileModel, $content);
+    //         else
+    //             return $content;
+    //     }
+    // }
 
     $f = new file();
 ?>

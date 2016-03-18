@@ -7,9 +7,11 @@
 class app extends controller
 {
 
-    function __construct()
-    {
+    var $k; // clés de securité optionnel (pour les requetes de ftp_control);
 
+    function __construct($k='')
+    {
+        $this->k = $k;
     }
 
 
@@ -18,6 +20,29 @@ class app extends controller
     {
         $file = DIR_PROJECTS.'/'.$name.'/'.$name.'.json';
         return $this->project = $this->getJson($file);
+    }
+
+
+    /**
+     * Retourne la todo list du projet
+     * @param  string $name nom du projet
+     * @return array       la todo
+     */
+    public function getTodo($name='')
+    {
+        $file = DIR_PROJECTS.'/'.$name.'/todo.json';
+        return $this->project = $this->getJson($file);
+    }
+
+    /**
+     * Set la todo
+     * @param string $name     nom du projet
+     * @param array $dataSend la todo en array
+     */
+    public function setTodo($name='', $dataSend)
+    {
+        $file = DIR_PROJECTS.'/'.$name.'/todo.json';
+        return $this->project = $this->setJson($file, $dataSend);
     }
 
 
@@ -114,29 +139,36 @@ class app extends controller
     }
 
 
-
-    public function zipProject($name='')
+    /**
+     * Créer le bouton de deloiement du projet
+     * @param  string $name nom du projet
+     */
+    public function btn_deploy()
     {
-        set_time_limit(18000);
-
-
-        $rand        = substr( md5(rand()), 0, 8);
-        $time        = date('d_m_Y__H_i');
-        $tmpName     = $name.'_'.$time.'_'.$rand;
-
-        $dir_project = DIR_PROJECT.'/'.$name;
-        $dir_tmp     = DIR_TMP.'/'.$tmpName;
-        $dir_zip     = DIR_TMP.'/'.$tmpName.'.zip';
-        $file_zip    = $tmpName.'.zip';
-
-        mkdir($dir_tmp);
-        copy_dir($dir_project, $dir_tmp);
-
-        new zip_dir($dir_tmp, $dir_zip);
-
-        $this->uploadProject($name, $dir_zip, $file_zip);
-
+        $this->view('app','btn_deploy');
     }
+
+    // public function zipProject($name='')
+    // {
+    //     set_time_limit(18000);
+
+    //     $rand        = substr( md5(rand()), 0, 8);
+    //     $time        = date('d_m_Y__H_i');
+    //     $tmpName     = $name.'_'.$time.'_'.$rand;
+
+    //     $dir_project = DIR_PROJECT.'/'.$name;
+    //     $dir_tmp     = DIR_TMP.'/'.$tmpName;
+    //     $dir_zip     = DIR_TMP.'/'.$tmpName.'.zip';
+    //     $file_zip    = $tmpName.'.zip';
+
+    //     mkdir($dir_tmp);
+    //     copy_dir($dir_project, $dir_tmp);
+
+    //     new zip_dir($dir_tmp, $dir_zip);
+
+    //     $this->uploadProject($name, $dir_zip, $file_zip);
+
+    // }
 }
 
 $app = new app();

@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Renome les fichiers de configuration distant.
      */

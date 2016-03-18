@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-inverse navbar-fixed-top">
+<nav class="navbar navbar-fixed-top">
     <form action="#" id="form-project" class="form-inline">
         <div class="container">
             <!-- BEGIN ROW  -->
@@ -11,15 +11,17 @@
                         </div>
                         <?php $c->view("app","select_project","projects"); ?>
                         <div class="input-group-btn">
-                            <!-- <a href="<?php $c->urlExec('app','sys'); ?>" class="btn btn-secondary-outline btn-exec" title="Config" data-form="#form-project"  ><i class="fa fa-terminal"></i></a> -->
-                            <a href="<?php $c->urlExec('app','open_editor'); ?>" class="btn btn-secondary-outline btn-exec" title="Config" data-form="#form-project"  ><i class="fa fa-code"></i></a>
-                            <a href="<?php $c->urlPage('app','test'); ?>" class="btn btn-secondary-outline" title="Config" data-form="#form-project"  ><i class="fa fa-flask"></i></a>
                             <a href="<?php $c->urlPage('app','config'); ?>" class="btn btn-secondary-outline btn-modal" title="Config" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i></a>
-                            <a href="<?php $c->urlPage('app','deploy'); ?>" class="btn btn-secondary-outline btn-modal" title="Ftp" data-form="#form-project" data-backdrop="static"><i class="fa fa-upload"></i></a>
+                            <a href="<?php $c->urlPage('app','todo'); ?>" class="btn btn-secondary-outline btn-modal" title="Todo"  data-form="#form-project"   data-backdrop="static"><i class="fa fa-tasks"></i></a>
                         </div>
                     </div>
+                    <?php
+                        $app = new app();
+                        $app->btn_deploy();
+                    ?>
                 </div>
             </div>
+
         </div>
         <!-- END ROW  -->
     </form>

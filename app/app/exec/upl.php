@@ -6,11 +6,12 @@
     // $app = new app();
 
     if(!isset($_GET['combo'])){
-        $dir_zip     = DIR_TMP.'/'.$name.'.zip';
-        $file_zip    = $name.'.zip';
-
+        $dir_zip  = DIR_TMP.'/'.$name.'.zip';
+        $file_zip = $name.'.zip';
+        $k        = substr( md5(rand()), 0, 8);
 
     }
+
     $upl        = date('d m Y H:i:s');
 
     $app->uploadProject($name, $dir_zip, $file_zip);

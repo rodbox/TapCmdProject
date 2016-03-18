@@ -1,10 +1,16 @@
 <?php
+session_start();
+
+// Les constantes
 include('config.php');
 
+// Autoload de composer
 include(COMPOSER);
 
+// Controller de pack
 include(APP_LOADER);
 
+// Modules
 include("mod/mod-zip.php");
 include("mod/mod-file.php");
 include("mod/mod-tictac.php");
@@ -18,17 +24,23 @@ class controller
     var $dataSend;
     var $r = [];
 
+
+
     function __construct()
     {
-        # code...
+
     }
+
+
 
     public function title()
     {
         echo TITLE;
     }
 
-    public function view($app='app', $view, $model='', $dataSend = '')
+
+
+    public function view($app='app', $view, $model='', $dataSend = [])
     {
         $this->dataSend = $s = $dataSend;
 
@@ -49,14 +61,16 @@ class controller
         include($file);
     }
 
-    public function model($app='app', $model, $dataSend = '')
+
+
+    public function model($app='app', $model, $dataSend = [])
     {
         $this->dataSend = $s = $dataSend;
 
         $file = DIR_APP.'/'.$app.'/models/'.$model.'.php';
 
         $c = $this;
-
+        $app = new app();
         include($file);
 
         return $this->data = $d;
@@ -64,7 +78,20 @@ class controller
 
 
 
-    public function page($app='app', $page='index', $dataSend = '')
+    public function viewsAsync($app='app', $view='index', $model='', $dataSend = [])
+    {
+        $title = $_GET["name"] ?? $_GET["project"] ?? '';
+
+        ob_start();
+        $this->view($app, $view, $model, $dataSend);
+        $out = ob_get_clean();
+
+        return $out;
+    }
+
+
+
+    public function page($app='app', $page='index', $dataSend = [])
     {
         $this->dataSend = $s = $dataSend;
 
@@ -75,13 +102,12 @@ class controller
 
 
 
-    public function pageAsync($app='app', $page='index', $dataSend = '')
+    public function pageAsync($app='app', $page='index', $dataSend = [])
     {
         $title = $_GET["name"] ?? $_GET["project"] ?? '';
 
         ob_start();
-        $this->page($app,$page,$dataSend);
-
+        $this->page($app, $page, $dataSend);
         $out = ob_get_clean();
 
         $r = array(
@@ -96,13 +122,18 @@ class controller
 
 
 
+    /**
+     * Test si un requete est asynchrone
+     */
     public function isAsync()
     {
         return ( !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' );
     }
 
 
-
+    /**
+     * Créer un URL de page
+     */
     public function urlPage($app='app', $page='index', $data='')
     {
         $get = (is_array($data))?http_build_query($data):'';
@@ -110,14 +141,18 @@ class controller
     }
 
 
-
+    /**
+     * Créer un URL executable
+     */
     public function urlExec($app='app', $exec='index', $data='')
     {
         $get = (is_array($data))?http_build_query($data):'';
         echo WEB_EXEC.'/?app='.$app.'&exec='.$exec.'&'.$get;
     }
 
-
+    /**
+     * Retourne une liste d'attribut depuis un tableau
+     */
     public function attr($attrs = [])
     {
         $r = '';
@@ -173,14 +208,53 @@ class controller
     }
 
 
+    public function contextSession($k)
+    {
+        return $_SESSION['app']['context'][$k] ?? false;
+    }
 
+
+    public function btn_context($title='', $key, $context = "false")
+    {
+        $attr = [
+            'class'        => 'btn-context btn btn-sm',
+            'data-k'       => $key,
+            'data-context' => $this->contextSession($context) ?? $context
+        ];
+
+        $attr['class'] .= ($this->contextSession($key)=='true')?' active':'';
+
+        echo "<a ";
+        echo $this->attr($attr);
+        echo ">";
+        echo $title;
+        echo "</a>";
+    }
+
+    public function attrContext()
+    {
+        $attrContext = [];
+
+        foreach ($_SESSION['app']['context'] ?? [] as $key => $value)
+            $attrContext['data-context-'.$key] = $value;
+
+        echo $this->attr($attrContext);
+    }
+
+
+    /**
+     * Charge une page de test d'un pack
+     */
     public function test($app='app', $test, $dataSend = [])
     {
         $d = $dataSend;
         include(DIR_APP.'/'.$app.'/test/'.$test.'/index.php');
     }
 
-
+    /**
+     * Gestion de la variable $r
+     * Utiliser pour stocker les $r dans app/exec_combo.php
+    */
     public function pushR($r, $key = '')
     {
         $this->r[$key] = $r;

@@ -3,7 +3,9 @@
 .btn{
     i{
         font-size : x-large;
-        margin-right: 0.5rem;
+        + .title{
+            margin-left: 0.5rem;
+        }
     }
 }
 
@@ -98,12 +100,28 @@
 
 .navbar{
     &,
-    i,
     .btn,
     .form-control{
+        color: @cDefault2 !important;
+        background-color: @cPrimary2 !important;
+        border-color: transparent !important;
+    }
+    .btn{
+        &:hover{
+            &,
+            *{
+                color: lighten(@cPrimary2, 10%) !important;
+            }
+
+        }
+    }
+    .form-control{
+        &:focus{
+            background-color: lighten(@cPrimary2, 10%);
+        }
+    }
+    i{
         color: @cDefault2;
-        background-color: @cPrimary2;
-        border-color: fade(@cDefault2,25%);
     }
 }
 .nav-tabs {

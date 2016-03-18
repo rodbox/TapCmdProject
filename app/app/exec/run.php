@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Execute une commande shell dans le dossier du projet selectionné.
      */

@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Zip le dossier du clone tmp du projet.
      */
@@ -28,12 +27,8 @@
     $fs->remove($dir_del);
 
 
-
-
-
  // zip
  if (true) {
-
 
      $r = [
          'infotype' => "success",

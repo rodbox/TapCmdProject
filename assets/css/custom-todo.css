@@ -1,0 +1,19 @@
+/**
+ * Custom todo
+ */
+#todo-list .btn-del {
+  display: none;
+}
+#todo-list .todo-checked {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+#todo-list .todo-checked .btn-del {
+  display: inline;
+}
+#todo-list .todo-checked .btn-check {
+  display: none;
+}
+#todo-list .todo-new {
+  background-color: rgba(206, 165, 0, 0.2);
+}

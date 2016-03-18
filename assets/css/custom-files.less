@@ -1,0 +1,29 @@
+.files{
+    list-style: none;
+    padding: 0px;
+    margin-left: 0px;
+    li{
+        a {
+            padding: 0.275rem 0.375rem;
+            display: block;
+            &:active,
+            &:focus,
+            &:hover{
+                text-decoration: none;
+                background-color: fade(@cSuccess2,5%);
+            }
+            &.active{
+                background-color: fade(@cSuccess2,15%);
+            }
+            i{
+                color: @cSuccess2;
+            }
+        }
+        ul{
+           margin-left: 12px;
+            padding-left: 6px;
+
+            border-left: 1px solid fade(@cSuccess2,10%);
+        }
+    }
+}

@@ -5,49 +5,9 @@
         <div>Exclude</div>
 
     <input type="hidden" name="name" value="<?php echo $_GET['name']; ?>">
-        <div class="checkdown checkdown-success">
-                 <?php
-                    $c->btn_combo(
-                        'Deployer vers le server',
-                        [
-                            ['app','copy'],
-                            ['app','dist'],
-                            ['app','zip'],
-                            ['app','upl']
-                        ],
-                        '#form-ftp',
-                        '',
-                        'checkdown-btn'
-                    );
-                ?>
-                <div class="checkdown-list">
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/web/assets">
-                        <span class="checkdown-label">assets</span>
-                    </label>
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/bin">
-                        <span class="checkdown-label">bin</span>
-                    </label>
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/web/bundles">
-                        <span class="checkdown-label">bundles</span>
-                    </label>
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/composer.phar">
-                        <span class="checkdown-label">composer</span>
-                    </label>
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/var">
-                        <span class="checkdown-label">var</span>
-                    </label>
-                    <label class="checkdown-item">
-                        <input name="filters[]" type="checkbox"  checked="checked" value="/vendor">
-                        <span class="checkdown-label">vendor</span>
-                    </label>
-                </div>
-        </div>
-
+<?php
+    $app = new app();
+$app->btn_deploy(); ?>
 <!--
         <div class="btn-group-vertical btn-group-sm" data-toggle="buttons">
             <label class="btn btn-secondary active">
