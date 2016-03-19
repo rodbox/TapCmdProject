@@ -1,6 +1,6 @@
 <nav class="navbar navbar-fixed-top">
     <form action="#" id="form-project" class="form-inline">
-        <div class="container">
+
             <!-- BEGIN ROW  -->
             <div class="row ">
                 <div class="col-md-12 col-xs-12">
@@ -21,8 +21,6 @@
                     ?>
                 </div>
             </div>
-
-        </div>
         <!-- END ROW  -->
     </form>
 </nav>

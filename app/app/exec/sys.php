@@ -11,7 +11,7 @@
         $r = [
             'infotype' => "success",
             'msg'      => "ok sys",
-            'data'     => shell_exec('open /Applications/Utilitaires/Terminal.app')
+            'data'     => shell_exec('open '.$dir)
         ];
     }
 

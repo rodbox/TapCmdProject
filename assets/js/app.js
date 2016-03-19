@@ -1,5 +1,21 @@
-$(document).ready(function($) {
+(function($) {
+    // creer un attribut data-ext avec l'extension du fichier dans data-file
+    $.fn.fileext = function(options) {
+        var list = $(this).find("a.file-ext, .extension-me, .ext-me");
 
+            $.each(list,function(){
+                var t    = $(this);
+                var file = t.data("file");
+                var ext  = file.split('.');
+                t.attr("data-ext",ext[ext.length - 1]);
+            })
+
+        return this;
+    };
+})(jQuery);
+
+$(document).ready(function($) {
+    $(".context-sidebar-body").fileext();
     // Stock les callbacks des fichiers app-cb.js
     $.cb = {};
 
@@ -298,6 +314,6 @@ $(document).ready(function($) {
         }
     }
 
-
-
 });
+
+

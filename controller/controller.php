@@ -90,6 +90,17 @@ class controller
     }
 
 
+    public function menu($app='app', $view='index', $model='', $dataSend = [])
+    {
+        $title = $_GET["name"] ?? $_GET["project"] ?? '';
+
+        echo '<nav class="navbar nav c-menu"><div class="nav navbar-nav">';
+        $this->view($app, $view, $model, $dataSend);
+        echo '</div></nav>';
+
+    }
+
+
 
     public function page($app='app', $page='index', $dataSend = [])
     {
@@ -208,21 +219,21 @@ class controller
     }
 
 
-    public function contextSession($k)
+    public function suiSession($k)
     {
-        return $_SESSION['app']['context'][$k] ?? false;
+        return $_SESSION['app']['sui'][$k] ?? false;
     }
 
 
-    public function btn_context($title='', $key, $context = "false")
+    public function btn_sui($title='', $key, $sui = "false", $css = ' btn btn-sm ')
     {
         $attr = [
-            'class'        => 'btn-context btn btn-sm',
+            'class'        => 'btn-sui '.$css,
             'data-k'       => $key,
-            'data-context' => $this->contextSession($context) ?? $context
+            'data-sui' => $this->suiSession($sui) ?? $sui
         ];
 
-        $attr['class'] .= ($this->contextSession($key)=='true')?' active':'';
+        $attr['class'] .= ($this->suiSession($key)=='true')?' active':'';
 
         echo "<a ";
         echo $this->attr($attr);
@@ -231,14 +242,14 @@ class controller
         echo "</a>";
     }
 
-    public function attrContext()
+    public function attrSui()
     {
-        $attrContext = [];
+        $attrSui = [];
 
-        foreach ($_SESSION['app']['context'] ?? [] as $key => $value)
-            $attrContext['data-context-'.$key] = $value;
+        foreach ($_SESSION['app']['sui'] ?? [] as $key => $value)
+            $attrSui['data-sui-'.$key] = $value;
 
-        echo $this->attr($attrContext);
+        echo $this->attr($attrSui);
     }
 
 

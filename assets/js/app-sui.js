@@ -10,51 +10,51 @@ $(document).ready(function($) {
 	 * R : role			: par la liste des roles definit par le projet
 	 * K : Keyboard		: js/init-shortcut.js
 	 *
-	 * La liste de contextes propre à chaques types est à définir en fonction des besoins de chaque type
+	 * La liste de suies propre à chaques types est à définir en fonction des besoins de chaque type
 	 */
 
-	$.context = {
+	$.sui = {
 		get	: function (key){
-			return $('html').attr('data-context-'+key);
+			return $('html').attr('data-sui-'+key);
 		},
 		set	: function (key, value){
 
-			var urlSession = './app/app/exec/context.php';
+			var urlSession = './app/app/exec/sui.php';
 
 			var data       = {
 				key : key,
 				value: value
 			}
-			// data['context'][key] = value;
+			// data['sui'][key] = value;
 
 			$.get(urlSession, data);
 
-			return $('html').attr('data-context-'+key,value);
+			return $('html').attr('data-sui-'+key,value);
 		},
 		is	: function (key, value){
-			return ($('html').attr('data-context-'+key)==value);
+			return ($('html').attr('data-sui-'+key)==value);
 		}
 	}
 
 	$.setIframe = function (url){
-		$.context.set('n','iframe');
+		$.sui.set('n','iframe');
 		$('#iframe').attr('src',url);
 	}
 
 	$.setDefault = function (){
-		$.context.set('n','default');
+		$.sui.set('n','default');
 	}
-	$(document).on("click",".btn-close-context",function (e){
+	$(document).on("click",".btn-close-sui",function (e){
 		e.preventDefault();
 		var t = $(this);
 		$.setDefault();
 	})
 
-	$(document).on("click", ".btn-context", function (e){
+	$(document).on("click", ".btn-sui", function (e){
 		e.preventDefault();
 		var t = $(this);
 		t.toggleClass('active');
-		$.context.set(t.attr('data-k'),t.hasClass('active'));
+		$.sui.set(t.attr('data-k'),t.hasClass('active'));
 
 		if (t.data('cb'))
             $.cb['app'][t.data('cb')](t, e);

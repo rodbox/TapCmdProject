@@ -3,7 +3,7 @@
 @import 'custom-color.less';
 @import 'custom-bootstrap.less';
 @import 'custom-checkdown.less';
-@import 'custom-context.less';
+@import 'custom-sui.less';
 @import 'custom-modal.less';
 @import 'custom-todo.less';
 @import 'custom-codemirror.less';
@@ -12,10 +12,16 @@
 body{
     color:@body1;
     background-color: @body2;
+    &,
+    a,
+    div{
+        font-size: @fontSize;
+    }
+
 }
 
-html[data-context-a=""],
-html[data-context-a="false"]{
+html[data-sui-a=""],
+html[data-sui-a="false"]{
     *,
     select,
     option,
@@ -177,14 +183,26 @@ a.btn-primary{
     color: @cSuccess2 !important;
 }
 
-.navbar-fixed-bottom{
-    background-color: darken(@cSuccess1,3%) !important;
+.navbar-bottom{
+    .no-radius;
+    &,
+    .btn {
+        background-color: darken(@cSuccess1,3%) !important;
+        &.active{
+            background-color: @cSuccess1 !important;
+        }
+    }
     i{
         font-size: large;
     }
 }
 .navbar-fixed-top{
-    background-color: darken(@cSuccess1,3%) !important;
+    &,
+    .btn,
+    .form-control{
+        background-color: darken(@cSuccess1,5%) !important;
+    }
+
     i{
         font-size: large;
     }
@@ -195,4 +213,36 @@ a.btn-primary{
     *{
         border-color: transparent !important;
     }
+}
+
+iframe{
+    &#console{
+        width:100%;
+        height: 431px;
+        border:0px !important;
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: -7px;
+    }
+}
+
+.c-menu{
+    .no-radius;
+    background-color: darken(@cSuccess1,3%) !important;
+    &,
+    a{
+        color: @cSuccess2 !important;
+    }
+}
+
+footer{position:fixed;
+    right:0px;
+    bottom:0px;
+
+    .z-max();
+}
+
+a.btn-sh {
+    color: darken(@cSuccess2,20%) !important;
+    padding: 0rem  0.25rem !important;
 }

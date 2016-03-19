@@ -1,6 +1,6 @@
 <?php
     /**
-     * Compile un fichier less
+     * Compile un fichier de variable au format less
      */
 
     $app = new app();

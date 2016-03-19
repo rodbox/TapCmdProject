@@ -29,7 +29,7 @@ $(document).ready(function($) {
         init    : function (t){
             var id      = t.attr('data-tictac');
             var loader = $('<i>',{'id':'id','class':'fa fa-refresh fa-spin fa-spin-2x '});
-            var status  = $("<span>",{"id":"tictac-"+t.attr('data-tictac'),"class":"tictac-status label label-default"}).html(loader);
+            var status  = $("<span>",{"id":"tictac-"+t.attr('data-tictac'),"class":"tictac-status"}).html(loader);
 
             t.append(" ");
             t.append(status);

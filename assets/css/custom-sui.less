@@ -1,0 +1,162 @@
+@headerH: 50px;
+@footerH: 47px;
+
+@editorH: calc(~'100vh - '@headerH);
+@editorW: 50vw;
+
+@iframeH: calc(~'100vh - '@headerH);
+@iframeW: 50vw;
+
+@consoleH: 435px;
+@consoleW: 50vw;
+
+@sidebarH: calc(~'100vh - '@headerH);
+@sidebarW: 250px;
+
+@quickbarH: calc(~'100vh - '@headerH);
+@quickbarW: @sidebarW;
+
+
+@editorHConsole: calc(~'100vh - '@consoleH' - '@headerH);
+
+.transX(@value){
+    -moz-transform: translateX(@value);
+    -webkit-transform: translateX(@value);
+    -o-transform: translateX(@value);
+    -ms-transform: translateX(@value);
+    transform: translateX(@value);
+}
+
+[data-sui-editor="true"]{
+    .sui-editor{
+        .transX(0);
+    }
+    &[data-sui-iframe=true]{
+        .sui-editor{
+
+        }
+
+    }
+    &[data-sui-console="true"]{
+        .sui-editor{
+            height:@editorHConsole;
+        }
+    }
+}
+
+[data-sui-sidebar="true"]{
+    .sui-sidebar{
+        .transX(0);
+    }
+
+    &[data-sui-console="true"] .sui-console,
+    &[data-sui-editor="true"] .sui-editor,
+    &[data-sui-iframe="true"] .sui-iframe{
+        .transX(@sidebarW);
+    }
+}
+
+// [data-sui-quickbar="true"]{
+//     .sui-quickbar{
+//         .transX(0);
+//     }
+// }
+
+
+[data-sui-console="true"]{
+    .sui-console{
+        display:block;
+    }
+}
+
+
+
+
+//
+.sui-console{
+    width:@consoleW;
+    height:@consoleH;
+
+    .fixed;
+    bottom:0px;
+    left:0px;
+    .z-overlay();
+
+    display:none;
+
+    .sui-console-body{
+
+    }
+}
+.sui-editor{
+    width:@editorW;
+
+    .transX(-@editorW);
+
+    .fixed;
+    top:@headerH;
+    left:0px;
+
+
+    display:block;
+    .sui-editor-body{
+        float:left;
+        height: @editorH;
+        width: 100%;
+    }
+}
+
+.sui-sidebar{
+    .fixed;
+    left:0px !important;
+    top:@headerH !important;
+    width: @sidebarW;
+    height: @sidebarH;
+
+
+    .transX(-@sidebarW);
+}
+
+.sui-quickbar{
+    width: @quickbarW;
+    height: @quickbarW;
+
+    .fixed;
+    top:@headerH;
+    right:0px;
+
+    .transX(@quickbarW);
+}
+
+.sui-iframe{
+    height: @iframeH;
+    width:@iframeW;
+
+    .fixed;
+    top:@headerH;
+    right:0px;
+
+    .transX(@iframeW);
+
+    iframe{
+        height:100%;
+        width:100%;
+    }
+}
+
+
+.sui-quickbar,
+.sui-console,
+.sui-sidebar,
+.sui-editor
+{
+    overflow-y: auto;
+    .animate();
+    background-color: darken(@cSuccess1,3%) !important;
+}
+
+.btn-sui{
+    &.active{
+        background-color: rgba(255,255,255, 0.2) !important;
+    }
+}

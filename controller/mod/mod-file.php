@@ -23,6 +23,10 @@
             "_notes",
             ".DS_Store",
             ".komodotools",
+            ".git",
+            ".gitignore",
+            ".com.apple.timemachine.supported",
+            "_tmp"
         ];
 
         function __construct()
@@ -75,14 +79,11 @@
          */
         public function dir($src, $exclude = [])
         {
+            // on scan le dossier
             $list = scandir($src);
 
-             // on scan le dossier
-            $filters = array_merge($exclude, $this->filtersDefault);
-
             //list des nom de fichier ou de dossier a ne pas indexer
-            // $filterMerge = array_merge($filter, $filterDefault);
-
+            $filters = array_merge($exclude, $this->filtersDefault);
 
             // on filtre le resultat
             $r = array_diff($list, $filters);
@@ -91,18 +92,20 @@
             return $r;
         }
 
-        function files($dir) {
-            $filter     = array(".", "..","__MACOSX", "nbproject", "_notes", ".DS_Store", ".komodotools", "_tmp",".git",".gitignore"); //list des nom de fichier ou de dossier a ne pas indexer
-            $list       = scandir($dir); // on scan le dossier
-            $r          = array_diff($list, $filter); // on filtre le resultat
-            $files      = [];
+        function files($dir, $filter = [], $recursive = false) {
+
+            $list    = scandir($dir); // on scan le dossier
+            $filters = array_merge($filter, $this->filtersDefault);
+
+            $r       = array_diff($list, $filters); // on filtre le resultat
+            $files   = [];
             foreach ($r as $key => $val) { //on parcour chaque element
                 if (is_dir($dir . "/" . $val)) {
                     unset($r[$key]); // on supprime le nom du dossier dans la liste de resultat car elle utilisé en clé pour les sous dossiers
-                    $r[$val] = $this->files($dir . "/" . $val);
-                }else{
+                    $r[$val] = ($recursive)?$this->files($dir . "/" . $val):[];
+                }
+                else{
                     unset($r[$key]);
-                    // $files[] = $val;
                     $r["zzz".$val] = $val;
                 }
             }
@@ -110,119 +113,6 @@
             return $r;
         }
     }
-
-
-
-
-    // function scan_dir_filter($dir, $filter = "")
-    // {
-    //     $list = scandir($dir);
-
-    //      // on scan le dossier
-    //     $filterDefault = [
-    //         ".",
-    //         "..",
-    //         "__MACOSX",
-    //         "nbproject",
-    //         "_notes",
-    //         ".DS_Store",
-    //         ".komodotools",
-    //         "_tmp",
-    //         "_INC_",
-    //         "_EXEC_",".git"
-    //     ];
-
-    //     //list des nom de fichier ou de dossier a ne pas indexer
-    //     if (is_array($filter))
-    //         $filterMerge = array_merge($filter, $filterDefault);
-    //     else
-    //         $filterMerge = $filterDefault;
-
-
-    //     // on filtre le resultat
-    //     $r = array_diff($list, $filterDefault);
-
-
-    //     return $r;
-    // }
-
-
-
-    // function file_list_mono($dir, $suffix = null)
-    // {
-    //     $filter = [
-    //         ".",
-    //         "..",
-    //         "__MACOSX",
-    //         "nbproject",
-    //         "_notes",
-    //         ".DS_Store",
-    //         ".komodotools",
-    //         "_tmp",
-    //         "_INC_",
-    //         "_EXEC_",
-    //         ".git"
-    //     ];
-
-    //     //list des nom de fichier ou de dossier a ne pas indexer
-    //     $suffix = ($suffix != null) ? $suffix . "/" : null;
-
-    //     $list   = scandir($dir);
-    //     // on scan le dossier
-    //     $r      = array_diff(
-    //         $list,
-    //         $filter
-    //     );
-
-    //      // on filtre le resultat
-    //     foreach ($r as $key => $val) {
-    //          //on parcour chaque element
-    //         if (is_dir($dir . "/" . $val)) {
-    //             unset($r[$key]);
-    //              // on supprime le nom du dossier dans la liste de resultat car elle utilisé en clé pour les sous dossiers
-    //             $rsub = file_list_mono($dir . "/" . $val, $suffix . $val);
-    //             foreach ($rsub as $key2 => $val2) {
-    //                 $r[] = $val2;
-    //             }
-    //         }
-    //         else
-    //             $r[$key] = ($suffix != null) ? $suffix . $val : $val;
-    //     }
-    //     return $r;
-    // }
-
-
-
-    // function folder_list($dir, $rel = true)
-    // {
-    //      $filter = [
-    //         ".",
-    //         "..",
-    //         "__MACOSX",
-    //         "nbproject",
-    //         "_notes",
-    //         ".DS_Store",
-    //         ".komodotools",
-    //         "_tmp",
-    //         "_INC_",
-    //         "_EXEC_",
-    //         "_TEMPLATES_",
-    //         ".git"
-    //     ];
-    //      //list des nom de fichier ou de dossier a ne pas indexer
-
-    //      $list   = scandir($dir);
-    //      // on scan le dossier
-    //      $r      = array_diff($list, $filter);
-
-    //      // on filtre le resultat
-    //     foreach ($r as $val) {
-    //         $srcEval = $dir . "/" . $val;
-    //         if (is_dir($srcEval)) $d[] = ($rel) ? $srcEval : $val;
-    //     }
-    //     return $d;
-    // }
-
 
 
     function templateFile($templateFile, $targetDir, $newFileName = "")

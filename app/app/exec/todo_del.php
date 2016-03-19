@@ -1,7 +1,8 @@
 <?php
-// exec name
-//
-//
+    /**
+     * Supprime une tache
+     */
+
     $app = new app();
 
 

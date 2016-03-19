@@ -8,7 +8,7 @@
 
 <?php else: ?>
 <!DOCTYPE html>
-<html lang="fr" data-context-a="false" <?php $c->attrContext(); ?> >
+<html lang="fr" data-sui-a="false" <?php $c->attrSui(); ?> >
     <head>
         <meta charset="UTF-8">
         <title><?php $c->title(); ?></title>
@@ -34,7 +34,7 @@
         <?php $c->view('app','footer'); ?>
         <?php $c->view('app','modal'); ?>
 
-        <?php $c->view('app','context_nav'); ?>
+        <?php $c->view('app','sui_nav'); ?>
 
         <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
         <script src="assets/vendor/clipboard/dist/js/clipboard.min.js" ></script>
@@ -42,8 +42,13 @@
         <script src="assets/vendor/checkdown/dist/js/checkdown.js" ></script>
         <script src="assets/js/app.js" type="text/javascript"> </script>
         <script src="assets/js/app-tictac.js" type="text/javascript"> </script>
-        <script src="assets/js/app-context.js" type="text/javascript"> </script>
+        <script src="assets/js/app-sui.js" type="text/javascript"> </script>
+        <script src="assets/js/kalt.js" type="text/javascript"> </script>
+
         <script src="app/app/assets/js/app-cb.js" type="text/javascript"> </script>
+
+        <script src="app/editor/assets/js/app-cb.js" type="text/javascript"> </script>
+        <script src="app/editor/assets/js/app-file.js" type="text/javascript"> </script>
 
 
 
@@ -70,6 +75,8 @@
         <!-- Code mirror mode -->
         <script src="assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
         <script src="assets/vendor/codemirror/mode/xml/xml.js"></script>
+        <script src="assets/vendor/codemirror/mode/php/php.js"></script>
+        <script src="assets/vendor/codemirror/mode/yaml/yaml.js"></script>
         <script src="assets/vendor/codemirror/mode/clike/clike.js"></script>
         <script src="assets/vendor/codemirror/mode/php/php.js"></script>
         <script src="assets/vendor/codemirror/mode/css/css.js"></script>

@@ -1,4 +1,20 @@
 $(document).ready(function($) {
+    $.mode = {
+        json:'application/json',
+        php:'php',
+        js:'text/javascript',
+        html:'text/html',
+        css:'text/css',
+        less:'text/x-less',
+        scss:'text/scss',
+        twig:'text/html',
+        md:'text/x-markdown',
+        yml:'text/x-yaml',
+        sh:'text/x-sh',
+        default:'default'
+    };
+
+
     $.cb['app'] = {
         default : function (t,json,e){
             // callback par default
@@ -43,18 +59,6 @@ $(document).ready(function($) {
         todo_check: function (t, json, e){
             // upd d'une tache
             $(t.data('target')).addClass('todo-checked');
-        },
-        setEditor: function (t, json, e){
-            // $.editor.setOption("mode",mode[ext]);
-            $('.files .active').removeClass('active');
-            t.addClass('active');
-            $.editor.setValue(json.content);
-            $.editor.clearHistory();
-
-        },
-        toggleFolder: function (t, json, e){
-            t.addClass('loaded');
-            t.after(json.content);
         }
     }
 });

@@ -1,19 +1,16 @@
 <?php
-
-/**
-* TODO : enregistrement du fichier mais en créant une securité d'archive et/ ou de lockage
-**/
-
-
+    /**
+     * ouvre un dossier ou un fichier avec le finder
+     */
 
 // exec name
-if (file_put_contents($dir, $content)) {
+if (true) {
 
 
     $r = [
         'infotype' => "success",
         'msg'      => "ok exec name",
-        'data'     => ''
+        'data'     => shell_exec('open '.$dir)
     ];
 }
 
