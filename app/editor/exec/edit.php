@@ -2,7 +2,26 @@
 // editor
 //
 
-    $app = file_get_contents($dir.'/'.$file);
+    $content = file_get_contents($dir.'/'.$file);
+    $rand    = substr( md5(rand()), 0, 8);
+
+    $metaTabs = [
+        'dir'  => $dir,
+        'file' => $file,
+        'id'   => $rand
+    ];
+    $metaPane = [
+        'dir'     => $dir,
+        'file'    => $file,
+        'content' => $content,
+        'id'      => $rand
+    ];
+
+    $target = [
+        '#filesTabs'  => $c->viewsAsync('editor', 'editor-tab', $metaTabs),
+        '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane)
+    ];
+    $cb = 'editor_init';
 
 if (true) {
 
@@ -11,8 +30,11 @@ if (true) {
         'infotype' => "success",
         'msg'      => "ok editor",
         'dir'      => $dir,
-        'file'      => $file,
-        'content'     => $app
+        'file'     => $file,
+        'content'  => $content,
+        'target'   => $target,
+        'id'       => $rand,
+        'cb'       => $cb
     ];
 }
 

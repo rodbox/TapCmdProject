@@ -1,20 +1,50 @@
 <?php
-    // include('config.php');
+    include('config.php');
 
-/**
-*
-*/
+
 class app extends controller
 {
 
     var $k; // clés de securité optionnel (pour les requetes de ftp_control);
+    var $name; // nom du projet en cours
+
+    /**
+     * TODO : On ne charge pas le projet dans le constructor aux cas ou il faudrait travailler sur plusieur projet simultanément (A VOIR);
+     */
 
     function __construct($k='')
     {
         $this->k = $k;
     }
 
+    /**
+     * Retourne le projet en session
+     * @return string le nom du projet;
+     */
+    public function cur()
+    {
+        $this->name = $_SESSION['project']['name'] ?? '';
+        return $this->name;
+    }
 
+    /**
+     * Retourne le projet en session
+     * @return string le nom du projet;
+     */
+    public function dir()
+    {
+       return DIR_PROJECTS.'/'.$this->cur();
+    }
+
+
+    /**
+     * Retourne les fichiers d'un projet en session
+     * @return string le nom du projet;
+     */
+    public function files()
+    {
+       return $this->dir().'/files.txt';
+    }
 
     public function getProject($name='')
     {
@@ -43,6 +73,46 @@ class app extends controller
     {
         $file = DIR_PROJECTS.'/'.$name.'/todo.json';
         return $this->project = $this->setJson($file, $dataSend);
+    }
+
+
+    public function getTrans($index ='', $lang = 'fr')
+    {
+        $dir    = DIR_PROJECT.'/'.$this->cur().'/app/Resources/translations/messages.'.$lang.'.yml';
+        $trans  = $this->getYaml($dir);
+
+        if ($index == '')
+            return $trans;
+
+        else{
+            /**
+            * TODO : revoir le parcour de l'index du tableau de traduction
+            **/
+            $indexExplode = explode('.',$index);
+            $last         = array_pop($indexExplode);
+            $sub          = (is_array($trans))?$trans:[];
+            foreach ($indexExplode as $indexKey => $value) {
+                if(array_key_exists($value,$sub))
+                    $sub = $sub[$value];
+                else
+                    break;
+            }
+            return (isset($sub[$last]))?$sub[$last]:'';
+        }
+    }
+
+    public function addTrans($index, $value='', $lang = 'fr')
+    {
+        $dir    = DIR_PROJECT.'/'.$this->cur().'/app/Resources/translations/messages.'.$lang.'.yml';
+
+        $trans    = $this->getTrans('',$lang);
+
+        $transAdd = $this->indexToKey($index,$value);
+
+        $transNew = array_replace_recursive($trans, $transAdd);
+
+
+        return $this->setYaml($dir, $transNew);
     }
 
 

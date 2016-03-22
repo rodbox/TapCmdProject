@@ -69,6 +69,7 @@
                     $fs->copy($fileSrc, $fileDest, $overide);
             }
 
+
             return $files;
         }
 
@@ -92,7 +93,7 @@
             return $r;
         }
 
-        function files($dir, $filter = [], $recursive = false) {
+        public function files($dir, $filter = [], $recursive = false) {
 
             $list    = scandir($dir); // on scan le dossier
             $filters = array_merge($filter, $this->filtersDefault);
@@ -110,7 +111,24 @@
                 }
             }
             ksort($r);
+
+
             return $r;
+        }
+
+
+        public function facade($dir, $exclude = [], $suffix = false)
+        {
+            $facade = new File_Iterator_Facade();
+            $list   = $facade->getFilesAsArray($dir,'','',$exclude);
+
+            if (!$suffix){
+                foreach ($list as $key => $value)
+                    $list[$key]=str_replace($dir, '',$value);
+            }
+
+
+            return $list;
         }
     }
 
@@ -125,6 +143,8 @@
         }
 
         $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
+
+
         if (!file_exists($dest))
             return copy($src, $dest);
         else

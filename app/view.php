@@ -1,8 +1,9 @@
 <?php
-    include('../../controller/controller.php');
+    include('../controller/controller.php');
 
-    /**
-    * TODO : loader view
-    **/
+    extract($_POST);
+    extract($_GET);
+
+    $c->view($app, $view, $model ?? '');
 
 ?>

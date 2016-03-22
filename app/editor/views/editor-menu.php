@@ -1,4 +1,12 @@
-<a href="<?php $c->urlExec('editor','save') ?>" class="btn-cm nav-item nav-link" data-cb="editorSave" title="save"><i class="fa fa-floppy-o"></i></a>
-
-<?php $c->btn_sui('<i class="fa fa-refresh"></i>','autorefresh','true', 'nav-item nav-link pull-right'); ?>
+<div class="nav-item ">
+<a id="editorSave" href="<?php $c->urlExec('editor','save') ?>" class="btn-cm btn " data-cb="editorSave" title="save"><i class="fa fa-floppy-o"></i></a><a id="editorStar" href="<?php $c->urlExec('editor','star') ?>" class="btn-cm btn " title="star"  data-cb="starsRefresh" data-cb-app="editor"><i class="fa fa-star"></i></a>
+</div>
+<div class="nav-item pull-right"><?php $c->btn_sui('autorefresh','autorefresh','true', 'btn  '); ?>
 <input type="hidden" class="fileOpen open" value="" />
+</div>
+
+<!-- NAVTABS : titleTabs  -->
+<!-- BEGIN NAVTABS : titleTabs  -->
+<ul class="nav nav-tabs" id="filesTabs">
+
+</ul>

@@ -1,6 +1,5 @@
 <nav class="navbar navbar-fixed-top">
-    <form action="#" id="form-project" class="form-inline">
-
+    <form action="<?php $c->urlExec('app','project') ?>" id="form-project" class="form-inline form-live" data-cb="refresh">
             <!-- BEGIN ROW  -->
             <div class="row ">
                 <div class="col-md-12 col-xs-12">
@@ -11,14 +10,9 @@
                         </div>
                         <?php $c->view("app","select_project","projects"); ?>
                         <div class="input-group-btn">
-                            <a href="<?php $c->urlPage('app','config'); ?>" class="btn btn-secondary-outline btn-modal" title="Config" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i></a>
-                            <a href="<?php $c->urlPage('app','todo'); ?>" class="btn btn-secondary-outline btn-modal" title="Todo"  data-form="#form-project"   data-backdrop="static"><i class="fa fa-tasks"></i></a>
                         </div>
                     </div>
-                    <?php
-                        $app = new app();
-                        $app->btn_deploy();
-                    ?>
+   <a href="<?php $c->urlPage('app','config'); ?>" class="btn btn-secondary-outline btn-modal pull-right" title="Config" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i></a>
                 </div>
             </div>
         <!-- END ROW  -->

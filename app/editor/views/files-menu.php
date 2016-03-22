@@ -1,8 +1,9 @@
-<nav class="navbar">
+   <form id="files_search" data-cb="input_files" action="<?php $c->urlExec('editor','files_search'); ?>" class="form-live form-files form-inline">
+        <div class="input-group">
+        <input type="text" placeholder="" data-target="#files_search" name="file" class="form-control on-focusin on-focusout on-keyup" data-cb-app="editor" data-cb-focusin="fileSearchOn" data-cb-focusout="fileSearchOff" data-cb-keyup="fileSearch">
+              <span class="input-group-btn">
+              <a href="<?php $c->urlExec('editor','files_index') ?>" class="btn btn-default btn-exec" title="title"><i class="fa fa-search"></i></a>
+              </span>
+            </div>
 
-   <form data-cb="input_files" action="#" class="form-live" id="form-files form-na-">
-   <label></label>
-        <input type="text" placeholder="" name="file" class="form-control">
     </form>
-
-</nav>

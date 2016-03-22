@@ -1,8 +1,9 @@
 <?php
 $f = new file();
 
-$dir = DIR_PROJECT.'/__rodbox_sources__';
 
-$d['list'] = $f->files($dir);
+$dir = DIR_PROJECT.'/'.$app->cur();
+
+$d['list'] = $f->files($dir,[],true);
 $d['dir'] = $dir;
  ?>

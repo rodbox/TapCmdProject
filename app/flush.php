@@ -1,5 +1,4 @@
 <?php
-
     /**
      * Flush une page vers un fichier html compilé.
      */

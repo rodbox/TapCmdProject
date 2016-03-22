@@ -1,8 +1,8 @@
 <?php
-session_start();
+    session_start();
 
-foreach ($_GET as $key => $value)
-    $_SESSION['app'][$key] = $value;
+    foreach ($_GET as $key => $value)
+        $_SESSION['app'][$key] = $value;
 
-echo json_encode($_SESSION);
+    echo json_encode($_SESSION);
 ?>

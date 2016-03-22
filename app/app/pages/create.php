@@ -15,7 +15,7 @@
 <div class="form-group row">
     <label for="new" class="col-sm-2 form-control-label">Install</label>
     <div class="col-sm-10">
-            <input type="checkbox" name="new" class="form-control" id="new" placeholder="Install" />
+            <input type="checkbox" name="install" class="form-control" id="install" placeholder="Install" />
     </div>
 </div>
 <!-- end input : new -->

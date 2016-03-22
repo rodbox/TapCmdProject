@@ -1,14 +1,21 @@
 <div class="sui-sidebar">
     <div class="sui-sidebar-body">
-        <!-- <?php $c->view("editor","files-menu"); ?> -->
-        <?php $c->view("editor","files","files",["name"=>"__rodbox_sources__"]); ?>
+
+        <?php $c->view("editor","files-stars","stars"); ?>
+        <div class="">
+        <h2>Fichiers</h2>
+        <?php $c->view("editor","files","files"); ?>
+        </div>
     </div>
-</div>
-<div class="sui-editor">
+</div><?php $c->view("editor","editor-contextmenu"); ?>
+<div class="sui-editor "  data-cb-r-click='toggleMouseMenu'>
     <div class="sui-editor-body">
         <?php $c->menu("editor","editor-menu"); ?>
-        <?php $c->menu("editor","editor-submenu"); ?>
-        <textarea id="myTextarea" name="myTextarea" class="cm"></textarea>
+        <div id="filesPanes" class="tab-content">
+
+        </div>
+        <!-- END TABSCONTENT  -->
+        <!-- END NAVTABS titleTabs -->
     </div>
 
 </div>
@@ -30,5 +37,9 @@
         quickbar
     </div>
 </div>
-
+<div class="sui-suggest">
+    <div class="sui-suggest-body">
+        <?php $c->menu("editor","files-menu"); ?>
+    </div>
+</div>
 

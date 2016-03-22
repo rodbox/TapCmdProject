@@ -1,5 +1,4 @@
 <?php
-
     include('../controller/controller.php');
 
     extract($_POST);

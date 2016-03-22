@@ -1,0 +1,192 @@
+/**
+ * Ico : fonctAwesome icon
+ */
+.checkdown {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.checkdown .checkdown-btn {
+  width: 100%;
+  display: block;
+  border-radius: 0.2rem;
+}
+.checkdown .checkdown-list {
+  margin-top: -1px;
+  width: 100%;
+  top: 100%;
+  z-index: 2000;
+  position: absolute;
+  border-bottom-left-radius: 0.2rem !important;
+  border-bottom-right-radius: 0.2rem !important;
+  display: none;
+}
+.checkdown .checkdown-list :first-child {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+.checkdown .checkdown-list .checkdown-item {
+  padding: 0.5rem;
+  padding-left: 1rem;
+  margin-bottom: 0px;
+  display: block;
+  cursor: pointer;
+}
+.checkdown .checkdown-list .checkdown-item input {
+  position: absolute;
+  opacity: 0;
+  margin: 0px;
+  padding: 0px;
+  width: 1px;
+  heigth: 1px;
+}
+.checkdown .checkdown-list .checkdown-item input[type="checkbox"] + .checkdown-label:after {
+  content: '\f00c';
+}
+.checkdown .checkdown-list .checkdown-item input[type="radio"] + .checkdown-label:after {
+  content: '\f058';
+}
+.checkdown .checkdown-list .checkdown-item input + .checkdown-label {
+  opacity: 0.5;
+  font-size: 1em !important;
+}
+.checkdown .checkdown-list .checkdown-item input + .checkdown-label:after {
+  font-family: 'FontAwesome';
+  float: left;
+  position: relative;
+  margin-right: 0.5rem;
+  opacity: 0.3;
+}
+.checkdown .checkdown-list .checkdown-item input:checked + .checkdown-label,
+.checkdown .checkdown-list .checkdown-item input:checked + .checkdown-label:after {
+  opacity: 1;
+}
+.checkdown.open .checkdown-btn {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.checkdown.open .checkdown-list {
+  display: block;
+}
+.checkdown.open .checkdown-list .checkdown-item:last-child {
+  margin-bottom: 0px;
+}
+/**
+ *
+ * COLOR SETTING
+ *
+ */
+.checkdown-primary .checkdown-btn {
+  background-color: #D8D8D8;
+}
+.checkdown-primary .checkdown-btn,
+.checkdown-primary .checkdown-btn i {
+  color: #2E3139;
+}
+.checkdown-primary .checkdown-list {
+  background-color: #e5e5e5;
+}
+.checkdown-primary .checkdown-list .checkdown-item {
+  color: #2E3139;
+}
+.checkdown-primary .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-primary .checkdown-list .checkdown-item .checkdown-label {
+  color: #2E3139 !important;
+}
+.checkdown-default .checkdown-btn {
+  background-color: #EDEDED;
+}
+.checkdown-default .checkdown-btn,
+.checkdown-default .checkdown-btn i {
+  color: #9AA7AD;
+}
+.checkdown-default .checkdown-list {
+  background-color: #fafafa;
+}
+.checkdown-default .checkdown-list .checkdown-item {
+  color: #9AA7AD;
+}
+.checkdown-default .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-default .checkdown-list .checkdown-item .checkdown-label {
+  color: #9AA7AD !important;
+}
+.checkdown-success .checkdown-btn {
+  background-color: #2E3139;
+}
+.checkdown-success .checkdown-btn,
+.checkdown-success .checkdown-btn i {
+  color: #EDEDED;
+}
+.checkdown-success .checkdown-list {
+  background-color: #393d47;
+}
+.checkdown-success .checkdown-list .checkdown-item {
+  color: #EDEDED;
+}
+.checkdown-success .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-success .checkdown-list .checkdown-item .checkdown-label {
+  color: #EDEDED !important;
+}
+.checkdown-info .checkdown-btn {
+  background-color: #2E3139;
+}
+.checkdown-info .checkdown-btn,
+.checkdown-info .checkdown-btn i {
+  color: #9AA7AD;
+}
+.checkdown-info .checkdown-list {
+  background-color: #393d47;
+}
+.checkdown-info .checkdown-list .checkdown-item {
+  color: #9AA7AD;
+}
+.checkdown-info .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-info .checkdown-list .checkdown-item .checkdown-label {
+  color: #9AA7AD !important;
+}
+.checkdown-warning .checkdown-btn {
+  background-color: #EDEDED;
+}
+.checkdown-warning .checkdown-btn,
+.checkdown-warning .checkdown-btn i {
+  color: #F16000;
+}
+.checkdown-warning .checkdown-list {
+  background-color: #fafafa;
+}
+.checkdown-warning .checkdown-list .checkdown-item {
+  color: #F16000;
+}
+.checkdown-warning .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-warning .checkdown-list .checkdown-item .checkdown-label {
+  color: #F16000 !important;
+}
+.checkdown-danger .checkdown-btn {
+  background-color: #F16000;
+}
+.checkdown-danger .checkdown-btn,
+.checkdown-danger .checkdown-btn i {
+  color: #EDEDED;
+}
+.checkdown-danger .checkdown-list {
+  background-color: #ff6c0c;
+}
+.checkdown-danger .checkdown-list .checkdown-item {
+  color: #EDEDED;
+}
+.checkdown-danger .checkdown-list .checkdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.checkdown-danger .checkdown-list .checkdown-item .checkdown-label {
+  color: #EDEDED !important;
+}

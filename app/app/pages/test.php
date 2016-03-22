@@ -1,5 +1,5 @@
 <?php
 
-    $c->test('app','checkdown');
+    $c->test('app','explode');
 
  ?>

@@ -16,7 +16,7 @@
       <div class="input-group">
       <input type="text" name="shortname" class="form-control" id="shortname" placeholder="Short Name"  value="<?php echo $d['shortname'] ?? ''; ?>" />
       <span class="input-group-btn">
-       <a href="<?php $c->urlPage('app','icon_generator'); ?>" class="btn btn-secondary btn-modal " data-modal="modalSm" title="icon" data-form='#form-config' data-backdrop="static"><i class="fa fa-magic"></i></a>
+       <a href="<?php $c->urlPopup('app','icon_generator'); ?>" class="btn btn-secondary btn-popup " title="icon" data-form='#form-config' data-backdrop="static" data-popup='paper' target='blank'><i class="fa fa-magic"></i></a>
       </span>
         </div>
     </div>
@@ -51,11 +51,25 @@
 <!-- input : type -->
 <div class="btn-group">
     <label for="type_sf" class="btn btn-secondary">Symfony
-        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? '' =='Symfony')?'checked="checked"':'' ?> id="type_sf" value="Symfony" />
+        <input type="radio" name="type" class="form-control" required="required" <?php echo ($d['type'] =='Symfony')?'checked="checked"':'' ?> id="type_sf" value="Symfony" />
         </label>
     <label for="type_rb" class="btn btn-secondary">Rodbox
-        <input type="radio" name="type" class="form-control" <?php echo ($d['type'] ?? '' =='Rodbox')?'checked="checked"':'' ?> id="type_rb" value="Rodbox" />
+        <input type="radio" name="type" class="form-control" required="required" <?php echo ($d['type'] =='Rodbox')?'checked="checked"':'' ?> id="type_rb" value="Rodbox" />
         </label>
+</div>
+<!-- end input : type -->
+</fieldset>
+
+
+<fieldset class="">
+<legend>Langues</legend>
+<!-- input : type -->
+<div class="btn-group">
+<?php foreach (TRANS_SETTING as $lang => $langValue): ?>
+    <label for="trans-<?php echo $langValue ?>" class="btn btn-secondary"><?php echo $langValue ?>
+        <input type="checkbox" name="langs[<?php echo $lang ?>]" class="form-control" <?php echo (in_array($lang, $d['langs'] ?? []) == $lang)?'checked="checked"':'' ?> id="trans-<?php echo $langValue ?>" value="<?php echo $langValue ?>" />
+        </label>
+               <?php endforeach ?>
 </div>
 <!-- end input : type -->
 </fieldset>
@@ -79,7 +93,6 @@
                         <div class="input-group input-colors">
                             <span class="input-group-addon"><i></i></span>
                             <input type="text" name="css[colors][<?php echo $colorName ?>][2]" value="<?php echo $d['css']['colors']['<?php echo $colorName ?>'][2] ?? CSS_SETTING_COLORS[$colorName][1]; ?>" class="form-control" />
-
                         </div>
                     </td>
                 </tr>

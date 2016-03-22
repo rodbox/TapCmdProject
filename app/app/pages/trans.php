@@ -1,0 +1,1 @@
+<?php $c->view("app","trans_form","trans"); ?>

@@ -11,10 +11,10 @@
             &:focus,
             &:hover{
                 text-decoration: none;
-                background-color: fade(@cSuccess2,5%);
+                background-color: lighten(@cSuccess1,5%) !important;
             }
             &.active{
-                background-color: fade(@cSuccess2,15%);
+                background-color: @cSuccess1 !important;
             }
             i{
                 color: @cSuccess2;
@@ -30,10 +30,48 @@
 }
 
 
-#file-open-mode{
+.file-open-mode{
     float:right;
 
 }
-#file-open-title{
+.file-open-title{
 
+}
+
+.sui-sidebar-body{
+    padding-top:1rem;
+}
+.navbar{
+    #filesTabs.nav-tabs{
+        margin-top: 0px !important;
+        border-bottom: 0px !important;
+        .nav-item {
+            margin-right: 0px;
+            margin-left: 1px;
+            position:relative;
+
+            .nav-link{
+                margin-bottom: -10px !important;
+                padding-bottom: 14px !important;
+                border-color: transparent !important;
+                padding-right: 2rem !important;
+
+                + .editor-close{
+                    position: absolute;
+                    right:0.8rem;
+                    margin-top: -1.5rem;
+                    &,
+                    i{
+                        color: darken(@cPrimary1, 15%) !important;
+                        font-size: 0.8rem !important;
+                    }
+                }
+                &.active{
+                    border-color: transparent !important;
+                    background-color: @cSuccess1 !important;
+                    color: @cSuccess2 !important;
+                }
+            }
+        }
+    }
 }

@@ -16,9 +16,11 @@ $(document).ready(function($) {
 
 
     $.cb['app'] = {
+        refresh: function (t, json, e){
+            window.location.reload();
+        },
         default : function (t,json,e){
             // callback par default
-            alert(json.msg);
         },
         copy : function(t,json,e){
             // copie du projet dans le tmp
@@ -59,6 +61,9 @@ $(document).ready(function($) {
         todo_check: function (t, json, e){
             // upd d'une tache
             $(t.data('target')).addClass('todo-checked');
+        },
+        loadProject: function (t, e){
+            $('#form-project').trigger('submit');
         }
     }
 });

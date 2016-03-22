@@ -15,6 +15,10 @@ include("mod/mod-zip.php");
 include("mod/mod-file.php");
 include("mod/mod-tictac.php");
 
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Dumper;
+use Symfony\Component\Filesystem\Filesystem;
+
 /**
 * controller
 */
@@ -37,7 +41,6 @@ class controller
     {
         echo TITLE;
     }
-
 
 
     public function view($app='app', $view, $model='', $dataSend = [])
@@ -153,6 +156,16 @@ class controller
 
 
     /**
+     * Créer un URL de page
+     */
+    public function urlPopup($app='app', $page='index', $data='')
+    {
+        $get = (is_array($data))?http_build_query($data):'';
+        echo REL_SRC.'/popup.php?app='.$app.'&page='.$page.'&'.$get;
+    }
+
+
+    /**
      * Créer un URL executable
      */
     public function urlExec($app='app', $exec='index', $data='')
@@ -219,16 +232,82 @@ class controller
     }
 
 
+
+
+    public function getYaml($dirYaml)
+    {
+        if(file_exists($dirYaml)){
+            $yaml  = new Parser();
+            $parse = $yaml->parse(file_get_contents($dirYaml));
+
+            return (is_array($parse))?$parse:[];
+        }
+        else
+            return [];
+    }
+
+
+    /**
+     * enregistre un array en yaml
+     * @param string  $dirYaml   dir de la destination du fichier
+     * @param [type]  $arrayToYaml array a enregistrer
+     * @param boolean $force       force l'ecriture du fichier
+     */
+    public function setYaml($dirYaml, $arrayToYaml, $force = true)
+    {
+        $dumper = new Dumper();
+
+        $yaml = $dumper->dump($arrayToYaml, 2);
+
+        if($force){
+            $fs = new Filesystem();
+            $fs->mkdir(dirname($dirYaml));
+        }
+
+        file_put_contents($dirYaml, $yaml);
+    }
+
+
+    /**
+     * un index string se transform en un jeu de clés associatives
+     * @param  string $value [description]
+     * @return array        [description]
+     */
+    public function indexToKey($index='app.index.toto', $value='')
+    {
+        $exp   = explode('.',$index);
+        $imp   = '$r["'.implode('"]["',$exp).'"]="'.$value.'";';
+        eval($imp);
+
+        return (is_array($r))?$r:[];
+
+    }
+
+
+
+    /**
+     * Retourne la valeur d'une sui
+     * @param  string $k clés sui
+     * @return string    la valeur
+     */
     public function suiSession($k)
     {
         return $_SESSION['app']['sui'][$k] ?? false;
     }
 
 
+    /**
+     * Créer un bouton sui
+     * @param  string $title
+     * @param  [type] $key   la clé d'id de sui
+     * @param  string $sui   [description]
+     * @param  string $css   class css du bouton
+     * @return [type]        le bouton
+     */
     public function btn_sui($title='', $key, $sui = "false", $css = ' btn btn-sm ')
     {
         $attr = [
-            'class'        => 'btn-sui '.$css,
+            'class'        => 'btn-sui btn-sui-'.$key.' '.$css,
             'data-k'       => $key,
             'data-sui' => $this->suiSession($sui) ?? $sui
         ];
@@ -242,6 +321,12 @@ class controller
         echo "</a>";
     }
 
+
+
+    /**
+     * Attribut de sui
+     * @return [type] [description]
+     */
     public function attrSui()
     {
         $attrSui = [];
@@ -250,6 +335,76 @@ class controller
             $attrSui['data-sui-'.$key] = $value;
 
         echo $this->attr($attrSui);
+    }
+
+
+
+    /**
+     * Creer le file d'ariane d'accés a un fichier dans le finder
+     * @param  [type]  $dir [description]
+     * @param  boolean $src [description]
+     * @return [type]       [description]
+     */
+    public function breadFile($dir, $src = false)
+    {
+        $dirProject = DIR_PROJECT.'/'.$_SESSION['project']['name'];
+
+        $dir        = str_replace($dirProject, '', $dir);
+
+        $bread      = explode('/',$dir);
+
+        $dirBread   = $dirProject;
+        foreach ($bread as $key => $value) {
+            $dirBread .= $value.'/';
+            $url      = WEB_EXEC.'/?app=app&exec=sh-dir&dir='.$dirBread;
+
+            $attr     = [
+                'href'    => $url,
+                'class'   => 'btn-sh',
+                'data-cb' => 'openDir',
+            ];
+
+            $bread[$key] = $this->wrap(basename($value), $attr, 'a');
+        }
+
+        echo implode(' / ',$bread);
+    }
+
+
+    /**
+     * Englobe le contenu dans une balise html
+     * @param  string $content le contenu
+     * @param  array  $attr    les attributs du wrapper
+     * @param  string $tag     le type de balise du wrapper
+     * @return string          le contenu wrappé.
+     */
+    public function wrap($content = '', $attr=[], $tag = 'div')
+    {
+        $attr = $this->attr($attr);
+
+        $wrap = '<'.$tag.' ';
+        $wrap .= $attr;
+        $wrap .= '>';
+        $wrap .=$content;
+        $wrap .='</'.$tag.'>';
+
+        return $wrap;
+    }
+
+
+    /**
+     * Test de l'intagration twig
+     * @param  string $value [description]
+     * @return [type]        [description]
+     */
+    public function twig($value='Rodolphe')
+    {
+        $loader = new Twig_Loader_Array(array(
+            'index' => 'Hello {{ name }}!',
+        ));
+        $twig = new Twig_Environment($loader);
+
+        echo $twig->render('index', array('name' => $value));
     }
 
 
@@ -262,6 +417,8 @@ class controller
         include(DIR_APP.'/'.$app.'/test/'.$test.'/index.php');
     }
 
+
+
     /**
      * Gestion de la variable $r
      * Utiliser pour stocker les $r dans app/exec_combo.php
@@ -271,11 +428,19 @@ class controller
         $this->r[$key] = $r;
     }
 
+    /**
+     * Redéfinie la valeur de $this->r;
+     * @param [type] $r [description]
+     */
     public function setR($r)
     {
         $this->r = $r;
     }
 
+    /**
+     * Retourne la list de valeurs
+     * @return [type] [description]
+     */
     public function getR()
     {
         return $this->r;

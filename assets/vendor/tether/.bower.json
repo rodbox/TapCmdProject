@@ -1,0 +1,13 @@
+{
+  "name": "tether",
+  "_cacheHeaders": {
+    "Last-Modified": "Sun, 21 Feb 2016 20:48:31 GMT",
+    "Content-Length": "8630",
+    "Content-Type": "text/html; charset=utf-8"
+  },
+  "main": "index",
+  "_source": "http://github.hubspot.com/tether/",
+  "_target": "*",
+  "_originalSource": "http://github.hubspot.com/tether/",
+  "_direct": true
+}

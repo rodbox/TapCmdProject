@@ -37,6 +37,18 @@ define("DIR_TICTAC", DIR_VAR."/tictac");
 
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 
+
+// SETTING
+
+define('TRANS_SETTING', [
+    'en'=>'en',
+    'fr'=>'fr',
+    'de'=>'de',
+    'es'=>'es',
+    'it'=>'it'
+]);
+
+
 define("PROJECT_TYPE",[
     "Symfony" => "Symfony",
     "Rodbox"  => "Rodbox"
