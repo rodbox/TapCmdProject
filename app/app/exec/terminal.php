@@ -1,17 +1,20 @@
 <?php
     $app = new app();
 
-    $dir = "-a /Applications/Utilities/Terminal.app ".DIR_PROJECT."/".$app->cur()." --args `ls`";
-    $cmd = "/Applications/Utilities/Terminal.app";
+    $dir = "-a /Applications/Utilities/Terminal.app ".DIR_PROJECT."/".$app->cur();
+    // $cmd = " ls ";
+    $cmd = "php ".DIR_PROJECT."/".$app->cur()."/bin/console server:run";
 
+
+    $sys = shell_exec('open '.$dir);
 // terminal
-if (shell_exec('open '.$dir)) {
+if ($sys) {
 
 
     $r = [
         'infotype' => "success",
         'msg'      => "ok terminal",
-        'data'     =>  ''
+        'data'     =>  $sys
     ];
 }
 

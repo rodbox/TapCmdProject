@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond %{REMOTE_ADDR} !12.345.6.789
+RewriteRule .* http://monsite.net/maintenance.htm [L]

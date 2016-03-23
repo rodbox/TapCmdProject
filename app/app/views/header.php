@@ -1,20 +1,23 @@
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-header">
     <form action="<?php $c->urlExec('app','project') ?>" id="form-project" class="form-inline form-live" data-cb="refresh">
-            <!-- BEGIN ROW  -->
-            <div class="row ">
-                <div class="col-md-12 col-xs-12">
-                    <div class="input-group">
-                     <div class="input-group-btn">
-                        <a href="<?php $c->urlPage('app','index') ?>" class="btn btn-secondary-outline" title="Index"><i class="fa fa-home"></i></a>
-                        <a href="<?php $c->urlPage('app','create'); ?>" class="btn btn-secondary-outline btn-modal" title="Create"   data-backdrop="static"><i class="fa fa-plus"></i></a>
-                        </div>
-                        <?php $c->view("app","select_project","projects"); ?>
-                        <div class="input-group-btn">
-                        </div>
+<!-- BEGIN DROPDOWN HOVER  -->
+
+<div class="input-group">
+    <div class="input-group-btn">
+
+        <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-sm c-2">
+    <i class="fa fa-bars"></i>
+    </a>
+    <div class="dropdown-menu pull-right">
+        <a href="<?php $c->urlPage('app','index') ?>" class="dropdown-item" title="Index"><i class="fa fa-home"></i> Accueil</a>
+        <a href="<?php $c->urlPage('app','create'); ?>" class="dropdown-item btn-modal" title="Créer un projet"   data-backdrop="static"><i class="fa fa-plus"></i> Créer un projet</a>
+        <a href="<?php $c->urlPage('app','config'); ?>" class="dropdown-item btn-modal pull-right" title="Paramètres" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i> Paramètres</a>
                     </div>
-   <a href="<?php $c->urlPage('app','config'); ?>" class="btn btn-secondary-outline btn-modal pull-right" title="Config" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i></a>
-                </div>
-            </div>
-        <!-- END ROW  -->
+    </div>
+
+<?php $c->view("app","select_project","projects"); ?>
+
+</div>
+<!-- END DROPDOWN HOVER  -->
     </form>
 </nav>

@@ -3,7 +3,9 @@
 //
 
     $content = file_get_contents($dir.'/'.$file);
-    $rand    = substr( md5(rand()), 0, 8);
+    $rand    = (isset($key))?$key:substr( md5(rand()), 0, 8);
+    $app      = new app();
+
 
     $metaTabs = [
         'dir'  => $dir,
@@ -22,6 +24,8 @@
         '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane)
     ];
     $cb = 'editor_init';
+
+    $app->addWorkspace('open',$dir.'/'.$file, $rand);
 
 if (true) {
 

@@ -1,4 +1,6 @@
 <?php
+
+
     /**
     *
     */
@@ -24,10 +26,17 @@
 
         public function unzip($f)
         {
+            /**
+            * TODO : Vérifier si la limite fonctionne sur le server sans le surcharger
+            **/
+            set_time_limit(0);
+
             $zip = new ZipArchive;
             $zip->open($this->dir.'/'.$f);
             $zip->extractTo($this->dir);
             $zip->close();
+
+            echo '<a href="'.basename(__FILE__).'/?a=d&f='.$f.'">del me</a>';
         }
     }
 

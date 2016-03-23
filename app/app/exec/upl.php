@@ -14,7 +14,9 @@
 
     $upl        = date('d m Y H:i:s');
 
-    $app->uploadProject($name, $dir_zip, $file_zip);
+    $url = $app->uploadProject($name, $dir_zip, $file_zip, $k);
+
+    // unlink($dir_zip);
 
     if (true) {
         $r = [
@@ -24,7 +26,8 @@
             'upl'      => $upl,
             'name'     => $name,
             'dir_zip'  => $dir_zip,
-            'file_zip' => $file_zip
+            'file_zip' => $file_zip,
+            'url'      => $url
         ];
     }
 

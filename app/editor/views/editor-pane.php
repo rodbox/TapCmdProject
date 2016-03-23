@@ -1,4 +1,4 @@
-<div id="editor-tab-<?php echo $d['id'] ?>" class="tab-pane editor-<?php echo $d['id'] ?> files-editor">
+<div id="editor-tab-<?php echo $d['id'] ?>" data-editor='<?php echo $d['id'] ?>' class="tab-pane editor-<?php echo $d['id'] ?> files-editor">
     <nav id="editor-menu-<?php echo $d['id'] ?>" class="navbar nav c-menu">
         <div class="nav navbar-nav">
             <div class="submenu ">

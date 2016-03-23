@@ -64,6 +64,31 @@ $(document).ready(function($) {
         },
         loadProject: function (t, e){
             $('#form-project').trigger('submit');
+        },
+        deployReturn: function (t, json, e){
+
+            /**
+            * TODO : creer un cross origin pour le rendre asynchrone
+            **/
+
+            var btnExtract = $("<a>",{
+                'class'     : 'btn btn-secondary btn-sm ',
+                'href'      : json.combo.app_upl.url,
+                // 'data-cb'   : 'removeMe',
+                // 'data-cb-app': 'editor',
+                'target'   : 'blank'
+            }).html('extract');
+            btnExtract.css({
+                'margin-left':'0.5rem'
+            })
+            t.parent('div').first().after(btnExtract);
+        },
+        removeMe: function (t, json, e){
+            t.remove();
+        },
+        suiSuggest: function (t, e){
+            if ($.sui.is('suggest','true'))
+                $('#file_project').focus();
         }
     }
 });

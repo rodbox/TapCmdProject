@@ -8,9 +8,10 @@
             ['app','zip'],
             ['app','upl']
         ],
-        '#form-project',
+        '#form-config',
         '',
-        'checkdown-btn'
+        'checkdown-btn',
+        'deployReturn'
     );
     ?>
     <div class="checkdown-list">

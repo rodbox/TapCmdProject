@@ -19,12 +19,32 @@
             i{
                 color: @cSuccess2;
             }
+
+            &.btn-f-explore {
+                &:before{
+                    .fa;
+                    content: "\f114";
+                    margin-right: 0.5rem;
+                    color:fade(@cSuccess2,15%);
+                    // display:inline-block;
+                }
+                &.active{
+                    &:before{
+                        content: "\f115";
+                    }
+                }
+
+            }
+
+        }
+         a.editor-close{
+            float:right;
         }
         ul{
            margin-left: 12px;
             padding-left: 6px;
 
-            border-left: 1px solid fade(@cSuccess2,10%);
+            border-left: 1px solid fade(@cSuccess2,15%);
         }
     }
 }
@@ -55,6 +75,7 @@
                 padding-bottom: 14px !important;
                 border-color: transparent !important;
                 padding-right: 2rem !important;
+                color: darken(@cSuccess2,30%) !important;
 
                 + .editor-close{
                     position: absolute;

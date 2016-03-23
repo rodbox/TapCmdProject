@@ -21,10 +21,10 @@ class app extends controller
      * Retourne le projet en session
      * @return string le nom du projet;
      */
-    public function cur()
+    static public function cur()
     {
-        $this->name = $_SESSION['project']['name'] ?? '';
-        return $this->name;
+        return $_SESSION['project']['name'] ?? '';
+
     }
 
     /**
@@ -75,7 +75,12 @@ class app extends controller
         return $this->project = $this->setJson($file, $dataSend);
     }
 
-
+    /**
+     * Retourne la traduction d'un index ou retourne toute la liste
+     * @param  string $index [description]
+     * @param  string $lang  [description]
+     * @return [type]        [description]
+     */
     public function getTrans($index ='', $lang = 'fr')
     {
         $dir    = DIR_PROJECT.'/'.$this->cur().'/app/Resources/translations/messages.'.$lang.'.yml';
@@ -101,6 +106,12 @@ class app extends controller
         }
     }
 
+    /**
+     * Ajoute ou remplace un index de traduction
+     * @param [type] $index [description]
+     * @param string $value [description]
+     * @param string $lang  [description]
+     */
     public function addTrans($index, $value='', $lang = 'fr')
     {
         $dir    = DIR_PROJECT.'/'.$this->cur().'/app/Resources/translations/messages.'.$lang.'.yml';
@@ -116,6 +127,12 @@ class app extends controller
     }
 
 
+
+    /**
+     * Retourne le dossier de la gestion du projet
+     * @param  [type] $name [description]
+     * @return [type]       [description]
+     */
     public function dirProject($name)
     {
         return DIR_PROJECTS.'/'.$name;
@@ -165,36 +182,25 @@ class app extends controller
     }
 
 
-    public function uploadProject($name, $dir_zip, $file_zip)
+    public function uploadProject($name, $dir_zip, $file_zip, $key = 'a')
     {
         $this->logProject($name);
 
         $ftp_control       = DIR_TEMPLATE."/files/ftp_control.php";
 
-        $control       = ftp_put($this->ftp_conn, 'a.php', $ftp_control, FTP_ASCII);
+        $control       = ftp_put($this->ftp_conn, $key.'.php', $ftp_control, FTP_ASCII);
         $eval_put_file = ftp_put($this->ftp_conn, $file_zip, $dir_zip, FTP_ASCII);
 
         if(!$control)
             $error[]= "le fichier n'a pas été chargé !!!";
 
         $this->closeProject();
+
+        $project = $this->getProject($name);
+        $url = $project['server']['web'];
+
+        return $url.'/'.$key.'.php?a=u&f='.$file_zip;
     }
-
-
-
-    // public function putProject($name, $dir_zip='')
-    // {
-    //     $dir_zip = DIR_TMP.'/test.txt';
-
-    //     $this->logProject($name);
-
-    //     $eval_put_file = ftp_put($this->ftp_conn, '/toto.txt', $dir_zip, FTP_ASCII);
-
-    //     if(!$eval_put_file)
-    //         $error[]= "le fichier n'a pas été chargé !!!";
-
-    //     $this->closeProject();
-    // }
 
 
 
@@ -218,27 +224,44 @@ class app extends controller
         $this->view('app','btn_deploy');
     }
 
-    // public function zipProject($name='')
-    // {
-    //     set_time_limit(18000);
 
-    //     $rand        = substr( md5(rand()), 0, 8);
-    //     $time        = date('d_m_Y__H_i');
-    //     $tmpName     = $name.'_'.$time.'_'.$rand;
+    public function getWorkspace()
+    {
+        $dir = $this->dir().'/workspace.json';
+        return $this->getJson($dir);
+    }
 
-    //     $dir_project = DIR_PROJECT.'/'.$name;
-    //     $dir_tmp     = DIR_TMP.'/'.$tmpName;
-    //     $dir_zip     = DIR_TMP.'/'.$tmpName.'.zip';
-    //     $file_zip    = $tmpName.'.zip';
 
-    //     mkdir($dir_tmp);
-    //     copy_dir($dir_project, $dir_tmp);
+    public function setWorkspace($ws)
+    {
+        $dir = $this->dir().'/workspace.json';
+        return $this->setJson($dir, $ws);
+    }
 
-    //     new zip_dir($dir_tmp, $dir_zip);
+    public function addWorkspace($index, $value ,$key = '')
+    {
+        $ws = $this->getWorkspace();
 
-    //     $this->uploadProject($name, $dir_zip, $file_zip);
+        if (!in_array($value, $ws[$index]))
+            $ws[$index][$key] = $value;
 
-    // }
+        $this->setWorkspace($ws);
+
+        return $ws;
+    }
+
+
+    public function delWorkspace($index, $key)
+    {
+        $ws = $this->getWorkspace();
+
+        unset($ws[$index][$key]);
+
+        $this->setWorkspace($ws);
+
+        return $ws;
+    }
+
 }
 
 $app = new app();

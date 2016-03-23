@@ -5,6 +5,7 @@
 <div class="col-md-12 col-lg-12 ">
     <div class="form-group">
         <a href="<?php $c->urlExec('app','distinit') ?>" class="btn btn-secondary btn-exec " data-helper="initialisation des fichiers de configuration distant" title="init dist" data-form='#form-config'><i class="icomoon-stack-check "></i>Config Dist</a>
+        <a href="<?php $c->urlExec('app','db_schema') ?>" class="btn btn-secondary btn-sm btn-exec" data-cb="false" title="term">Dump schema</a>
         <?php $app= new app(); $app->btn_deploy(); ?>
     </div>
 </div>

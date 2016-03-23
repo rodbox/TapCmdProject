@@ -93,12 +93,7 @@ $(document).ready(function($) {
                 $.lock.success(t);
 
 
-                var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
-
-                if (t.data('cb') && t.data('cb'))
-                    $.cb[cbapp][t.data('cb')](t, json, e);
-                else
-                    $.cb[cbapp]['default'](t, json, e);
+                $.cbt(t, json, e);
 
             },'json').error(function (err){
                 $.lock.alert(t);
@@ -223,9 +218,9 @@ $(document).ready(function($) {
         var t = $(this);
 
         if (t.data('cb'))
-            $.cb['app'][t.data('cb')](t, json, e);
+            $.cb['app'][t.data('cb')](t, e);
         else
-            $.cb['app']['default'](t, json, e);
+            $.cb['app']['default'](t, e);
     })
 
 
@@ -253,12 +248,9 @@ $(document).ready(function($) {
             $.lock.on(submit);
 
             $.post(t.attr('action'), data, function(json, textStatus, xhr) {
-               $.lock.off(submit);
+                $.lock.off(submit);
 
-                if (t.data('cb'))
-                    $.cb['app'][t.data('cb')](t, json, e);
-                else
-                    $.cb['app']['default'](t, json, e);
+                $.cbt(t, json, e);
 
             },'json').error(function(err){
                 $.lock.alert(submit);
@@ -303,6 +295,14 @@ $(document).ready(function($) {
     })
 
 
+    $.cbt = function (t, json, e){
+        var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
+
+        if (t.data('cb') && t.data('cb'))
+            $.cb[cbapp][t.data('cb')](t, json, e);
+        else
+            $.cb[cbapp]['default'](t, json, e);
+    }
 
 
 
@@ -404,6 +404,26 @@ $(document).ready(function($) {
         }
     }
 
+
+
+    var isOpera   = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    var isSafari  = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    var isIE      = /*@cc_on!@*/false || !!document.documentMode;
+    var isEdge    = !isIE && !!window.StyleMedia;
+    var isChrome  = !!window.chrome && !!window.chrome.webstore;
+    var isBlink   = (isChrome || isOpera) && !!window.CSS;
+
+    $.isBrowser = {
+        Opera : (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0,
+        Firefox : typeof InstallTrigger !== 'undefined',
+        Safari : Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
+        IE : /*@cc_on!@*/false || !!document.documentMode,
+        Edge : !isIE && !!window.StyleMedia,
+        Chrome : !!window.chrome && !!window.chrome.webstore,
+        Blink : (isChrome || isOpera) && !!window.CSS,
+    }
+    console.log($.isBrowser.Firefox);
 });
 
 

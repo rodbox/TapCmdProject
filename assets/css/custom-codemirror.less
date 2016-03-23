@@ -8,33 +8,36 @@
     .no-border;
     height: 100% !important;
     width: 100%;
-    &,
-    &.cm-s-tomorrow-night-bright {
-            background-color: @cCm1 !important;
-        .CodeMirror-selected{
-            background-color:@cCm2 !important;
-        }
-        .CodeMirror-gutters{
-            border-color: transparent;
-            background-color: @cCm3 !important;
-            width: 40px;
-            .CodeMirror-gutter{
-                width: 35px;
-            }
-        }
-        .CodeMirror-gutter-wrapper{
-            .CodeMirror-linenumber{
-                color: @cCm4;
-                .text-muted;
-            }
-        }
-        .cm-meta{
-            background-color: @cCm3;
-        }
-        .CodeMirror-line {
-            padding-left: 15px;
+    background-color: @cCm1 !important;
+
+    .CodeMirror-selected{
+        background-color:@cCm2 !important;
+    }
+    .CodeMirror-gutters{
+        border-color: transparent;
+        background-color: @cCm3 !important;
+        width: 40px;
+        .CodeMirror-gutter{
+            width: 35px;
         }
     }
+    .CodeMirror-gutter-wrapper{
+        .CodeMirror-linenumber{
+            color: @cCm4;
+            .text-muted;
+        }
+    }
+    .cm-meta{
+        background-color: @cCm3;
+    }
+    .CodeMirror-line {
+        padding-left: 15px;
+    }
+    .cm-error{
+        background-color: @cWarning1;
+        color: @cWarning2;
+    }
+
 }
 
 .sui-editor{

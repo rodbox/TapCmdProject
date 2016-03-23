@@ -22,6 +22,7 @@
          <!-- Code mirror css -->
         <link rel="stylesheet" href="assets/vendor/codemirror/lib/codemirror.css">
         <link rel="stylesheet" href="assets/vendor/codemirror/theme/tomorrow-night-bright.css">
+        <link rel="stylesheet" href="assets/vendor/codemirror/addon/dialog/dialog.css">
         <!-- end Code mirror css -->
 
 
@@ -31,7 +32,7 @@
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     </head>
     <body>
-        <?php $c->view('app','header'); ?>
+        <?php //$c->view('app','header'); ?>
         <div id="wrapper" >
 
             <div id="app-page">
@@ -57,6 +58,7 @@
 
         <script src="app/editor/assets/js/app-cb.js" type="text/javascript"> </script>
         <script src="app/editor/assets/js/app-file.js" type="text/javascript"> </script>
+        <script src="app/editor/assets/js/app-filter.js" type="text/javascript"> </script>
         <script src="app/editor/assets/js/app-codemirror-circlemenu.js" type="text/javascript"> </script>
 
 
@@ -65,6 +67,7 @@
         <script src="assets/vendor/codemirror/lib/codemirror.js"></script>
 
         <!-- Addon codemirror -->
+        <script src="assets/vendor/codemirror/addon/search/jumpToLine.js"></script>
         <script src="assets/vendor/codemirror/addon/search/searchcursor.js"></script>
         <script src="assets/vendor/codemirror/addon/search/search.js"></script>
         <script src="assets/vendor/codemirror/addon/dialog/dialog.js"></script>
@@ -84,6 +87,18 @@
         <script src="assets/vendor/codemirror/mode/css/css.js"></script>
         <script src="assets/vendor/codemirror/mode/markdown/markdown.js"></script>
         <script src="assets/vendor/codemirror/mode/javascript/javascript.js"></script>
+
+
+        <script src="assets/vendor/codemirror/lint/lint.js"></script>
+        <script src="assets/vendor/codemirror/hint/show-hint.js"></script>
+        <script src="assets/vendor/codemirror/hint/anyword-hint.js"></script>
+
+
+
+
+
+
+
         <!-- Code mirror keymap -->
         <script src="assets/vendor/codemirror/keymap/sublime.js"></script>
         <!-- end Code mirror -->

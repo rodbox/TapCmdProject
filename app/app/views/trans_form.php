@@ -4,5 +4,6 @@
         <label>lang <?php echo $lang ?></label>
         <input type="text" name="value[<?php echo $lang ?>]" class="form-control" value='<?php echo $d['trans'][$lang] ?? ''; ?>'/>
     <?php endforeach ?>
-    <button>save</button>
+    <hr>
+    <button ></button>
 </form>

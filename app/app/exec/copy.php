@@ -3,17 +3,17 @@
      * Copie un projet dans le dossier tmp
      */
 
-        set_time_limit(18000);
+
 
         $rand        = substr( md5(rand()), 0, 8);
+        $k           = $rand;
         $time        = date('H_i___d_m_Y_');
-        $tmpName     = $time.'___'.$rand;
+        $tmpName     = $rand;
 
         $dir_project = DIR_PROJECT.'/'.$name;
         $dir_tmp     = DIR_TMP.'/'.$name.'/'.$tmpName;
 
-        $file_zip    = $time.'_'.$rand.'.zip';
-        $dir_zip     = DIR_TMP.'/'.$file_zip;
+
 
         $filter_default = [
             '/.com.apple.timemachine.supported',

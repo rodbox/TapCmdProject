@@ -20,9 +20,12 @@
     /**
     * TODO : attention le fichier dir zip ne peux pas etre identifié par son nom.
     **/
-    $dir_zip     = DIR_TMP.'/'.$name.'.zip';
+    $file_zip = $rand.'.zip';
+    $dir_zip  = DIR_TMP.'/'.$file_zip;
 
-    $list        = new zip_dir($dir_project,$dir_zip);
+    $list     = new zip_dir($dir_project, $dir_zip, [], false);
+
+    $zip_size = filesize($dir_zip);
 
     $fs->remove($dir_del);
 
@@ -34,7 +37,8 @@
          'infotype' => "success",
          'msg'      => "ok zip",
          'data'     => '',
-         'upload'   => $time
+         'upload'   => $time,
+         'size'     => $zip_size
      ];
  }
 

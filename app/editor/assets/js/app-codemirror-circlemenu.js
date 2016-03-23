@@ -16,7 +16,7 @@
 
 
     $.toggleMouseMenu = function toggleMouseMenu(e){
-		var cursor    = $.editor.getCursor();
+		// var cursor    = $.editor.getCursor();
 		var mouseMenu = $('#circle-mouse');
         if (!mouseMenu.hasClass('open')) {
             mouseMenu.css({
@@ -29,7 +29,14 @@
     }
 	/* End Mouse menu */
 
-
+$('.sui-editor').on("mousedown",function(e){
+        if (e.button == 2) {
+            $(document)[0].oncontextmenu = function() {
+                return false;
+            }
+            $.toggleMouseMenu(e);
+        }
+    });
 
 /*** FUNCTIONS ***/
 	/* wrapp selection with content before and after */

@@ -18,6 +18,8 @@ $(document).ready(function($) {
                 var selector = "textarea#cm-ediror-"+id;
                 // console.log($(selector).val());
 
+
+
                 $.editors[id] = CodeMirror.fromTextArea(document.getElementById("cm-ediror-"+id), {
                     theme           : "tomorrow-night-bright",
                     lineNumbers     : true,
@@ -27,8 +29,13 @@ $(document).ready(function($) {
                     mode            : "php",
                     keyMap          : "sublime",
                     autoCloseBrackets: true,
+                    extraKeys: {"Ctrl-Space": "autocomplete"},
                     matchBrackets   : true
-                });
+                })
+
+                // $.editors[id].commands.autocomplete = function(cm) {
+                //     cm.showHint({hint: CodeMirror.hint.anyword});
+                //   };
 
 
 
@@ -38,7 +45,9 @@ $(document).ready(function($) {
 
                     });
 
-                $.editors[id].on("mousedown",function(cm, e){
+                var eventContextMenu = ($.isBrowser.Firefox)?'mousedown':'click';
+
+                $.editors[id].on(eventContextMenu, function(cm, e){
                         if (e.button == 2) {
                             $(document)[0].oncontextmenu = function() {
                                 return false;
@@ -50,6 +59,7 @@ $(document).ready(function($) {
 
                 $.editors[id].on("focus",function(cm, e){
                     $.editor = cm;
+                    $.sui.set('cm',cm.getOption('mode'));
                 })
 
                 $.editor = $.editors[id];

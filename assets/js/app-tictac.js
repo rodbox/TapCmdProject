@@ -12,8 +12,11 @@ $(document).ready(function($) {
         var form = $(t.attr('data-form'));
         var data = form.serialize();
 
-        $.get(t.attr('href'),data, function(json) {
+        $.post(t.attr('href'),data, function(json) {
             $.tictac.stop(t, json.infotype);
+
+            $.cbt(t, json, e);
+
         },'json').error(function(){
             $.tictac.stop(t, 'error');
         });
@@ -36,11 +39,23 @@ $(document).ready(function($) {
             t.addClass('on-load');
             $.tictac.status[id] = status;
 
-            // $.tictac.timer[id] = setInterval(function (){
-            //     $.get(t.data('url'), function(json) {
-            //          $($.tictac.status[id]).html(json.msg);
-            //     },'json');
-            // },2500);
+            $.tictac.timer[id] = setInterval(function (){
+
+                $.ajax(t.data('url'),{
+                    async:true,
+                    cache:false,
+                    dataType:'json',
+                    complete:function(json){
+                         $($.tictac.status[id]).html(json.msg);
+                    }
+                })
+                // $.post(, function(json) {
+
+                // },'json');
+
+
+
+            },2500);
         },
         stop    : function (t, status){
             var id      = t.attr('data-tictac');

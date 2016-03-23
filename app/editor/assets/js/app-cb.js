@@ -6,6 +6,8 @@ $(document).ready(function($) {
         setEditor: function (t, json, e){
             $('.files .active').removeClass('active');
             t.addClass('active');
+            t.attr('data-editor',json.id)
+
             var ext   = t.attr('data-ext');
             var mode  = ($.mode[ext]==undefined)?'default':$.mode[ext];
 
@@ -21,6 +23,9 @@ $(document).ready(function($) {
             $.editor.setValue(json.content);
             $.editor.clearHistory();
 
+
+            $.sui.set('cm',$.editor.getOption('mode'));
+
         },
         toggleFolder: function (t, json, e){
             t.addClass('loaded');
@@ -33,6 +38,9 @@ $(document).ready(function($) {
             $.protect.off(json.id);
             if($.sui.is('autorefresh','true'))
                 $('.form-iframe').trigger('submit');
+        },
+        editorClose: function (t, json, e){
+            $("[data-editor="+t.attr('data-editor')+"]").remove();
         },
         fileSearchOn: function (t, e){
             /**
@@ -114,9 +122,6 @@ $(document).ready(function($) {
             $('body').append(suggest);
 
             $("#suggest").fileext();
-
-
-
         },
         off: function (){
             setTimeout(function (){
@@ -124,38 +129,5 @@ $(document).ready(function($) {
             },150);
         }
     }
-
-    $.navSplit = function (dir){
-        var url = './app/exec.php?app=app&exec=sh-dir';
-
-        var linkSh = $("<a>",{
-            href    : url,
-            class   : 'btn-sh ',
-            'data-cb':'openDir'
-        });
-
-        var bread = $("<span>",{"class":"bread"});
-
-        var list = dir.split('/');
-        var link = '';
-
-        $.each(list,function(index, el) {
-            if(el != ''){
-                var a = linkSh.clone().html(el);
-                link += '/'+el
-
-                a.attr({
-                    'href':url+'&dir='+link
-                });
-
-                bread.append('/');
-                bread.append(a);
-            }
-        });
-        return bread;
-
-    }
-
-
 
 });

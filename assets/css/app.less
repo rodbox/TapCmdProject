@@ -204,7 +204,7 @@ a.btn-primary{
 .navbar-bottom{
     padding:0px;
     .no-radius;
-    &,
+    background-color: transparent !important;
     .btn {
         background-color: darken(@cSuccess1,3%) !important;
         &.active{
@@ -215,8 +215,9 @@ a.btn-primary{
         font-size: larger;
     }
 }
-.navbar-fixed-top{
-    padding: 0.375rem !important;
+.navbar-header{
+    padding: 0.275rem !important;
+    .no-radius;
     &,
     .btn,
     .form-control{
@@ -271,6 +272,10 @@ footer{position:fixed;
     .z-max(100);
     max-height: 50vh;
     overflow-y: auto;
+    left: 20vw;
+
+    width: calc(~"60vw - 1.5rem");
+
     .list-group{
         .list-group-item{
             h4{

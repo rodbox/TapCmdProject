@@ -47,7 +47,7 @@ class controller
     {
         $this->dataSend = $s = $dataSend;
 
-        $file = DIR_APP.'/'.$app.'/views/'.$view.'.php';
+        $file           = DIR_APP.'/'.$app.'/views/'.$view.'.php';
 
         // si le model est un string on charge le fichier du model
         if($model != '' && is_string($model))
@@ -70,10 +70,10 @@ class controller
     {
         $this->dataSend = $s = $dataSend;
 
-        $file = DIR_APP.'/'.$app.'/models/'.$model.'.php';
+        $file           = DIR_APP.'/'.$app.'/models/'.$model.'.php';
 
-        $c = $this;
-        $app = new app();
+        $c              = $this;
+        $app            = new app();
         include($file);
 
         return $this->data = $d;
@@ -148,30 +148,42 @@ class controller
     /**
      * Créer un URL de page
      */
-    public function urlPage($app='app', $page='index', $data='')
+    static public function urlPage($app='app', $page='index', $data='', $echo = true)
     {
         $get = (is_array($data))?http_build_query($data):'';
-        echo REL_SRC.'/?app='.$app.'&page='.$page.'&'.$get;
+        $url = REL_SRC.'/?app='.$app.'&page='.$page.'&'.$get;
+        if($echo)
+            echo $url;
+
+        return $url;
     }
 
 
     /**
      * Créer un URL de page
      */
-    public function urlPopup($app='app', $page='index', $data='')
+    static public function urlPopup($app='app', $page='index', $data='', $echo = true)
     {
         $get = (is_array($data))?http_build_query($data):'';
-        echo REL_SRC.'/popup.php?app='.$app.'&page='.$page.'&'.$get;
+        $url = REL_SRC.'/popup.php?app='.$app.'&page='.$page.'&'.$get;
+        if($echo)
+            echo $url;
+
+        return $url;
     }
 
 
     /**
      * Créer un URL executable
      */
-    public function urlExec($app='app', $exec='index', $data='')
+    static public function urlExec($app='app', $exec='index', $data='', $echo = true)
     {
         $get = (is_array($data))?http_build_query($data):'';
-        echo WEB_EXEC.'/?app='.$app.'&exec='.$exec.'&'.$get;
+        $url = WEB_EXEC.'/?app='.$app.'&exec='.$exec.'&'.$get;
+        if($echo)
+            echo $url;
+
+        return $url;
     }
 
     /**
@@ -188,7 +200,7 @@ class controller
 
 
 
-    public function btn_combo($title='combo', $combos, $form='', $dataSend='', $css='btn btn-primary btn-sm')
+    public function btn_combo($title='combo', $combos, $form='', $dataSend='', $css='btn btn-primary btn-sm', $cb = 'default')
     {
         $get       = (is_array($dataSend))?http_build_query($dataSend):'';
         $getCombos = http_build_query(['combos'=>$combos]);
@@ -203,6 +215,7 @@ class controller
             'href'        => $urlCombo,
             'data-url'    => $urlTicTac,
             'data-tictac' => $titacId,
+            'data-cb'     => $cb,
             'class'       => 'btn-combo btn '.$css,
             'data-form'   => $form,
             'title'       => $title ?? ''
@@ -309,7 +322,8 @@ class controller
         $attr = [
             'class'        => 'btn-sui btn-sui-'.$key.' '.$css,
             'data-k'       => $key,
-            'data-sui' => $this->suiSession($sui) ?? $sui
+            'data-sui' => $this->suiSession($sui) ?? $sui,
+            'data-cb' => 'sui'.ucfirst($key)
         ];
 
         $attr['class'] .= ($this->suiSession($key)=='true')?' active':'';

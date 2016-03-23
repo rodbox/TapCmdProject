@@ -1,6 +1,8 @@
 <?php
     include('../controller/controller.php');
 
+    set_time_limit(0);
+
     /**
     * TODO : exec array loader
     **/

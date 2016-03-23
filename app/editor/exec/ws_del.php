@@ -5,9 +5,11 @@
 $app = new app();
 // $dirStars  = $app->dir().'/stars.json';
 
-$star = $app->addWorkspace('star',$dir);
-// $star[] = $dir;
+// $star = $c->getJson($dirStars);
+// unset($star[$key]);
 // $c->setJson($dirStars, $star);
+
+$ws = $app->delWorkspace($index, $key);
 
 if (true) {
 
@@ -15,7 +17,8 @@ if (true) {
     $r = [
         'infotype' => "success",
         'msg'      => "ok star",
-        'content'  => $c->viewsAsync('editor','files-workspace','stars')
+        'dirStars' => "",
+        'content'  => $c->viewsAsync('editor','files-workspace',$ws)
     ];
 }
 

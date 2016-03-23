@@ -1,7 +1,8 @@
 <div class="sui-sidebar">
+    <?php $c->view("app","header"); ?>
     <div class="sui-sidebar-body">
+        <?php $c->view("editor","files-workspace","workspace"); ?>
 
-        <?php $c->view("editor","files-stars","stars"); ?>
         <div class="">
         <h2>Fichiers</h2>
         <?php $c->view("editor","files","files"); ?>

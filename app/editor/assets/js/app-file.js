@@ -67,6 +67,10 @@ $(document).ready(function($) {
         }
     })
 
+
+    $('#filesOpens .btn-f-edit').trigger('click');
+
+
     $(document).on("submit",".form-iframe",function (e){
         e.preventDefault();
         var t   = $(this);
