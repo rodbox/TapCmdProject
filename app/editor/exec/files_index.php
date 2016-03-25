@@ -20,6 +20,13 @@ $dir_index = DIR_PROJECTS.'/'.$app->cur().'/files.txt';
 
 file_put_contents($dir_index, implode("\n",$d));
 
+
+
+
+
+
+
+
 if (true) {
 
     $r = [

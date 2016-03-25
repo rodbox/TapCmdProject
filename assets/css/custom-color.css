@@ -1,6 +1,12 @@
+/**
+ * Ico : fonctAwesome icon
+ */
 /* FUNCTION LIST */
 .box {
   box-sizing: border-box;
+}
+.muted {
+  opacity: 0.5;
 }
 /*------------------------------------*\
     Display control
@@ -335,10 +341,6 @@
   margin-right: 5px;
 }
 /* End : Margin */
-.modal-open .select2-container {
-  z-index: 2050;
-  min-width: 100% !important;
-}
 .h-inherit {
   height: inherit!important;
 }
@@ -642,7 +644,7 @@ h2 {
 .c-color-2-hover:hover,
 .sc-4 *,
 .sc-color-2 * {
-  color: #2F3E47 !important;
+  color: #2E3139 !important;
 }
 .bg-play :nth-child(4n + 4),
 .bg-4,
@@ -651,13 +653,13 @@ h2 {
 .bg-color-2-hover:hover,
 .sbg-4 *,
 .sbg-color-2 * {
-  background-color: #2F3E47 !important;
+  background-color: #2E3139 !important;
 }
 .border-4,
 .border-color-2,
 .sborder-4 *,
 .sborder-color-2 * {
-  border-color: #2F3E47 !important;
+  border-color: #2E3139 !important;
 }
 .c-play :nth-child(5n + 5),
 .c-5,

@@ -48,8 +48,12 @@ class app extends controller
 
     public function getProject($name='')
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $file = DIR_PROJECTS.'/'.$name.'/'.$name.'.json';
-        return $this->project = $this->getJson($file);
+        $this->project = $this->getJson($file);
+        return $this->project;
     }
 
 
@@ -60,8 +64,12 @@ class app extends controller
      */
     public function getTodo($name='')
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $file = DIR_PROJECTS.'/'.$name.'/todo.json';
-        return $this->project = $this->getJson($file);
+        $this->project = $this->getJson($file);
+        return $this->project;
     }
 
     /**
@@ -71,6 +79,9 @@ class app extends controller
      */
     public function setTodo($name='', $dataSend)
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $file = DIR_PROJECTS.'/'.$name.'/todo.json';
         return $this->project = $this->setJson($file, $dataSend);
     }
@@ -133,8 +144,10 @@ class app extends controller
      * @param  [type] $name [description]
      * @return [type]       [description]
      */
-    public function dirProject($name)
+    public function dirProject($name='')
     {
+        if ($name=='')
+            $name = $this->cur();
         return DIR_PROJECTS.'/'.$name;
     }
 
@@ -142,6 +155,9 @@ class app extends controller
 
     public function setProject($name, $dataSend)
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $d = $this->getProject($name);
 
         $d = array_replace_recursive($dataSend, $d);
@@ -156,6 +172,9 @@ class app extends controller
 
     public function getProjectFtp($name='')
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $project = $this->getProject($name);
         return $project['ftp'] ?? [];
     }
@@ -164,6 +183,9 @@ class app extends controller
 
     public function logProject($name='')
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $project        = $this->getProjectFtp($name);
 
         extract($project);
@@ -184,6 +206,9 @@ class app extends controller
 
     public function uploadProject($name, $dir_zip, $file_zip, $key = 'a')
     {
+        if ($name=='')
+            $name = $this->cur();
+
         $this->logProject($name);
 
         $ftp_control       = DIR_TEMPLATE."/files/ftp_control.php";
@@ -242,8 +267,13 @@ class app extends controller
     {
         $ws = $this->getWorkspace();
 
-        if (!in_array($value, $ws[$index]))
-            $ws[$index][$key] = $value;
+        if (!in_array($value, $ws[$index])){
+            if ($key =='')
+                $ws[$index][] = $value;
+            else
+                $ws[$index][$key] = $value;
+
+        }
 
         $this->setWorkspace($ws);
 

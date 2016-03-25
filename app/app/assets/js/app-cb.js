@@ -16,6 +16,9 @@ $(document).ready(function($) {
 
 
     $.cb['app'] = {
+        before_default: function(t, e){
+            console.log('before default');
+        },
         refresh: function (t, json, e){
             window.location.reload();
         },

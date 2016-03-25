@@ -56,7 +56,8 @@ $(document).ready(function($) {
         else{
             $.get(t.attr('href'), t.data(), function(json) {
                 $.each(json.target, function(index, val) {
-                    $(index).append($(val));
+                    $(index)[json.a]($(val));
+                    $.opens(1);
                 });
 
                 $.cb['editor'][json.cb](t, json, e);
@@ -70,6 +71,16 @@ $(document).ready(function($) {
 
     $('#filesOpens .btn-f-edit').trigger('click');
 
+    $.opens = function(inc){
+
+
+        var opens = $('#files-workspace').attr('data-open');
+        var count = parseInt(opens);
+
+        console.log(count);
+
+        $('#files-workspace').attr('data-open',count+inc);
+    }
 
     $(document).on("submit",".form-iframe",function (e){
         e.preventDefault();

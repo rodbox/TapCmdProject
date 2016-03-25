@@ -8,6 +8,8 @@
         "symfony/yaml": "^3.0",
         "symfony/filesystem": "^3.0",
         "oyejorge/less.php": "~1.7.0.9",
-        "twig/twig": "^1.24"
+        "twig/twig": "^1.24",
+        "symfony/finder": "^3.0",
+        "michelf/php-markdown": "^1.6"
     }
 }

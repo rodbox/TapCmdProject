@@ -13,7 +13,6 @@
     <div class="sui-editor-body">
         <?php $c->menu("editor","editor-menu"); ?>
         <div id="filesPanes" class="tab-content">
-
         </div>
         <!-- END TABSCONTENT  -->
         <!-- END NAVTABS titleTabs -->

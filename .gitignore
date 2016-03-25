@@ -2,6 +2,7 @@ var/tmp/*
 var/project/*
 var/cmd/*
 var/tictac/*
+var/themes/
 /vendor/*
 
 var/project/fez.json

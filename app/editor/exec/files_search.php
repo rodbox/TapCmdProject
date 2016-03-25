@@ -1,18 +1,25 @@
 <?php
+    use Symfony\Component\Finder\Finder;
 
-$app = new app();
-$list = file_get_contents($app->files());
-//
-//
-$dir = DIR_PROJECT.'/'.$app->cur();
+    $app     = new app();
+    $finder  = new finder();
 
-// $files = $f->facade($dir,[$dir.'/var']);
-// $d['dir'] = $dir.'/'.$folder;
+    $dir     = DIR_PROJECT.'/'.$app->cur();
 
-// $dir_index = DIR_PROJECTS.'/'.$app->cur().'/files.txt';
+    $exclude = ['var','web','vendor'];
+    $list = [];
 
+    $finder->in($dir);
+    // Filtre de dossier
+    foreach ($exclude as $key => $value)
+        $finder->notPath($value);
 
+    // Regurlar ex by js
+    $finder->path('/'.$_GET['reg'].'/i');
+    $finder->files();
 
+    foreach ($finder as $file)
+        $list[]   = '/'.$file->getRelativePathname();
 
 // list
 if (true) {
@@ -20,11 +27,11 @@ if (true) {
 
     $r = [
         'infotype' => "success",
-        'msg'      => "ok list",
+        'msg'      => $finder,
         'dir'      => $dir,
         'content'  => $c->viewsAsync('editor','files-suggest',[
-            'files' =>explode("\n",$list),
-            'dir'   =>$dir
+            'dir'   => $dir,
+            'files' => $list
         ])
     ];
 }

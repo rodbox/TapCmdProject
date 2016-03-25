@@ -18,7 +18,7 @@ include("mod/mod-tictac.php");
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\Filesystem\Filesystem;
-
+use \Michelf\Markdown;
 /**
 * controller
 */
@@ -278,6 +278,20 @@ class controller
         }
 
         file_put_contents($dirYaml, $yaml);
+    }
+
+
+    /**
+     * Retourne un markdown
+     * @param  [type] $dir [description]
+     * @return [type]      [description]
+     */
+    public function getMd($dir)
+    {
+        if(file_exists($dir)){
+            $content  = file_get_contents($dir);
+            echo Markdown::defaultTransform($content);
+        }
     }
 
 

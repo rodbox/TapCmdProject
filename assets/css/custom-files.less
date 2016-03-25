@@ -1,3 +1,8 @@
+// les noms des dossier sont des class css
+// les extensions sont des class css dans le menu contextuel
+@showControl: var, app, src, test, vendor, web, less, js, css, json, php, md, htaccess;
+
+
 .files{
     list-style: none;
     padding: 0px;
@@ -37,8 +42,10 @@
             }
 
         }
+        a.unstar,
          a.editor-close{
-            float:right;
+            float:left;
+            opacity : 0.2;
         }
         ul{
            margin-left: 12px;
@@ -48,6 +55,32 @@
         }
     }
 }
+
+
+// SHOW CONTROL
+.showControl-loop (@i:1) when (@i <= length(@showControl)){
+
+    @controlName:extract(@showControl, @i);
+
+.only-@{controlName}{
+    display:none !important;
+}
+.@{controlName}{
+    .only-@{controlName}{
+        display:inline-block !important;
+    }
+    .hide-@{controlName}{
+        display:none !important;
+    }
+}
+
+
+    .showControl-loop(@i + 1);
+}
+
+.showControl-loop();
+// SHOW CONTROL
+
 
 
 .file-open-mode{

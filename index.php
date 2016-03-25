@@ -53,6 +53,7 @@
         <script src="assets/js/app-tictac.js" type="text/javascript"> </script>
         <script src="assets/js/app-sui.js" type="text/javascript"> </script>
         <script src="assets/js/kalt.js" type="text/javascript"> </script>
+        <script src="assets/js/kalt-shortcut.js" type="text/javascript"> </script>
 
         <script src="app/app/assets/js/app-cb.js" type="text/javascript"> </script>
 

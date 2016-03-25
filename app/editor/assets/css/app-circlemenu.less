@@ -1,5 +1,10 @@
 @import "../../../../assets/css/vars.less";
 
+@cCm1 : lighten(@cSuccess1, 3%); // background cm
+@cCm2 : lighten(@cSuccess1, 7%); // selected cm
+@cCm3 : @cSuccess1; // color meta / background gunter
+@cCm4 : @cSuccess2; // color link bread
+
 @elem: 8,16;
 
 @radius: 84;
@@ -20,12 +25,12 @@
 
 
 // @colorRef : #253138;
-@colorRef : darken(@cPrimary2,5%);
+@colorRef : @cCm3;
 
 
-// @circleColor : rgba(191,189,181,0.2);
+
 @circleColor : @colorRef;
-@circleBoderColor : fade(#fff,0.15%);
+
 @shadowColor : lighten(@colorRef, 2%);
 
 @aColor : darken(@cPrimary1,20%);

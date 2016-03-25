@@ -4,7 +4,7 @@
     <div class="elem circle-1 pos-2"><a href="#" class="cm-func" data-req="redo" class="alias"><i class="icomoon-redo"></i></a></div>
     <div class="elem circle-1 pos-3"><a href="#" title="" class="wrap" data-before="<h1>" data-after="</h1>"><i class="icomoon-font-size2  "></i></a></div>
     <div class="elem circle-1 pos-4"><a href="#" class="wrap" data-before="<p>" data-after="</p>"><i class="fa fa-paragraph "></i></a></div>
-    <div class="elem circle-1 pos-5"><a href=".btn-sui-suggest" class="alias" title="" class="alias" data-after="</p>"><i class="fa fa-align-justify "></i></a></div>
+    <div class="elem circle-1 pos-5"><a href=".btn-sui-suggest" class="alias" title="" class="alias" data-after="</p>"><i class="fa fa-search "></i></a></div>
 
     <div class="elem circle-1 pos-6"><a href="#" title="" class="wrap" data-before='<div>'  data-after='</div>'  data-caret="4"><i class="icomoon-cube2 "></i></a></div>
     <div class="elem circle-1 pos-8"><a href="#" class="cm-func" data-req="undo" class="alias"><i class="icomoon-undo "></i></a></div><div class="elem circle-1 pos-8"><a href="#" class="cm-func" data-req="undo" class="alias"><i class="icomoon-undo "></i></a></div>

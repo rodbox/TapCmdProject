@@ -14,9 +14,11 @@
 
     $upl        = date('d m Y H:i:s');
 
+
+// sleep(5);
     $url = $app->uploadProject($name, $dir_zip, $file_zip, $k);
 
-    // unlink($dir_zip);
+    unlink($dir_zip);
 
     if (true) {
         $r = [

@@ -82,6 +82,8 @@ $(document).ready(function($) {
         e.preventDefault();
         var t = $(this);
 
+        $.bcbt(t, e); // callback beforesend t
+
         var form = $(t.attr('data-form'));
         var data = form.serialize();
 
@@ -90,10 +92,10 @@ $(document).ready(function($) {
             $.lock.on(t);
 
             $.post(t.attr('href'), data, function(json) {
-                $.lock.success(t);
+                $.lock[json.infotype](t);
 
 
-                $.cbt(t, json, e);
+                $.cbt(t, json, e); // callback t
 
             },'json').error(function (err){
                 $.lock.alert(t);
@@ -224,6 +226,14 @@ $(document).ready(function($) {
     })
 
 
+    $(document).on("click",".btn-trigger",function (e){
+        e.preventDefault();
+        var t = $(this);
+        $(t.attr('href')).trigger('click');
+
+    })
+
+
     $('.btn-popup').on("click",function (e){
         e.preventDefault();
         var t = $(this);
@@ -263,19 +273,21 @@ $(document).ready(function($) {
     /**
      * on event callback
      */
-    var eventList = ['change','keydown','keyup','focusin','focusout','mouseenter','mouseleave'];
+    var eventList = ['change','keydown','keyup','keypress','focusin','focusout','mouseenter','mouseleave'];
 
     $.each(eventList, function(index, val) {
         $(document).on(val,".on-"+val,function (e){
-            e.preventDefault();
             var t = $(this);
+            // if(t.data('preventDefault')==undefined)
+            e.preventDefault();
+
 
             var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
-
             if (t.data('cb-'+val)){
                 var cb = t.data('cb-'+val);
                 $.cb[cbapp][cb](t, e);
             }
+
         });
     });
 
@@ -295,15 +307,42 @@ $(document).ready(function($) {
     })
 
 
+
+    /**
+     *
+     * CBT : callback $(this)
+     * BCBT : before send callback $(this)
+     *
+     */
+
+    /**
+    * TODO : fusionner cbt et bcbt
+    * - juste inverser le passage du json avec la e (event) dans tout les scripts et definir une condition undefined
+    **/
+
     $.cbt = function (t, json, e){
         var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
 
-        if (t.data('cb') && t.data('cb'))
+        if (t.data('cb'))
             $.cb[cbapp][t.data('cb')](t, json, e);
         else
             $.cb[cbapp]['default'](t, json, e);
     }
 
+
+    $.bcbt = function (t, e){
+        // var bcbapp = (t.data('bcb-app')==undefined)?'app':t.data('bcb-app');
+        var bcbapp = $.def(t.data('bcb-app'),'app');
+        var bcb    = $.def(t.data('bcb'),'before_default');
+
+        if (t.data('bcb'))
+            $.cb[bcbapp][t.data('cb')](t, e);
+        else
+            $.cb[bcbapp]['before_default'](t, e);
+    }
+    /**
+     * END CBT BCBT
+     */
 
 
     // init a chaque chargement de page
@@ -350,11 +389,24 @@ $(document).ready(function($) {
             },200);
         },
         alert:function(t, msg){
-            var warning = $('<i>',{'id':'id','class':'fa fa-exclamation-triangle '});
+            var alert = $('<i>',{'id':'id','class':'fa fa-exclamation-triangle '});
 
-            t.html(warning);
+            t.html(alert);
             t.removeClass('onLoad');
-            t.addClass('warning');
+            t.addClass('alert');
+            if (msg != undefined)
+                t.append(' '+msg);
+
+            setTimeout(function(){
+                $.lock.off(t);
+            },5000);
+        },
+        error:function(t, msg){
+            var error = $('<i>',{'id':'id','class':'fa fa-exclamation-triangle '});
+
+            t.html(error);
+            t.removeClass('onLoad');
+            t.addClass('error');
             if (msg != undefined)
                 t.append(' '+msg);
 
@@ -403,6 +455,12 @@ $(document).ready(function($) {
             }
         }
     }
+
+
+    $.def = function (value, defaultValue){
+        return (value == undefined)?defaultValue:value;
+    }
+
 
 
 

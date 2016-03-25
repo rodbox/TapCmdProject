@@ -17,7 +17,7 @@ $(document).ready(function($) {
 		get	: function (key){
 			return $('html').attr('data-sui-'+key);
 		},
-		set	: function (key, value){
+		set	: function (key, value, cb){
 
 			var urlSession = './app/app/exec/sui.php';
 
@@ -28,6 +28,9 @@ $(document).ready(function($) {
 			// data['sui'][key] = value;
 
 			$.get(urlSession, data);
+
+			if (cb != undefined)
+				cb(key, value);
 
 			return $('html').attr('data-sui-'+key,value);
 		},

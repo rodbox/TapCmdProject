@@ -1,6 +1,7 @@
 <?php
 
     use Symfony\Component\Filesystem\Filesystem;
+    use Symfony\Component\Finder\Finder;
 
     /**
      * Class de gestion de fichier
@@ -94,26 +95,28 @@
         }
 
         public function files($dir, $filter = [], $recursive = false) {
+            if(file_exists($dir)){
+                $list    = scandir($dir); // on scan le dossier
+                $filters = array_merge($filter, $this->filtersDefault);
 
-            $list    = scandir($dir); // on scan le dossier
-            $filters = array_merge($filter, $this->filtersDefault);
+                $r       = array_diff($list, $filters); // on filtre le resultat
+                $files   = [];
+                foreach ($r as $key => $val) { //on parcour chaque element
+                    if (is_dir($dir . "/" . $val)) {
+                        unset($r[$key]); // on supprime le nom du dossier dans la liste de resultat car elle utilisé en clé pour les sous dossiers
+                        $r[$val] = ($recursive)?$this->files($dir . "/" . $val):[];
+                    }
+                    else{
+                        unset($r[$key]);
+                        $r["zzz".$val] = $val;
+                    }
+                }
+                ksort($r);
 
-            $r       = array_diff($list, $filters); // on filtre le resultat
-            $files   = [];
-            foreach ($r as $key => $val) { //on parcour chaque element
-                if (is_dir($dir . "/" . $val)) {
-                    unset($r[$key]); // on supprime le nom du dossier dans la liste de resultat car elle utilisé en clé pour les sous dossiers
-                    $r[$val] = ($recursive)?$this->files($dir . "/" . $val):[];
-                }
-                else{
-                    unset($r[$key]);
-                    $r["zzz".$val] = $val;
-                }
+                return $r;
             }
-            ksort($r);
-
-
-            return $r;
+            else
+                return [];
         }
 
 
@@ -129,6 +132,33 @@
 
 
             return $list;
+        }
+
+
+        public function finder($dir, $excludes=[])
+        {
+            $finder = new Finder();
+            foreach ($excludes as $key => $exclude)
+                $finder->notPath($exclude);
+
+            $finder->files()->name('/\.js$/');
+
+
+            $finder->files()->in($dir);
+
+            foreach ($finder as $file) {
+                echo"<pre>";
+                print_r($file->getRelativePathname());
+                echo"</pre>";
+                // // Dump the absolute path
+                // var_dump($file->getRealpath());
+
+                // // Dump the relative path to the file, omitting the filename
+                // var_dump($file->getRelativePath());
+
+                // // Dump the relative path to the file
+                // var_dump($file->getRelativePathname());
+            }
         }
     }
 
@@ -152,48 +182,6 @@
     }
 
 
-
-    // function delTree($dir)
-    // {
-    //     $files = array_diff(scandir($dir), array('.', '..'));
-
-    //     foreach ($files as $file) {
-    //         (is_dir("$dir/$file") && !is_link($dir)) ? delTree("$dir/$file") : unlink("$dir/$file");
-    //     }
-    //     return rmdir($dir);
-    // }
-
-
-
-    // function copy_dir($dir2copy, $dir_paste, $filters = [])
-    // {
-    //     // On vérifie si $dir2copy est un dossier
-    //     if (is_dir($dir2copy) && !in_array($dir2copy, $filters)) {
-
-    //         // Si oui, on l'ouvre
-    //         if ($dh = opendir($dir2copy)) {
-
-    //             // On liste les dossiers et fichiers de $dir2copy
-    //             while (($file = readdir($dh)) !== false) {
-
-    //                 // Si le dossier dans lequel on veut coller n'existe pas, on le créé
-    //                 if (!is_dir($dir_paste)) mkdir($dir_paste, 0777);
-
-    //                 // S'il s'agit d'un dossier, on relance la fonction récursive
-    //                 if (is_dir($dir2copy . '/' . $file) && $file != '..' && $file != '.' && !in_array($file, $filters)) {
-    //                     copy_dir($dir2copy . '/' . $file . '/', $dir_paste . '/' . $file . '/', $filters);
-    //                 }
-
-    //                 // S'il sagit d'un fichier, on le copie simplement
-    //                 elseif ($file != '..' && $file != '.' && !in_array($file, $filters))
-    //                     copy($dir2copy . '/' . $file, $dir_paste . '/' . $file);
-    //             }
-
-    //             // On ferme $dir2copy
-    //             closedir($dh);
-    //             return true;
-    //         }
-    //     }
 
     //     function replace_Key_Val_File($data, $fileModel, $fileDest = true)
     //     {

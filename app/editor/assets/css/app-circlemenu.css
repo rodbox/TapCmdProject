@@ -29,8 +29,8 @@
   -o-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
-  -webkit-box-shadow: 0 0 0 48px #272a31;
-  box-shadow: 0 0 0 48px #272a31;
+  -webkit-box-shadow: 0 0 0 48px #33363f;
+  box-shadow: 0 0 0 48px #33363f;
 }
 .circle.open .elem {
   -webkit-transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -86,9 +86,9 @@
   -o-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
-  -webkit-box-shadow: 0 0 0 48px #272a31;
-  box-shadow: 0 0 0 48px #272a31;
-  background-color: #23252b;
+  -webkit-box-shadow: 0 0 0 48px #33363f;
+  box-shadow: 0 0 0 48px #33363f;
+  background-color: #2E3139;
   width: 168px;
   line-height: 168px;
   text-align: center;

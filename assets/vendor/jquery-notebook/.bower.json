@@ -1,0 +1,31 @@
+{
+  "name": "jquery-notebook",
+  "homepage": "https://github.com/otaviosoares/jquery-notebook",
+  "authors": [
+    "Raphael Cruzeiro<raphael.cruzeiro@gmail.com>"
+  ],
+  "description": "A modern, simple and elegant WYSIWYG rich text editor.",
+  "main": "build/jquery.notebook.min.js",
+  "keywords": [
+    "rich",
+    "text"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "7406a1a812",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7406a1a812efd14c06c3432c9a93be30af44a2ed"
+  },
+  "_source": "git://github.com/raphaelcruzeiro/jquery-notebook.git",
+  "_target": "*",
+  "_originalSource": "jquery-notebook",
+  "_direct": true
+}

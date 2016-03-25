@@ -8,9 +8,9 @@
         <div class="input-group">
         <select name="file_type" class="c-select form-control">
          <option value="folder">folder</option>
-        <?php foreach ($d as $key => $value): ?>
-            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-        <?php endforeach ?>
+            <?php foreach ($d as $key => $value): ?>
+                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+            <?php endforeach ?>
                <!--  <option value="dir">folder</option>
                 <option value="readme.md" >readme</option>
                 <option value="php.php" selected="selected">php</option>

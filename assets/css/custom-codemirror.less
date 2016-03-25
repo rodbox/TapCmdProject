@@ -1,7 +1,7 @@
-@cCm1 : lighten(@cSuccess1, 3%);
-@cCm2 : lighten(@cSuccess1, 7%);
-@cCm3 : @cSuccess1;
-@cCm4 : @cSuccess2;
+@cCm1 : lighten(@cSuccess1, 3%); // background cm
+@cCm2 : lighten(@cSuccess1, 7%); // selected cm
+@cCm3 : @cSuccess1; // color meta / background gunter
+@cCm4 : @cSuccess2; // color link bread
 
 .cm,
 .CodeMirror{
@@ -37,6 +37,15 @@
         background-color: @cWarning1;
         color: @cWarning2;
     }
+
+}
+
+.CodeMirror-dialog{
+
+    &.CodeMirror-dialog-top{
+        .no-border;
+    }
+    background-color: @cCm1 !important;
 
 }
 

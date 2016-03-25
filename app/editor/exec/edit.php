@@ -6,26 +6,30 @@
     $rand    = (isset($key))?$key:substr( md5(rand()), 0, 8);
     $app      = new app();
 
+    // $id_replace = strtolower(preg_replace('/\/./', '_', $dir.'/'.$file));
+    $id_replace = $rand;
 
     $metaTabs = [
         'dir'  => $dir,
         'file' => $file,
-        'id'   => $rand
+        'id'   => $id_replace
     ];
     $metaPane = [
         'dir'     => $dir,
         'file'    => $file,
         'content' => $content,
-        'id'      => $rand
+        'id'      => $id_replace
     ];
 
     $target = [
         '#filesTabs'  => $c->viewsAsync('editor', 'editor-tab', $metaTabs),
-        '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane)
+        '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane),
+        '#filesOpens' => $c->viewsAsync('editor', 'files-open', $metaTabs)
     ];
+
     $cb = 'editor_init';
 
-    $app->addWorkspace('open',$dir.'/'.$file, $rand);
+    $app->addWorkspace('open',$dir.'/'.$file, $id_replace);
 
 if (true) {
 
@@ -37,7 +41,9 @@ if (true) {
         'file'     => $file,
         'content'  => $content,
         'target'   => $target,
-        'id'       => $rand,
+        'a'        => 'append',
+        'id'       => $id_replace,
+        'idre'       => $id_replace,
         'cb'       => $cb
     ];
 }
