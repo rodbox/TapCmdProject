@@ -4,7 +4,8 @@
     extract($_POST);
     extract($_GET);
 
-    $force = ($force ?? == "true") ?? false;
+   $force = (isset($_POST['force']) && $_POST['force'] == "true");
+
 
     include(DIR_APP.'/'.$app.'/exec/'.$exec.'.php');
 
