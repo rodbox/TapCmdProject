@@ -282,7 +282,7 @@ class app extends controller
     {
         $ws = $this->getWorkspace();
 
-        if (!in_array($value, $ws[$index])){
+        if (!in_array($value, $ws[$index] ?? [])){
             if ($key =='')
                 $ws[$index][] = $value;
             else

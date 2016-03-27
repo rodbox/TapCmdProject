@@ -19,7 +19,10 @@
             'infotype' => "success",
             'msg'      => "ok star",
             'dirStars' => "",
-            'content'  => $c->viewsAsync('editor','files-workspace',$ws)
+            'target'   => [
+                '#files-workspace'  => $c->viewsAsync('editor','files-workspace','workspace')
+            ],
+            'a'=>'replaceWith'
         ];
     }
 

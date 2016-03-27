@@ -1907,3 +1907,21 @@ footer {
 .markdown a {
   text-decoration: underline !important;
 }
+.alert.active,
+.alert:hover,
+.alert,
+.alert i {
+  color: #FFBC5A !important;
+}
+.error.active,
+.error:hover,
+.error,
+.error i {
+  color: #FFBC5A !important;
+}
+.success.active,
+.success:hover,
+.success,
+.success i {
+  color: #FFBC5A !important;
+}

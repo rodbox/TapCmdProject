@@ -125,6 +125,10 @@ $(document).ready(function($) {
         },
         starsRefresh: function (t, json, e){
             $('#files-stars').replaceWith(json.content);
+
+            $.each(json.target, function(index, val) {
+                 $(index)[json.a](val);
+            });
         },
         editor_init: function (t, json, e){
             $('.files-editor.nav-link').removeClass('active').attr('aria-expanded','false');

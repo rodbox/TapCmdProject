@@ -13,11 +13,13 @@
 
     if (true) {
 
-
         $r = [
             'infotype' => "success",
             'msg'      => "ok star",
-            'content'  => $c->viewsAsync('editor','files-workspace','stars')
+            'target'   => [
+                '#files-workspace'  => $c->viewsAsync('editor','files-workspace','workspace')
+            ],
+            'a'=>'replaceWith'
         ];
     }
 
