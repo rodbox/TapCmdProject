@@ -28,7 +28,8 @@ $(document).ready(function($) {
         var form = $(t.attr('data-src'));
         var data = {
             project:$('#project').val(),
-            cmd:t.attr('data-cmd')
+            cmd:t.attr('data-cmd'),
+            force:$.force()
         };
 
         if(!$.lock.is(t)){
@@ -62,7 +63,7 @@ $(document).ready(function($) {
         var t = $(this);
 
         var form = $(t.attr('data-src'));
-        var data = form.serialize();
+        var data = form.serialize()+"&force="+$.force();
 
         if(!$.lock.is(t)){
 
@@ -85,7 +86,7 @@ $(document).ready(function($) {
         $.bcbt(t, e); // callback beforesend t
 
         var form = $(t.attr('data-form'));
-        var data = form.serialize();
+        var data = form.serialize()+"&force="+$.force();
 
         if(!$.lock.is(t)){
 
@@ -186,13 +187,13 @@ $(document).ready(function($) {
             var size = t.data('modal');
 
             if(t.data('form') != "")
-                data = $(t.data('form')).serialize();
+                data = $(t.data('form')).serialize()+"&force="+$.force();
             else
-                data = {};
+                data = { force : $.force() };
 
             $.modal(title, href, data, size, t);
         }
-        });
+    });
 
 
     $(document).on("mouseup mousedown",".btn-cmd",function (e){
@@ -250,7 +251,7 @@ $(document).ready(function($) {
     $(document).on("submit",".form-live",function (e){
         e.preventDefault();
         var t = $(this);
-        var data  = t.serialize();
+        var data  = t.serialize()+"&force="+$.force();
 
         var submit = t.find("[type=submit]");
 
@@ -353,7 +354,8 @@ $(document).ready(function($) {
             else
                 var cont = $('body');
 
-            cont.find('.input-colors').colorpicker()
+            cont.find('.input-colors').colorpicker();
+            cont.find('.select2').select2();
         }
     };
 

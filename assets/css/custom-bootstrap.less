@@ -172,3 +172,31 @@
         padding: 0.475rem 0.75rem;
     }
 }
+
+.form-control{
+        border-color: @cPrimary1 !important;
+}
+
+.select2-container--default .select2-selection--multiple{
+        border-color: @cPrimary1 !important;
+}
+
+.select2-container--focus{
+    border-color: @cPrimary1 !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    border-color: transparent !important;
+    padding: 0.3rem 0.5rem !important;
+    background-color: fade(@cDefault2,25%) !important;
+}
+.select2-container .select2-search--inline .select2-search__field {
+    padding: 0.3rem !important;
+}
+
+.select2-results__option{
+    &.select2-results__option--highlighted,
+    &:hover{
+        background-color: @cPrimary1 !important;
+        color: @cPrimary2 !important;
+    }
+}

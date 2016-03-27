@@ -2,20 +2,20 @@
 <FileZilla3>
     <Servers>
         <Server>
-            <Host>[HOST]</Host>
+            <Host>{{ HOST }}</Host>
             <Port>21</Port>
             <Protocol>0</Protocol>
             <Type>0</Type>
-            <User>[USER]</User>
-            <Pass>[PW]</Pass>
-            <Account>[SITE]</Account>
+            <User>{{ USER }}</User>
+            <Pass>{{ PW }}</Pass>
+            <Account>{{ SITE }}</Account>
             <Logontype>4</Logontype>
             <TimezoneOffset>0</TimezoneOffset>
             <PasvMode>MODE_DEFAULT</PasvMode>
             <MaximumMultipleConnections>0</MaximumMultipleConnections>
             <EncodingType>Auto</EncodingType>
             <BypassProxy>0</BypassProxy>
-            <Name>[SITE]</Name>
+            <Name>{{ SITE }}</Name>
             <Comments />
             <LocalDir />
             <RemoteDir />

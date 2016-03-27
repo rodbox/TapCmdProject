@@ -139,6 +139,7 @@ $(document).ready(function($) {
             };
             $.get(url, data, function(json) {
                 $('#overides-content').html(json.data);
+                $('.select2').select2();
             },'json');
         }
     }

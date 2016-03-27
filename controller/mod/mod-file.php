@@ -163,22 +163,26 @@
     }
 
 
-    function templateFile($templateFile, $targetDir, $newFileName = "")
+   function templateFile($templateFile, $targetDir, $data = [], $newFileName = "")
     {
         $src             = DIR_TEMPLATE . "/files/" . $templateFile;
         $info            = pathinfo($templateFile);
 
-        if ($newFileName == "") {
-        $newFileName     = $info["filename"];
-        }
+        if ($newFileName == "")
+            $newFileName     = $info["filename"];
 
         $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
 
 
-        if (!file_exists($dest))
-            return copy($src, $dest);
-        else
-            return false;
+        $contentTemplate = file_get_contents($src);
+        foreach ($data as $key => $value) {
+            $find[]    = "{{{ " . $key . " }}}";
+            $replace[] = $value;
+        }
+
+        $content = preg_replace($find, $replace, $contentTemplate);
+
+        return (!file_exists($dest))?file_put_contents($dest, $content) : false;
     }
 
 

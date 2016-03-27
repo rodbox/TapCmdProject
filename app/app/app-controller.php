@@ -33,7 +33,25 @@ class app extends controller
      */
     public function dir()
     {
-       return DIR_PROJECTS.'/'.$this->cur();
+       return DIR_PROJECTS.'/'.self::cur();
+    }
+
+
+
+    /**
+     * dir du projet
+     */
+    static public function dirProject()
+    {
+        return DIR_PROJECT.'/'.self::cur();
+    }
+
+    /**
+     * dir de gestion du projet
+     */
+    static public function dirManage()
+    {
+        return DIR_PROJECTS.'/'.self::cur();
     }
 
 
@@ -85,6 +103,13 @@ class app extends controller
         $file = DIR_PROJECTS.'/'.$name.'/todo.json';
         return $this->project = $this->setJson($file, $dataSend);
     }
+
+
+    public function getBundles()
+    {
+        return $this->getJson(self::dirManage().'/bundles.json');
+    }
+
 
     /**
      * Retourne la traduction d'un index ou retourne toute la liste
@@ -139,17 +164,7 @@ class app extends controller
 
 
 
-    /**
-     * Retourne le dossier de la gestion du projet
-     * @param  [type] $name [description]
-     * @return [type]       [description]
-     */
-    public function dirProject($name='')
-    {
-        if ($name=='')
-            $name = $this->cur();
-        return DIR_PROJECTS.'/'.$name;
-    }
+
 
 
 

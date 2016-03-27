@@ -3,12 +3,14 @@
     $app    = new app();
 
 
-    $exclude = ['var','web','vendor'];
+    $exemple = 'namespace FOS\UserBundle\toto';
 
-    $list   = $f->finder(DIR_PROJECT.'/'.$app->cur(), $exclude);
+    $reg = "/namespace\s{1,}([a-zA-Z\\\]{0,})/";
+
+    preg_match_all($reg, $exemple, $matches);
 
     echo"<pre>";
-    print_r($list);
+    print_r($matches);
     echo"</pre>";
 
  ?>

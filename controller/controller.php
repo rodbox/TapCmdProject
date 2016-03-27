@@ -13,6 +13,7 @@ include(APP_LOADER);
 // Modules
 include("mod/mod-zip.php");
 include("mod/mod-file.php");
+include("mod/mod-parse.php");
 include("mod/mod-tictac.php");
 
 use Symfony\Component\Yaml\Parser;
@@ -290,7 +291,9 @@ class controller
     {
         if(file_exists($dir)){
             $content  = file_get_contents($dir);
+            echo '<div class="markdown">';
             echo Markdown::defaultTransform($content);
+            echo '</div>';
         }
     }
 

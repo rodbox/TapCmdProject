@@ -1,5 +1,5 @@
 (function($){
-    $.fn.[JQUERY_PLUGIN_NAME]=function(options){
+    $.fn.{{ JQUERY_PLUGIN_NAME }} = function(options){
 
         //On définit nos paramètres par défaut
       var defauts=
@@ -10,7 +10,7 @@
 
       var param=$.extend(defauts, options);
 
-        $(document).on([EVENT],this.selector , function (){
+        $(document).on({{ EVENT }},this.selector , function (){
           var t=$(this);
 
           return false;

@@ -22,7 +22,10 @@
 <h2 class="open-title">Fichiers ouverts</h2>
 <ul id='filesOpens'  class="files">
     <?php foreach ($d['open'] ?? [] as $key => $file): ?>
-
+        <?php $c->view("editor","files-open",[
+            'id'=>$key,
+            'file'=>$file
+        ]); ?>
     <?php endforeach ?>
 </ul>
 

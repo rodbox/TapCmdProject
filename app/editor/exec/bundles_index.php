@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Creer le fichier de récapitulatif des bundles d'une app Symfony
+     */
 
  use Symfony\Component\Finder\Finder;
 
@@ -26,42 +29,68 @@
 
     foreach ($bundles_controller as $key => $file) {
         $bundleController = $file->getRelativePathname();
+
         $info             = pathinfo($bundleController);
         extract($info);
 
-        // $finder->in($dirname);
+        $bundleDir        = $dir.'/'.$dirname;
+
+        $phpFile          = $parse->phpFile($file->getRealpath());
+        $namespace        = $phpFile['namespace'];
 
         // Les controllers
-        $controllers       = [];
-        $finderController  = new finder();
-        $finderController->in($dir.'/'.$dirname)->files()->name('#Controller.php$#');
-        $bundleControllers = $finderController;
-        foreach ($bundleControllers as $keyCont => $fileCont)
+        $controllers      = [];
+        $finderController = new finder();
+
+        $folderEntity     = ['Entity','Model'];
+
+        $finderController->in($bundleDir)->files()->name('#Controller.php$#');
+
+        foreach ($finderController as $keyCont => $fileCont)
             $controllers[]      = basename($fileCont->getRelativePathname());
+
+        // Les entitys
+        // dans les sous dossier /Model ou /Entity
+        $entitys       = [];
+        $finderEntity  = new finder();
+        foreach ($folderEntity as $key => $value) {
+            if (is_dir($bundleDir.'/'.$value)){
+                $finderEntity->in($bundleDir.'/'.$value)->files();
+
+                foreach ($finderEntity  as $keyEntity => $fileEntity)
+                    $entitys[]      = $value.'/'.basename($fileEntity->getRelativePathname());
+
+            }
+        }
 
         // Les commands
         $commands       = [];
         $finderCommand  = new finder();
         $finderCommand->in($dir.'/'.$dirname)->files()->name('#Command.php$#');
-        $bundleCommands = $finderCommand;
-        foreach ($bundleCommands as $keyCom => $fileCom)
+        foreach ($finderCommand as $keyCom => $fileCom)
             $commands[]      = basename($fileCom->getRelativePathname());
+
+
+        // Les form
+        $forms       = [];
+        $finderForm  = new finder();
+        $finderForm->in($dir.'/'.$dirname)->files()->name('#FormType.php$#');
+        foreach ($finderForm as $keyForm => $fileForm)
+            $forms[]      = $fileForm->getRelativePathname();
 
         // Les events
         $events       = [];
         $finderEvent  = new finder();
         $finderEvent->in($dir.'/'.$dirname)->files()->name('#Event.php$#');
-        $bundleEvents = $finderEvent;
-        foreach ($bundleEvents as $keyCom => $fileCom)
-            $events[]      = basename($fileCom->getRelativePathname());
+        foreach ($finderEvent as $keyCom => $fileCom)
+            $events[]      = $fileCom->getRelativePathname();
 
         // Les listeners
         $listeners    = [];
         $finderEvent  = new finder();
         $finderEvent->in($dir.'/'.$dirname)->files()->name('#Listener.php$#');
-        $bundleEvents = $finderEvent;
-        foreach ($bundleEvents as $keyList => $fileList)
-            $listeners[]      = basename($fileList->getRelativePathname());
+        foreach ($finderEvent as $keyList => $fileList)
+            $listeners[]      = $fileList->getRelativePathname();
 
 
         // Les views
@@ -69,8 +98,7 @@
         if(is_dir($dir.'/'.$dirname.'/Resources/views')){
             $finderView = new finder();
             $finderView->in($dir.'/'.$dirname.'/Resources/views')->files();
-            $bundleViews = $finderView;
-            foreach ($bundleViews as $keyView => $fileView)
+            foreach ($finderView as $keyView => $fileView)
                 $views[]      = $fileView->getRelativePathname();
         }
 
@@ -88,10 +116,13 @@
         $bundle           = [
             'dir'         => $dirname,
             'file'        => $basename,
+            'forms'       => $forms,
             'bundle'      => $filename,
             'readme'      => $readme,
             'events'      => $events,
+            'entitys'     => $entitys,
             'listeners'   => $listeners,
+            'namespace'   => $namespace,
             'controllers' => $controllers,
             'commands'    => $commands,
             'views'       => $views

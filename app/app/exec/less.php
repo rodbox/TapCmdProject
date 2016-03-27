@@ -33,7 +33,7 @@
         $data .= "@".$varName.":".$var."\n";
 
 
-    $put = file_put_contents($app->dirProject($name).'/vars.less', $data);
+    $put = file_put_contents($app->dirManage().'/vars.less', $data);
 
     if ($put) {
 

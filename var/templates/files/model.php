@@ -1,8 +1,5 @@
 <?php
-	extract($send);
-
-
-	
+	extract($s);
 
 
 	$d = "";

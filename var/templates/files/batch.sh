@@ -1,1 +1,1 @@
-cd ../../../Applications/MAMP/htdocs/[LABS]
+cd .Applications/MAMP/htdocs/[LABS]

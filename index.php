@@ -13,6 +13,7 @@
         <meta charset="UTF-8">
         <title><?php $c->title(); ?></title>
         <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
+        <link href="assets/vendor/select2/dist/css/select2.min.css" rel="stylesheet" >
         <link href="assets/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" >
         <link href="app/editor/assets/css/app-circlemenu.css" rel="stylesheet">
         <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -45,6 +46,7 @@
         <?php $c->view('app','sui_nav'); ?>
 
         <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
+        <script src="assets/vendor/select2/dist/js/select2.full.min.js" ></script>
         <script src="assets/vendor/clipboard/dist/js/clipboard.min.js" ></script>
         <script src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>
         <!-- <script src="assets/vendor/keynavigator/keynavigator-min.js" ></script> -->

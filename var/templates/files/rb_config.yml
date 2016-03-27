@@ -1,7 +1,7 @@
 parameters:
 
-    title_web: RodboxSource
-    title_admin: RB
+    title_web: {{ TITLE }}
+    title_admin: {{ TITLE_SHORT }}
     title_business: # title_business
     mail_business: # mail_business
     addr_business_1: # addr_business_1
@@ -15,14 +15,11 @@ parameters:
 
     dir_root:  %dir_src%/web
 
+    web_root:  {{ WEB_ROOT }}
 
-    # web_root:  http://shop.minutephone.fr
-    web_root:  http://localhost:8000
+    dir_cdn: {{ DIR_ROOT }}
 
-    dir_cdn: /Applications/MAMP/htdocs/minutephone_cdn
-    # dir_cdn: http://cdn.minutephone.fr
-    web_cdn: http://localhost:8888/minutephone_cdn
-    # web_cdn: http://cdn.minutephone.fr
+    web_cdn: {{ WEB_ROOT }}
 
     dir_import: %dir_root%/import
     web_import: %web_root%/import

@@ -10,7 +10,7 @@
 
     $dump = shell_exec($cmd);
 
-    file_put_contents($app->dir().'/db-schema.sql',$dump);
+    file_put_contents($app->dirManage().'/db-schema.sql',$dump);
 
     $r = [
         'infotype' => "success",

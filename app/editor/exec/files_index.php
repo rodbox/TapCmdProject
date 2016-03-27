@@ -1,5 +1,8 @@
 <?php
-
+    /**
+     * Créer une liste de tout les fichiers d'un projet (sauf les excludes)
+     * @var app
+     */
 $app   = new app();
 
 $dir   = DIR_PROJECT.'/'.$app->cur();

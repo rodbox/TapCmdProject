@@ -1,28 +1,28 @@
 <?php
 
-/**
-* TODO : enregistrement du fichier mais en créant une securité d'archive et/ ou de lockage
-**/
+    /**
+    * TODO : enregistrement du fichier mais en créant une securité d'archive et/ ou de lockage
+    **/
 
 
 
-// exec name
-if (file_put_contents($dir, $content)) {
+    // exec name
+    if (file_put_contents($dir, $content)) {
 
 
-    $r = [
-        'infotype' => "success",
-        'msg'      => "ok exec name",
-        'data'     => ''
-    ];
-}
+        $r = [
+            'infotype' => "success",
+            'msg'      => "ok exec name",
+            'data'     => ''
+        ];
+    }
 
 
-else{
-    $r = [
-        'infotype' => "error",
-        'msg'      => "error exec name ",
-        'data'     => ''
-    ];
-}
+    else{
+        $r = [
+            'infotype' => "error",
+            'msg'      => "error exec name ",
+            'data'     => ''
+        ];
+    }
 ?>
