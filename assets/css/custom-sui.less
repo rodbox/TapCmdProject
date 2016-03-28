@@ -17,6 +17,11 @@
 @quickbarH: calc(~'100vh - '@headerH);
 @quickbarW: @sidebarW;
 
+@debugH: 25vh;
+@debugW: 200px;
+@debugWHover: 60vw;
+@debugHHover: 60vh;
+
 @suggestFont: 1.2rem;
 @suggestTop: 0rem;
 @suggestMarg: 20vw;
@@ -98,6 +103,52 @@
     }
 }
 
+
+.sui-debug{
+    display:none;
+    .fixed;
+    top:90px;
+    right:5px;
+    height:@debugH;
+    width:@debugW;
+    background-color: fade(@cPrimary2, 90%) !important;
+
+    overflow-y: auto;
+    .animate();
+    #debug{
+        &,
+        *{
+            font-size: 0.6rem !important;
+            color: fade(@cPrimary1,50%) !important;
+        }
+        padding: 1rem !important;
+    }
+
+    &:hover{
+
+        width:@debugWHover;
+        height:@debugHHover;
+        background-color: fade(@cPrimary2, 98%) !important;
+        #debug{
+
+            &,
+            *{
+                color: fade(@cPrimary1,100%) !important;
+            }
+        }
+
+
+    }
+
+
+}
+
+[data-sui-debug="true"] {
+    .sui-debug{
+         display:block;
+    }
+}
+
 // [data-sui-quickbar="true"]{
 //     .sui-quickbar{
 //         .transX(0);
@@ -163,7 +214,6 @@
     top:@headerH !important;
     width: @sidebarW;
     height: @sidebarH;
-
 
     .transX(-@sidebarW);
 }

@@ -72,13 +72,9 @@ $(document).ready(function($) {
     $('#filesOpens .btn-f-edit').trigger('click');
 
     $.opens = function(inc){
-
-
         var opens = $('#files-workspace').attr('data-open');
         var count = parseInt(opens);
-
         console.log(count);
-
         $('#files-workspace').attr('data-open',count+inc);
     }
 
@@ -90,48 +86,11 @@ $(document).ready(function($) {
     });
 
 
-
-
-
-
-
-    $(document).on("click",".editor-close",function (e){
-        e.preventDefault();
-        var t      = $(this);
-        var target = $(t.data('target'));
-
-        /**
-        * TODO :
-        * - rajouter une condition pour ouvrir l'onglet suivant si on ferme le premier.
-        * - corriger l'attribut du tabs
-        **/
-
-        var sibling = (target.is(':first-child'))?target.prev():target.next();
-
-        sibling.addClass('active').find('.nav-link').addClass('active').attr('aria-expanded',true);
-
-        if (target.hasClass('lock')){
-            if (confirm('delete ?'))
-                target.remove();
-        }
-        else
-            target.remove();
-
-    })
-
-    // $(document).on("mousedown",".CodeMirror",function (e){
-
-    //     if (e.button == 2) {
-    //         e.preventDefault();
-
-    //         $(document)[0].oncontextmenu = function() {
-    //             return false;
-    //         }
-    //         var t = $(this);
-    //         var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
-
-    //         $.cb[cbapp][t.data('cb-r-click')](t, e);
-    //     }
-    // })
-
+    $.close = function (id){
+        var tabs    = $('.nav-item[data-editor='+id+']');
+        var sibling = (tabs.is(':first-child'))?tabs.next():tabs.prev();
+        sibling.find('.nav-link').trigger('click');
+        $("[data-editor="+id+"]").remove();
+        $.opens(-1);
+    }
 });

@@ -94,12 +94,17 @@
 .v-top{
     vertical-align: top;
 }
-.v-middle{
-    vertical-align: middle;
-}
 
 .v-bottom{
     vertical-align: bottom;
+}
+
+.v-middle{
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 /*------------------------------------*\

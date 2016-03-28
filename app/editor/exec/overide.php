@@ -30,6 +30,7 @@
     // vers le dossier du bundle src
     else{
         $dirBundle             = $dir.'/'.$bundles['src'][$src]['dir'];
+        $destOveride           = $dirBundle;
         $destOverideView       = $dirBundle.'/Resources/views';
         $destOverideForm       = $dirBundle;
         $destOverideEvent      = $dirBundle;
@@ -48,7 +49,7 @@
             'VENDOR'    => $vendor
         ];
 
-        // templateFile('bundle_overide.php', $dirBundle, $data, $src.'___');
+        templateFile('bundle_overide.php', $dirBundle, $data, $src.'___');
     }
 
     /**
@@ -141,6 +142,29 @@
 
         if(!file_exists($destOverideListenerFile))
             $fs->copy($srcOverideFile, $destOverideListenerFile, $force);
+    }
+
+
+    /**
+     * Les archives
+     */
+    foreach ($overide['archives'] ?? [] as $archivesSource => $archivesList) {
+
+        foreach ($archivesList ?? [] as $keyA => $valueA) {
+
+            $fileRelative = explode($archivesSource,$valueA);
+            $fileRelative = $fileRelative[1];
+
+            $destOverideFile = $destOveride.'/'.$fileRelative.'__';
+
+            if(!file_exists($destOverideFile))
+                $fs->copy($valueA, $destOverideFile, $force);
+
+            # code...
+        }
+
+
+
     }
 
 

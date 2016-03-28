@@ -65,11 +65,15 @@
 .v-top {
   vertical-align: top;
 }
-.v-middle {
-  vertical-align: middle;
-}
 .v-bottom {
   vertical-align: bottom;
+}
+.v-middle {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 /*------------------------------------*\
     END : Vertical align
@@ -1112,6 +1116,46 @@ h2 {
   font-size: 1.2rem !important;
 }
 [data-sui-suggest="true"] .sui-suggest {
+  display: block;
+}
+.sui-debug {
+  display: none;
+  position: fixed;
+  top: 90px;
+  right: 5px;
+  height: 25vh;
+  width: 200px;
+  background-color: rgba(46, 49, 57, 0.9) !important;
+  overflow-y: auto;
+  -webkit-transition: all 175ms linear;
+  -moz-transition: all 175ms linear;
+  -ms-transition: all 175ms linear;
+  -o-transition: all 175ms linear;
+  transition: all 175ms linear;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.sui-debug #debug {
+  padding: 1rem !important;
+}
+.sui-debug #debug,
+.sui-debug #debug * {
+  font-size: 0.6rem !important;
+  color: rgba(216, 216, 216, 0.5) !important;
+}
+.sui-debug:hover {
+  width: 60vw;
+  height: 60vh;
+  background-color: rgba(46, 49, 57, 0.98) !important;
+}
+.sui-debug:hover #debug,
+.sui-debug:hover #debug * {
+  color: #d8d8d8 !important;
+}
+[data-sui-debug="true"] .sui-debug {
   display: block;
 }
 [data-sui-iframe="true"] .sui-iframe {

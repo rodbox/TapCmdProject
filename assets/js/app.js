@@ -95,7 +95,7 @@ $(document).ready(function($) {
             $.post(t.attr('href'), data, function(json) {
                 $.lock[json.infotype](t);
 
-
+                $.a(t, json); // target view
                 $.cbt(t, json, e); // callback t
 
             },'json').error(function (err){
@@ -463,7 +463,15 @@ $(document).ready(function($) {
         return (value == undefined)?defaultValue:value;
     }
 
-
+    $.a = function (t, json){
+        if (json.target != undefined) {
+            $.each(json.target, function(index, val) {
+                console.log();
+                console.log(val);
+                $(index)[json.a](val);
+            });
+        }
+    }
 
 
     var isOpera   = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;

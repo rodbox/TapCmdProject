@@ -175,6 +175,8 @@
 
 
         $contentTemplate = file_get_contents($src);
+        $find            = [];
+        $replace         = [];
         foreach ($data as $key => $value) {
             $find[]    = "{{{ " . $key . " }}}";
             $replace[] = $value;

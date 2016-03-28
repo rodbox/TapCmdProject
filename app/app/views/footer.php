@@ -8,7 +8,7 @@
         </div>
       </div> <div class="input-group  text-right">
         <div class="input-group-btn">
-           <a href="<?php $c->urlPage('editor','overide'); ?>" class="btn btn-primary btn-sm btn-modal" title="overide"  data-form="#form-project"   data-backdrop="static">Overide</a>
+           <a href="<?php $c->urlPage('editor','overide'); ?>" class="btn btn-primary btn-sm btn-modal" title="overide"  data-form="#form-project" data-modal="modalM"  data-backdrop="static">Overide</a>
         </div>
       </div>
 
@@ -19,6 +19,7 @@
             <?php $c->btn_sui('<i class="fa fa-search "></i>','suggest'); ?>
             <?php $c->btn_sui('<i class="fa fa-columns"></i>','sidebar'); ?>
             <?php $c->btn_sui('<i class="fa fa-code"></i>','editor'); ?>
+
             <?php //$c->btn_sui('<i class="fa fa-eye-slash"></i>','iframe'); ?>
             <?php // $c->btn_sui('<i class="fa fa-columns"></i>','quickbar'); ?>
 
@@ -36,11 +37,12 @@
         <div class="input-group text-right">
           <div class="input-group-btn">
             <a href="<?php $c->urlPage('app','todo'); ?>" class="btn btn-primary btn-sm btn-modal" title="Todo"  data-form="#form-project"   data-backdrop="static"><i class="fa fa-tasks"></i></a>
-            <a href="<?php $c->urlPopup('app','tap') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="tap"><i class="fa fa-th"></i></a>
+
             <a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
+            <a href="<?php $c->urlPopup('app','tap') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="tap"><i class="fa fa-th"></i></a>
+            <?php $c->btn_sui('debug','debug'); ?>
             <?php $c->btn_sui('Console','console'); ?>
             <a href="<?php $c->urlExec('app','terminal') ?>" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Terminal</a>
-
           </div>
         </div>
 

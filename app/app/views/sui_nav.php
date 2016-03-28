@@ -42,4 +42,9 @@
         <?php $c->menu("editor","files-menu"); ?>
     </div>
 </div>
+<div class="sui-debug">
+    <div class="sui-debug-body">
+        <div id="debug"></div>
+    </div>
+</div>
 

@@ -42,8 +42,8 @@ $(document).ready(function($) {
                 $('.form-iframe').trigger('submit');
         },
         editorClose: function (t, json, e){
-            $("[data-editor="+t.attr('data-editor')+"]").remove();
-            $.opens(-1);
+            $.close(t.attr('data-editor'));
+
           },
         fileSearchOn: function (t, e){
             $.suggest.on(t,'');
@@ -145,6 +145,9 @@ $(document).ready(function($) {
                 $('#overides-content').html(json.data);
                 $('.select2').select2();
             },'json');
+        },
+        loadOverideArchive: function (t, e){
+            console.log(t);
         }
     }
 

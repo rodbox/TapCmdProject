@@ -35,6 +35,10 @@ define("WEB_COMBO", WEB_APP."/exec_combo.php");
 define("WEB_TICTAC", WEB_APP."/tictac.php");
 define("DIR_TICTAC", DIR_VAR."/tictac");
 
+
+define("WEB_OVERIDES", WEB_APP."/overides");
+define("DIR_OVERIDES", DIR_VAR."/overides");
+
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 
 

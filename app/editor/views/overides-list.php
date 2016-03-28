@@ -7,7 +7,10 @@
         <a class="nav-link active" data-toggle="tab" href="#titleTabs-tab-3" aria-expanded="true">Infos</a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link " data-toggle="tab" href="#titleTabs-tab-1" aria-expanded="false">Fichiers</a>
+        <a class="nav-link " data-toggle="tab" href="#titleTabs-tab-1" aria-expanded="false">Fichiers d'origines</a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link " data-toggle="tab" href="#titleTabs-tab-2" aria-expanded="false">Fichiers d'archives</a>
     </li>
 </ul>
 <!-- END NAVTABS : titleTabs  -->
@@ -18,8 +21,8 @@
 
         <div class="form-group">
             <label for="overide_controller">Controller</label>
-            <select id="overide_controller" name="overide[controllers][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['controllers'] as $key => $controller): ?>
+            <select id="overide_controller" name="overide[controllers][]" data-cb-app="editor" data-cb-change="loadOverideArchive" class="on-change c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['controllers'] as $key => $controller): ?>
                     <option value="<?php echo $controller; ?>">
                         <?php echo $controller; ?>
                     </option>
@@ -28,8 +31,8 @@
 
         <div class="form-group">
             <label for="overide_views">Views</label>
-            <select id="overide_views" name="overide[views][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['views'] as $key => $views): ?>
+            <select id="overide_views" name="overide[views][]" data-cb-app="editor" data-cb-change="loadOverideArchive" class="on-change c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['views'] as $key => $views): ?>
                     <option value="<?php echo $views; ?>">
                         <?php echo $views; ?>
                     </option>
@@ -38,8 +41,8 @@
         </div>
         <div class="form-group">
             <label for="overide_entitys">Entitys</label>
-            <select id="overide_entitys" name="overide[entitys][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['entitys'] as $key => $entitys): ?>
+            <select id="overide_entitys" name="overide[entitys][]" data-cb-app="editor" data-cb-change="loadOverideArchive" class="on-change c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['entitys'] as $key => $entitys): ?>
                     <option value="<?php echo $entitys; ?>">
                         <?php echo $entitys; ?>
                     </option>
@@ -48,8 +51,8 @@
         </div>
         <div class="form-group">
             <label for="overide_events">Event</label>
-            <select id="overide_events" name="overide[events][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['events'] as $key => $events): ?>
+            <select id="overide_events" name="overide[events][]" data-cb-app="editor" data-cb-change="loadOverideArchive" class="on-change c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['events'] as $key => $events): ?>
                     <option value="<?php echo $events; ?>">
                         <?php echo $events; ?>
                     </option>
@@ -59,8 +62,8 @@
 
         <div class="form-group">
             <label for="overide_forms">Form</label>
-            <select id="overide_forms" name="overide[forms][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['forms'] as $key => $forms): ?>
+            <select id="overide_forms" name="overide[forms][]" data-cb-app="editor" data-cb-change="loadOverideArchive" class="on-change c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['forms'] as $key => $forms): ?>
                     <option value="<?php echo $forms; ?>">
                         <?php echo $forms; ?>
                     </option>
@@ -69,8 +72,8 @@
         </div>
         <div class="form-group">
             <label for="overide_listeners">Listeners</label>
-            <select id="overide_listeners" name="overide[listeners][]" class="c-select form-control select2" multiple="true">
-                <?php foreach ($d['listeners'] as $key => $listeners): ?>
+            <select id="overide_listeners" name="overide[listeners][]" data-cb-app="editor" class="c-select form-control select2" multiple="true">
+                <?php foreach ($d['bundle']['listeners'] as $key => $listeners): ?>
                     <option value="<?php echo $listeners; ?>">
                         <?php echo $listeners; ?>
                     </option>
@@ -80,10 +83,36 @@
         </div>
     <!-- END TABS 1  -->
 
+    <div id="titleTabs-tab-2" class="tab-pane ">
+    <!-- BEGIN NAVTABS : titleTabs  -->
+       <ul class="nav nav-tabs" id="titleTabsArchives">
+       <?php foreach ($d['archivesSrc'] as $key => $value): ?>
+           <li class="nav-item ">
+               <a class="nav-link" data-toggle="tab" href="#titleTabsArchives-tab-<?php echo $value; ?>" aria-expanded="true"><?php echo $value; ?></a>
+           </li>
+       <?php endforeach ?>
+       </ul>
+       <!-- NAVTABS : titleTabsArchives  -->
+
+       <div class="tab-content">
+           <!-- TABS 1  -->
+           <?php foreach ($d['archivesSrc'] as $key => $value): ?>
+           <div id="titleTabsArchives-tab-<?php echo $value; ?>" class="tab-pane ">
+           <select id="overide_archives" name="overide[archives][<?php echo $value ?>][]" class="c-select form-control select2" multiple='true'>
+                <?php foreach ($d['archives']->files() as $keyA => $valueA): ?>
+<option value="<?php echo $valueA->getRealPath() ?>"><?php echo str_replace($value.'/','',$valueA->getRelativePathname()); ?></option>
+                <?php endforeach ?>     </select>
+           </div>
+       <?php endforeach ?>
+       </div>
+       <!-- END TABSCONTENT  -->
+       <!-- END NAVTABS titleTabsArchives -->
+
+    </div>
 
     <!-- TABS 3  -->
     <div id="titleTabs-tab-3" class="tab-pane active">
-    <?php $c->getMd($d['readme']); ?>
+    <?php $c->getMd($d['bundle']['readme']); ?>
     </div>
     <!-- END TABS 3  -->
 
