@@ -170,11 +170,17 @@ $(document).ready(function($) {
 
             modal.modal();
             $.page.init('#'+modal.attr('id'));
-
+            modal.on('hidden.bs.modal',function(e){
+                if($('.modal.in').length>0)
+                    $('body').addClass('modal-open');
+            })
         },'json').error(function (err){
             $.lock.alert(t);
         });
     };
+
+
+
 
 
     $(document).on("click",".btn-modal",function (e){
@@ -183,13 +189,17 @@ $(document).ready(function($) {
 
         if(!$.lock.is(t)){
             var title = t.attr('title');
-            var href = t.attr('href');
-            var size = t.data('modal');
-
+            var href  = t.attr('href');
+            var size  = t.data('modal');
+            var value = (t.data('src')!=undefined)?$(t.data('src')).val():'';
             if(t.data('form') != "")
-                data = $(t.data('form')).serialize()+"&force="+$.force();
-            else
-                data = { force : $.force() };
+                data = $(t.data('form')).serialize()+"&force="+$.force()+"&value="+value;
+            else{
+                data = {
+                    force : $.force(),
+                    value : value
+                };
+            }
 
             $.modal(title, href, data, size, t);
         }
@@ -349,13 +359,12 @@ $(document).ready(function($) {
     // init a chaque chargement de page
     $.page = {
         init: function (container){
-            if (container != undefined)
-                var cont = $(container);
-            else
-                var cont = $('body');
+            var cont = (container != undefined)?container:'body';
 
-            cont.find('.input-colors').colorpicker();
-            cont.find('.select2').select2();
+            $(cont+' .input-colors').colorpicker();
+            $(cont+' .select2').select2();
+            $(cont+' .btn-popover').popover();
+
         }
     };
 
@@ -435,6 +444,7 @@ $(document).ready(function($) {
     }
 
 
+
     /**
      * Generate url for app
      */
@@ -491,7 +501,7 @@ $(document).ready(function($) {
         Chrome : !!window.chrome && !!window.chrome.webstore,
         Blink : (isChrome || isOpera) && !!window.CSS,
     }
-    console.log($.isBrowser.Firefox);
+
 });
 
 

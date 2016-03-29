@@ -1,0 +1,20 @@
+.helper-container{
+    margin: 0.2rem;
+    .btn-helper{
+        background-color: @cDefault1;
+        color: @cDefault2;
+        + .form-control{
+            padding-left: calc(~'16px + 0.2rem');
+        }
+    }
+    .btn-helper-title{
+        font-weight: bolder;
+        margin-left: 0.4rem;
+        margin-top: 0.6rem;
+        position: absolute;
+    }
+}
+
+.popover{
+    .z-max(11) !important;
+}

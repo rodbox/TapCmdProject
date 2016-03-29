@@ -378,7 +378,9 @@ class controller
      */
     public function breadFile($dir, $src = false)
     {
-        $dirProject = DIR_PROJECT.'/'.$_SESSION['project']['name'];
+        $projet     = $_SESSION['project']['name'] ?? DEFAULT_PROJECT;
+
+        $dirProject = DIR_PROJECT.'/'.$projet;
 
         $dir        = str_replace($dirProject, '', $dir);
 
@@ -400,6 +402,15 @@ class controller
 
         echo implode(' / ',$bread);
     }
+
+
+    public function helper($msg='', $title = '', $content='<i class="fa fa-question"></i>', $css='btn btn-circle')
+    {
+        echo '<div class="helper-container"><button type="button" class="btn-popover btn-helper '.$css.'" data-title="'.$title.'" data-toggle="popover" data-container=".helper-container" data-placement="top" data-content="'.$msg.'" data-trigger="hover | focus">
+  '.$content.'
+</button><span class="btn-helper-title">'.$title.'</span></div>';
+    }
+
 
 
     /**

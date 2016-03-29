@@ -8,6 +8,7 @@
 @import 'custom-todo.less';
 @import 'custom-codemirror.less';
 @import 'custom-files.less';
+@import 'custom-helper.less';
 
 body{
     color:@body1;
@@ -429,4 +430,12 @@ footer{position:fixed;
         color: @cSpecial !important;
     }
 }
+.tab-content {
+    .nav-tabs{
+        margin-top: 0px;
+    }
+}
 
+.select2-container{
+    .z-max(12) !important;
+}

@@ -3,17 +3,14 @@
      * Execute une commande shell dans le dossier du projet selectionné.
      */
 
-    $app = new app();
+    $app         = new app();
 
-    $project = $app->cur();
+    $project     = $app->cur();
 
-    $dir_project = DIR_SRC.'/'.$project;
+    $dir_project = $app->dirProject();
     $dir_cmd     = DIR_CMDS.'/'.$cmd.'.php';
 
-
-
     ob_start();
-
     include($dir_cmd);
     $out = ob_get_clean();
 

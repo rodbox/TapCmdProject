@@ -92,6 +92,11 @@ $(document).ready(function($) {
         suiSuggest: function (t, e){
             if ($.sui.is('suggest','true'))
                 $('#file_project').focus();
+        },
+        preview: function (t, e){
+            var data = t.data();
+            data.src = $(t.data('src')).val();
+            console.log(data);
         }
     }
 });

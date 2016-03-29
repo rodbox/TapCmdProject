@@ -3,6 +3,8 @@
 define("TITLE", "Rodbox DeepTap");
 
 define("DIR_PROJECT", "/Applications/MAMP/htdocs");
+define("DEFAULT_PROJECT", "__rodbox_sources__");
+
 define("WEB_SRC", "http://localhost:8888/___cmd___");
 define("REL_SRC", ".");
 

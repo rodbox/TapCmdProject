@@ -1,6 +1,5 @@
 <hr>
-<button id="" class="btn btn-success" type="Submit" aria-pressed="false">Overide</button>
-<!-- NAVTABS : titleTabs  -->
+<?php $c->helper('Selectionner les fichiers à surchargés','Selection','3'); ?>
 <!-- BEGIN NAVTABS : titleTabs  -->
 <ul class="nav nav-tabs" id="titleTabs">
     <li class="nav-item ">
@@ -27,7 +26,10 @@
                         <?php echo $controller; ?>
                     </option>
                 <?php endforeach ?>
-        </select>       </div>
+        </select>
+
+        <a href="<?php $c->urlPage('app','preview',['dir'=>DIR_PROJECT.'/'.$_SESSION['project']['name'].'/'.$d['bundle']['dir'].'/Controller']) ?>" class="btn btn-primary btn-sm btn-modal btn-preview" data-src="#overide_controller" data-modal="modalLg2" title="Preview"><i class="fa fa-eye"></i></a>
+        </div>
 
         <div class="form-group">
             <label for="overide_views">Views</label>
@@ -119,3 +121,7 @@
 </div>
 <!-- END TABSCONTENT  -->
 <!-- END NAVTABS titleTabs -->
+<hr>
+<?php $c->helper('Valider et n\'oubliez pas de modifier la configuration','Enregistrer + Configurer','4'); ?>
+<button id="" class="btn btn-success" type="Submit" aria-pressed="false">Overide</button>
+<!-- NAVTABS : titleTabs  -->

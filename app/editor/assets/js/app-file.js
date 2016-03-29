@@ -74,7 +74,7 @@ $(document).ready(function($) {
     $.opens = function(inc){
         var opens = $('#files-workspace').attr('data-open');
         var count = parseInt(opens);
-        console.log(count);
+
         $('#files-workspace').attr('data-open',count+inc);
     }
 

@@ -23,7 +23,7 @@ class app extends controller
      */
     static public function cur()
     {
-        return $_SESSION['project']['name'] ?? '';
+        return $_SESSION['project']['name'] ?? DEFAULT_PROJECT;
 
     }
 

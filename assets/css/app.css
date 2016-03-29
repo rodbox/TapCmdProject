@@ -207,6 +207,18 @@
 .no-radius {
   border-radius: 0px !important;
 }
+.btn-circle {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0.5rem !important;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 16px;
+  margin: 0.2rem;
+}
 /** CSS3 **/
 /*** ANIMATE ***/
 @-webkit-keyframes spin {
@@ -1320,6 +1332,12 @@ h2 {
 #modalLg .modal-dialog {
   width: 85% !important;
 }
+#modalLg2 {
+  z-index: 2012 !important;
+}
+#modalLg2 .modal-dialog {
+  width: 85% !important;
+}
 .modal-backdrop {
   z-index: 1999;
 }
@@ -1625,6 +1643,25 @@ h2 {
   border-color: transparent !important;
   background-color: #2E3139 !important;
   color: #EDEDED !important;
+}
+.helper-container {
+  margin: 0.2rem;
+}
+.helper-container .btn-helper {
+  background-color: #EDEDED;
+  color: #9AA7AD;
+}
+.helper-container .btn-helper + .form-control {
+  padding-left: calc(16px + 0.2rem);
+}
+.helper-container .btn-helper-title {
+  font-weight: bolder;
+  margin-left: 0.4rem;
+  margin-top: 0.6rem;
+  position: absolute;
+}
+.popover {
+  z-index: 2011 !important;
 }
 body {
   color: #2E3139;
@@ -1955,17 +1992,23 @@ footer {
 .alert:hover,
 .alert,
 .alert i {
-  color: #FFBC5A !important;
+  color: #F0AD4E !important;
 }
 .error.active,
 .error:hover,
 .error,
 .error i {
-  color: #FFBC5A !important;
+  color: #F0AD4E !important;
 }
 .success.active,
 .success:hover,
 .success,
 .success i {
-  color: #FFBC5A !important;
+  color: #F0AD4E !important;
+}
+.tab-content .nav-tabs {
+  margin-top: 0px;
+}
+.select2-container {
+  z-index: 2012 !important;
 }

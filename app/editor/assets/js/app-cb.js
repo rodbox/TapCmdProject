@@ -143,7 +143,9 @@ $(document).ready(function($) {
             };
             $.get(url, data, function(json) {
                 $('#overides-content').html(json.data);
-                $('.select2').select2();
+                $('#overides-content .select2').select2();
+                $.page.init('#overides-content');
+
             },'json');
         },
         loadOverideArchive: function (t, e){

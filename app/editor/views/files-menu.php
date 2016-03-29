@@ -7,5 +7,4 @@
     </div>
 </form>
 <div id="suggest">
-
 </div>
