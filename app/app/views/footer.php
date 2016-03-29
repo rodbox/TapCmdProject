@@ -40,6 +40,7 @@
 
             <a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
             <a href="<?php $c->urlPopup('app','tap') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="tap"><i class="fa fa-th"></i></a>
+            <?php $c->btn_sui('editor-parse','editor-parse'); ?>
             <?php $c->btn_sui('debug','debug'); ?>
             <?php $c->btn_sui('Console','console'); ?>
             <a href="<?php $c->urlExec('app','terminal') ?>" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Terminal</a>

@@ -75,7 +75,9 @@
 </fieldset>
 
 <fieldset>
-    <legend>Color <a href="<?php $c->urlExec('app','less') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="less">less</a></legend>
+    <legend>Color <a href="<?php $c->urlExec('app','less') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="less">less</a>
+    <?php $c->helper('Compile le fichier de variable Less dans le dossier de gestion de projet'); ?>
+    </legend>
     <table class="table table-sm">
         <tbody>
             <?php foreach (CSS_SETTING_COLORS as $colorName => $colorValue): ?>
@@ -101,7 +103,7 @@
     </table>
 
 
-<legend>Vars</legend>
+<legend>Vars </legend>
 <table class="table table-sm">
 <tbody>
 <?php foreach (CSS_SETTING_VARS as $varName => $varValue): ?>

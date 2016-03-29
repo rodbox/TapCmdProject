@@ -1074,6 +1074,25 @@ h2 {
 [data-sui-editor="true"][data-sui-console="true"] .sui-editor {
   height: calc(100vh -  435px ' - ' 0px);
 }
+.sui-editor-parse {
+  display: none;
+  position: fixed;
+  right: 0px;
+  height: calc(100vh -  85px);
+  width: 400px !important;
+  background-color: #D8D8D8;
+  z-index: 1010;
+}
+.sui-editor-parse:hover {
+  width: 50vw !important;
+}
+.sui-editor-parse,
+.sui-editor-parse * {
+  color: #9AA7AD !important;
+}
+[data-sui-editor-parse="true"] .sui-editor-parse {
+  display: block;
+}
 [data-sui-sidebar="true"] .sui-sidebar {
   -moz-transform: translateX(0px);
   -webkit-transform: translateX(0px);
@@ -1094,6 +1113,13 @@ h2 {
   -o-transform: translateX(280px);
   -ms-transform: translateX(280px);
   transform: translateX(280px);
+}
+[data-sui-sidebar="true"][data-sui-editor-parse="true"] .sui-editor-parse {
+  -moz-transform: translateX(-280px);
+  -webkit-transform: translateX(-280px);
+  -o-transform: translateX(-280px);
+  -ms-transform: translateX(-280px);
+  transform: translateX(-280px);
 }
 [data-sui-sidebar="true"][data-sui-editor="true"][data-sui-iframe="true"] .sui-console,
 [data-sui-sidebar="true"][data-sui-editor="true"][data-sui-iframe="true"] .sui-editor {
@@ -1270,7 +1296,8 @@ h2 {
 .sui-console,
 .sui-sidebar,
 .sui-iframe,
-.sui-editor {
+.sui-editor,
+.sui-editor-parse {
   overflow-y: auto;
   background-color: #272a31 !important;
 }
