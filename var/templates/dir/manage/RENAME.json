@@ -1,0 +1,106 @@
+{
+    "name": "{{ RENAME }}",
+    "filters": [
+        "\/web\/assets",
+        "\/bin",
+        "\/web\/bundles",
+        "\/composer.phar",
+        "\/var",
+        "\/vendor"
+    ],
+    "upd": "",
+    "upl": "",
+    "ftp": {
+        "host": "",
+        "user": "",
+        "password": "",
+        "port": ""
+    },
+    "server": {
+        "mail": {
+            "host": "",
+            "user": "",
+            "password": "",
+            "transport": ""
+        },
+        "database": {
+            "host": "",
+            "basename": "",
+            "user": "",
+            "password": "",
+            "port": ""
+        },
+        "dir": "",
+        "web": ""
+    },
+    "local": {
+        "mail": {
+            "host": "127.0.0.1",
+            "user": "",
+            "password": "",
+            "transport": ""
+        },
+        "database": {
+            "host": "localhost:8889",
+            "basename": "{{ RENAME }}",
+            "user": "root",
+            "password": "root",
+            "port": ""
+        },
+        "dir": "\/Applications\/MAMP\/htdocs\/{{ RENAME }}",
+        "web": "http:\/\/localhost:8000"
+    },
+    "shortname": "RB",
+    "color": {
+        "color": "#47575e",
+        "bg": "#2f3e47"
+    },
+    "type": "Symfony",
+    "langs": {
+        "en": "en",
+        "fr": "fr"
+    },
+    "css": {
+        "colors": {
+            "body": {
+                "1": "#ecf0f1",
+                "2": "#242424"
+            },
+            "primary": {
+                "1": "#2980b9",
+                "2": "#ffffff"
+            },
+            "danger": {
+                "1": "#c0272d",
+                "2": "#ffffff"
+            },
+            "info": {
+                "1": "#008c9a",
+                "2": "#ffffff"
+            },
+            "warning": {
+                "1": "#f39c12",
+                "2": "#ffffff"
+            },
+            "inverse": {
+                "1": "#242424",
+                "2": "#ecf0f1"
+            },
+            "secondary": {
+                "1": "#bdc3c7",
+                "2": "#242424"
+            }
+        },
+        "vars": {
+            "padSize": "5"
+        },
+        "lessmaster": [
+            ""
+        ]
+    },
+    "title": "{{ RENAME }}",
+    "contact": "{{ CONTACT }}",
+    "phone": "",
+    "composer": " \"php\": \">=5.5.9\",\r\n        \"symfony\/symfony\": \"3.0.*\",\r\n        \"doctrine\/orm\": \"^2.5\",\r\n        \"doctrine\/doctrine-bundle\": \"^1.6\",\r\n        \"doctrine\/doctrine-cache-bundle\": \"^1.2\",\r\n        \"symfony\/swiftmailer-bundle\": \"^2.3\",\r\n        \"symfony\/monolog-bundle\": \"^2.8\",\r\n        \"sensio\/distribution-bundle\": \"^5.0\",\r\n        \"sensio\/framework-extra-bundle\": \"^3.0.2\",\r\n        \"incenteev\/composer-parameter-handler\": \"^2.0\",\r\n        \"friendsofsymfony\/jsrouting-bundle\": \"^1.5\",\r\n        \"friendsofsymfony\/user-bundle\": \"~2.0@dev\",\r\n        \"knplabs\/knp-paginator-bundle\": \"^2.5.1\",\r\n        \"symfony\/assetic-bundle\": \"^2.7\",\r\n        \"fxp\/composer-asset-plugin\": \"^1.1\",\r\n        \"knplabs\/knp-markdown-bundle\": \"~1.3\"",
+    "bower": "https:\/\/github.com\/julianshapiro\/velocity.git\r\nhttps:\/\/github.com\/dbushell\/Nestable.git\r\nhttps:\/\/github.com\/ROUND\/enhance.js.git\r\nhttps:\/\/github.com\/jekyll\/jekyll.git\r\nhttps:\/\/github.com\/fat\/zoom.js.git\r\nbootstrap-html5sortable\r\nbootstrap-select\r\njquery-sortable\r\nfont-awesome\r\nphotoswipe\r\nsummernote\r\ncodemirror\r\nbootstrap\r\nparallax\r\nplupload\r\nselect2\r\nSpinKit\r\njquery\r\nmoment\r\npaper\r\npeity\r\nmojs"
+}

@@ -3,32 +3,34 @@
 
 
 <!-- input : name -->
-<div class="form-group row">
-    <label for="name" class="col-sm-2 form-control-label">Nom de projet</label>
-    <div class="col-sm-10">
+<div class="row">
+    <label for="name" class="col-sm-3 form-control-label">Nom de projet </label>
+    <div class="col-sm-7">
             <input type="text" name="name" class="form-control" id="name" placeholder="Nom de projet" />
     </div>
+    <div class="col-sm-1"><?php $c->helper('Nom du projet'); ?></div>
 </div>
 <!-- end input : name -->
+<fieldset class="row">
+<label for="" class="col-sm-3 form-control-label">Type</label>
+<div class="col-sm-7">
 
-<!-- input : new -->
-<div class="form-group row">
-    <label for="new" class="col-sm-2 form-control-label">Install</label>
-    <div class="col-sm-10">
-            <input type="checkbox" name="install" class="form-control" id="install" placeholder="Install" />
-    </div>
+<div class="btn-group">
+    <label for="type_sf" class="btn btn-secondary">Symfony
+        <input type="radio" name="type" class="form-control" required="required" id="type_sf" value="Symfony" />
+        </label>
+    <label for="type_rb" class="btn btn-secondary">Rodbox
+        <input type="radio" name="type" class="form-control" required="required" id="type_rb" value="Rodbox" />
+        </label>
 </div>
-<!-- end input : new -->
-
-
-<!-- input : force -->
-<div class="form-group row">
-    <label for="force" class="col-sm-2 form-control-label">force</label>
-    <div class="col-sm-10">
-            <input type="checkbox" name="force" class="form-control" id="force" placeholder="Install" />
-    </div>
 </div>
-<!-- end input : new -->
+<!-- end input : type -->
+
+<label for="description" class="col-sm-3 form-control-label">Description</label>
+<div class="col-sm-7">
+    <textarea id="description" class="form-control" name="description" data-tab="true"></textarea>
+    </div>
+</fieldset>
 
 <hr>
 

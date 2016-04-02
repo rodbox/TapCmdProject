@@ -1,12 +1,9 @@
 <?php
     $app = new app();
 
-    $dir = "-a /Applications/Utilities/Terminal.app ".DIR_PROJECT."/".$app->cur();
-    // $cmd = " ls ";
-    $cmd = "php ".DIR_PROJECT."/".$app->cur()."/bin/console server:run";
+    $dir = DIR_PROJECT."/".$app->cur();
+    $c->terminal($dir);
 
-
-    $sys = shell_exec('open '.$dir);
 // terminal
 if ($sys) {
 

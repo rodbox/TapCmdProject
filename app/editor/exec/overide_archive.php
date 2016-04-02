@@ -64,7 +64,7 @@
         $target      = [
             '#debug' => $c->viewsAsync('app', 'default', $dataView)
         ];
-        $cb          = 'defaut';
+        $cb          = 'default';
         $a           = 'prepend';
         $r           = [
             'infotype' => "success",

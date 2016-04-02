@@ -245,6 +245,15 @@ $(document).ready(function($) {
     })
 
 
+    new Clipboard('.btn-clip', {
+        text: function(trigger) {
+            return trigger.getAttribute('aria-label');
+        }
+    }).on('success', function(e) {
+        e.clearSelection();
+    });
+
+
     $('.btn-popup').on("click",function (e){
         e.preventDefault();
         var t = $(this);
@@ -333,11 +342,13 @@ $(document).ready(function($) {
 
     $.cbt = function (t, json, e){
         var cbapp = (t.data('cb-app')==undefined)?'app':t.data('cb-app');
+        var cb    = $.def(t.data('cb'),'default');
 
-        if (t.data('cb'))
-            $.cb[cbapp][t.data('cb')](t, json, e);
-        else
-            $.cb[cbapp]['default'](t, json, e);
+        $.cb[cbapp][cb](t, json, e);
+
+        // le callback de la requete
+        if (json.cb != undefined)
+            $.cb[cbapp][json.cb](t, json, e);
     }
 
 
@@ -364,8 +375,22 @@ $(document).ready(function($) {
             $(cont+' .input-colors').colorpicker();
             $(cont+' .select2').select2();
             $(cont+' .btn-popover').popover();
-
+        },
+        redirect: function (app, page, data){
+            var app  = $.def(app, 'app');
+            var page = $.def(page, 'index');
+            var data = $.def(data, {});
+            window.location.href = $.generate.url.page(app, page, data);
+        },
+        modal: function (app, page, data, modal){
+            var app  = $.def(app, 'app');
+            var page = $.def(page, 'index');
+            var data = $.def(data, {});
+            var modal = $.def(modal, 'modalLg2');
+            var url = $.generate.url.page(app, page, data);
+            $.modal(page, url, data, modal,$('.loadLock'));
         }
+
     };
 
     $.page.init();
@@ -463,7 +488,7 @@ $(document).ready(function($) {
             page : function (app, page, params) {
                 var p = ($.isArray(params))?$.param (params):'';
                 var purl = 'app='+app+'&page='+page;
-                return './app/page.php?'+purl+((p!='')?'&'+p:'');
+                return './index.php?'+purl+((p!='')?'&'+p:'');
             }
         }
     }
@@ -476,8 +501,6 @@ $(document).ready(function($) {
     $.a = function (t, json){
         if (json.target != undefined) {
             $.each(json.target, function(index, val) {
-                console.log();
-                console.log(val);
                 $(index)[json.a](val);
             });
         }

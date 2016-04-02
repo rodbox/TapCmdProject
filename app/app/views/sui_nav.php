@@ -1,11 +1,13 @@
 <div class="sui-sidebar">
     <?php $c->view("app","header"); ?>
     <div class="sui-sidebar-body">
+
         <?php $c->view("editor","files-workspace","workspace"); ?>
 
         <div class="">
-        <h2>Fichiers</h2>
-        <?php $c->view("editor","files","files"); ?>
+        <a href="#collapse_files" class="btn-sui-collapse"><h2>Fichiers</h2></a>
+        <div id="collapse_files">
+        <?php $c->view("editor","files","files"); ?></div>
         </div>
     </div>
 </div><?php $c->view("editor","editor-contextmenu"); ?>

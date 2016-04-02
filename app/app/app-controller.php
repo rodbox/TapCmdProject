@@ -75,17 +75,39 @@ class app extends controller
     }
 
 
+
+    public function getParameters()
+    {
+        $dir            = $this->dirProject();
+
+        $parameters     = $this->getYaml($dir.'/app/config/parameters.yml');
+        $parametersDist = $this->getYaml($dir.'/app/config/parameters.yml.dist');
+
+        $rb_config      = $this->getYaml($dir.'/app/config/rb_config.yml');
+        $rb_configDist  = $this->getYaml($dir.'/app/config/rb_config.yml.dist');
+
+        return [
+            'local'=>[
+                'parameters'=>$parameters,
+                'rb_config'=>$rb_config
+
+            ],
+            'server'=>[
+                'parameters'=>$parametersDist,
+                'rb_config'=>$rb_configDist
+            ]
+        ];
+    }
+
     /**
      * Retourne la todo list du projet
      * @param  string $name nom du projet
      * @return array       la todo
      */
-    public function getTodo($name='')
+    public function getTodo()
     {
-        if ($name=='')
-            $name = $this->cur();
-
-        $file = DIR_PROJECTS.'/'.$name.'/todo.json';
+        $dir           = $this->dirManage();
+        $file          = $dir.'/todo.json';
         $this->project = $this->getJson($file);
         return $this->project;
     }
@@ -99,8 +121,8 @@ class app extends controller
     {
         if ($name=='')
             $name = $this->cur();
-
-        $file = DIR_PROJECTS.'/'.$name.'/todo.json';
+        $dir                  = $this->dirManage();
+        $file                 = $dir.'/todo.json';
         return $this->project = $this->setJson($file, $dataSend);
     }
 
@@ -264,6 +286,27 @@ class app extends controller
         $this->view('app','btn_deploy');
     }
 
+
+    public function getDirRelative($file)
+    {
+        return str_replace($this->dirProject(),'',$file);
+    }
+
+    public function getDirLocal($file)
+    {
+
+    }
+
+    public function getUrlLocal($file)
+    {
+        return str_replace($this->dirProject(),'http://localhost:8888/'.$this->cur(),$file);
+    }
+
+
+
+    /**
+     * WORKSPACE
+     */
 
     public function getWorkspace()
     {

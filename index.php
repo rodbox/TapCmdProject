@@ -49,7 +49,7 @@
 
 
         <script type="text/javascript" src="assets/vendor/select2/dist/js/select2.full.min.js" ></script>
-        <script type="text/javascript" src="assets/vendor/clipboard/dist/js/clipboard.min.js" ></script>
+        <script type="text/javascript" src="assets/vendor/clipboard/dist/clipboard.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>
         <!-- <script src="assets/vendor/keynavigator/keynavigator-min.js" ></script> -->
         <script type="text/javascript" src="assets/vendor/checkdown/dist/js/checkdown.js" ></script>

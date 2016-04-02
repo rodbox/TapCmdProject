@@ -24,12 +24,26 @@ $.shortcut={
 
         else if ($.kalte("onCmd") && e.keyCode == 84){
             e.preventDefault();
-            $('#popupTest').trigger('click');
+            $('.btn-sui-todo').trigger('click');
+        }
+
+        else if ($.kalte("onAlt") && e.keyCode == 9){
+            e.preventDefault();
+            $('.btn-sui-sidebar').trigger('click');
         }
 
         else if ($.kalte("onCmd") && e.keyCode == 69){
             e.preventDefault();
             $('#iframe').trigger('click');
+        }
+
+        else if ($.kalte("onCmd") && e.keyCode == 78){
+            e.preventDefault();
+            $('#newproject').trigger('click');
+        }
+        else if ($.kalte("onCmd") && e.keyCode == 80){
+            e.preventDefault();
+            $('#paramproject').trigger('click');
         }
         else if ($.kalte('onCmd') && $.kalte('onCtrl')){
             $('.btn-sui-suggest').trigger('click');

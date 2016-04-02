@@ -34,7 +34,7 @@
 
         $bundleDir        = $dir.'/'.$dirname;
 
-        $phpFile          = $parse->phpFile($file->getRealpath());
+        $phpFile          = $parse->file($file->getRealpath(), false);
         $namespace        = $phpFile['namespace'];
         $parent           = $phpFile['parent'];
 

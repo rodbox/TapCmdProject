@@ -1,19 +1,20 @@
 <?php
 // editor
 //
-    $parse = new parse();
+    $app     = new app();
+    $parse   = new parse();
     $dirFile = $dir.'/'.$file;
 
     $content = file_get_contents($dirFile);
     $rand    = (isset($key))?$key:substr( md5(rand()), 0, 8);
-    $app     = new app();
+
     $ws      = $app->getWorkspace();
     $autopen = isset($autopen) ?? false;
     $inarray = in_array($dir.'/'.$file, $ws['open']);
 
-    $info = pathinfo($dirFile);
+    $info    = pathinfo($dirFile);
 
-    $parse = $parse->file($dirFile);
+    $parse   = $parse->file($dirFile);
 
     if (!$inarray || $autopen == 'true') {
 

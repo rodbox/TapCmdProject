@@ -36,7 +36,7 @@
 
         <div class="input-group text-right">
           <div class="input-group-btn">
-            <a href="<?php $c->urlPage('app','todo'); ?>" class="btn btn-primary btn-sm btn-modal" title="Todo"  data-form="#form-project"   data-backdrop="static"><i class="fa fa-tasks"></i></a>
+  <?php $c->btn_sui('<i class="fa fa-list"></i>','todo'); ?>
 
             <a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
             <a href="<?php $c->urlPopup('app','tap') ?>" class="btn btn-primary btn-sm btn-popup" data-cb="false" title="term" data-popup="tap"><i class="fa fa-th"></i></a>

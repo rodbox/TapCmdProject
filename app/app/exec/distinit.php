@@ -3,7 +3,10 @@
      * Initialise les fichiers de configuration distant.
      */
 
-    $project             = $name;
+    $app = new app();
+
+
+    $project             = $app->cur();
 
     $dir_project         = DIR_PROJECT.'/'.$project;
     $dir_config          = $dir_project.'/app/config';

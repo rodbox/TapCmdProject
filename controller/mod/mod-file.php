@@ -35,6 +35,34 @@
 
         }
 
+
+        public function fileclean($dir, $data = [])
+        {
+            $contentTemplate = file_get_contents($dir);
+
+            $find            = [];
+            $replace         = [];
+            // foreach ($data as $key => $value) {
+            //     $find[]    = "/ " . $key . " /";
+            //     $replace[] = $value;
+            // }
+
+            $contentClean = preg_replace($data, $replace, $contentTemplate);
+
+            return file_put_contents($dir, $contentClean, true);
+        }
+
+
+        public function filepush($dir, $content)
+        {
+            $contentTemplate = file_get_contents($dir);
+            $contentPush    = $contentTemplate."\n".$content;
+
+            return file_put_contents($dir, $contentPush, true);
+        }
+
+
+
         /**
          * Copy un dossier avec un filtre
          * @param  string  $src     dir de la source
@@ -150,31 +178,12 @@
                 echo"<pre>";
                 print_r($file->getRelativePathname());
                 echo"</pre>";
-                // // Dump the absolute path
-                // var_dump($file->getRealpath());
-
-                // // Dump the relative path to the file, omitting the filename
-                // var_dump($file->getRelativePath());
-
-                // // Dump the relative path to the file
-                // var_dump($file->getRelativePathname());
             }
         }
     }
 
 
-   function templateFile($templateFile, $targetDir, $data = [], $newFileName = "")
-    {
-        $src             = DIR_TEMPLATE . "/files/" . $templateFile;
-        $info            = pathinfo($templateFile);
-
-        if ($newFileName == "")
-            $newFileName     = $info["filename"];
-
-        $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
-
-
-        $contentTemplate = file_get_contents($src);
+    function replaceContent($contentTemplate, $data = []){
         $find            = [];
         $replace         = [];
         foreach ($data as $key => $value) {
@@ -182,9 +191,74 @@
             $replace[] = $value;
         }
 
-        $content = preg_replace($find, $replace, $contentTemplate);
+        return preg_replace($find, $replace, $contentTemplate);
+    }
+
+
+    function templateFile($templateFile, $targetDir, $data = [], $newFileName = "")
+    {
+        $src             = DIR_TEMPLATE . "/files/" . $templateFile;
+        $info            = pathinfo($templateFile);
+
+        if ($newFileName == "")
+            $newFileName     = $info["filename"];
+
+        $contentTemplate = file_get_contents($src);
+
+        $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
+
+        $content = replaceContent($contentTemplate, $data);
 
         return (!file_exists($dest))?file_put_contents($dest, $content) : false;
+    }
+
+
+
+    function templateDir($templateDir, $targetDir, $data = [])
+    {
+        $src    = DIR_TEMPLATE . "/dir/" . $templateDir;
+
+        $fs     = new Filesystem();
+        $finder = new Finder();
+
+        $list   = [];
+
+        $fs->mirror($src, $targetDir);
+
+        $finder->in($targetDir)->files();
+
+        foreach ($finder as $key => $value) {
+            $file            = $value->getRealpath();
+            $info            = pathinfo($file);
+            extract($info);
+            $fileRename      = preg_replace('/RENAME/', $data['NAME'], $filename);
+            $fileRenameDest  = $dirname.'/'.$fileRename.'.'.$extension;
+            $contentTemplate = file_get_contents($file);
+
+            $content         = replaceContent($contentTemplate, $data);
+            unlink($file);
+            file_put_contents($fileRenameDest, $content, true);
+        }
+
+        return $list;
+
+        // if ($newFileName == "")
+        //     $newFileName     = $info["filename"];
+
+        // $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
+
+
+        // $contentTemplate = file_get_contents($src);
+        // $find            = [];
+        // $replace         = [];
+        // foreach ($data as $key => $value) {
+        //     $find[]    = "{{{ " . $key . " }}}";
+        //     $replace[] = $value;
+        // }
+
+        // $content = preg_replace($find, $replace, $contentTemplate);
+
+        // return (!file_exists($dest))?file_put_contents($dest, $content) : false;
     }
 
 

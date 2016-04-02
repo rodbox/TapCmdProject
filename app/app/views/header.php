@@ -10,8 +10,8 @@
     </a>
     <div class="dropdown-menu pull-right">
         <a href="<?php $c->urlPage('app','index') ?>" class="dropdown-item" title="Index"><i class="fa fa-home"></i> Accueil</a>
-        <a href="<?php $c->urlPage('app','create'); ?>" class="dropdown-item btn-modal" title="Créer un projet"   data-backdrop="static"><i class="fa fa-plus"></i> Créer un projet</a>
-        <a href="<?php $c->urlPage('app','config'); ?>" class="dropdown-item btn-modal pull-right" title="Paramètres" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i> Paramètres</a>
+        <a href="<?php $c->urlPage('app','create'); ?>" id="newproject" class="dropdown-item btn-modal" title="Créer un projet"   data-backdrop="static"><i class="fa fa-plus"></i> Créer un projet</a>
+        <a href="<?php $c->urlPage('app','config'); ?>" id="paramproject" class="dropdown-item btn-modal pull-right" title="Paramètres" data-form="#form-project"  data-backdrop="static"><i class="fa fa-cog"></i> Paramètres</a>
                     </div>
     </div>
 

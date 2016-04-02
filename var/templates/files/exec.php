@@ -27,7 +27,7 @@
             '#target' => $c->viewsAsync('app', 'default', $dataView)
         ];
 
-        $cb          = 'defaut';
+        $cb          = 'default';
         $a           = 'app';
 
         $r           = [

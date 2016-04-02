@@ -15,11 +15,13 @@ include("mod/mod-zip.php");
 include("mod/mod-file.php");
 include("mod/mod-parse.php");
 include("mod/mod-tictac.php");
+include("mod/mod-img.php");
 
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Dumper;
 use Symfony\Component\Filesystem\Filesystem;
 use \Michelf\Markdown;
+
 /**
 * controller
 */
@@ -236,7 +238,7 @@ class controller
       if(file_exists($dirJson))
         return json_decode(file_get_contents($dirJson), true);
       else
-        return ["LE FICHIER N'EXISTE PAS"];
+        return [];
     }
 
 
@@ -404,6 +406,9 @@ class controller
     }
 
 
+    /**
+     * Get helper
+     */
     public function helper($msg='', $title = '', $content='<i class="fa fa-question"></i>', $css='btn btn-circle')
     {
         echo '<div class="helper-container"><button type="button" class="btn-popover btn-helper '.$css.'" data-title="'.$title.'" data-toggle="popover" data-container=".helper-container" data-placement="top" data-content="'.$msg.'" data-trigger="hover | focus">
@@ -447,6 +452,27 @@ class controller
         $twig = new Twig_Environment($loader);
 
         echo $twig->render('index', array('name' => $value));
+    }
+
+
+
+    /**
+     * Open Terminal
+     */
+    public function terminal($dir='')
+    {
+        $dir = "-a ".TERMINAL." ".$dir;
+        $sys = shell_exec('open '.$dir);
+    }
+
+
+
+    /**
+     * Bouton clipboard
+     */
+    public function clipme($target="clipme")
+    {
+        echo '<button data-clipboard-target="#'.$target.'" class="btn btn-sm btn-scondary btn-clip"><i class="fa fa-clipboard"></i></button>';
     }
 
 

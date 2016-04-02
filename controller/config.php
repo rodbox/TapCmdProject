@@ -27,7 +27,10 @@ define("WEB_VAR", WEB_SRC."/var");
 
 define("DIR_TEMPLATE", DIR_VAR."/templates");
 define("DIR_CMDS", DIR_VAR."/cmd");
+
 define("DIR_PROJECTS", DIR_VAR."/project");
+define("DIR_MANAGE", DIR_PROJECTS);
+
 define("WEB_PROJECTS", WEB_VAR."/project");
 
 define("DIR_TMP", DIR_VAR."/tmp");
@@ -42,6 +45,7 @@ define("WEB_OVERIDES", WEB_APP."/overides");
 define("DIR_OVERIDES", DIR_VAR."/overides");
 
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
+define("TERMINAL", "/Applications/Utilities/Terminal.app");
 
 
 // SETTING

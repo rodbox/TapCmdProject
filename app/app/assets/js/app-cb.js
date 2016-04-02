@@ -22,6 +22,12 @@ $(document).ready(function($) {
         refresh: function (t, json, e){
             window.location.reload();
         },
+        redirect: function (t, json, e){
+            $.page.redirect(json.redirect.app, json.redirect.page, json.redirect.data);
+        },
+        modal: function (t, json, e){
+            $.page.modal(json.redirect.app, json.redirect.page, json.redirect.data, json.redirect.modal);
+        },
         default : function (t,json,e){
             // callback par default
         },

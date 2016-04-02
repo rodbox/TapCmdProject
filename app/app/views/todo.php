@@ -5,6 +5,7 @@
 </div>
 <div class="list-group">
     <div id="todo-list">
-      <?php $c->view("app","todo_item",$d); ?>
+      <?php $c->view("app","todo_item",$d['task'] ?? []); ?>
+      <?php $c->view("app","todo_item",$d['files'] ?? []); ?>
     </div>
 </div>

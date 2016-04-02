@@ -6,10 +6,10 @@
   position: fixed;
   z-index: 1998;
   border-radius: 50%;
-  width: 168px;
-  height: 168px;
-  margin-left: -84px;
-  margin-top: -84px;
+  width: 160px;
+  height: 160px;
+  margin-left: -80px;
+  margin-top: -80px;
   display: none !important;
 }
 .circle a {
@@ -89,12 +89,12 @@
   -webkit-box-shadow: 0 0 0 48px #33363f;
   box-shadow: 0 0 0 48px #33363f;
   background-color: #2E3139;
-  width: 168px;
-  line-height: 168px;
+  width: 160px;
+  line-height: 160px;
   text-align: center;
-  font-size: 21px;
+  font-size: 20px;
   vertical-align: middle;
-  height: 168px;
+  height: 160px;
   border-radius: 50%;
   position: absolute;
   display: inline-block;
@@ -109,338 +109,394 @@
 }
 /* Elem */
 .circle .circle-1.pos-8 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-8 {
-  -moz-transform: translateX(18px) translateY(18px) scale(1);
-  -webkit-transform: translateX(18px) translateY(18px) scale(1);
-  -o-transform: translateX(18px) translateY(18px) scale(1);
-  -ms-transform: translateX(18px) translateY(18px) scale(1);
-  transform: translateX(18px) translateY(18px) scale(1);
+  -moz-transform: translateX(17px) translateY(17px) scale(1);
+  -webkit-transform: translateX(17px) translateY(17px) scale(1);
+  -o-transform: translateX(17px) translateY(17px) scale(1);
+  -ms-transform: translateX(17px) translateY(17px) scale(1);
+  transform: translateX(17px) translateY(17px) scale(1);
 }
 .circle .circle-1.pos-7 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-7 {
-  -moz-transform: translateX(0px) translateY(61px) scale(1);
-  -webkit-transform: translateX(0px) translateY(61px) scale(1);
-  -o-transform: translateX(0px) translateY(61px) scale(1);
-  -ms-transform: translateX(0px) translateY(61px) scale(1);
-  transform: translateX(0px) translateY(61px) scale(1);
+  -moz-transform: translateX(0px) translateY(57px) scale(1);
+  -webkit-transform: translateX(0px) translateY(57px) scale(1);
+  -o-transform: translateX(0px) translateY(57px) scale(1);
+  -ms-transform: translateX(0px) translateY(57px) scale(1);
+  transform: translateX(0px) translateY(57px) scale(1);
 }
 .circle .circle-1.pos-6 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-6 {
-  -moz-transform: translateX(18px) translateY(103px) scale(1);
-  -webkit-transform: translateX(18px) translateY(103px) scale(1);
-  -o-transform: translateX(18px) translateY(103px) scale(1);
-  -ms-transform: translateX(18px) translateY(103px) scale(1);
-  transform: translateX(18px) translateY(103px) scale(1);
+  -moz-transform: translateX(17px) translateY(96px) scale(1);
+  -webkit-transform: translateX(17px) translateY(96px) scale(1);
+  -o-transform: translateX(17px) translateY(96px) scale(1);
+  -ms-transform: translateX(17px) translateY(96px) scale(1);
+  transform: translateX(17px) translateY(96px) scale(1);
 }
 .circle .circle-1.pos-5 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-5 {
-  -moz-transform: translateX(61px) translateY(120px) scale(1);
-  -webkit-transform: translateX(61px) translateY(120px) scale(1);
-  -o-transform: translateX(61px) translateY(120px) scale(1);
-  -ms-transform: translateX(61px) translateY(120px) scale(1);
-  transform: translateX(61px) translateY(120px) scale(1);
+  -moz-transform: translateX(56px) translateY(112px) scale(1);
+  -webkit-transform: translateX(56px) translateY(112px) scale(1);
+  -o-transform: translateX(56px) translateY(112px) scale(1);
+  -ms-transform: translateX(56px) translateY(112px) scale(1);
+  transform: translateX(56px) translateY(112px) scale(1);
 }
 .circle .circle-1.pos-4 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-4 {
-  -moz-transform: translateX(103px) translateY(103px) scale(1);
-  -webkit-transform: translateX(103px) translateY(103px) scale(1);
-  -o-transform: translateX(103px) translateY(103px) scale(1);
-  -ms-transform: translateX(103px) translateY(103px) scale(1);
-  transform: translateX(103px) translateY(103px) scale(1);
+  -moz-transform: translateX(96px) translateY(96px) scale(1);
+  -webkit-transform: translateX(96px) translateY(96px) scale(1);
+  -o-transform: translateX(96px) translateY(96px) scale(1);
+  -ms-transform: translateX(96px) translateY(96px) scale(1);
+  transform: translateX(96px) translateY(96px) scale(1);
 }
 .circle .circle-1.pos-3 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-3 {
-  -moz-transform: translateX(120px) translateY(60px) scale(1);
-  -webkit-transform: translateX(120px) translateY(60px) scale(1);
-  -o-transform: translateX(120px) translateY(60px) scale(1);
-  -ms-transform: translateX(120px) translateY(60px) scale(1);
-  transform: translateX(120px) translateY(60px) scale(1);
+  -moz-transform: translateX(112px) translateY(56px) scale(1);
+  -webkit-transform: translateX(112px) translateY(56px) scale(1);
+  -o-transform: translateX(112px) translateY(56px) scale(1);
+  -ms-transform: translateX(112px) translateY(56px) scale(1);
+  transform: translateX(112px) translateY(56px) scale(1);
 }
 .circle .circle-1.pos-2 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-2 {
-  -moz-transform: translateX(103px) translateY(18px) scale(1);
-  -webkit-transform: translateX(103px) translateY(18px) scale(1);
-  -o-transform: translateX(103px) translateY(18px) scale(1);
-  -ms-transform: translateX(103px) translateY(18px) scale(1);
-  transform: translateX(103px) translateY(18px) scale(1);
+  -moz-transform: translateX(96px) translateY(17px) scale(1);
+  -webkit-transform: translateX(96px) translateY(17px) scale(1);
+  -o-transform: translateX(96px) translateY(17px) scale(1);
+  -ms-transform: translateX(96px) translateY(17px) scale(1);
+  transform: translateX(96px) translateY(17px) scale(1);
 }
 .circle .circle-1.pos-1 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-1.pos-1 {
-  -moz-transform: translateX(61px) translateY(0px) scale(1);
-  -webkit-transform: translateX(61px) translateY(0px) scale(1);
-  -o-transform: translateX(61px) translateY(0px) scale(1);
-  -ms-transform: translateX(61px) translateY(0px) scale(1);
-  transform: translateX(61px) translateY(0px) scale(1);
+  -moz-transform: translateX(56px) translateY(0px) scale(1);
+  -webkit-transform: translateX(56px) translateY(0px) scale(1);
+  -o-transform: translateX(56px) translateY(0px) scale(1);
+  -ms-transform: translateX(56px) translateY(0px) scale(1);
+  transform: translateX(56px) translateY(0px) scale(1);
+}
+.circle .circle-2.pos-20 {
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
+}
+.circle.open .circle-2.pos-20 {
+  -moz-transform: translateX(89px) translateY(155px) scale(1);
+  -webkit-transform: translateX(89px) translateY(155px) scale(1);
+  -o-transform: translateX(89px) translateY(155px) scale(1);
+  -ms-transform: translateX(89px) translateY(155px) scale(1);
+  transform: translateX(89px) translateY(155px) scale(1);
+}
+.circle .circle-2.pos-19 {
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
+}
+.circle.open .circle-2.pos-19 {
+  -moz-transform: translateX(118px) translateY(141px) scale(1);
+  -webkit-transform: translateX(118px) translateY(141px) scale(1);
+  -o-transform: translateX(118px) translateY(141px) scale(1);
+  -ms-transform: translateX(118px) translateY(141px) scale(1);
+  transform: translateX(118px) translateY(141px) scale(1);
+}
+.circle .circle-2.pos-18 {
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
+}
+.circle.open .circle-2.pos-18 {
+  -moz-transform: translateX(141px) translateY(118px) scale(1);
+  -webkit-transform: translateX(141px) translateY(118px) scale(1);
+  -o-transform: translateX(141px) translateY(118px) scale(1);
+  -ms-transform: translateX(141px) translateY(118px) scale(1);
+  transform: translateX(141px) translateY(118px) scale(1);
+}
+.circle .circle-2.pos-17 {
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
+}
+.circle.open .circle-2.pos-17 {
+  -moz-transform: translateX(155px) translateY(89px) scale(1);
+  -webkit-transform: translateX(155px) translateY(89px) scale(1);
+  -o-transform: translateX(155px) translateY(89px) scale(1);
+  -ms-transform: translateX(155px) translateY(89px) scale(1);
+  transform: translateX(155px) translateY(89px) scale(1);
 }
 .circle .circle-2.pos-16 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-16 {
-  -moz-transform: translateX(102px) translateY(160px) scale(1);
-  -webkit-transform: translateX(102px) translateY(160px) scale(1);
-  -o-transform: translateX(102px) translateY(160px) scale(1);
-  -ms-transform: translateX(102px) translateY(160px) scale(1);
-  transform: translateX(102px) translateY(160px) scale(1);
+  -moz-transform: translateX(160px) translateY(56px) scale(1);
+  -webkit-transform: translateX(160px) translateY(56px) scale(1);
+  -o-transform: translateX(160px) translateY(56px) scale(1);
+  -ms-transform: translateX(160px) translateY(56px) scale(1);
+  transform: translateX(160px) translateY(56px) scale(1);
 }
 .circle .circle-2.pos-15 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-15 {
-  -moz-transform: translateX(137px) translateY(137px) scale(1);
-  -webkit-transform: translateX(137px) translateY(137px) scale(1);
-  -o-transform: translateX(137px) translateY(137px) scale(1);
-  -ms-transform: translateX(137px) translateY(137px) scale(1);
-  transform: translateX(137px) translateY(137px) scale(1);
+  -moz-transform: translateX(155px) translateY(24px) scale(1);
+  -webkit-transform: translateX(155px) translateY(24px) scale(1);
+  -o-transform: translateX(155px) translateY(24px) scale(1);
+  -ms-transform: translateX(155px) translateY(24px) scale(1);
+  transform: translateX(155px) translateY(24px) scale(1);
 }
 .circle .circle-2.pos-14 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-14 {
-  -moz-transform: translateX(160px) translateY(102px) scale(1);
-  -webkit-transform: translateX(160px) translateY(102px) scale(1);
-  -o-transform: translateX(160px) translateY(102px) scale(1);
-  -ms-transform: translateX(160px) translateY(102px) scale(1);
-  transform: translateX(160px) translateY(102px) scale(1);
+  -moz-transform: translateX(141px) translateY(-5px) scale(1);
+  -webkit-transform: translateX(141px) translateY(-5px) scale(1);
+  -o-transform: translateX(141px) translateY(-5px) scale(1);
+  -ms-transform: translateX(141px) translateY(-5px) scale(1);
+  transform: translateX(141px) translateY(-5px) scale(1);
 }
 .circle .circle-2.pos-13 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-13 {
-  -moz-transform: translateX(168px) translateY(60px) scale(1);
-  -webkit-transform: translateX(168px) translateY(60px) scale(1);
-  -o-transform: translateX(168px) translateY(60px) scale(1);
-  -ms-transform: translateX(168px) translateY(60px) scale(1);
-  transform: translateX(168px) translateY(60px) scale(1);
+  -moz-transform: translateX(118px) translateY(-28px) scale(1);
+  -webkit-transform: translateX(118px) translateY(-28px) scale(1);
+  -o-transform: translateX(118px) translateY(-28px) scale(1);
+  -ms-transform: translateX(118px) translateY(-28px) scale(1);
+  transform: translateX(118px) translateY(-28px) scale(1);
 }
 .circle .circle-2.pos-12 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-12 {
-  -moz-transform: translateX(160px) translateY(19px) scale(1);
-  -webkit-transform: translateX(160px) translateY(19px) scale(1);
-  -o-transform: translateX(160px) translateY(19px) scale(1);
-  -ms-transform: translateX(160px) translateY(19px) scale(1);
-  transform: translateX(160px) translateY(19px) scale(1);
+  -moz-transform: translateX(89px) translateY(-42px) scale(1);
+  -webkit-transform: translateX(89px) translateY(-42px) scale(1);
+  -o-transform: translateX(89px) translateY(-42px) scale(1);
+  -ms-transform: translateX(89px) translateY(-42px) scale(1);
+  transform: translateX(89px) translateY(-42px) scale(1);
 }
 .circle .circle-2.pos-11 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-11 {
-  -moz-transform: translateX(137px) translateY(-16px) scale(1);
-  -webkit-transform: translateX(137px) translateY(-16px) scale(1);
-  -o-transform: translateX(137px) translateY(-16px) scale(1);
-  -ms-transform: translateX(137px) translateY(-16px) scale(1);
-  transform: translateX(137px) translateY(-16px) scale(1);
+  -moz-transform: translateX(56px) translateY(-48px) scale(1);
+  -webkit-transform: translateX(56px) translateY(-48px) scale(1);
+  -o-transform: translateX(56px) translateY(-48px) scale(1);
+  -ms-transform: translateX(56px) translateY(-48px) scale(1);
+  transform: translateX(56px) translateY(-48px) scale(1);
 }
 .circle .circle-2.pos-10 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-10 {
-  -moz-transform: translateX(102px) translateY(-39px) scale(1);
-  -webkit-transform: translateX(102px) translateY(-39px) scale(1);
-  -o-transform: translateX(102px) translateY(-39px) scale(1);
-  -ms-transform: translateX(102px) translateY(-39px) scale(1);
-  transform: translateX(102px) translateY(-39px) scale(1);
+  -moz-transform: translateX(24px) translateY(-42px) scale(1);
+  -webkit-transform: translateX(24px) translateY(-42px) scale(1);
+  -o-transform: translateX(24px) translateY(-42px) scale(1);
+  -ms-transform: translateX(24px) translateY(-42px) scale(1);
+  transform: translateX(24px) translateY(-42px) scale(1);
 }
 .circle .circle-2.pos-9 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-9 {
-  -moz-transform: translateX(60px) translateY(-48px) scale(1);
-  -webkit-transform: translateX(60px) translateY(-48px) scale(1);
-  -o-transform: translateX(60px) translateY(-48px) scale(1);
-  -ms-transform: translateX(60px) translateY(-48px) scale(1);
-  transform: translateX(60px) translateY(-48px) scale(1);
+  -moz-transform: translateX(-5px) translateY(-28px) scale(1);
+  -webkit-transform: translateX(-5px) translateY(-28px) scale(1);
+  -o-transform: translateX(-5px) translateY(-28px) scale(1);
+  -ms-transform: translateX(-5px) translateY(-28px) scale(1);
+  transform: translateX(-5px) translateY(-28px) scale(1);
 }
 .circle .circle-2.pos-8 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-8 {
-  -moz-transform: translateX(19px) translateY(-39px) scale(1);
-  -webkit-transform: translateX(19px) translateY(-39px) scale(1);
-  -o-transform: translateX(19px) translateY(-39px) scale(1);
-  -ms-transform: translateX(19px) translateY(-39px) scale(1);
-  transform: translateX(19px) translateY(-39px) scale(1);
+  -moz-transform: translateX(-28px) translateY(-5px) scale(1);
+  -webkit-transform: translateX(-28px) translateY(-5px) scale(1);
+  -o-transform: translateX(-28px) translateY(-5px) scale(1);
+  -ms-transform: translateX(-28px) translateY(-5px) scale(1);
+  transform: translateX(-28px) translateY(-5px) scale(1);
 }
 .circle .circle-2.pos-7 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-7 {
-  -moz-transform: translateX(-16px) translateY(-16px) scale(1);
-  -webkit-transform: translateX(-16px) translateY(-16px) scale(1);
-  -o-transform: translateX(-16px) translateY(-16px) scale(1);
-  -ms-transform: translateX(-16px) translateY(-16px) scale(1);
-  transform: translateX(-16px) translateY(-16px) scale(1);
+  -moz-transform: translateX(-42px) translateY(24px) scale(1);
+  -webkit-transform: translateX(-42px) translateY(24px) scale(1);
+  -o-transform: translateX(-42px) translateY(24px) scale(1);
+  -ms-transform: translateX(-42px) translateY(24px) scale(1);
+  transform: translateX(-42px) translateY(24px) scale(1);
 }
 .circle .circle-2.pos-6 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-6 {
-  -moz-transform: translateX(-39px) translateY(19px) scale(1);
-  -webkit-transform: translateX(-39px) translateY(19px) scale(1);
-  -o-transform: translateX(-39px) translateY(19px) scale(1);
-  -ms-transform: translateX(-39px) translateY(19px) scale(1);
-  transform: translateX(-39px) translateY(19px) scale(1);
+  -moz-transform: translateX(-48px) translateY(57px) scale(1);
+  -webkit-transform: translateX(-48px) translateY(57px) scale(1);
+  -o-transform: translateX(-48px) translateY(57px) scale(1);
+  -ms-transform: translateX(-48px) translateY(57px) scale(1);
+  transform: translateX(-48px) translateY(57px) scale(1);
 }
 .circle .circle-2.pos-5 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-5 {
-  -moz-transform: translateX(-48px) translateY(61px) scale(1);
-  -webkit-transform: translateX(-48px) translateY(61px) scale(1);
-  -o-transform: translateX(-48px) translateY(61px) scale(1);
-  -ms-transform: translateX(-48px) translateY(61px) scale(1);
-  transform: translateX(-48px) translateY(61px) scale(1);
+  -moz-transform: translateX(-42px) translateY(89px) scale(1);
+  -webkit-transform: translateX(-42px) translateY(89px) scale(1);
+  -o-transform: translateX(-42px) translateY(89px) scale(1);
+  -ms-transform: translateX(-42px) translateY(89px) scale(1);
+  transform: translateX(-42px) translateY(89px) scale(1);
 }
 .circle .circle-2.pos-4 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-4 {
-  -moz-transform: translateX(-39px) translateY(102px) scale(1);
-  -webkit-transform: translateX(-39px) translateY(102px) scale(1);
-  -o-transform: translateX(-39px) translateY(102px) scale(1);
-  -ms-transform: translateX(-39px) translateY(102px) scale(1);
-  transform: translateX(-39px) translateY(102px) scale(1);
+  -moz-transform: translateX(-28px) translateY(118px) scale(1);
+  -webkit-transform: translateX(-28px) translateY(118px) scale(1);
+  -o-transform: translateX(-28px) translateY(118px) scale(1);
+  -ms-transform: translateX(-28px) translateY(118px) scale(1);
+  transform: translateX(-28px) translateY(118px) scale(1);
 }
 .circle .circle-2.pos-3 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-3 {
-  -moz-transform: translateX(-16px) translateY(137px) scale(1);
-  -webkit-transform: translateX(-16px) translateY(137px) scale(1);
-  -o-transform: translateX(-16px) translateY(137px) scale(1);
-  -ms-transform: translateX(-16px) translateY(137px) scale(1);
-  transform: translateX(-16px) translateY(137px) scale(1);
+  -moz-transform: translateX(-5px) translateY(141px) scale(1);
+  -webkit-transform: translateX(-5px) translateY(141px) scale(1);
+  -o-transform: translateX(-5px) translateY(141px) scale(1);
+  -ms-transform: translateX(-5px) translateY(141px) scale(1);
+  transform: translateX(-5px) translateY(141px) scale(1);
 }
 .circle .circle-2.pos-2 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-2 {
-  -moz-transform: translateX(19px) translateY(160px) scale(1);
-  -webkit-transform: translateX(19px) translateY(160px) scale(1);
-  -o-transform: translateX(19px) translateY(160px) scale(1);
-  -ms-transform: translateX(19px) translateY(160px) scale(1);
-  transform: translateX(19px) translateY(160px) scale(1);
+  -moz-transform: translateX(24px) translateY(155px) scale(1);
+  -webkit-transform: translateX(24px) translateY(155px) scale(1);
+  -o-transform: translateX(24px) translateY(155px) scale(1);
+  -ms-transform: translateX(24px) translateY(155px) scale(1);
+  transform: translateX(24px) translateY(155px) scale(1);
 }
 .circle .circle-2.pos-1 {
-  -moz-transform: translateX(60px) translateY(60px) scale(0.8);
-  -webkit-transform: translateX(60px) translateY(60px) scale(0.8);
-  -o-transform: translateX(60px) translateY(60px) scale(0.8);
-  -ms-transform: translateX(60px) translateY(60px) scale(0.8);
-  transform: translateX(60px) translateY(60px) scale(0.8);
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-1 {
-  -moz-transform: translateX(61px) translateY(168px) scale(1);
-  -webkit-transform: translateX(61px) translateY(168px) scale(1);
-  -o-transform: translateX(61px) translateY(168px) scale(1);
-  -ms-transform: translateX(61px) translateY(168px) scale(1);
-  transform: translateX(61px) translateY(168px) scale(1);
+  -moz-transform: translateX(57px) translateY(160px) scale(1);
+  -webkit-transform: translateX(57px) translateY(160px) scale(1);
+  -o-transform: translateX(57px) translateY(160px) scale(1);
+  -ms-transform: translateX(57px) translateY(160px) scale(1);
+  transform: translateX(57px) translateY(160px) scale(1);
 }

@@ -64,5 +64,12 @@ $(document).ready(function($) {
 
 	});
 
+	$(document).on("click",".btn-sui-collapse",function (e){
+		e.preventDefault();
+		var t = $(this);
+		t.toggleClass('open');
+		$(t.attr('href')).toggle();
+
+	})
 
 });

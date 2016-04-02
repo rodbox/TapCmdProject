@@ -213,7 +213,7 @@
   border-radius: 50%;
   width: 32px;
   height: 32px;
-  padding: 0.5rem !important;
+  padding: 0.4rem !important;
   font-weight: bolder;
   text-align: center;
   line-height: 16px;
@@ -1211,6 +1211,12 @@ h2 {
 [data-sui-console="true"] .sui-console {
   display: block;
 }
+#sui-todo {
+  display: none;
+}
+[data-sui-todo="true"] #sui-todo {
+  display: block;
+}
 .sui-console {
   width: 50vw;
   height: 435px;
@@ -1638,7 +1644,7 @@ h2 {
   float: right;
 }
 .sui-sidebar-body {
-  padding-top: 1rem;
+  padding: 1.2rem 1rem;
 }
 .navbar #filesTabs.nav-tabs {
   margin-top: 0px !important;
@@ -1688,7 +1694,7 @@ h2 {
   position: absolute;
 }
 .popover {
-  z-index: 2011 !important;
+  z-index: 2111 !important;
 }
 body {
   color: #2E3139;
@@ -2038,4 +2044,7 @@ footer {
 }
 .select2-container {
   z-index: 2012 !important;
+}
+.btn-sui-collapse + div {
+  margin-bottom: 2rem;
 }

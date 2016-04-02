@@ -47,7 +47,7 @@
     </fieldset>
 
 <fieldset>
-<legend>Local</legend>
+    <legend>Local</legend>
     <!-- input : ftp_host -->
     <div class="form-group row">
             <label for="ftp_host" class="col-sm-3 form-control-label text-right">Hote</label>
@@ -92,4 +92,9 @@
         </div>
     </div>
     <!-- end input : ftp_port -->
-    </fieldset>
+    <div class="btn-group col-sm-offset-3 col-sm-9">
+        <a href="<?php $c->urlExec('app','db_test') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="Test">Test</a>
+        <a href="<?php $c->urlExec('app','db_create') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="Create">Create</a>
+    </div>
+
+</fieldset>

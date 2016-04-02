@@ -17,8 +17,45 @@ class parse extends app {
         ],
         'css' => [
             'selector'   => "/([#.,:\[\]\s\-a-zA-Z0-9]{0,}) {/"
+        ],
+        'todo'=>[
+            'todo'=>"/ TODO : ([a-zA-Z\s\n0-9#.,:\'\[\]]{0,})/"
         ]
     ];
+
+
+    /**
+     * Retourne les commantaires TODOS d'un fichier
+     * @param  [type] $file [description]
+     * @return array       array todo
+     */
+    public function todo($file)
+    {
+        $reg     = $this->reg['todo'];
+
+        $content = file_get_contents($file);
+
+        $data    = [];
+        $handle  = @fopen($file, "r");
+        $i       = 1;
+
+        $todos = '';
+
+        if ($handle) {
+            while (($line = fgets($handle, 4096)) !== false) {
+                preg_match($reg['todo'], $line, $todo);
+                if (count($todo)>0) {
+                   $todos[] = [
+                        'todo' => $todo[1],
+                        'line' => $i
+                    ];
+                }
+                $i++;
+            }
+        }
+
+        return $todos;
+    }
 
     public function twigContent($content)
     {

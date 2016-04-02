@@ -1,5 +1,6 @@
 <?php
+$app = new app();
 
-    $d = $app->getProject($s['project']);
+    $d = $app->cur();
 
 ?>
