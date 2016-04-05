@@ -14,8 +14,10 @@
 	})
 
 
-
-    $.toggleMouseMenu = function toggleMouseMenu(e){
+	$.hideMouseMenu = function(){
+		$('#circle-mouse').hide().removeClass('open');
+	}
+    $.toggleMouseMenu = function (e){
 		// var cursor    = $.editor.getCursor();
 		var mouseMenu = $('#circle-mouse');
         if (!mouseMenu.hasClass('open')) {
@@ -40,7 +42,7 @@ $('.sui-editor').on("mousedown",function(e){
 
 /*** FUNCTIONS ***/
 	/* wrapp selection with content before and after */
-	function wrappSelection(before,after,caret){
+	function wrappSelection(before,after,caret,line){
 
 		var selection = $.editor.getSelection();
 		var cursor = $.editor.getCursor();
@@ -48,6 +50,9 @@ $('.sui-editor').on("mousedown",function(e){
 		$.editor.focus();
 
 		/* setCursor after wrapped content */
+		if(line)
+			cursor.line = cursor.line+line;
+
 		if(caret)
 			cursor.ch = cursor.ch+caret;
 		else if(selection=="")
@@ -55,6 +60,8 @@ $('.sui-editor').on("mousedown",function(e){
 		else
 			cursor.ch = cursor.ch+before.length+after.length;
 		$.editor.setCursor(cursor);
+
+		console.log(cursor);
 	}
 
 	/*  */
@@ -75,7 +82,10 @@ $('.sui-editor').on("mousedown",function(e){
 		var before = t.data("before").replace("\\","");
 		var after  = t.data("after").replace("\\","");
 		var caret  = t.data("caret");
-		wrappSelection(before,after,caret);
+		var line  = t.data("line");
+		wrappSelection(before,after,caret,line);
+
+		$.hideMouseMenu();
 	})
 
 

@@ -37,7 +37,7 @@
 
     <div class="elem circle-2 pos-18"><a href="<?php $c->urlExec('app','todo_finder') ?>" class=" btn-exec" title="Scan des taches"><i class="fa fa-list"></i></a></div>
     <div class="elem circle-2 pos-19"><a href="#" class="wrap" data-before="/**
-* TODO : " data-caret="12" data-after="
+* TODO : " data-caret="12" data-line="1" data-after="
 */" title="Ajouter une tache"><i class="fa fa-plus"></i></a></div>
 
     <div class="circle-center"><a href=".btn-sui-sidebar" title="" class="alias" ><i class="fa fa-columns"></i></a></div>
