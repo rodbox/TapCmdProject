@@ -21,11 +21,9 @@
     /**
      * 1
      */
-    $file       = $file;
     $dir        = str_replace($app->dirProject(),'',$file);
     $dirExplode = explode('Bundle',$file);
     $dirBundle  = $dirExplode[0].'Bundle';
-
 
     $finder->files()->name('#Bundle.php$#');
     $finder->in($dirBundle);
@@ -33,19 +31,24 @@
      * 2
      */
     $files = [];
-    foreach ($finder as $key => $value) {
-        $files[] = $parse->phpFile($value->getRealpath());
-    }
-    $bundle = $files[0];
-    $namespace = $bundle['parent'] ?? $bundle['namespace'];
+    foreach ($finder as $key => $value)
+        $files[] = $parse->file($value->getRealpath());
+
+    $bundle     = $files[0];
+    $namespace  = $bundle['parent']['val'] ?? $bundle['namespace']['val'];
+
+    // echo"<pre>";
+    // print_r($namespace);
+    // echo"</pre>";
     $dirArchive = DIR_OVERIDES.'/'.$namespace.'/'.$app->cur().str_replace($dirBundle,'',$file);
+    // $dirArchive = [];
 
 
 
     /**
      * 3
      */
-    $fs->copy($file, $dirArchive, $force);
+    // $fs->copy($file, $dirArchive, $force);
 
 
     /**
@@ -54,13 +57,13 @@
 
 
     if (true) {
-    $dataView    = [
-        'file'      => $file,
-        'dir'       => $dir,
-        'dirBundle' => $dirBundle,
-        'namespace' => $namespace,
-        'archive'   => $dirArchive
-    ];
+        $dataView    = [
+            'file'      => $file,
+            'dir'       => $dir,
+            'dirBundle' => $dirBundle,
+            'namespace' => $namespace,
+            'archive'   => $dirArchive
+        ];
         $target      = [
             '#debug' => $c->viewsAsync('app', 'default', $dataView)
         ];

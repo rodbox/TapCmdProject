@@ -113,34 +113,34 @@
     Text control
 \*------------------------------------*/
 .sm {
-  font-size: 0.9em;
+  font-size: 0.9em !important;
 }
 .sm-2 {
-  font-size: 0.8em;
+  font-size: 0.8em !important;
 }
 .sm-3 {
-  font-size: 0.7em;
+  font-size: 0.7em !important;
 }
 .xl {
-  font-size: 1.5em;
+  font-size: 1.5em !important;
 }
 .xl-2 {
-  font-size: 2em;
+  font-size: 2em !important;
 }
 .xl-3 {
-  font-size: 2.5em;
+  font-size: 2.5em !important;
 }
 .xxl {
-  font-size: 256px;
+  font-size: 256px !important;
 }
 .strong {
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 .light {
-  font-weight: lighter;
+  font-weight: lighter !important;
 }
 .normal {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 /*------------------------------------*\
     END : Text control
@@ -1703,7 +1703,7 @@ body {
 body,
 body a,
 body div {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 html[data-sui-a=""] *,
 html[data-sui-a="false"] *,
@@ -2047,4 +2047,7 @@ footer {
 }
 .btn-sui-collapse + div {
   margin-bottom: 2rem;
+}
+.navbar #filesTabs.nav-tabs .nav-item .nav-link.active {
+  border-top: 2px solid #694109 !important;
 }

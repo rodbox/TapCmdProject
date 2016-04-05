@@ -2,8 +2,9 @@
 
 @cCm1 : lighten(@cSuccess1, 3%); // background cm
 @cCm2 : lighten(@cSuccess1, 7%); // selected cm
-@cCm3 : @cSuccess1; // color meta / background gunter
+@cCm3 : darken(@cSuccess1,3%); // color meta / background gunter
 @cCm4 : @cSuccess2; // color link bread
+@cCmShadow : @cSuccess2; // color link bread
 
 @elem: 8,20;
 
@@ -11,6 +12,7 @@
 @size : 48;
 @borderSize: 6;
 @shadowSize : 48;
+@unit : px;
 
 @sizeAngle: @radius - (@size/2);
 
@@ -31,7 +33,7 @@
 
 @circleColor : @colorRef;
 
-@shadowColor : lighten(@colorRef, 2%);
+@shadowColor : fade(lighten(@colorRef, 2%),98%);
 
 @aColor : darken(@cPrimary1,20%);
 @aColorHover : lighten(@cPrimary1,15%);
@@ -48,16 +50,16 @@
 }
 
 .shadow(@size){
-	-webkit-box-shadow: 0 0 0 unit(@shadowSize,px) @shadowColor;
-	box-shadow: 0 0 0 unit(@shadowSize,px) @shadowColor;
+	-webkit-box-shadow: 0 0 0 unit(@shadowSize, @unit) lighten(@shadowColor,1%);
+	box-shadow: 0 0 0 unit(@shadowSize, @unit) lighten(@shadowColor,1%);
 }
 
 .translate(@tX,@tY,@scale:1){
-	-moz-transform: translateX(unit(@tX,px)) translateY(unit(@tY,px)) scale(@scale);
-	-webkit-transform: translateX(unit(@tX,px)) translateY(unit(@tY,px)) scale(@scale);
-	-o-transform: translateX(unit(@tX,px)) translateY(unit(@tY,px)) scale(@scale);
-	-ms-transform: translateX(unit(@tX,px)) translateY(unit(@tY,px)) scale(@scale);
-	transform: translateX(unit(@tX,px)) translateY(unit(@tY,px)) scale(@scale);
+	-moz-transform: translateX(unit(@tX, @unit)) translateY(unit(@tY, @unit)) scale(@scale);
+	-webkit-transform: translateX(unit(@tX, @unit)) translateY(unit(@tY, @unit)) scale(@scale);
+	-o-transform: translateX(unit(@tX, @unit)) translateY(unit(@tY, @unit)) scale(@scale);
+	-ms-transform: translateX(unit(@tX, @unit)) translateY(unit(@tY, @unit)) scale(@scale);
+	transform: translateX(unit(@tX, @unit)) translateY(unit(@tY, @unit)) scale(@scale);
 }
 
 .scale(@scale:1){
@@ -73,11 +75,12 @@
 	z-index: 1998;
 	border-radius: 50%;
 
-	width: unit(@radius*2,px);
-	height: unit(@radius*2,px);
+	width: unit(@radius*2, @unit);
+	height: unit(@radius*2, @unit);
 
-	margin-left: unit(0-@radius,px);
-	margin-top: unit(0-@radius,px);
+	margin-left: unit(0-@radius, @unit);
+	margin-top: unit(0-@radius, @unit);
+
 
 
 	a {
@@ -90,6 +93,7 @@
 			.animate(255ms);
 			.scale(1);
 			.shadow(@size);
+			border: unit(@shadowSize, @unit) solid @shadowColor !important;
 		}
 		& .elem{
 			.animate(255ms);
@@ -99,8 +103,8 @@
 					text-decoration: none;
 					display: inline-block;
 					outline: none;
-					line-height: unit(@size,px);
-					width: unit(@size,px);
+					line-height: unit(@size, @unit);
+					width: unit(@size, @unit);
 					&,
 					i{
 						color:@aColor !important;
@@ -120,9 +124,9 @@
 
 	& .elem{
 		.animate(125ms);
-		width: unit(@size,px);
-		height: unit(@size,px);
-		line-height: unit(@size,px);
+		width: unit(@size, @unit);
+		height: unit(@size, @unit);
+		line-height: unit(@size, @unit);
 		vertical-align: middle;
 		text-align: center;
 		position: absolute;
@@ -136,12 +140,12 @@
 		.scale(0);
 		.shadow(0);
 		background-color: @circleColor;
-		width: unit(@radius*2,px);
-		line-height: unit(@radius*2,px);
+		width: unit(@radius*2, @unit);
+		line-height: unit(@size + 10, @unit);
 		text-align: center;
-		font-size: unit(@radius/4,px);
+		font-size: unit(@radius/4, @unit);
 		vertical-align: middle;
-		height: unit(@radius*2,px);
+		height: unit(@radius*2, @unit);
 		border-radius: 50%;
 		position: absolute;
 		display: inline-block;
@@ -182,8 +186,8 @@
 
 .circle-loop (@y:1) when (@y <= length(@elem)){
 	@val:extract(@elem, @y);
- 	.mixin-loop(@val, @y);
- 	.circle-loop (@y + 1);
+	.mixin-loop(@val, @y);
+	.circle-loop (@y + 1);
 }
 .circle-loop ();
 

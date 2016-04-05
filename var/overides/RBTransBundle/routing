@@ -1,0 +1,4 @@
+rb_trans:
+    resource: "@RBTransBundle/Controller/"
+    type:     annotation
+    prefix:   /tr

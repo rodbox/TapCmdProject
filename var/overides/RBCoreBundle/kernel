@@ -1,0 +1,3 @@
+    new RB\CoreBundle\RBCoreBundle(),
+    new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+    new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),

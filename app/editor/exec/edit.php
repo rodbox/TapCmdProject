@@ -75,9 +75,14 @@
 
 
 else{
+
+    $id = array_search($dir.'/'.$file, $ws['open']);
+
     $r = [
         'infotype' => "error",
         'msg'      => "error editor ",
+        'cb'       => 'triggerTabs',
+        'id'       => $id,
         'data'     => $inarray
     ];
 }

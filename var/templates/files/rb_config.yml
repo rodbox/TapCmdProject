@@ -11,15 +11,15 @@ parameters:
 
     currency: €
 
-    dir_src: #dir src
+    dir_src: {{ DIR_ROOT }}
 
     dir_root:  %dir_src%/web
 
     web_root:  {{ WEB_ROOT }}
 
-    dir_cdn: {{ DIR_ROOT }}
+    dir_cdn: {{ DIR_CDN }}
 
-    web_cdn: {{ WEB_ROOT }}
+    web_cdn: {{ WEB_CDN }}
 
     dir_import: %dir_root%/import
     web_import: %web_root%/import

@@ -24,12 +24,12 @@
 
     $cmd = "php ".$app->dirProject()."/bin/console ";
     // $cmd1 = $cmd.'cache:clear';
-    // $cmd1 = $cmd.'doctrine:database:drop --force';
-    $cmd2 = $cmd.'doctrine:database:create';
+    $cmd2 = $cmd.'doctrine:schema:update --force';
+    $cmd1 = $cmd.'doctrine:database:create';
 
-    // $out1 = shell_exec($cmd1);
+
+    $out1 = shell_exec($cmd1);
     $out2 = shell_exec($cmd2);
-
     if (true) {
     $dataView    = [];
         $cb          = 'defaut';

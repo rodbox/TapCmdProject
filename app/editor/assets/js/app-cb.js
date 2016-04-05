@@ -135,6 +135,15 @@ $(document).ready(function($) {
             $('.files-editor.tab-pane').removeClass('active').attr('aria-expanded','false');
             $('.editor-'+json.id+'.nav-link').addClass('active').attr('aria-expanded','true');
             $('.editor-'+json.id+'.tab-pane').addClass('active').attr('aria-expanded','true');
+
+
+
+            /**
+             * Fix scroll on open
+             */
+            var sidebar = $('.sui-sidebar');
+            var scroll  = sidebar.scrollTop();
+            sidebar.scrollTop(scroll + t.outerHeight() - 3);
         },
         overidesList: function (t, e){
             var url = $.generate.url.exec('editor','overides');
@@ -150,6 +159,10 @@ $(document).ready(function($) {
         },
         loadOverideArchive: function (t, e){
             console.log(t);
+        },
+        triggerTabs: function (t, json, e){
+            $('#editor-'+json.id+'.nav-link').trigger('click');
+            console.log(json);
         }
     }
 

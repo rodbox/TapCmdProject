@@ -1,6 +1,7 @@
 <?php
-// less master
-//
+/**
+ * Definit un lessmaster
+ */
 
 $app     = new app();
 $project = $app->getProject();

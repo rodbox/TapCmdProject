@@ -1,0 +1,3 @@
+    - { resource: "@RBCoreBundle/Resources/config/services.yml" }
+    - { resource: rb_config.yml }
+    - { resource: rb_twig.yml }

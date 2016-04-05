@@ -1,6 +1,6 @@
 <?php
     include('config.php');
-
+use Symfony\Component\Filesystem\Filesystem;
 
 class app extends controller
 {
@@ -300,6 +300,86 @@ class app extends controller
     public function getUrlLocal($file)
     {
         return str_replace($this->dirProject(),'http://localhost:8888/'.$this->cur(),$file);
+    }
+
+    public function getBundleInstall($bundle)
+    {
+        $dirInstall = DIR_OVERIDES.'/'.$bundle;
+
+        $kernel     = (file_exists($dirInstall.'/kernel'))?file_get_contents($dirInstall.'/kernel'):'';
+        $config     = (file_exists($dirInstall.'/config'))?file_get_contents($dirInstall.'/config'):'';
+        $routing    = (file_exists($dirInstall.'/routing'))?file_get_contents($dirInstall.'/routing'):'';
+
+        return [
+            'kernel'  => $kernel,
+            'config'  => $config,
+            'routing' => $routing
+        ];
+    }
+
+
+    public function pushBundle($bundle)
+    {
+        /**
+        * TODO : Securiser le push pour eviter les doublons
+        * Les includes des services doivent se faire en debut de fichier de config (utiliser le parse YAML)
+        **/
+
+        $dir            = $this->dirProject();
+
+        $kernel         = file_get_contents($dir.'/app/AppKernel.php');
+        $config         = file_get_contents($dir.'/app/config/config.yml');
+        $routing        = file_get_contents($dir.'/app/config/routing.yml');
+
+        $content        = $this->getBundleInstall($bundle);
+
+        $kernelAdd      = $content['kernel'];
+        $configAdd      = "\n".$content['config'];
+        $routingAdd     = "\n".$content['routing'];
+
+        $reg             = "/bundles = \[([a-zA-Z\(\)\{\s\n,=$\[\\\]{0,})/";
+        preg_match($reg, $kernel, $match);
+
+        $registerReplace = "bundles = [".$match[1].$kernelAdd."\n";
+        $matchProtect    = addcslashes($match[0],'[{(),\\\'');
+        $replace         = preg_replace("/".$matchProtect."/",$registerReplace, $kernel);
+
+        file_put_contents($dir.'/app/AppKernel.php', $replace);
+        file_put_contents($dir.'/app/config/config.yml',$config.$configAdd);
+        file_put_contents($dir.'/app/config/routing.yml',$routing.$routingAdd);
+    }
+
+    /**
+     * Overide de toutes les views d'un bundle vers le dossier app
+     * @param  [type] $bundle [description]
+     * @return [type]         [description]
+     */
+    public function overideBundle($bundleName, $bundleDest ='')
+    {
+        $fs = new Filesystem();
+
+        $bundles      = $this->getBundles();
+        $bundleVendor = $bundles['vendor'][$bundleName];
+        $bundleSrc    = $bundles['src'][$bundleDest];
+
+        $dirSrc       = $this->dirProject().'/'.$bundleSrc['dir'];
+        $dirVendor       = $this->dirProject().'/'.$bundleVendor['dir'];
+
+        if ($bundleDest == '')
+            $dirDest = $this->dirProject().'/app/Resources/'.$bundleName.'/views/';
+        else
+            $dirDest = $dirSrc.'/Resources/views/';
+
+        $list = [];
+        foreach ($bundleVendor['views'] as $key => $value) {
+
+            $src    = $dirDest.$value;
+            $vendor = $dirVendor.'/Resources/views/'.$value;
+
+            $fs->copy($vendor, $src);
+        }
+
+        return $list;
     }
 
 

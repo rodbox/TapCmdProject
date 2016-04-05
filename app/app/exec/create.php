@@ -10,6 +10,7 @@
         $dataTemplate = [
             'RENAME'      => $name,
             'NAME'        => $name,
+            'FRONTBUNDLE' => ucfirst($name).'Bundle',
             'TYPE'        => $type,
             'DESCRIPTION' => $description ?? '',
             'TYPE'        => $type ?? ''

@@ -25,26 +25,30 @@
     ]);
 
     $dir = $dirP.'/app/config';
-    templateFile('rb_config.yml',$dir, []);
+    templateFile('rb_config.yml',$dir, [
+        'TITLE'       => $app->cur(),
+        'TITLE_SHORT' => $app->cur(),
+        'WEB_ROOT'    => 'http://localhost:8000',
+        'DIR_ROOT'    => $app->dirProject(),
+        'DIR_CDN'     => '/Applications/MAMP/htdocs/minutephone_cdn',
+        'WEB_CDN'     => 'http://localhost:8888/minutephone_cdn'
+        ]);
+    templateFile('rb_twig.yml',$dir, []);
 
 
     $dir = $dirP;
     templateFile('.bowerrc',$dir, []);
 
 
+    $app->pushBundle('RBCoreBundle');
+    $app->pushBundle('RBTransBundle');
+    $app->pushBundle('FOSUserBundle');
+    $app->pushBundle('FOSJsRoutingBundle');
+    $app->pushBundle('RBFrontBundle');
 
-
-// $add = "fos_user:
-//     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-//     firewall_name: main
-//     # user_class: FOS\UserBundle\Model\User
-//     user_class: RB\UserBundle\Entity\User
-//     registration:
-//         form:
-//             type: RB\UserBundle\Form\RegistrationType";
-//     $file->filepush($dirP.'/app/config/config.yml', $add);
-
-
+    $dirConfig = $dirP.'/app/config';
+    shell_exec('open '. $dirConfig.'/config.yml');
+    shell_exec('open '. $dirConfig);
 
     if (true) {
     $dataView    = [];

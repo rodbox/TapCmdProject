@@ -99,6 +99,14 @@
         <script type="text/javascript" src="assets/vendor/codemirror/keymap/sublime.js"></script>
         <!-- end Code mirror -->
 
+<!-- XQuery -->
+    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/xquery-commons.js"></script>
+    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.js"></script>
+    <link rel="stylesheet" href="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.css">
+    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-templates.js"></script>
+    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/mode/xquery/xquery.js"></script>
+<!-- XQuery -->
+
         <script type="text/javascript" src="app/editor/assets/js/app-codemirror.js"></script>
 
         <!-- <script src="assets/js/app-paper.js" type="text/paperscript" canvas="labs"> </script> -->

@@ -1,0 +1,4 @@
+rb_front:
+    resource: "@RBFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /

@@ -1,0 +1,19 @@
+twig:
+    globals:
+        title_web: %title_web%
+        title_admin: %title_admin%
+        title_business: %title_business%
+        slogan_business: %slogan_business%
+        mail_business: %mail_business%
+        addr_business_1: %addr_business_1%
+        addr_business_2: %addr_business_2%
+        tel_business: %tel_business%
+
+        cropper: %cropper%
+        web_cdn: %web_cdn%
+        web_bower: %web_bower%
+        dir_expose: %dir_expose%
+        web_products: %web_products%
+        web_users: %web_users%
+        web_attr: %web_attr%
+        currency: %currency%

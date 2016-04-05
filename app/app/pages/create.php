@@ -4,20 +4,20 @@
 
 <!-- input : name -->
 <div class="row">
-    <label for="name" class="col-sm-3 form-control-label">Nom de projet </label>
-    <div class="col-sm-7">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Nom de projet" />
+    <label for="name" class="col-sm-4 form-control-label">Nom de projet </label>
+    <div class="col-sm-6">
+            <input type="text" name="name" autofocus="true" class="form-control" id="name" placeholder="Nom de projet" />
     </div>
     <div class="col-sm-1"><?php $c->helper('Nom du projet'); ?></div>
 </div>
 <!-- end input : name -->
 <fieldset class="row">
-<label for="" class="col-sm-3 form-control-label">Type</label>
-<div class="col-sm-7">
+<label for="" class="col-sm-4 form-control-label">Type</label>
+<div class="col-sm-6">
 
-<div class="btn-group">
+<div class="btn-group-sm">
     <label for="type_sf" class="btn btn-secondary">Symfony
-        <input type="radio" name="type" class="form-control" required="required" id="type_sf" value="Symfony" />
+        <input type="radio" name="type" class="form-control" checked="checked" required="required" id="type_sf" value="Symfony" />
         </label>
     <label for="type_rb" class="btn btn-secondary">Rodbox
         <input type="radio" name="type" class="form-control" required="required" id="type_rb" value="Rodbox" />
@@ -26,8 +26,8 @@
 </div>
 <!-- end input : type -->
 
-<label for="description" class="col-sm-3 form-control-label">Description</label>
-<div class="col-sm-7">
+<label for="description" class="col-sm-4 form-control-label">Description</label>
+<div class="col-sm-6">
     <textarea id="description" class="form-control" name="description" data-tab="true"></textarea>
     </div>
 </fieldset>

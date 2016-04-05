@@ -23,8 +23,8 @@
 
     // vers le dossier app lorsqu'il n'y a pas de src selectionné.
     if ($src == ''){
-        $destOveride = $dir.'/app';
-        $destOverideView = $destOveride.'/Resources/'.$vendor.'/views';
+        $destOveride           = $dir.'/app';
+        $destOverideView       = $destOveride.'/Resources/'.$vendor.'/views';
         $destOverideController = $destOveride.'/'.$vendor.'/Controller';
     }
     // vers le dossier du bundle src
@@ -49,7 +49,7 @@
             'VENDOR'    => $vendor
         ];
 
-        templateFile('bundle_overide.php', $dirBundle, $data, $src.'___');
+        templateFile('bundle_overide.php', $dirBundle, $data, $src);
     }
 
     /**
@@ -57,7 +57,7 @@
      */
     $srcOveride           = $dir.'/'.$bundles['vendor'][$vendor]['dir'];
     $srcOverideForm       = $srcOveride;
-    $srcOverideEvent       = $srcOveride;
+    $srcOverideEvent      = $srcOveride;
     $srcOverideView       = $srcOveride.'/Resources/views';
     $srcOverideEntity     = $srcOveride;
     $srcOverideListener   = $srcOveride;
@@ -89,7 +89,7 @@
     foreach ($overide['controllers'] ?? [] as $key => $value) {
 
         $srcOverideFile            = $srcOverideController.'/'.$value;
-        $destOverideControllerFile = $destOverideController.'/'.$value.'__';
+        $destOverideControllerFile = $destOverideController.'/'.$value;
 
         if(!file_exists($destOverideControllerFile) || $force)
             $fs->copy($srcOverideFile, $destOverideControllerFile, $force);
@@ -101,7 +101,7 @@
     foreach ($overide['forms'] ?? [] as $key => $value) {
 
         $srcOverideFile      = $srcOverideForm.'/'.$value;
-        $destOverideFormFile = $destOverideForm.'/'.$value.'___';
+        $destOverideFormFile = $destOverideForm.'/'.$value;
 
         if(!file_exists($destOverideFormFile))
             $fs->copy($srcOverideFile, $destOverideFormFile, $force);
@@ -127,7 +127,7 @@
     foreach ($overide['events'] ?? [] as $key => $value) {
 
         $srcOverideFile        = $srcOverideEntity.'/'.$value;
-        $destOverideEventFile = $destOverideEvent.'/'.$value.'__';
+        $destOverideEventFile = $destOverideEvent.'/'.$value;
 
         if(!file_exists($destOverideEventFile))
             $fs->copy($srcOverideFile, $destOverideEventFile, $force);
@@ -138,7 +138,7 @@
     foreach ($overide['listeners'] ?? [] as $key => $value) {
 
         $srcOverideFile        = $srcOverideListener.'/'.$value;
-        $destOverideListenerFile = $destOverideListener.'/'.$value.'__';
+        $destOverideListenerFile = $destOverideListener.'/'.$value;
 
         if(!file_exists($destOverideListenerFile))
             $fs->copy($srcOverideFile, $destOverideListenerFile, $force);
@@ -155,7 +155,7 @@
             $fileRelative = explode($archivesSource,$valueA);
             $fileRelative = $fileRelative[1];
 
-            $destOverideFile = $destOveride.'/'.$fileRelative.'__';
+            $destOverideFile = $destOveride.'/'.$fileRelative;
 
             if(!file_exists($destOverideFile))
                 $fs->copy($valueA, $destOverideFile, $force);

@@ -1,0 +1,4 @@
+rb_user:
+    resource: "@RBUserBundle/Controller/"
+    type:     annotation
+    prefix:   /u

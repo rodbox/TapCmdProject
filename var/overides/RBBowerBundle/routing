@@ -1,0 +1,4 @@
+rb_bower:
+    resource: "@RBBowerBundle/Controller/"
+    type:     annotation
+    prefix:   /bw

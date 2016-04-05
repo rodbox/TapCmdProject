@@ -1,0 +1,4 @@
+rb_blog:
+    resource: "@RBBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /b

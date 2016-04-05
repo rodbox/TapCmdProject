@@ -29,8 +29,9 @@
   -o-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
-  -webkit-box-shadow: 0 0 0 48px #33363f;
-  box-shadow: 0 0 0 48px #33363f;
+  -webkit-box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
+  box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
+  border: 48px solid rgba(44, 47, 54, 0.98) !important;
 }
 .circle.open .elem {
   -webkit-transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -86,11 +87,11 @@
   -o-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
-  -webkit-box-shadow: 0 0 0 48px #33363f;
-  box-shadow: 0 0 0 48px #33363f;
-  background-color: #2E3139;
+  -webkit-box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
+  box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
+  background-color: #272a31;
   width: 160px;
-  line-height: 160px;
+  line-height: 58px;
   text-align: center;
   font-size: 20px;
   vertical-align: middle;

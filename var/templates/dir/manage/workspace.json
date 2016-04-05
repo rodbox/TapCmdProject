@@ -1,8 +1,8 @@
 {
     "star": [
-
+        "\/Applications\/MAMP\/htdocs\/{{ RENAME }}\/src\/APP\/{{ FRONTBUNDLE }}\/Resouces/views/index.html.twig"
     ],
     "open": {
-
+        "35b2d2af": "\/Applications\/MAMP\/htdocs\/{{ RENAME }}\/src\/APP\/{{ FRONTBUNDLE }}\/Resouces/views/index.html.twig",
     }
 }

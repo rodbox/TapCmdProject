@@ -3,8 +3,7 @@
      * Initialise les fichiers de configuration distant.
      */
 
-    $app = new app();
-
+    $app                 = new app();
 
     $project             = $app->cur();
 
@@ -12,8 +11,8 @@
     $dir_config          = $dir_project.'/app/config';
 
     $fileConfig          = 'rb_config.yml';
+    $fileTwig            = 'rb_twig.yml';
     $fileConfigDist      = 'rb_config.yml.dist';
-
 
     $rb_config_file      = $dir_config.'/'.$fileConfig;
     $rb_config_file_dist = $dir_config.'/'.$fileConfigDist;
@@ -27,6 +26,7 @@
 
     else{
         templateFile('rb_config.yml',$dir_config, $fileConfig);
+
         templateFile('rb_config.yml',$dir_config, $fileConfigDist);
     }
 

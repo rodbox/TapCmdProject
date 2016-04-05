@@ -195,7 +195,7 @@
     }
 
 
-    function templateFile($templateFile, $targetDir, $data = [], $newFileName = "")
+    function templateFile($templateFile, $targetDir, $data = [], $newFileName = "", $force = false)
     {
         $src             = DIR_TEMPLATE . "/files/" . $templateFile;
         $info            = pathinfo($templateFile);
@@ -209,7 +209,7 @@
 
         $content = replaceContent($contentTemplate, $data);
 
-        return (!file_exists($dest))?file_put_contents($dest, $content) : false;
+        return (!file_exists($dest) || $force)?file_put_contents($dest, $content, $force) : false;
     }
 
 

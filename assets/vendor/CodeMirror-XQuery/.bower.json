@@ -1,0 +1,14 @@
+{
+  "name": "CodeMirror-XQuery",
+  "homepage": "https://github.com/angelozerr/CodeMirror-XQuery",
+  "_release": "e48b52023e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e48b52023ebc11828e4431f47a91b0d3e9341845"
+  },
+  "_source": "https://github.com/angelozerr/CodeMirror-XQuery.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/angelozerr/CodeMirror-XQuery.git",
+  "_direct": true
+}

@@ -1,0 +1,4 @@
+rb_dev:
+    resource: "@RBDevBundle/Controller/"
+    type:     annotation
+    prefix:   /dev
