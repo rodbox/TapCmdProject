@@ -47,5 +47,14 @@
 
         <script src="app/editor/assets/js/app-cb.js" type="text/javascript"> </script>
         <script src="app/editor/assets/js/app-file.js" type="text/javascript"> </script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#iframe-form').trigger('submit');
+    });
+
+</script>
     </body>
 </html>

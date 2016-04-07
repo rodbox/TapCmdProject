@@ -103,6 +103,10 @@ $(document).ready(function($) {
             var data = t.data();
             data.src = $(t.data('src')).val();
             console.log(data);
+        },
+        iframe: function (t, json,e){
+            $('#preview').attr('src', json.url);
+            console.log(json);
         }
     }
 });

@@ -5,8 +5,6 @@
         <li><p>Ne pas oublier de modifier les namespaces pour les fichiers surcharger. (voir la documentation)</p></li>
         <li><p>Ne pas oublier d'indexer les bundles avant de selectionner la surcharge.</p></li>
     </ul>
-
-
         <hr>
         <a href="https://symfony.com/doc/current/cookbook/bundles/inheritance.html" class="btn btn-warning-outline btn-popup" target="blank" data-popup="default" data-cb="false" >Documentation</a>
     </div>

@@ -1,10 +1,7 @@
 <?php
-    $app      = new app();
-
-
+    $app       = new app();
     $ws        = $app->getWorkspace();
 
-    $d = $ws??[];
-
+    $d         = $ws??[];
     $d['todo'] = $app->getTodo();
  ?>

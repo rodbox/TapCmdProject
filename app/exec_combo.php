@@ -38,7 +38,7 @@
 
     $tc->upd('Finish', '<i class="fa fa-checkmark"></i>', '100');
 
-    // $tc->clear($tictac);
+    $tc->clear($tictac);
 
 
     $r = [

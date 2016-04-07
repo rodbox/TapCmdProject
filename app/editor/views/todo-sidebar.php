@@ -8,10 +8,10 @@ $dir = $app->dirProject().'/src'; ?>
                 <a href="<?php $c->urlExec('editor','edit',[
                 'file' => $key,
                 'dir'  => $dir.'/'.dirname($key)
-                ]); ?>" class="btn-f-edit c-5 ext-me " data-file="<?php echo basename($key); ?>" title="<?php echo $key; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$dir]); ?>"><?php echo $task['todo']; ?>
+                ]); ?>" class="btn-f-edit btn-todo ext-me " data-rel="<?php echo $dir.'/'.$key ?>" data-file="<?php echo basename($key); ?>" title="<?php echo $key; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$dir]); ?>"><?php echo $task['todo']; ?>
                 <div>
-                    <span class="small c-5 text-muted"><?php echo basename($key); ?></span>
-                    <span class="small c-5 text-muted pull-right"><?php echo $task['line']; ?></span>
+                    <span class="small text-muted"><?php echo basename($key); ?></span>
+                    <span class="small text-muted pull-right"><?php echo $task['line']; ?></span>
                 </div>
                 </a>
             <?php endforeach ?>

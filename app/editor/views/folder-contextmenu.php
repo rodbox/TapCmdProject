@@ -1,3 +1,9 @@
+<form action="#">
+    <div class="plupload">
+
+    </div>
+</form>
+
 <form id="templates_files" data-cb="templatesFile" action="<?php $c->urlExec('editor','templates_files'); ?>" class="form-live form-templates form-inline">
 <!-- <?php $c->twig('toto'); ?> -->
 
@@ -6,7 +12,7 @@
         <input type="text" placeholder="" name="file" class="form-control autoclear autofocus" >
         </div>
         <div class="input-group">
-        <select name="file_type" class="c-select form-control">
+        <select name="file_type" class="c-select form-control select2">
          <option value="folder">folder</option>
             <?php foreach ($d as $key => $value): ?>
                 <option value="<?php echo $value; ?>"><?php echo $value; ?></option>

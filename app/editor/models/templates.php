@@ -1,9 +1,7 @@
 <?php
-$f = new file();
+    $f   = new file();
 
+    $dir = DIR_TEMPLATE.'/files/';
 
-$dir = DIR_TEMPLATE.'/files/';
-
-$d = $f->files($dir,[]);
-
+    $d   = $f->files($dir,[]);
  ?>

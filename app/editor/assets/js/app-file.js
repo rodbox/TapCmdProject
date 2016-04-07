@@ -43,10 +43,17 @@ $(document).ready(function($) {
         }
     })
 
+    $(document).on("click"," [data-rel]",function (e){
+        var t = $(this);
+        $('.rel-active').removeClass('rel-active');
+        $('[data-rel="'+t.data('rel')+'"]').addClass('rel-active');
+    })
 
     $(document).on("click",".btn-f-edit",function (e){
         e.preventDefault();
         var t = $(this);
+        $('.rel-active').removeClass('rel-active');
+        $('[data-rel="'+t.data('rel')+'"]').addClass('rel-active');
 
         if($.alt()){
             $.get(t.data('alt'), t.data());

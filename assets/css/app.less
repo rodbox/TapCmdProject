@@ -355,7 +355,6 @@ footer{position:fixed;
 }
 
 .cm-protect{
-
     &:after{
         .fa;
         content: '\f111';
@@ -373,6 +372,17 @@ footer{position:fixed;
         }
     }
 }
+
+.btn-f-edit,
+.btn-trigger{
+    &.cm-protect{
+        &:after{
+            top: inherit;
+        }
+    }
+}
+
+
 // li:hover{
 //     .unstar{
 //         display:inline-block !important;
@@ -452,3 +462,4 @@ footer{position:fixed;
 
     }
 }
+

@@ -8,6 +8,11 @@ $.shortcut={
             e.preventDefault();
             $('#editorSave').trigger('click');
         }
+
+        else if(e.keyCode == 82 && $.kalte("onAlt")){
+            e.preventDefault();
+            $('#editorSave').trigger('click');
+        }
         else if((e.keyCode == 81 || e.keyCode == 87) && $.kalte("onCmd")){
             e.preventDefault();
             $('.nav-link.active + .editor-close').trigger('click');
@@ -17,9 +22,19 @@ $.shortcut={
             $('#filesStars a.btn-f-edit').eq(e.keyCode - 49).trigger('click');
         }
 
-        else if ($.kalte("onAlt") && e.keyCode >= 49 && e.keyCode <=57){
+        else if ($.kalte("onCtrl") && e.keyCode >= 49 && e.keyCode <=57){
             e.preventDefault();
             $('#filesTabs a.files-editor').eq(e.keyCode - 49).trigger('click');
+        }
+
+        else if ($.kalte("onAlt") && e.keyCode == 37){
+            e.preventDefault();
+            $('#filesTabs a.files-editor.active').parents('.nav-item').prevAll().first().find('.nav-link').trigger('click');
+        }
+
+        else if ($.kalte("onAlt") && e.keyCode == 39){
+            e.preventDefault();
+            $('#filesTabs a.files-editor.active').parents('.nav-item').nextAll().first().find('.nav-link').trigger('click');
         }
 
         else if ($.kalte("onCmd") && e.keyCode == 84){

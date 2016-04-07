@@ -1,0 +1,2 @@
+    $bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
+    $bundles[] = new RB\DevBundle\RBDevBundle();

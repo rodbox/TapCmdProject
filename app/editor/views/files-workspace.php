@@ -16,7 +16,7 @@
             <a href="<?php $c->urlExec('editor','edit',[
             'file' => $file,
             'dir'  => dirname($file)
-            ]); ?>" class="btn-f-edit c-5 ext-me " data-file="<?php echo basename($file); ?>" title="<?php echo $file; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$file]); ?>"><?php echo basename($file); ?></a>
+            ]); ?>" class="btn-f-edit ext-me " data-file="<?php echo basename($file); ?>" title="<?php echo $file; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$file]); ?>"><?php echo basename($file); ?></a>
 
             <div class="clearfix"></div>
         </li>

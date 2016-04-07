@@ -13,7 +13,8 @@
         $r = [
             'infotype' => "success",
             'msg'      => "ok exec name",
-            'data'     => ''
+            'data'     => '',
+            'id'       => $id
         ];
     }
 

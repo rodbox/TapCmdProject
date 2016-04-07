@@ -30,6 +30,13 @@ $(document).ready(function($) {
                     matchBrackets   : true
                 })
 
+                $.editors[id].on("change",function (editor, change){
+                    var t = $(this);
+                    $.protect.on(id);
+                    sessionStorage.setItem(t.attr('data-editor'),editor.getValue());
+                    console.log(sessionStorage.getItem(t.attr('data-editor')));
+                });
+
                 // $.editors[id].commands.autocomplete = function(cm) {
                 //     cm.showHint({hint: CodeMirror.hint.anyword});
                 //   };
@@ -88,11 +95,16 @@ $(document).ready(function($) {
 
     $.protect = {
         on: function (id){
-            console.log(id);
-            $('.nav-item.editor-'+id).addClass('cm-protect');
+            var tab = $('.nav-link.editor-'+id);
+            var rel = tab.attr('data-rel');
+            console.log(rel);
+            tab.addClass('cm-protect');
         },
         off: function (id){
-            $('.nav-item.editor-'+id).removeClass('cm-protect');
+            var tab = $('.nav-link.editor-'+id);
+            var rel = tab.attr('data-rel');
+            console.log(rel);
+            tab.removeClass('cm-protect');
         }
     }
 
@@ -107,7 +119,8 @@ $(document).ready(function($) {
         $.lock.on(t);
         var data = {
             dir: $('.files-editor.active .file-open').val(),
-            content : $.editor.getValue()
+            content : $.editor.getValue(),
+            id: $(".files-editor.active").parents('.nav-item').first().attr('data-editor')
         }
 
         $.post(t.attr('href'), data, function(json, textStatus, xhr) {

@@ -15,7 +15,7 @@
 @consoleW: 50vw;
 
 @sidebarH: calc(~'100vh - '@headerH);
-@sidebarW: 280px;
+@sidebarW: 320px;
 
 @quickbarH: calc(~'100vh - '@headerH);
 @quickbarW: @sidebarW;
@@ -238,6 +238,7 @@
     .sui-editor-body{
         float:left;
         height: @editorH;
+
         .tab-content{
             height: calc(~'100vh - '@editorHeaderH);
         }
@@ -253,6 +254,9 @@
     height: @sidebarH;
 
     .transX(-@sidebarW);
+    .sui-sidebar-body{
+        padding-right:0rem !important;
+    }
 }
 
 .sui-quickbar{

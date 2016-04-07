@@ -1,0 +1,1 @@
+    - { resource: "@RBBowerBundle/Resources/config/services.yml" }

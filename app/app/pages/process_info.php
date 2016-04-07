@@ -10,10 +10,14 @@
           php composer.phar require rodbox/rodboxbower "@dev"<br>
           php composer.phar require rodbox/rodboxtrans "@dev"<br>
           php composer.phar require rodbox/rodboxfront "@dev"<br>
+          php composer.phar require rodbox/rodboxadmin "@dev"<br>
           php composer.phar require rodbox/rodboxblog "@dev"<br>
+          php composer.phar require coresphere/console-bundle "@dev"<br>
+          php composer.phar require rodbox/rodboxdev "@dev"<br>
           php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
           php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
-          php bin/console generate:bundle --namespace=APP/<?php echo ucfirst($app->cur()); ?>Bundle --bundle-name=<?php echo ucfirst($app->cur()); ?>Bundle --format=annotation<br>
+          php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>
+          php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>
           php bin/console cache:clear<br>
          </div>
           <span class="input-group-btn">

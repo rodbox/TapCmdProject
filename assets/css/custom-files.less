@@ -3,6 +3,78 @@
 @showControl: var, app, src, test, vendor, web, less, js, css, json, php, md, htaccess;
 
 
+@exts : php, js, css, less, twig, md, dist, json, yml, htaccess;
+@Cexts: #4884FF,#7B23A2,#ED1EFF,#FA7EFF,#6DFF2B,#C4C8CD,#FF8F00, #00AF26, #FF4C00, #1B1B18;
+.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close, .navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close i
+{
+    color: darken(extract(@colors, 5),55%) !important;
+}
+
+ a.unstar,
+        a.editor-close{
+            float:left;
+            opacity : 0.05;
+        }
+
+
+
+.navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor,
+.btn-trigger,
+.btn-f-edit {
+    color: darken(extract(@colors, 5),25%) !important;
+    &:hover{
+        color: extract(@colors, 5);
+    }
+}
+
+.btn-todo,
+.btn-f-explore{
+    .c-5;
+     &:before {
+        color:darken(#FFCC2B,30%) !important;
+    }
+}
+.btn-f-edit{
+
+    &.hide{
+        &:before{
+            display: none !important;
+        }
+    }
+
+    &:before{
+        content:" ";
+        width: 6px;
+        height: 6px;
+        display:inline-block;
+
+        border-radius: 50%;
+        margin-right: 6px;
+        margin-bottom: 1px;
+        background-color: fade(#000, 20%);
+    }
+}
+
+.ext-loop (@i:1) when (@i <= length(@exts)){
+
+    @name: extract(@exts, @i);
+    @color: extract(@Cexts, @i);
+
+    [data-rel$=".@{name}"]{
+        &:before{
+            background-color: @color !important;
+        }
+    }
+
+    .ext-loop(@i + 1);
+}
+
+.ext-loop();
+
+.files-editor{
+
+}
+
 .files{
     list-style: none;
     padding: 0px;
@@ -11,6 +83,7 @@
     li{
         a {
             padding: 0.275rem 0.375rem;
+            line-height: 1.3rem;
             display: block;
             &:active,
             &:focus,
@@ -18,7 +91,9 @@
                 text-decoration: none;
                 background-color: lighten(@cSuccess1,5%) !important;
             }
+            &.rel-active,
             &.active{
+                color: @cSuccess2 !important;
                 background-color: @cSuccess1 !important;
             }
             i{
@@ -26,6 +101,7 @@
             }
 
             &.btn-f-explore {
+
                 &:before{
                     .fa;
                     content: "\f114";
@@ -42,11 +118,7 @@
             }
 
         }
-        a.unstar,
-         a.editor-close{
-            float:left;
-            opacity : 0.2;
-        }
+
         ul{
            margin-left: 12px;
             padding-left: 6px;

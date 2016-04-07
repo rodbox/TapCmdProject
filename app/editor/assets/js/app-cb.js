@@ -26,7 +26,8 @@ $(document).ready(function($) {
             $.editor.setOption("mode",mode);
             $.editor.setValue(json.content);
             $.editor.clearHistory();
-
+            $.protect.off(json.id);
+            sessionStorage.setItem(json.id,json.content);
             $.sui.set('cm',$.editor.getOption('mode'));
         },
         toggleFolder: function (t, json, e){
@@ -39,11 +40,11 @@ $(document).ready(function($) {
         editorSave: function (t, json, e){
             $.protect.off(json.id);
             if($.sui.is('autorefresh','true'))
-                $('.form-iframe').trigger('submit');
+                $('#iframe').trigger('click');
         },
         editorClose: function (t, json, e){
             $.close(t.attr('data-editor'));
-
+            sessionStorage.removeItem(t.attr('data-editor'));
           },
         fileSearchOn: function (t, e){
             $.suggest.on(t,'');

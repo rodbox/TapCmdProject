@@ -1,0 +1,4 @@
+rb_note:
+    resource: "@RBNoteBundle/Controller/"
+    type:     annotation
+    prefix:   /nt/
