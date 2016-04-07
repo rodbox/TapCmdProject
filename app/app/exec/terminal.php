@@ -5,13 +5,13 @@
     $c->terminal($dir);
 
 // terminal
-if ($sys) {
+if (true) {
 
 
     $r = [
         'infotype' => "success",
         'msg'      => "ok terminal",
-        'data'     =>  $sys
+        'data'     =>  ''
     ];
 }
 

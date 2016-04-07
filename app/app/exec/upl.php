@@ -3,7 +3,7 @@
      * Upload par le ftp le fichier zip d'un projet
      */
 
-    // $app = new app();
+    $app = new app();
 
     if(!isset($_GET['combo'])){
         $dir_zip  = DIR_TMP.'/'.$name.'.zip';
@@ -14,7 +14,7 @@
 
     $upl        = date('d m Y H:i:s');
 
-
+    $name = $app->cur();
 // sleep(5);
     $url = $app->uploadProject($name, $dir_zip, $file_zip, $k);
 

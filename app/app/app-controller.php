@@ -223,12 +223,14 @@ class app extends controller
         if ($name=='')
             $name = $this->cur();
 
-        $project        = $this->getProjectFtp($name);
+        $this->ftp = $project        = $this->getProjectFtp($name);
 
         extract($project);
 
         $this->ftp_conn  = ftp_connect($host) or die("Could not connect to $host");
         $this->ftp_login = ftp_login($this->ftp_conn, $user, $password);
+
+        ftp_pasv($this->ftp_conn, true);
 
         return $this->ftp_login;
     }
@@ -250,11 +252,12 @@ class app extends controller
 
         $ftp_control       = DIR_TEMPLATE."/files/ftp_control.php";
 
+        // $control       = ftp_put($this->ftp_conn, 'a.php', $ftp_control, FTP_ASCII);
         $control       = ftp_put($this->ftp_conn, $key.'.php', $ftp_control, FTP_ASCII);
         $eval_put_file = ftp_put($this->ftp_conn, $file_zip, $dir_zip, FTP_ASCII);
 
-        if(!$control)
-            $error[]= "le fichier n'a pas été chargé !!!";
+        // if(!$control)
+        //     $error[]= "le fichier n'a pas été chargé !!!";
 
         $this->closeProject();
 
@@ -264,6 +267,58 @@ class app extends controller
         return $url.'/'.$key.'.php?a=u&f='.$file_zip;
     }
 
+
+    public function uploadFile($file)
+    {
+        $ftp = $this->logProject($this->cur());
+
+
+        if($ftp){
+            $dirP = $this->dirProject();
+
+            $dirRel = str_replace($dirP,'',$file);
+
+            $this->ftpPath(dirname($dirRel));
+
+            // return $dirRel;
+            // return $dirP;
+            // return $relativePathFile = preg_replace(['/'.$dirP.'/'],'',$file);
+
+
+            $eval_put_file = ftp_put($this->ftp_conn, $dirRel, $file, FTP_ASCII);
+
+
+
+            $this->closeProject();
+        }
+        // $project = $this->getProject($name);
+        // $url = $project['server']['web'];
+
+        // return $url.'/'.$key.'.php?a=u&f='.$file_zip;
+        return true;
+    }
+
+
+    public function ftpPath($path)
+      {
+       $dir  = preg_split("/\//", $path);
+       $path = "";
+       $ret  = true;
+
+       for ($i=0;$i<count($dir);$i++)
+       {
+           $path.="/".$dir[$i];
+
+           if(!@ftp_chdir($this->ftp_conn,$path)){
+             @ftp_chdir($this->ftp_conn,"/");
+             if(!@ftp_mkdir($this->ftp_conn,$path)){
+              $ret=false;
+              break;
+             }
+           }
+       }
+       return $ret;
+      }
 
 
     public function getIcon($project = '')

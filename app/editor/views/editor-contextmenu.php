@@ -18,10 +18,11 @@
     <div class="elem circle-2 pos-4"><a href="http://paperjs.org/reference/global/" data-popup='doc' class="btn-popup "><i class="icomoon-vector2 "></i></a></div>
 
     <div class="elem circle-2 pos-5">
-    <a href="<?php $c->urlExec('app','less_compile') ?>" class=" btn-exec" title="title">Less</a>
+    <a href="<?php $c->urlExec('app','less_compile') ?>" class=" btn-exec" data-cb="assetsExpose" data-cb-app="editor" title="title">Less</a>
     </div>
 
-        <div class="elem circle-2 pos-6"><a href="https://translate.google.fr/?#fr/en/" data-popup='doc' class="btn-popup-req" data-req='[selection]'>en</a></div>
+        <div class="elem circle-2 pos-6"><a href="<?php $c->urlExec('app','assets_expose') ?>" id="assetsExpose" class="btn-exec" data-cb-app="editor" data-cb="refresh">expose</a></div>
+        <!-- <div class="elem circle-2 pos-6"><a href="https://translate.google.fr/?#fr/en/" data-popup='doc' class="btn-popup-req" data-req='[selection]'>en</a></div> -->
     <div class="elem circle-2 pos-7"><a href="https://www.google.fr" class="btn-popup-req"  data-popup='doc'  id="google" data-req="/#q=[selection]" ><i class="fa fa-google  "></i></a></div>
     <div class="elem circle-2 pos-8"><a href="https://translate.google.fr/?#en/fr/" data-popup='doc' class="btn-popup-req" data-req='[selection]'>fr</a></div>
     <div class="elem circle-2 pos-9"><span class="divider"></span></div>

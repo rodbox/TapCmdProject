@@ -39,8 +39,18 @@ $(document).ready(function($) {
         },
         editorSave: function (t, json, e){
             $.protect.off(json.id);
+
             if($.sui.is('autorefresh','true'))
-                $('#iframe').trigger('click');
+                $.cb['editor']['refresh'](t, json, e);
+        },
+        refresh: function (t, json, e){
+            // si la fenetre interne le l'iframe est activé on rafraichie.
+                if($.sui.is('iframe','true'))
+                    $('#iframe-form').trigger('submit');
+
+                // sinon on rafraichit la popup
+                else
+                    $('#iframe').trigger('click');
         },
         editorClose: function (t, json, e){
             $.close(t.attr('data-editor'));
@@ -164,6 +174,9 @@ $(document).ready(function($) {
         triggerTabs: function (t, json, e){
             $('#editor-'+json.id+'.nav-link').trigger('click');
             console.log(json);
+        },
+        assetsExpose: function (t, e, json){
+            $('#assetsExpose').trigger('click');
         }
     }
 

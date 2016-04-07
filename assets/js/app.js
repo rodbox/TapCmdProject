@@ -420,8 +420,9 @@ $(document).ready(function($) {
                 t.find('i').show();
                 t.find('.loader').remove();
                 t.html(t.attr('data-html'));
-                t.removeClass('warning');
-                t.removeClass('success');
+                t.removeClass('lock-warning');
+                t.removeClass('lock-alert');
+                t.removeClass('lock-success');
             },200);
         },
         alert:function(t, msg){
@@ -429,7 +430,7 @@ $(document).ready(function($) {
 
             t.html(alert);
             t.removeClass('onLoad');
-            t.addClass('alert');
+            t.addClass('lock-alert');
             if (msg != undefined)
                 t.append(' '+msg);
 
@@ -442,7 +443,7 @@ $(document).ready(function($) {
 
             t.html(error);
             t.removeClass('onLoad');
-            t.addClass('error');
+            t.addClass('lock-error');
             if (msg != undefined)
                 t.append(' '+msg);
 
@@ -455,7 +456,7 @@ $(document).ready(function($) {
 
             t.html(success);
             t.removeClass('onLoad');
-            t.addClass('success');
+            t.addClass('lock-success');
             if (msg != undefined)
                 t.append(' '+msg);
 

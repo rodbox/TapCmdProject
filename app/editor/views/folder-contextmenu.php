@@ -1,8 +1,4 @@
-<form action="#">
-    <div class="plupload">
-
-    </div>
-</form>
+<?php $c->uploader($_GET['dir']); ?>
 
 <form id="templates_files" data-cb="templatesFile" action="<?php $c->urlExec('editor','templates_files'); ?>" class="form-live form-templates form-inline">
 <!-- <?php $c->twig('toto'); ?> -->

@@ -38,6 +38,7 @@
           bower install bootstrap#v4.0.0-alpha.2<br>
           bower install select2<br>
           bower install https://github.com/moxiecode/plupload.git<br>
+          bower install font-awesome<br>
           php bin/console cache:clear
          </div>
           <span class="input-group-btn">

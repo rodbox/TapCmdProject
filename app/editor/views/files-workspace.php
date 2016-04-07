@@ -10,13 +10,16 @@
 <ul id="filesStars" class="files ">
     <?php foreach ($d['star'] ?? [] as $key => $file): ?>
         <li>
+
+        <?php $info = pathinfo($file); ?>
+
         <a href="<?php $c->urlExec('editor','ws_del',[
             'index'=>'star',
             'key' => $key]);?>" class="btn-exec unstar btn-muted" data-cb="starsRefresh" data-cb-app="editor"><i class="fa fa-remove"></i></a>
             <a href="<?php $c->urlExec('editor','edit',[
             'file' => $file,
             'dir'  => dirname($file)
-            ]); ?>" class="btn-f-edit ext-me " data-file="<?php echo basename($file); ?>" title="<?php echo $file; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$file]); ?>"><?php echo basename($file); ?></a>
+            ]); ?>" class="btn-f-edit ext-me " data-ext="<?php echo $info['extension']; ?>" data-file="<?php echo basename($file); ?>" data-rel="<?php echo $file; ?>" title="<?php echo $file; ?>" data-cb="setEditor" data-alt="<?php $c->urlExec('app','sh-dir',["dir"=>$file]); ?>"><?php echo basename($file); ?></a>
 
             <div class="clearfix"></div>
         </li>

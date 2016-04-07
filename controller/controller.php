@@ -416,6 +416,14 @@ class controller
 </button><span class="btn-helper-title">'.$title.'</span></div>';
     }
 
+    /**
+     * Get uploader
+     */
+    public function uploader($dir='')
+    {
+        $this->view("app","uploader",['dir'=>$dir]);
+    }
+
 
 
     /**

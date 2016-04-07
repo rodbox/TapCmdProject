@@ -23,8 +23,9 @@
 .block {
   display: block;
 }
+.hide,
 .none {
-  display: none;
+  display: none !important;
 }
 /*------------------------------------*\
     END : Display control
@@ -1137,9 +1138,6 @@ h2 {
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
-[data-sui-iframe="true"] {
-  display: none !important;
-}
 .sui-suggest {
   position: fixed;
   top: 0rem;
@@ -1280,7 +1278,6 @@ h2 {
   transform: translateX(320px);
 }
 .sui-iframe {
-  display: none !important;
   height: calc(100vh -  0px);
   width: 50vw;
   position: fixed;
@@ -1311,7 +1308,7 @@ h2 {
   background-color: #272a31 !important;
 }
 .btn-sui.active {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 /** Modal **/
 .modal-dialog {
@@ -1493,6 +1490,9 @@ a.unstar,
 a.editor-close {
   float: left;
   opacity: 0.05;
+}
+.sui-editor .submenu .file-open-title a.btn-sh {
+  color: #59686e !important;
 }
 .navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor,
 .btn-trigger,
@@ -1747,6 +1747,12 @@ a.editor-close {
   border-color: transparent !important;
   background-color: #2E3139 !important;
   color: #EDEDED !important;
+}
+form .plupload {
+  margin-bottom: 0.5rem;
+  min-height: 100px;
+  border-radius: 4px;
+  border: 3px dashed rgba(255, 255, 255, 0.05);
 }
 .helper-container {
   margin: 0.2rem;

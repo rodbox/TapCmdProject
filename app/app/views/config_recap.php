@@ -8,15 +8,7 @@
         <a href="<?php $c->urlExec('app','db_schema') ?>" class="btn btn-secondary btn-sm btn-exec" data-cb="false" title="term">Dump schema</a>
         <?php $app= new app(); $app->btn_deploy(); ?>
 
- <div class="input-group">
-          <div id="clipme3" class="form-control sm-2">
-          php bin/console server:run<br>
-         </div>
-          <span class="input-group-btn">
-            <?php $c->clipme('clipme3'); ?>
-            <a href="<?php $c->urlExec('app','terminal') ?>" class="btn btn-primary btn-sm btn-exec" title="title"><i class="fa fa-code"></i></a>
-          </span>
-    </div>
+
 
     </div>
 </div>
