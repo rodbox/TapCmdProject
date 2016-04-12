@@ -45,6 +45,7 @@
     $app->pushBundle('FOSUserBundle');
     $app->pushBundle('FOSJsRoutingBundle');
     $app->pushBundle('RBFrontBundle');
+    $app->pushBundle('RBDevBundle');
 
     $dirConfig = $dirP.'/app/config';
     shell_exec('open '. $dirConfig.'/config.yml');

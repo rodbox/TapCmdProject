@@ -13,7 +13,7 @@
   display: none !important;
 }
 .circle a {
-  color: #a5a5a5 !important;
+  color: #70828a !important;
 }
 .circle.open {
   display: block !important;
@@ -29,9 +29,9 @@
   -o-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
-  -webkit-box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
-  box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
-  border: 48px solid rgba(44, 47, 54, 0.98) !important;
+  -webkit-box-shadow: 0 0 0 48px rgba(29, 30, 36, 0.98);
+  box-shadow: 0 0 0 48px rgba(29, 30, 36, 0.98);
+  border: 48px solid rgba(26, 28, 33, 0.98) !important;
 }
 .circle.open .elem {
   -webkit-transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -39,7 +39,7 @@
   -ms-transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   -o-transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transition: all 255ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  color: #a5a5a5;
+  color: #70828a;
 }
 .circle.open .elem a {
   text-decoration: none;
@@ -55,7 +55,7 @@
 }
 .circle.open .elem a,
 .circle.open .elem a i {
-  color: #a5a5a5 !important;
+  color: #70828a !important;
 }
 .circle.open .elem a:hover,
 .circle.open .elem a:hover i {
@@ -87,9 +87,9 @@
   -o-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
-  -webkit-box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
-  box-shadow: 0 0 0 48px rgba(46, 49, 57, 0.98);
-  background-color: #272a31;
+  -webkit-box-shadow: 0 0 0 48px rgba(29, 30, 36, 0.98);
+  box-shadow: 0 0 0 48px rgba(29, 30, 36, 0.98);
+  background-color: #16171b;
   width: 160px;
   line-height: 58px;
   text-align: center;
@@ -106,7 +106,7 @@
 }
 .circle .circle-center a,
 .circle .circle-center a i {
-  color: #a5a5a5 !important;
+  color: #70828a !important;
 }
 /* Elem */
 .circle .circle-1.pos-8 {

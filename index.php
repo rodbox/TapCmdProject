@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="assets/vendor/codemirror/lib/codemirror.css">
         <link rel="stylesheet" href="assets/vendor/codemirror/theme/tomorrow-night-bright.css">
         <link rel="stylesheet" href="assets/vendor/codemirror/addon/dialog/dialog.css">
+        <link rel="stylesheet" href="assets/vendor/codemirror/addon/hint/show-hint.css">
         <!-- end Code mirror css -->
 
         <link href="assets/css/app.css" rel="stylesheet">
@@ -53,6 +54,7 @@
         <script type="text/javascript" src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>
         <!-- <script src="assets/vendor/keynavigator/keynavigator-min.js" ></script> -->
         <script type="text/javascript" src="assets/vendor/checkdown/dist/js/checkdown.js" ></script>
+        <script type="text/javascript" src="assets/vendor/html.sortable/dist/html.sortable.min.js" ></script>
         <script type="text/javascript" src="assets/js/app.js"></script>
         <script type="text/javascript" src="assets/js/app-tictac.js"></script>
         <script type="text/javascript" src="assets/js/app-sui.js"></script>
@@ -68,7 +70,7 @@
 
         <!-- Code mirror JS-->
         <script type="text/javascript" src="assets/vendor/codemirror/lib/codemirror.js"></script>
-
+            <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/show-hint.js"></script>
         <!-- Addon codemirror -->
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/jumpToLine.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/searchcursor.js"></script>
@@ -80,6 +82,7 @@
         <script type="text/javascript" src="assets/vendor/codemirror/addon/wrap/hardwrap.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/fold/foldcode.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/fold/brace-fold.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/selection/active-line.js"></script>
         <!-- Code mirror mode -->
         <script type="text/javascript" src="assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/mode/xml/xml.js"></script>
@@ -91,9 +94,12 @@
         <script type="text/javascript" src="assets/vendor/codemirror/mode/markdown/markdown.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/mode/javascript/javascript.js"></script>
 
-        <script type="text/javascript" src="assets/vendor/codemirror/lint/lint.js"></script>
-        <script type="text/javascript" src="assets/vendor/codemirror/hint/show-hint.js"></script>
-        <script type="text/javascript" src="assets/vendor/codemirror/hint/anyword-hint.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/lint/lint.js"></script>
+
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/anyword-hint.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/javascript-hint.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/xml-hint.js"></script>
+
 
         <!-- Code mirror keymap -->
         <script type="text/javascript" src="assets/vendor/codemirror/keymap/sublime.js"></script>

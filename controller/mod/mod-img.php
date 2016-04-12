@@ -127,16 +127,24 @@
          */
         public function aphaColor($img, $size = 250)
         {
-            function filename ($filename, $color='', $size='', $ext='png'){
-                return $filename.'_'.$color.'_'.$size.'.'.$ext;
-            }
 
             $names             = [];
             $info              = pathinfo($img);
             extract($info);
-            $names['normal']   = filename($filename,'normal','');
-            $names['grey']     = filename($filename,'grey','');
-            $names['negative'] = filename($filename,'negative','');
+
+            if(!file_exists($dirname.'/normal/'))
+                mkdir($dirname.'/normal/');
+            if(!file_exists($dirname.'/grey/'))
+                mkdir($dirname.'/grey/');
+            if(!file_exists($dirname.'/negative/'))
+                mkdir($dirname.'/negative/');
+
+
+
+
+            $names['normal']   = 'normal/'.$filename.'.png';
+            $names['grey']     = 'grey/'.$filename.'.png';
+            $names['negative'] = 'negative/'.$filename.'.png';
 
             $infoColor         = $this->info($img);
             $ratio             = $infoColor['ratio'];

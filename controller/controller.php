@@ -300,6 +300,24 @@ class controller
     }
 
 
+
+    public function getRest($url,$param=[])
+    {
+
+      $p = http_build_query($param);
+
+      $ch = curl_init($url.'?'.$p);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $data = curl_exec($ch);
+      curl_close($ch);
+
+      return json_decode($data, true);
+    }
+
+
+
     /**
      * un index string se transform en un jeu de clés associatives
      * @param  string $value [description]
@@ -312,7 +330,45 @@ class controller
         eval($imp);
 
         return (is_array($r))?$r:[];
+    }
 
+
+    public function arrayInput($array, $name="name", $class = 'form-control', $type="text", $key='', $allow=true, $reorder=true)
+    {
+      echo "<ul class='sortable' style='list-style:none; ' data-parent='[".$key."]'>";
+      if (is_array($array)) {
+        foreach ($array as $keyArr => $valueArr) {
+          if (is_array($valueArr)) {
+            foreach ($valueArr as $keyArr2 => $valueArr2)
+              $this->arrayInput($valueArr2, $name, $class, $type, $keyArr.']['.$keyArr2);
+          }
+          else{
+            $nameI = $name.'['.$key.'][]';
+            $value = $valueArr;
+
+            echo '<li><div class="input-group">';
+            if ($reorder)
+              echo "<div class='input-group-btn'><a href='#' class='btn-secondary handle btn'><i class='fa fa-list'></i></a></div>";
+            echo '<input name="'.$nameI.'" type="'.$type.'" value="'.$value.'" class="'.$class.'" />';
+            if ($allow)
+              echo "<div class='input-group-btn'><a href='#' class='btn-secondary btn-del btn' data-target='li'><i class='fa fa-remove'></i></a></div>";
+            echo '</div></li>';
+            }
+        }
+      }
+      else{
+        $nameI = $name.'[]';
+        $value = $array;
+
+        echo '<li><div class="input-group">';
+        if ($reorder)
+          echo "<div class='input-group-btn'><a href='#' class='btn-secondary handle btn'><i class='fa fa-list'></i></a></div>";
+        echo '<input name="'.$nameI.'" type="'.$type.'" value="'.$value.'" class="'.$class.'" />';
+        if ($allow)
+          echo "<div class='input-group-btn'><a href='#' class='btn-secondary btn-del btn' data-target='li'><i class='fa fa-remove'></i></a></div>";
+        echo '</div></li>';
+      }
+      echo "</ul>";
     }
 
 
@@ -336,13 +392,14 @@ class controller
      * @param  string $css   class css du bouton
      * @return [type]        le bouton
      */
-    public function btn_sui($title='', $key, $sui = "false", $css = ' btn btn-sm ')
+    public function btn_sui($title='', $key, $sui = "true", $css = ' btn btn-sm ')
     {
         $attr = [
-            'class'        => 'btn-sui btn-sui-'.$key.' '.$css,
-            'data-k'       => $key,
-            'data-sui' => $this->suiSession($sui) ?? $sui,
-            'data-cb' => 'sui'.ucfirst($key)
+            'href'     => '#',
+            'class'    => 'btn-sui btn-sui-'.$key.' '.$css,
+            'data-k'   => $key,
+            'data-sui' => $sui,
+            'data-cb'  => 'sui'.ucfirst($key)
         ];
 
         $attr['class'] .= ($this->suiSession($key)=='true')?' active':'';
@@ -352,6 +409,53 @@ class controller
         echo ">";
         echo $title;
         echo "</a>";
+    }
+
+
+    /**
+     * Créer un radio sui
+     * @param  string $title
+     * @param  [type] $key   la clé d'id de sui
+     * @param  string $sui   [description]
+     * @param  string $css   class css du bouton
+     * @return [type]        le bouton
+     */
+    public function radio_sui($title='', $key, $sui = "false", $css = '  ')
+    {
+        $attr = [
+          'type'     => 'radio',
+          'id'       => 'sui-'.$key.'-'.$sui,
+          'name'     => 'sui-'.$key,
+          'value'    => $sui,
+          'class'    => 'absolute',
+          'data-k'   => $key,
+          'data-sui' => $sui,
+          'data-cb'  => 'sui'.ucfirst($key)
+        ];
+
+
+        $attrLabel = [
+          'class'    => 'radio-sui btn btn-default radio-sui-'.$key.' '.$css,
+          'for'      => 'sui-'.$key.'-'.$sui,
+          'data-k'   => $key,
+          'data-sui' => $sui,
+          'data-cb'  => 'sui'.ucfirst($key)
+        ];
+
+        if ($this->suiSession($key)==$sui){
+          $attr['checked'] = 'checked';
+          $attrLabel['class'] .= ' active';
+        }
+
+        echo "<label ";
+        echo $this->attr($attrLabel);
+        echo ">";
+        echo $title;
+
+        echo "<input ";
+        echo $this->attr($attr);
+        echo ">";
+                echo "</label>";
     }
 
 
@@ -409,7 +513,7 @@ class controller
     /**
      * Get helper
      */
-    public function helper($msg='', $title = '', $content='<i class="fa fa-question"></i>', $css='btn btn-circle')
+    public function helper($msg='', $title = '', $content='<i class="fa fa-question"></i>', $css='btn btn-primary btn-circle')
     {
         echo '<div class="helper-container"><button type="button" class="btn-popover btn-helper '.$css.'" data-title="'.$title.'" data-toggle="popover" data-container=".helper-container" data-placement="top" data-content="'.$msg.'" data-trigger="hover | focus">
   '.$content.'
@@ -478,9 +582,14 @@ class controller
     /**
      * Bouton clipboard
      */
-    public function clipme($target="clipme")
+    public function clipme($target="clipme",$content="")
     {
-        echo '<button data-clipboard-target="#'.$target.'" class="btn btn-sm btn-scondary btn-clip"><i class="fa fa-clipboard"></i></button>';
+        echo '<button data-clipboard-target="#'.$target.'" class="btn btn-sm btn-secondary btn-clip"><i class="fa fa-clipboard"></i></button>';
+        if ($content!='') {
+          echo "<div id='".$target."' class='sm'>";
+          echo $content;
+          echo "</div>";
+        }
     }
 
 

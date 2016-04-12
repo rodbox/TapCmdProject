@@ -56,6 +56,20 @@ $(document).ready(function(){
       $('body').removeClass('onMaj');
     }
 
+    $.kaltClear =  function(){
+      var b = $('body');
+
+      b.removeClass('onMaj').attr('data-code-onmaj','false');
+      b.removeClass('onCtrl').attr('data-code-onctrl','false');
+      b.removeClass('onAlt').attr('data-code-onalt','false');
+      b.removeClass('onMajlock').attr('data-code-onmajlock','false');
+      b.removeClass('onTab').attr('data-code-ontab','false');
+      b.removeClass('onEsc').attr('data-code-onesc','false');
+      b.removeClass('onSpc').attr('data-code-onspc','false');
+      b.removeClass('onCmd').attr('data-code-oncmd','false');
+    }
+
+
 
     $.alt = function (){
         return ($.kalte('onAlt') );

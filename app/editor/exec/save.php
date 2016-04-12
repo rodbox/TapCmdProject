@@ -10,7 +10,7 @@ $app = new app();
 
     // exec name
     if (file_put_contents($dir, $content)) {
-        if ($_SESSION['app']['sui']['sync']=="true")
+        if ($_SESSION['app']['sui']['sync'] ?? false =="true")
             $uploadFile = $app->uploadFile($dir);
 
         $r = [

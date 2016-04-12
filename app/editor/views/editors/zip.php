@@ -1,0 +1,1 @@
+{{rb_zip_extract(file)}}{{file}}

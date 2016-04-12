@@ -1,7 +1,7 @@
 @cCm1 : lighten(@cSuccess1, 3%); // background cm
 @cCm2 : lighten(@cSuccess1, 7%); // selected cm
 @cCm3 : @cSuccess1; // color meta / background gunter
-@cCm4 : @cSuccess2; // color link bread
+@cCm4 : @clink2; // color link bread
 
 .cm,
 .CodeMirror{
@@ -9,6 +9,10 @@
     height: 100% !important;
     width: 100%;
     background-color: @cCm1 !important;
+    .CodeMirror-activeline-background,
+    .CodeMirror-activeline-gutter{
+        background-color: darken(@cCm1,5%) !important;
+    }
 
     .CodeMirror-selected{
         background-color:@cCm2 !important;
@@ -47,6 +51,31 @@
     }
     background-color: @cCm1 !important;
 
+}
+
+.CodeMirror-hints{
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: darken(@cCm1,5%) !important;
+    .no-shadow();
+    border:0px;
+    width: 350px;
+    .CodeMirror-hint{
+        background-color:   darken(@cCm1,5%) !important;
+        color:  @clink2 !important;
+        padding: 0.5rem 1rem ;
+        max-width: 100% !important;
+        &.CodeMirror-hint-active{
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            background-color:  extract(@colors, 4) !important;
+        }
+    }
 }
 
 .sui-editor{

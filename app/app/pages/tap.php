@@ -18,13 +18,18 @@
 <!-- END ROW  -->
 </div>
 <footer style="padding: 0.2rem;">
-    <div id="clipme3" class=" sm-2">php bin/console server:run<br></div>
-<div class="btn-group">
-    <?php $c->clipme('clipme3'); ?>
+<div class="input-group">
+    <a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-popup" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
+</div>
+</div>
+    <?php $c->clipme('clipme3','php bin/console server:run'); ?>
+
+    <div class="btn-group">
     <a href="<?php $c->urlExec('app','terminal') ?>" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Terminal</a>
     </div>
 <div class="btn-group">
     <a href="<?php $c->urlExec('app','sublime') ?>" id="sublime" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Sublime</a>
+    <a href="<?php $c->urlExec('app','manage') ?>" id="sublime" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term"><i class="fa fa-folder-o"></i></a>
     </div>
 <div class="btn-group">
     <a href="http://localhost:8888/phpMyAdmin/db_structure.php?db=db608615456&table" class="btn btn-primary btn-sm btn-popup">myAdmin</a>

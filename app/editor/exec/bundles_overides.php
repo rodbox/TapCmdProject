@@ -1,7 +1,7 @@
 <?php
 
       /**
-       * overides
+       * overides d'un bundle
        */
 
       $app             = new app();
@@ -9,19 +9,15 @@
 
       $bundlesIndex    = $app->getBundles();
       $cur             = $app->cur();
-      $bundleFrontName = ucfirst($cur).'Bundle';
-      $dir = $app->dirProject();
+      $dir             = $app->dirProject();
+
+      $bundleFrontName = 'FrontBundle';
       $bundleFront     = $bundlesIndex['src'][$bundleFrontName];
+      $bundleFrontDir  = $bundlesIndex['src'][$bundleFrontName]['dir'];
 
-      // $dirBundle             = $dir.'/'.$bundles['src'][$src]['dir'];
-      // $destOveride           = $dirBundle;
-      // $destOverideView       = $dirBundle.'/Resources/views';
-      // $destOverideForm       = $dirBundle;
-      // $destOverideEvent      = $dirBundle;
-      // $destOverideEntity     = $dirBundle.'/Entity';
-      // $destOverideListener   = $dirBundle.'/Listener';
-      // $destOverideController = $dirBundle.'/Controller';
-
+      $bundleAdminName = 'AdminBundle';
+      $bundleAdmin     = $bundlesIndex['src'][$bundleAdminName];
+      $bundleAdminDir  = $bundlesIndex['src'][$bundleAdminName]['dir'];
 
       /**
        * Le nouveau fichier du bundle src
@@ -32,14 +28,23 @@
           'NAMESPACE' => $bundleFront['namespace'],
           'VENDOR'    => "RBFrontBundle"
       ];
-      templateFile('bundle_overide.php', $dir.'/'.$bundleFront['dir'], $data, $bundleFrontName, true);
+      templateFile('bundle_overide.php', $dir.'/'.$bundleFrontDir, $data, $bundleFrontName, true);
 
       $list = $app->overideBundle('RBFrontBundle', $bundleFrontName);
 
+      /**
+       * Le nouveau fichier du bundle src
+       */
+      $data            = [
+          'SRC'       => $bundleAdminName,
+          'SRCDIR'    => $bundleAdmin['dir'],
+          'NAMESPACE' => $bundleAdmin['namespace'],
+          'VENDOR'    => "RBAdminBundle"
+      ];
+      templateFile('bundle_overide.php', $dir.'/'.$bundleAdminDir, $data, $bundleAdminName, true);
 
-      // foreach ($bundles as $key => $bundle) {
-      //   $files[] = $app->overideBundle($bundle);
-      // }
+      $list = $app->overideBundle('RBAdminBundle', $bundleAdminName);
+
 
 
       if (true) {

@@ -25,10 +25,11 @@
 @debugWHover: 60vw;
 @debugHHover: 60vh;
 
-@suggestFont: 1.2rem;
+@suggestH: 60;
+@suggestFont: 1.6rem;
 @suggestTop: 0rem;
-@suggestMarg: 20vw;
-@suggestW: 60vw;
+@suggestMarg: 00vw;
+@suggestW: 100vw;
 
 
 @editorHConsole: calc(~'100vh - '@consoleH' - '@headerH);
@@ -56,6 +57,59 @@
         }
     }
 }
+
+
+.sui-editor-grid{
+    overflow: hidden !important;
+}
+
+.sui-editor-grid{
+     display:none;
+     float:left;
+}
+
+[data-sui-editor-grid="1"]{
+    #sui-editor-grid-1{ display: block !important; width:100% !important;
+        height:100% !important;}
+}
+[data-sui-editor-grid="2"],
+[data-sui-editor-grid="3"],
+[data-sui-editor-grid="4"]{
+    .sui-editor-grid{
+        width:50% ;
+    }
+}
+
+[data-sui-editor-grid="3"],
+[data-sui-editor-grid="4"]{
+    .sui-editor-grid{
+        height:50% ;
+    }
+}
+
+[data-sui-editor-grid="2"]{
+    #sui-editor-grid-1{ display: block !important; }
+    #sui-editor-grid-2{ display: block !important; }
+}
+[data-sui-editor-grid="3"]{
+
+    #sui-editor-grid-3{ display: block !important; width:100% !important;}
+    #sui-editor-grid-2{ display: block !important; }
+    #sui-editor-grid-1{ display: block !important; }
+
+}
+[data-sui-editor-grid="4"]{
+    #sui-editor-grid-1{ display: block !important; }
+    #sui-editor-grid-2{ display: block !important; }
+    #sui-editor-grid-3{ display: block !important; }
+    #sui-editor-grid-4{ display: block !important; }
+}
+
+
+
+
+
+
 
 .sui-editor-parse{
      display:none;
@@ -116,24 +170,58 @@
     // display:none !important;
 }
 
+@cSuggest1:darken(@cPrimary2, 10%);
 
 .sui-suggest{
+    .animate(120);
+    .transY(-@suggestH,px);
     .fixed;
     top:@suggestTop;
     .z-max();
     width:@suggestW !important;
     margin-right: @suggestMarg !important;
     margin-left: @suggestMarg !important;
+
     &,
     input{
         font-size: @suggestFont !important;
     }
-    display:none;
+    input{
+        padding-left: 1.3rem !important;
+        padding-right: 1.3rem !important;
+    }
+
+
+    background-color: @cSuggest1 !important;
+
+    .btn,
+    .c-menu,
+    .input-group-btn,
+    .c-menu .form-control + .input-group-btn,
+    input.form-control{
+      background-color: transparent !important;
+    }
+}
+#suggest {
+    .list-group .list-group-item{
+        background-color: @cSuggest1 !important;
+        &.active{
+            background-color: lighten(@cSuggest1,10%) !important;
+        }
+         background-color: @cSuggest1 !important;
+            border-color: transparent;
+            &:hover{
+                background-color: lighten(@cSuggest1,3%) !important;
+            }
+            &.active{
+                background-color: lighten(@cSuggest1,5%) !important;
+            }
+    }
 }
 
 [data-sui-suggest="true"] {
     .sui-suggest{
-         display:block;
+         .transY(0,px);
     }
 }
 

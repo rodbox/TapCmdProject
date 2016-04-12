@@ -47,6 +47,43 @@ define("DIR_OVERIDES", DIR_VAR."/overides");
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 define("TERMINAL", "/Applications/Utilities/Terminal.app");
 
+ # on attribut un editeur en fonction de l'extension
+define("EDITOR", [
+    'default'         => 'default',
+    'txt'             => 'txt',
+    'md '             => 'txt',
+    'pdf'             => 'pdf',
+    'svg'             => 'img',
+    'jpg'             => 'img',
+    'jpeg'            => 'img',
+    'png'             => 'img',
+    'gif'             => 'img',
+    'php'             => 'code',
+    'yml'             => 'code',
+    'twig'            => 'code',
+    'js'              => 'code',
+    'css'             => 'code',
+    'less'            => 'code',
+    'html'            => 'code',
+    'htm'             => 'code',
+    'json'            => 'code',
+    'xml'             => 'code',
+    'ini'             => 'code',
+    'mp3'             => 'player',
+    'wav'             => 'player',
+    'zip'             => 'zip',
+    'sublime-snippet' => 'code'
+]);
+
+    # on attribut la source a envoyer a l'editeur en fonction de son type.
+define("EDITOR_SRC", [
+    'default' => 'content',
+    'txt'     => 'content',
+    'pdf'     => 'web',
+    'img'     => 'web',
+    'code'    => 'content',
+    'zip'     => 'dir'
+]);
 
 // SETTING
 

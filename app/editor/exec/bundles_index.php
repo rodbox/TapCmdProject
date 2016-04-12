@@ -113,6 +113,18 @@
             $readme = '';
 
 
+
+
+
+
+
+        // $url      = 'http://localhost:8000/dev';
+
+        // $RestRoutes   = $app->getRest($url,['req'=>'routes']);
+        // $RestBundles  = $app->getRest($url,['req'=>'bundles']);
+        // $RestServices = $app->getRest($url,['req'=>'services']);
+
+
         $bundle           = [
             'dir'         => $dirname,
             'file'        => $basename,

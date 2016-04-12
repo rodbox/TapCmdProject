@@ -1,0 +1,1 @@
+<textarea name="editor" id="" cols="30" rows="10" class="summernote form-control">{{text}}</textarea>

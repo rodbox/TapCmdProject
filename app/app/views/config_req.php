@@ -1,4 +1,3 @@
-<!-- NAVTABS : req  -->
 <!-- BEGIN NAVTABS : req  -->
 <ul class="nav nav-tabs" id="req">
     <li class="nav-item ">
@@ -27,18 +26,13 @@
     <!-- TABS 3  -->
     <div id="req-tab-3" class="tab-pane active">
     <?php $c->helper('La selection ce fait depuis le menu contextuel du fichier.'); ?>
-     /**
+<!--      /**
         * TODO : gestion des assets (supprimer, compiler, minifier)
+        **/ -->
 
-        **/
-        <pre>
-
-            <?php
-            print_r($d['assets']);
-?>
-        </pre>
+            <?php $c->arrayInput($d['assets'],'assets') ?>
     </div>
     <!-- END TABS 3  -->
 </div>
 <!-- END TABSCONTENT  -->
-<!-- END NAVTABS req -->
+<!-- END NAVTABS req

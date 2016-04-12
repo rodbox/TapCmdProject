@@ -6,24 +6,30 @@
           symfony new <?php echo $_GET['name'] ?><br>
           cd <?php echo $_GET['name'] ?> <br>
           curl https://getcomposer.org/composer.phar > composer.phar<br>
+          php composer.phar require doctrine/doctrine-fixtures-bundle "@dev"<br>
+          php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
+          php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
+          php composer.phar require coresphere/console-bundle "@dev"<br>
           php composer.phar require rodbox/rodboxcore "@dev"<br>
           php composer.phar require rodbox/rodboxbower "@dev"<br>
           php composer.phar require rodbox/rodboxtrans "@dev"<br>
           php composer.phar require rodbox/rodboxfront "@dev"<br>
+          php composer.phar require rodbox/rodboxuser "@dev"<br>
           php composer.phar require rodbox/rodboxadmin "@dev"<br>
           php composer.phar require rodbox/rodboxblog "@dev"<br>
-          php composer.phar require coresphere/console-bundle "@dev"<br>
+
           php composer.phar require rodbox/rodboxdev "@dev"<br>
-          php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
-          php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
+
           php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>
-          php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>
+
           php bin/console cache:clear<br>
          </div>
           <span class="input-group-btn">
             <?php $c->clipme('clipme1'); ?>
           </span>
     </div>
+</div><div class="form-group">
+    <?php $c->clipme('clipme2','php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>'); ?>
 </div>
 
 <div class="form-group">
@@ -33,18 +39,16 @@
 
 <?php $c->helper('Ne pas oublier de déplacer la ligne d\' include dans le fichier config','Installation des éléments bower','3'); ?>
 <div class="form-group">
-    <div class="input-group">
-          <div id="clipme2" class="form-control sm-2">bower install jquery<br>
-          bower install bootstrap#v4.0.0-alpha.2<br>
-          bower install select2<br>
-          bower install https://github.com/moxiecode/plupload.git<br>
-          bower install font-awesome<br>
-          php bin/console cache:clear
-         </div>
-          <span class="input-group-btn">
-            <?php $c->clipme('clipme2'); ?>
-          </span>
-    </div>
+<?php
+  $content = "bower install jquery<br>
+  bower install bootstrap#v4.0.0-alpha.2<br>
+  bower install select2<br>
+  bower install https://github.com/moxiecode/plupload.git<br>
+  bower install font-awesome<br>
+  bower install html.sortable --save<br>
+  ";
+$c->clipme('clipme3', $content);
+?>
 </div>
 
 <div class="form-group">

@@ -187,7 +187,7 @@ $(document).ready(function($) {
             var offset   = t.offset();
             var position = t.position();
             suggest.css({
-                top:offset.top + t.outerHeight() + 5,
+                top:10 + t.outerHeight() + 5,
                 left: offset.left
             });
             $('body').append(suggest);

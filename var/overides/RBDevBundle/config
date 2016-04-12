@@ -1,0 +1,1 @@
+    - { resource: "@RBDevBundle/Resources/config/services.yml" }

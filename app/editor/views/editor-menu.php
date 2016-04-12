@@ -8,6 +8,6 @@
 
 <!-- NAVTABS : titleTabs  -->
 <!-- BEGIN NAVTABS : titleTabs  -->
-<ul class="nav nav-tabs" id="filesTabs">
+<ul class="nav nav-tabs nav-tabs-editor" id="filesTabs">
 
 </ul>

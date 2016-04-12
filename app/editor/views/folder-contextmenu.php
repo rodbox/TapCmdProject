@@ -25,6 +25,6 @@
                 <option value="json.json">json</option>
                 <option value="style.less">less</option> -->
             </select></div>
-            <button class="btn btn-primary btn-sm" type="submit">Créer</button>
+            <button class="btn btn-success btn-sm" type="submit">Créer</button>
 
 </form>

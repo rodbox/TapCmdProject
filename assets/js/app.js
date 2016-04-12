@@ -108,7 +108,7 @@ $(document).ready(function($) {
 
     $(document).on("click",".btn-canvas",function (e){
         e.preventDefault();
-        var t = $(this);
+        var t        = $(this);
 
         var canvasId = t.attr("data-canvas");
         var img      = document.getElementById(canvasId);
@@ -206,6 +206,17 @@ $(document).ready(function($) {
     });
 
 
+    $(document).on("click",".btn-del",function (e){
+        e.preventDefault();
+        var t = $(this);
+        if(confirm('Confirmer ?'))
+            t.parents(t.data('target')).remove();
+
+    })
+
+
+
+
     $(document).on("mouseup mousedown",".btn-cmd",function (e){
         if(e.type=='mousedown')
             $(this).addClass('onPress');
@@ -263,6 +274,7 @@ $(document).ready(function($) {
 
         if(pop.window.focus){pop.window.focus();}
 
+        $.kaltClear();
     })
 
 
@@ -375,6 +387,20 @@ $(document).ready(function($) {
             $(cont+' .input-colors').colorpicker();
             $(cont+' .select2').select2();
             $(cont+' .btn-popover').popover();
+            $(cont+' .sortable').sortable({
+                connectWith: '.sortable'
+            }).on('sortupdate', function(e, obj){
+                // console.log('Parent old: ');
+                // console.log(obj.startparent);
+                // console.log('Parent new: ');
+                console.log($(obj.endparent));
+                console.log($(obj.item));
+                // console.log('Index: '+obj.oldindex+' -> '+obj.index);
+                // console.log('elementIndex: '+obj.oldElementIndex+' -> '+obj.elementIndex);
+            });
+
+            $('#filesTabs').sortable();
+
         },
         redirect: function (app, page, data){
             var app  = $.def(app, 'app');
@@ -383,11 +409,11 @@ $(document).ready(function($) {
             window.location.href = $.generate.url.page(app, page, data);
         },
         modal: function (app, page, data, modal){
-            var app  = $.def(app, 'app');
-            var page = $.def(page, 'index');
-            var data = $.def(data, {});
+            var app   = $.def(app, 'app');
+            var page  = $.def(page, 'index');
+            var data  = $.def(data, {});
             var modal = $.def(modal, 'modalLg2');
-            var url = $.generate.url.page(app, page, data);
+            var url   = $.generate.url.page(app, page, data);
             $.modal(page, url, data, modal,$('.loadLock'));
         }
 
@@ -471,6 +497,7 @@ $(document).ready(function($) {
 
 
 
+
     /**
      * Generate url for app
      */
@@ -493,6 +520,16 @@ $(document).ready(function($) {
             }
         }
     }
+
+
+    /**
+    * TODO : Faire un systeme d'index pour stocker list plutot qu'au chargement de la page
+    **/
+    $.get($.generate.url.exec('app','dev'), function(json) {
+        $.routes   = json.routes;
+        $.bundles  = json.bundles;
+        $.services = json.services;
+    },'json');
 
 
     $.def = function (value, defaultValue){
@@ -525,6 +562,13 @@ $(document).ready(function($) {
         Chrome : !!window.chrome && !!window.chrome.webstore,
         Blink : (isChrome || isOpera) && !!window.CSS,
     }
+
+
+
+    $('.nav-tabs-editor').sortable();
+
+
+
 
 });
 

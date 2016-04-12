@@ -57,7 +57,21 @@ $(document).ready(function($) {
 		e.preventDefault();
 		var t = $(this);
 		t.toggleClass('active');
-		$.sui.set(t.attr('data-k'),t.hasClass('active'));
+		var value = (t.hasClass('active'))?t.attr('data-sui'):false;
+		$.sui.set(t.attr('data-k'),value);
+
+		if (t.data('cb'))
+            $.cb['app'][t.data('cb')](t, e);
+
+	});
+
+
+	$(document).on("change", ".radio-sui input", function (e){
+		e.preventDefault();
+		var t = $(this);
+		// t.toggleClass('active');
+		var value = t.val();
+		$.sui.set(t.attr('data-k'),value);
 
 		if (t.data('cb'))
             $.cb['app'][t.data('cb')](t, e);

@@ -92,9 +92,31 @@
         </div>
     </div>
     <!-- end input : ftp_port -->
-    <div class="btn-group col-sm-offset-3 col-sm-9">
-        <a href="<?php $c->urlExec('app','db_test') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="Test">Test</a>
+    <div class="col-sm-offset-3 col-sm-9">
+    <div class="btn-group">
+
         <a href="<?php $c->urlExec('app','db_create') ?>" class="btn btn-primary btn-sm btn-exec" data-form="#form-config" title="Create">Create</a>
+        </div>
+<hr>
+
+
     </div>
+
+    <!-- BEGIN ROW  -->
+    <div class="row ">
+        <div for="fixture" class="col-sm-3 form-control-label text-right"><?php $c->clipme('fixture'); ?></div>
+        <div  class="col-sm-9"><p id="fixture">php bin/console doctrine:fixtures:load</p></div>
+    </div>
+    <!-- END ROW  -->
+ <!-- BEGIN ROW  -->
+    <div class="row ">
+        <div for="update" class="col-sm-3 form-control-label text-right"><?php $c->clipme('update'); ?></div>
+        <div  class="col-sm-9"><p id="update">php bin/console doctrine:schema:update --force</p></div>
+    </div>
+    <!-- END ROW  -->
+
+
+
+
 
 </fieldset>

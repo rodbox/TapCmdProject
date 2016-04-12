@@ -9,6 +9,7 @@
         <title><?php $c->title(); ?></title>
         <link href="assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
         <link href="assets/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" >
+        <link href="assets/vendor/select2/dist/css/select2.min.css" rel="stylesheet" >
         <!-- <link href="assets/vendor/checkdown/dist/css/checkdown.css" rel="stylesheet"> -->
         <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <!-- <link href="assets/vendor/wtf-forms/wtf-forms.css" rel="stylesheet"> -->
@@ -31,7 +32,7 @@
         <?php $c->view('app','modal'); ?>
         <script type="text/javascript" src="assets/vendor/tether/dist/js/tether.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
-
+        <script type="text/javascript" src="assets/vendor/html.sortable/dist/html.sortable.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/select2/dist/js/select2.full.min.js" ></script>
         <script src="assets/vendor/clipboard/dist/clipboard.min.js" ></script>
         <script src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>

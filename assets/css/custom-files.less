@@ -5,24 +5,33 @@
 
 @exts : php, js, css, less, twig, md, dist, json, yml, htaccess;
 @Cexts: #4884FF,#7B23A2,#ED1EFF,#FA7EFF,#6DFF2B,#C4C8CD,#FF8F00, #00AF26, #FF4C00, #1B1B18;
+
+
+
+
+
 .navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close, .navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close i
 {
-    color: darken(extract(@colors, 5),55%) !important;
+    color: @clink2 !important;
 }
 
 a.unstar,
 a.editor-close{
     float:left;
-    opacity : 0.05;
+    // opacity : 0.05;
 }
-.sui-editor .submenu .file-open-title a.btn-sh{
-    color: darken(extract(@colors, 5),25%) !important;
+
+.sui-editor .submenu .file-open-title {
+    &,
+    a.btn-sh{
+        color: @clink2 !important;
+    }
 }
 
 .navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor,
 .btn-trigger,
 .btn-f-edit {
-    color: darken(extract(@colors, 5),25%) !important;
+    color: @clink2 !important;
     &:hover{
         color: extract(@colors, 5);
     }
@@ -85,7 +94,7 @@ a.editor-close{
         a {
             padding: 0.275rem 0.375rem;
             line-height: 1.3rem;
-            display: block;
+
             &:active,
             &:focus,
             &:hover{
@@ -101,6 +110,10 @@ a.editor-close{
                 color: @cSuccess2;
             }
 
+            &.btn-f-edit,
+            &.btn-f-explore {
+                display: block;
+            }
             &.btn-f-explore {
 
                 &:before{
@@ -167,6 +180,16 @@ a.editor-close{
 .sui-sidebar-body{
     padding:1.2rem 1rem;
 }
+
+
+.navbar #filesTabs.nav-tabs .nav-item .nav-link{
+    &.active{
+
+
+    }
+}
+
+
 .navbar{
     #filesTabs.nav-tabs{
         margin-top: 0px !important;
@@ -182,7 +205,7 @@ a.editor-close{
                 border-color: transparent !important;
                 padding-right: 2rem !important;
                 color: darken(@cSuccess2,30%) !important;
-
+                border-top-width: 2px !important;
                 + .editor-close{
                     position: absolute;
                     right:0.8rem;
@@ -194,7 +217,7 @@ a.editor-close{
                     }
                 }
                 &.active{
-                    border-color: transparent !important;
+                    border-top-color:darken(@cSpecial, 40%) !important;
                     background-color: @cSuccess1 !important;
                     color: @cSuccess2 !important;
                 }
@@ -209,5 +232,44 @@ form{
         min-height: 100px;
         border-radius: 4px;
         border: 3px dashed rgba(255,255,255,0.05);
+    }
+}
+
+
+.only-asset{
+    display: none;
+}
+.src div[data-file$=".js"],
+.src div[data-file$=".css"],
+.src div[data-file$=".jpeg"],
+.src div[data-file$=".jpg"],
+.src div[data-file$=".png"]
+{
+    .only-asset{
+        display:block !important;
+    }
+}
+
+
+.only-img{
+    display:none;
+}
+div[data-file$=".jpeg"],
+div[data-file$=".jpg"],
+div[data-file$=".png"]
+{
+    .only-img{
+        display:block !important;
+    }
+}
+
+
+.only-bundle{
+    display:none;
+}
+
+div[data-file$="Bundle.php"]{
+    .only-bundle{
+        display:block !important;
     }
 }
