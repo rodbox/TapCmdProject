@@ -17,6 +17,7 @@
         <link href="assets/vendor/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" >
         <link href="app/editor/assets/css/app-circlemenu.css" rel="stylesheet">
         <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/vendor/notiny/dist/notiny.min.css" rel="stylesheet">
         <!-- <link href="assets/vendor/wtf-forms/wtf-forms.css" rel="stylesheet"> -->
         <link href="assets/css/icomoon/style.css" rel="stylesheet">
 
@@ -45,7 +46,10 @@
 
         <?php $c->view('app','sui_nav'); ?>
 
+<!--  -->
+
         <script type="text/javascript" src="assets/vendor/tether/dist/js/tether.min.js" ></script>
+        <script type="text/javascript" src="assets/vendor/notiny/dist/notiny.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
 
 
@@ -70,7 +74,7 @@
 
         <!-- Code mirror JS-->
         <script type="text/javascript" src="assets/vendor/codemirror/lib/codemirror.js"></script>
-            <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/show-hint.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/show-hint.js"></script>
         <!-- Addon codemirror -->
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/jumpToLine.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/searchcursor.js"></script>
@@ -99,18 +103,16 @@
         <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/anyword-hint.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/javascript-hint.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/xml-hint.js"></script>
-
-
         <!-- Code mirror keymap -->
         <script type="text/javascript" src="assets/vendor/codemirror/keymap/sublime.js"></script>
         <!-- end Code mirror -->
 
 <!-- XQuery -->
-    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/xquery-commons.js"></script>
-    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.js"></script>
-    <link rel="stylesheet" href="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.css">
-    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-templates.js"></script>
-    <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/mode/xquery/xquery.js"></script>
+        <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/xquery-commons.js"></script>
+        <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.js"></script>
+        <link rel="stylesheet" href="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-hint.css">
+        <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/addon/hint/xquery-templates.js"></script>
+        <script src="assets/vendor/CodeMirror-XQuery/codemirror-xquery/mode/xquery/xquery.js"></script>
 <!-- XQuery -->
 
         <script type="text/javascript" src="app/editor/assets/js/app-codemirror.js"></script>

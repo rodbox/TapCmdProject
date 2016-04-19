@@ -15,7 +15,7 @@ $app = new app();
 
         $r = [
             'infotype' => "success",
-            'msg'      => "ok exec name",
+            'msg'      => "<strong><i class='fa fa-floppy-o'></i> ".basename($dir)."</strong> enregistré",
             'id'       => $id
         ];
     }

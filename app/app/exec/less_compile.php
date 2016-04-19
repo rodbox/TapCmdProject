@@ -40,7 +40,7 @@
 
         $r           = [
             'infotype' => "success",
-            'msg'      => "ok exec less compile",
+            'msg'      => "Less Compilation",
             'project'=>$imported_files
 
         ];

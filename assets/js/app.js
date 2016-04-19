@@ -38,7 +38,7 @@ $(document).ready(function($) {
 
             $.post(t.attr('href'), data, function(json) {
                 $(t.data('target')).html(json.shell);
-                $.lock.success(t,json.msg);
+                $.lock.success(t);
 
                 $(".cmd-item")
                     .removeClass('active')
@@ -93,7 +93,7 @@ $(document).ready(function($) {
             $.lock.on(t);
 
             $.post(t.attr('href'), data, function(json) {
-                $.lock[json.infotype](t);
+                $.lock[json.infotype](t, json.msg);
 
                 $.a(t, json); // target view
                 $.cbt(t, json, e); // callback t
@@ -385,13 +385,14 @@ $(document).ready(function($) {
             var cont = (container != undefined)?container:'body';
 
             $(cont+' .input-colors').colorpicker();
-            $(cont+' .select2').select2();
             $(cont+' .btn-popover').popover();
+            $(cont+' .select2').select2();
+
             $(cont+' .sortable').sortable({
                 connectWith: '.sortable'
             }).on('sortupdate', function(e, obj){
                 // console.log('Parent old: ');
-                // console.log(obj.startparent);
+                console.log(obj.startparent);
                 // console.log('Parent new: ');
                 console.log($(obj.endparent));
                 console.log($(obj.item));
@@ -449,6 +450,8 @@ $(document).ready(function($) {
                 t.removeClass('lock-warning');
                 t.removeClass('lock-alert');
                 t.removeClass('lock-success');
+
+
             },200);
         },
         alert:function(t, msg){
@@ -471,8 +474,7 @@ $(document).ready(function($) {
             t.removeClass('onLoad');
             t.addClass('lock-error');
             if (msg != undefined)
-                t.append(' '+msg);
-
+                $.notiny({ text: msg, position: 'right-top',theme: 'light' });
             setTimeout(function(){
                 $.lock.off(t);
             },5000);
@@ -483,9 +485,9 @@ $(document).ready(function($) {
             t.html(success);
             t.removeClass('onLoad');
             t.addClass('lock-success');
-            if (msg != undefined)
-                t.append(' '+msg);
 
+            if (msg != undefined)
+                $.notiny({ text: msg, position: 'right-top',theme: 'light' });
             setTimeout(function(){
                 $.lock.off(t);
             },2000);
@@ -565,7 +567,9 @@ $(document).ready(function($) {
 
 
 
-    $('.nav-tabs-editor').sortable();
+    $('.nav-tabs-editor').sortable({
+                connectWith: '.sortable'
+            });
 
 
 

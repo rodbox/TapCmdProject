@@ -2,9 +2,9 @@
 // Title : starto
 // Date : 11 03 2016 - 01:56
 // @colors : #D8D8D8, #EDEDED, #F16000, #2E3139, #9AA7AD;
-@colors : #D8D8D8, #EDEDED, #F16000, #282A32, #9AA7AD;
+@colors : #D8D8D8, #EDEDED, #F16000, #282A32, #9AA7AD, #171817, #7F807F;
 // @colors : #D8D8D8, #EDEDED, #F16000, #2F3E47, #9AA7AD;
-@names : color-3, color-0, color-1, color-2, color-4;
+@names : color-3, color-0, color-1, color-2, color-4, color-5, color-6;
 
 
 
@@ -14,8 +14,8 @@
 @cDefault1:extract(@colors,2);
 @cDefault2:extract(@colors,5);
 
-@cInverse1:extract(@colors,1);
-@cInverse2:extract(@colors,4);
+@cInverse1:extract(@colors,7);
+@cInverse2:extract(@colors,6);
 
 @cSuccess1:extract(@colors,4);
 @cSuccess2:extract(@colors,2);
@@ -58,7 +58,7 @@
 @cTable2:@cInverse2;
 
 @clink1: extract(@colors, 5);
-@clink2: darken(@clink1,15%);
+@clink2: @cInverse1;
 
 
 

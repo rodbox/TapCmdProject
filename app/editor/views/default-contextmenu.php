@@ -17,6 +17,9 @@ Déplacer</a> -->
  <a href="<?php $c->urlExec('editor','overide_archive',['file'=>$_GET['dir'].'/'.$_GET['file']]) ?>" class="list-group-item only-src btn-exec" title="LessMaster"><i class="fa fa-angle-right"></i>
  Archiver</a>
 
+ <a href="<?php $c->urlExec('editor','fixture_me',['file'=>$_GET['dir'].'/'.$_GET['file']]) ?>" class="list-group-item only-entity btn-exec" title="Fixture"><i class="fa fa-angle-right"></i>
+ Fixture</a>
+
 <form action="<?php $c->urlExec('editor','bundle_overide',['file'=>$_GET['dir'].'/'.$_GET['file']]) ?>" class="only-bundle form-live">
 <?php $c->view("editor","vendor","bundles"); ?>
  <button type="submit" class="list-group-item " title="Overide"><i class="fa fa-angle-right"></i>

@@ -1,6 +1,6 @@
-@cCm1 : lighten(@cSuccess1, 3%); // background cm
-@cCm2 : lighten(@cSuccess1, 7%); // selected cm
-@cCm3 : @cSuccess1; // color meta / background gunter
+@cCm1 : lighten(@cInverse2, 3%); // background cm
+@cCm2 : lighten(@cInverse2, 7%); // selected cm
+@cCm3 : @cInverse2; // color meta / background gunter
 @cCm4 : @clink2; // color link bread
 
 .cm,
@@ -8,7 +8,7 @@
     .no-border;
     height: 100% !important;
     width: 100%;
-    background-color: @cCm1 !important;
+    background-color: @cInverse2 !important;
     .CodeMirror-activeline-background,
     .CodeMirror-activeline-gutter{
         background-color: darken(@cCm1,5%) !important;

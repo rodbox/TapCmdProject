@@ -218,7 +218,7 @@ a.editor-close{
                 }
                 &.active{
                     border-top-color:darken(@cSpecial, 40%) !important;
-                    background-color: @cSuccess1 !important;
+                    background-color: @cInverse2 !important;
                     color: @cSuccess2 !important;
                 }
             }
@@ -234,11 +234,22 @@ form{
         border: 3px dashed rgba(255,255,255,0.05);
     }
 }
-
-
+.only-img,
+.only-bundle,
+.only-entity,
 .only-asset{
     display: none;
 }
+
+
+.Entity{
+    .only-entity{
+        display:block !important;
+    }
+}
+
+
+.src div[data-file$=".ttf"],
 .src div[data-file$=".js"],
 .src div[data-file$=".css"],
 .src div[data-file$=".jpeg"],
@@ -250,10 +261,6 @@ form{
     }
 }
 
-
-.only-img{
-    display:none;
-}
 div[data-file$=".jpeg"],
 div[data-file$=".jpg"],
 div[data-file$=".png"]
@@ -263,10 +270,6 @@ div[data-file$=".png"]
     }
 }
 
-
-.only-bundle{
-    display:none;
-}
 
 div[data-file$="Bundle.php"]{
     .only-bundle{

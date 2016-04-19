@@ -61,5 +61,5 @@ $c->clipme('clipme3', $content);
 </div>
 <div class="form-group">
 <?php $c->helper('Bower','Base de donnée','6'); ?>
-<a href="<?php $c->urlPage('app','config'); ?>" id="paramproject" class="btn-modal btn btn-primary" title="Paramètres" data-form="#form-project"  data-backdrop="static" data-modal="modalSm"><i class="fa fa-cog"></i> Paramètres</a>
+<a href="<?php $c->urlExec('app','sublime'); ?>" id="paramproject" data-cb="refresh" class="btn btn-primary" title="Ouvrir" >Ouvrir</a>
 </div>

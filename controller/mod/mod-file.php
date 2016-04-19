@@ -197,6 +197,9 @@
 
     function templateFile($templateFile, $targetDir, $data = [], $newFileName = "", $force = false)
     {
+
+        $fs = new Filesystem();
+
         $src             = DIR_TEMPLATE . "/files/" . $templateFile;
         $info            = pathinfo($templateFile);
 
@@ -206,6 +209,9 @@
         $contentTemplate = file_get_contents($src);
 
         $dest            = $targetDir . "/" . $newFileName . "." . $info["extension"];
+
+        if (!is_dir($targetDir))
+            $fs->mkdir($targetDir);
 
         $content = replaceContent($contentTemplate, $data);
 

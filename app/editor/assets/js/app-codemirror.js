@@ -75,11 +75,6 @@ $(document).ready(function($) {
                 //     cm.showHint({hint: CodeMirror.hint.anyword});
                 //   };
 
-
-
-
-
-
                 /* Mise a jour du textarea d'origine */
                 $.editors[id].on("change",function(editor, change){
                         $.editors[id].save();
@@ -137,7 +132,7 @@ $(document).ready(function($) {
         }
 
         $.post(t.attr('href'), data, function(json, textStatus, xhr) {
-            $.lock[json.infotype](t);
+            $.lock[json.infotype](t, json.msg);
 
             if(t.data('cb'))
                 $.cb['editor'][t.data('cb')](t, json, e);

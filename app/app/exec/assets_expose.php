@@ -16,6 +16,7 @@ $dirExposeAdmin = $dirExpose;
 
 $dirExposeFrontJS  = $dirExposeFront;
 $dirExposeFrontCSS = $dirExposeFront;
+$dirExposeFrontTTF = $dirExposeFront;
 $dirExposeFrontIMG = $dirExposeFront;
 $dirExposeAdminJS  = $dirExposeAdmin;
 $dirExposeAdminCSS = $dirExposeAdmin;
@@ -28,6 +29,7 @@ $fs             = new Filesystem();
 $front          = $assets['front'] ?? [];
 $frontJS        = $assets['front']['js'] ?? [];
 $frontCSS       = $assets['front']['css'] ?? [];
+$frontTTF       = $assets['front']['ttf'] ?? [];
 $frontPNG       = $assets['front']['png'] ?? [];
 $frontJPG       = $assets['front']['jpg'] ?? [];
 $frontGIF       = $assets['front']['gif'] ?? [];
@@ -45,6 +47,19 @@ foreach ($frontJS as $key => $value) {
     $info            = pathinfo($value);
     if($merge)
         $contentFrontJS .= file_get_contents($dir.'/'.$value);
+    else
+        $fs->copy($dirProject.'/'.$value, $dirExposeBundle, true);
+}
+
+
+$contentFrontTTF = '';
+foreach ($frontTTF as $key => $value) {
+    $dir             = $dirExposeFrontTTF;
+    $dirBundle       = preg_replace(['/src/','/Resources/','/public/'],'',$value);
+    $dirExposeBundle = $dir.'/'.$dirBundle;
+    $info            = pathinfo($value);
+    if($merge)
+        $contentFrontTTF .= file_get_contents($dir.'/'.$value);
     else
         $fs->copy($dirProject.'/'.$value, $dirExposeBundle, true);
 }
@@ -121,7 +136,7 @@ if (true) {
 
     $r = [
         'infotype' => "success",
-        'msg'      => "ok less master"
+        'msg'      => "Resources exposés"
     ];
 }
 

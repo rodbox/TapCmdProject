@@ -18,10 +18,7 @@
 <!-- END ROW  -->
 </div>
 <footer style="padding: 0.2rem;">
-<div class="input-group">
-    <a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-popup" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
-</div>
-</div>
+<a href="<?php $c->urlPopup('app','iframe') ?>" class="btn btn-popup pull-right" data-cb="false" title="term" data-popup="iframe" id="iframe"><i class="fa fa-eye"></i></a>
     <?php $c->clipme('clipme3','php bin/console server:run'); ?>
 
     <div class="btn-group">
