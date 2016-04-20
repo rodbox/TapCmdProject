@@ -9,10 +9,6 @@ $(document).ready(function($) {
             alert(json.msg);
         },
         setEditor: function (t, json, e){
-            // $('.files .active').removeClass('active');
-            // t.addClass('active');
-            // t.attr('data-editor',json.id)
-
             var ext   = t.attr('data-ext');
             var mode  = ($.mode[ext]==undefined)?'default':$.mode[ext];
 
@@ -29,6 +25,41 @@ $(document).ready(function($) {
             $.protect.off(json.id);
             sessionStorage.setItem(json.id,json.content);
             $.sui.set('cm',$.editor.getOption('mode'));
+            $.cb.editor.tabSortable();
+        },
+        tabSortable: function (){
+            $('.nav-tabs-editor').sortable('destroy');
+            $('.nav-tabs-editor').sortable({
+                connectWith: '.nav-tabs-editor',
+            }).bind('sortupdate', function(e, ui) {
+
+                // if (ui.endparent != ui.startparent)
+                //     $(ui.startparent).find('> li').last().find('a').trigger('click')
+
+                var item        = $(ui.item);
+
+                var editorID    = item.attr('data-editor');
+                $.cm.destroy(editorID);
+
+                var tabLink     = $(ui.item).find('.nav-link');
+                var itemContent = $(tabLink.attr('href'));
+
+                itemContent.remove();
+                var content     = itemContent.clone();
+                var parent      = item.parents('.sui-editor-grid').find('.tab-content');
+
+                parent.append(content);
+                $.cm.init(editorID);
+                tabLink.trigger('click');
+
+                var data = {
+                    id:editorID,
+                    pane:parent.attr('data-pane-id')
+                };
+                var url = $.generate.url.exec('editor','ws_upd');
+                $.post(url, data);
+            });
+            // END : sortable system
         },
         toggleFolder: function (t, json, e){
             t.addClass('loaded');
@@ -142,12 +173,12 @@ $(document).ready(function($) {
             });
         },
         editor_init: function (t, json, e){
-            $('.files-editor.nav-link').removeClass('active').attr('aria-expanded','false');
-            $('.files-editor.tab-pane').removeClass('active').attr('aria-expanded','false');
+            var grid = $('.editor-'+json.id+'.nav-link').parents('.sui-editor-grid');
+
+            grid.find('.files-editor.nav-link').removeClass('active').attr('aria-expanded','false');
+            grid.find('.files-editor.tab-pane').removeClass('active').attr('aria-expanded','false');
             $('.editor-'+json.id+'.nav-link').addClass('active').attr('aria-expanded','true');
             $('.editor-'+json.id+'.tab-pane').addClass('active').attr('aria-expanded','true');
-
-
 
             /**
              * Fix scroll on open

@@ -8,12 +8,12 @@ $.shortcut={
 
         if(e.keyCode == 83 && $.kalte("onCmd")){
             e.preventDefault();
-            $('#editorSave').trigger('click');
+             $('.editorSave').trigger('click');
         }
 
         else if(e.keyCode == 82 && $.kalte("onAlt")){
             e.preventDefault();
-            $('#editorSave').trigger('click');
+            $('.editorSave').trigger('click');
         }
         else if($.kalte("onCmd") && $.kalte("onAlt")){
             e.preventDefault();

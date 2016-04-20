@@ -456,11 +456,11 @@ class app extends controller
         return $this->setJson($dir, $ws);
     }
 
-    public function addWorkspace($index, $value ,$key = '')
+    public function addWorkspace($index, $value ,$key = '', $doublon = false)
     {
         $ws = $this->getWorkspace();
 
-        if (!in_array($value, $ws[$index] ?? [])){
+        if (!in_array($value, $ws[$index] ?? []) || $doublon){
             if ($key =='')
                 $ws[$index][] = $value;
             else

@@ -488,6 +488,7 @@ $(document).ready(function($) {
 
             if (msg != undefined)
                 $.notiny({ text: msg, position: 'right-top',theme: 'light' });
+
             setTimeout(function(){
                 $.lock.off(t);
             },2000);
@@ -567,9 +568,7 @@ $(document).ready(function($) {
 
 
 
-    $('.nav-tabs-editor').sortable({
-                connectWith: '.sortable'
-            });
+
 
 
 

@@ -18,7 +18,7 @@ if (true) {
 
     $r = [
         'infotype' => "success",
-        'msg'      => "ok exec name",
+        'msg'      => "Todo check",
         'data'     => $todo_list,
         'todo'     => $todo_list[$k]
     ];

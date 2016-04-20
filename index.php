@@ -69,14 +69,14 @@
 
         <script type="text/javascript" src="app/editor/assets/js/app-cb.js"></script>
         <script type="text/javascript" src="app/editor/assets/js/app-file.js"></script>
-        <script type="text/javascript" src="app/editor/assets/js/app-filter.js"></script>
+        <!-- <script type="text/javascript" src="app/editor/assets/js/app-filter.js"></script> -->
         <script type="text/javascript" src="app/editor/assets/js/app-codemirror-circlemenu.js"></script>
 
         <!-- Code mirror JS-->
         <script type="text/javascript" src="assets/vendor/codemirror/lib/codemirror.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/show-hint.js"></script>
         <!-- Addon codemirror -->
-        <script type="text/javascript" src="assets/vendor/codemirror/addon/search/jumpToLine.js"></script>
+        <script type="text/javascript" src="assets/vendor/codemirror/addon/search/jump-to-line.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/searchcursor.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/search/search.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/dialog/dialog.js"></script>

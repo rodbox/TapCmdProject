@@ -7,10 +7,19 @@
 @Cexts: #4884FF,#7B23A2,#ED1EFF,#FA7EFF,#6DFF2B,#C4C8CD,#FF8F00, #00AF26, #FF4C00, #1B1B18;
 
 
+.nav-tabs-editor{
+    .sortable-placeholder{
+        height: 31px !important;
+        background-color: fade(@cSpecial, 5%);
+        position: relative;
+        float:left;
+        width: 150px;
+        margin:0px !important;
+    }
+}
 
 
-
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close, .navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close i
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close, .navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close i
 {
     color: @clink2 !important;
 }
@@ -28,7 +37,7 @@ a.editor-close{
     }
 }
 
-.navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor,
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link.files-editor,
 .btn-trigger,
 .btn-f-edit {
     color: @clink2 !important;
@@ -182,7 +191,7 @@ a.editor-close{
 }
 
 
-.navbar #filesTabs.nav-tabs .nav-item .nav-link{
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link{
     &.active{
 
 
@@ -191,7 +200,7 @@ a.editor-close{
 
 
 .navbar{
-    #filesTabs.nav-tabs{
+    .nav-tabs-editor.nav-tabs{
         margin-top: 0px !important;
         border-bottom: 0px !important;
         .nav-item {

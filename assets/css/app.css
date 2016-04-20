@@ -1653,8 +1653,16 @@ h2 {
 .sui-editor .submenu a.btn-sh {
   color: #7F807F !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close,
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close i {
+.nav-tabs-editor .sortable-placeholder {
+  height: 31px !important;
+  background-color: rgba(240, 173, 78, 0.05);
+  position: relative;
+  float: left;
+  width: 150px;
+  margin: 0px !important;
+}
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close,
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close i {
   color: #7F807F !important;
 }
 a.unstar,
@@ -1665,12 +1673,12 @@ a.editor-close {
 .sui-editor .submenu .file-open-title a.btn-sh {
   color: #7F807F !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor,
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link.files-editor,
 .btn-trigger,
 .btn-f-edit {
   color: #7F807F !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link.files-editor:hover,
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link.files-editor:hover,
 .btn-trigger:hover,
 .btn-f-edit:hover {
   color: #9AA7AD;
@@ -1891,16 +1899,16 @@ a.editor-close {
 .sui-sidebar-body {
   padding: 1.2rem 1rem;
 }
-.navbar #filesTabs.nav-tabs {
+.navbar .nav-tabs-editor.nav-tabs {
   margin-top: 0px !important;
   border-bottom: 0px !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item {
+.navbar .nav-tabs-editor.nav-tabs .nav-item {
   margin-right: 0px;
   margin-left: 1px;
   position: relative;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link {
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link {
   margin-bottom: -10px !important;
   padding-bottom: 14px !important;
   border-color: transparent !important;
@@ -1908,17 +1916,17 @@ a.editor-close {
   color: #a1a1a1 !important;
   border-top-width: 2px !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close {
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close {
   position: absolute;
   right: 0.8rem;
   margin-top: -1.5rem;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close,
-.navbar #filesTabs.nav-tabs .nav-item .nav-link + .editor-close i {
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close,
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link + .editor-close i {
   color: #b2b2b2 !important;
   font-size: 0.8rem !important;
 }
-.navbar #filesTabs.nav-tabs .nav-item .nav-link.active {
+.navbar .nav-tabs-editor.nav-tabs .nav-item .nav-link.active {
   border-top-color: #694109 !important;
   background-color: #171817 !important;
   color: #EDEDED !important;
@@ -2196,6 +2204,9 @@ footer {
   bottom: 0px;
   z-index: 2001;
 }
+footer .btn-group-vertical {
+  border-radius: 3px;
+}
 .bread a {
   padding: 0rem  0.25rem !important;
 }
@@ -2386,4 +2397,7 @@ div.onLoad i {
 .btn input:before {
   content: "\f14a";
   font-family: FontAwesome;
+}
+.sui-editor-grid {
+  border-left: 1px solid #000;
 }

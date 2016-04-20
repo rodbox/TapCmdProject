@@ -46,6 +46,7 @@
     $app->pushBundle('FOSJsRoutingBundle');
     $app->pushBundle('RBFrontBundle');
     $app->pushBundle('RBAdminBundle');
+    $app->pushBundle('RBBowerBundle');
     $app->pushBundle('RBDevBundle');
 
     $dirConfig = $dirP.'/app/config';

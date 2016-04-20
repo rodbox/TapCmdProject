@@ -13,29 +13,19 @@
 </div><?php $c->view("editor","editor-contextmenu"); ?>
 <div class="sui-editor "  data-cb-r-click='toggleMouseMenu'>
     <div class="sui-editor-body">
-
+<!--
         <div id="sui-editor-grid-1" class="sui-editor-grid">
             <?php $c->menu("editor","editor-menu"); ?>
             <div id="filesPanes" class="tab-content"></div>
-        </div>
-        <div id="sui-editor-grid-2" class="sui-editor-grid">
-            <ul class="nav nav-tabs nav-tabs-editor" id="filesTabs-2"></ul>
-            <div id="filesPanes-2" class="tab-content">
-            </div>
-        </div>
-        <div id="sui-editor-grid-3" class="sui-editor-grid">
-            <ul class="nav nav-tabs nav-tabs-editor" id="filesTabs-3"></ul>
-            <div id="filesPanes-3" class="tab-content">
-            </div>
-        </div>
-        <div id="sui-editor-grid-4" class="sui-editor-grid">
-            <ul class="nav nav-tabs nav-tabs-editor" id="filesTabs-4"></ul>
-            <div id="filesPanes-4" class="tab-content">
-            </div>
-        </div>
+        </div> -->
+        <?php
+        $editor = new editor();
 
-        <!-- END TABSCONTENT  -->
-        <!-- END NAVTABS titleTabs -->
+            $editor->editorTab(1);
+            $editor->editorTab(2);
+            $editor->editorTab(3);
+            $editor->editorTab(4);
+        ?>
     </div>
 
 </div>

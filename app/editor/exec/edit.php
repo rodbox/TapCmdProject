@@ -19,7 +19,6 @@
 
     if (!$inarray || $autopen == 'true') {
 
-        // $id_replace = strtolower(preg_replace('/\/./', '_', $dir.'/'.$file));
         $id_replace = $rand;
 
         $metaTabs = [
@@ -35,29 +34,22 @@
             'parse'   => $parse
         ];
 
+        $paneID = $ws['pane'][$id_replace] ?? '1';
 
-        /**
-         * Si c'est une ouverture autopen
-         */
-        if($autopen == 'true'){
-            $target = [
-                '#filesTabs'  => $c->viewsAsync('editor', 'editor-tab', $metaTabs),
-                '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane)
-            ];
-        }
-        /**
+        $target = [
+            '#filesTabs-'.$paneID  => $c->viewsAsync('editor', 'editor-tab', $metaTabs),
+            '#filesPanes-'.$paneID => $c->viewsAsync('editor', 'editor-pane', $metaPane)
+        ];
+
+       /**
          * Nouvelle ouverture
          */
-        else{
-            $target = [
-                '#filesTabs'  => $c->viewsAsync('editor', 'editor-tab', $metaTabs),
-                '#filesPanes' => $c->viewsAsync('editor', 'editor-pane', $metaPane),
-
-                '#filesOpens' => $c->viewsAsync('editor', 'files-open', $metaTabs)
-            ];
+        if($autopen != 'true'){
+            $target['#filesOpens'] = $c->viewsAsync('editor', 'files-open', $metaTabs);
             $app->addWorkspace('open',$dir.'/'.$file, $id_replace);
-
+            $app->addWorkspace('pane',$paneID, $id_replace, true);
         }
+
         $cb = 'editor_init';
 
         $r = [
@@ -68,11 +60,11 @@
             'content'  => $content,
             'target'   => $target,
             'edit'     => $edit,
-
             'a'        => 'append',
             'id'       => $id_replace,
             'idre'     => $id_replace,
-            'cb'       => $cb
+            'cb'       => $cb,
+            'ws'       => $ws['pane'][$id_replace] ?? '1'
         ];
 }
 

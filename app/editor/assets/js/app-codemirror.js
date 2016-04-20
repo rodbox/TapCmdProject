@@ -20,16 +20,6 @@ $(document).ready(function($) {
                     'routes'
                 ];
 
-                // CodeMirror.registerHelper("hint", "auto", function(editor, options) {
-                //     var list = ["fezfez","fezegrtetr"];
-                //     var cur = editor.getCursor(), curLine = editor.getLine(editor.line);
-                //     var end = editor.ch, start = end;
-
-                //     return {list: list, from: cur, to: curLine};
-                // });
-
-
-
                 CodeMirror.registerHelper("hint", "route", function(editor, options) {
                     var cur = editor.getCursor(), curLine = editor.getLine(editor.line);
                     var end = editor.ch, start = end;
@@ -47,7 +37,7 @@ $(document).ready(function($) {
                 };
 
                 var selector = "textarea#cm-ediror-"+id;
-                // console.log($(selector).val());
+
                 $.editors[id] = CodeMirror.fromTextArea(document.getElementById("cm-ediror-"+id), {
                     theme           : "tomorrow-night-bright",
                     lineNumbers     : true,
@@ -100,6 +90,9 @@ $(document).ready(function($) {
 
                 $.editor = $.editors[id];
                 $.editor.focus();
+            },
+            destroy : function (id){
+                $.editors[id].toTextArea();
             }
         };
 
@@ -122,13 +115,21 @@ $(document).ready(function($) {
      */
     $(document).on("click",".btn-cm",function (e){
         e.preventDefault();
-        var t = $(this);
+        var t            = $(this);
+
+        var editorActive = t.parents('.sui-editor-grid').find('.nav-link.files-editor.active').first();
+
+        var id           = editorActive.attr('data-editor');
+
+        var editor       = $.editors[id];
+        var dir          = editorActive.attr('data-rel');
+        var content      = editor.getValue();
 
         $.lock.on(t);
         var data = {
-            dir: $('.files-editor.active .file-open').val(),
-            content : $.editor.getValue(),
-            id: $(".files-editor.active").parents('.nav-item').first().attr('data-editor')
+            dir: dir,
+            content : content,
+            id: id
         }
 
         $.post(t.attr('href'), data, function(json, textStatus, xhr) {
@@ -162,6 +163,18 @@ $(document).on("click",".btn-cm-modal",function (e){
 
 })
 
+$(document).on("click",".nav-link.files-editor",function (e){
+    var t = $(this);
+    if($.force()){
+        var url = $.generate.url.exec('editor','edit-reload');
+        $.get(url,{file:t.attr('data-rel')}, function(json) {
+            var editor = $.editors[t.data('editor')];
+            editor.setValue(json.content);
+            editor.clearHistory();
+            t.removeClass('cm-protect');
+        },'json');
+    }
 
+})
 
 });

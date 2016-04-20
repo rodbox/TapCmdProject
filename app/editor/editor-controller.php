@@ -31,6 +31,14 @@
             // return $this->viewsAsync('editor','editors/'.$editor, $info);
         }
 
+
+        public function editorTab($id = 1)
+        {
+            echo '<div id="sui-editor-grid-'.$id.'" data-pane-id="'.$id.'" class="sui-editor-grid">';
+                $this->menu("editor","editor-menu",'',['id'=>$id]);
+                echo'<div id="filesPanes-'.$id.'" class="tab-content" data-pane-id="'.$id.'" ></div>
+            </div>';
+        }
     }
 
     $editor = new editor();

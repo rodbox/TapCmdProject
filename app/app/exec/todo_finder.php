@@ -50,7 +50,7 @@ if (true) {
         'infotype'  => "success",
         'target'    => $target,
         'a'         => "replaceWith",
-        'msg'       => "ok exec name",
+        'msg'       => "Todo check",
         'todo_list' => $todo_list,
         'cur'       => $todos
     ];

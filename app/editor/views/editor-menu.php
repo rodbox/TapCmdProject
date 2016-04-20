@@ -1,13 +1,10 @@
 <div class="nav-item ">
-<a id="editorSave" href="<?php $c->urlExec('editor','save') ?>" class="btn-cm btn " data-cb="editorSave" title="save"><i class="fa fa-floppy-o"></i></a><a id="editorStar" href="<?php $c->urlExec('editor','star') ?>" class="btn-cm btn " title="star"  data-cb="starsRefresh" data-cb-app="editor"><i class="fa fa-star"></i></a>
+<a id="editorSave-<?php echo $s['id'] ?? 1 ?>" href="<?php $c->urlExec('editor','save') ?>" class="btn-cm btn editorSave" data-cb="editorSave" title="save"><i class="fa fa-floppy-o"></i></a>
+<a id="editorStar-<?php echo $s['id'] ?? 1 ?>" href="<?php $c->urlExec('editor','star') ?>" class="btn-cm btn editorStar" title="star"  data-cb="starsRefresh" data-cb-app="editor"><i class="fa fa-star"></i></a>
 </div>
 <div class="nav-item pull-right">
 
 <input type="hidden" class="fileOpen open" value="" />
 </div>
-
-<!-- NAVTABS : titleTabs  -->
-<!-- BEGIN NAVTABS : titleTabs  -->
-<ul class="nav nav-tabs nav-tabs-editor" id="filesTabs">
-
+<ul class="nav nav-tabs nav-tabs-editor" id="filesTabs-<?php echo $s['id'] ?? 1 ?>">
 </ul>
