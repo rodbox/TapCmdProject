@@ -1,30 +1,32 @@
-{% set q = app.request.query.all %}
+<?php
 
-<!-- BEGIN NAVTABS : title  -->
-<ul class="nav nav-tabs" id="img-editor">
-    <li class="active">
-        <a data-toggle="tab" href="#img-editor-tab-1" aria-expanded="true">View</a>
-    </li>
-    <li>
-        <a data-toggle="tab" href="#img-editor-tab-2" aria-expanded="false">Crop </a>
-    </li>
-    <li>
-        <a data-toggle="tab" href="#img-editor-tab-3" aria-expanded="false">Pin </a>
-    </li>
-</ul>
-<!-- END NAVTABS : title  -->
-<!-- BEGIN TABSCONTENT  -->
-<div class="tab-content pad-content-2">
-    <div id="img-editor-tab-1" class="tab-pane active">
-		{{rb_loader('img_view',q)}}
-    </div>
-    <div id="img-editor-tab-2" class="tab-pane">
-		{{rb_loader('img_crop',q,'edit_crop')}}
-    </div>
-    <div id="img-editor-tab-3" class="tab-pane">
-		{{rb_loader('img_pin',q,'edit_pin')}}
-    </div>
-</div>
-<!-- END TABSCONTENT  -->
+    $size = getimagesize($d['file']);
+    $rand = substr( md5(rand()), 0, 8);
 
+    $canvasID = 'myCanvas_'.$d['id'];
 
+    $query = http_build_query([
+      'id'   => $canvasID,
+      'size' => $size,
+      'file' => $d['file'],
+      'url'  => htmlspecialchars($d['url'])
+    ]);
+
+?><!--
+<div class="text-center canvas-container"><canvas id="<?php echo $canvasID ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas></div>
+    <script>
+      // var canvas = document.getElementById('<?php echo $canvasID ?>');
+      // var context = canvas.getContext('2d');
+      // var imageObj = new Image();
+
+      // imageObj.onload = function() {
+      //   context.drawImage(imageObj, 0, 0);
+      // };
+      // imageObj.src = '<?php echo $d['url'].'?rand='.$rand ?>';
+      // imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+
+    </script>
+    <script type="text/paperscript" src="app/editor/assets/js/app-paper.js" canvas="<?php echo $canvasID ?>"></script>
+ -->
+
+<iframe src="draw.php?<?php echo $query; ?>" class="canvas-container" style="border-width: 0px;"></iframe> -->

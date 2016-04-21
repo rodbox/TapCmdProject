@@ -7,7 +7,6 @@ $(document).ready(function(){
     $.shortcut[e.type](e);
     // $.shortcut['all'][e.type](e);
     var t = $(this);
-    console.log(t);
   });
 
 

@@ -3,6 +3,8 @@
 define("TITLE", "Rodbox DeepTap");
 
 define("DIR_PROJECT", "/Applications/MAMP/htdocs");
+define("WEB_PROJECT", "http://localhost:8888");
+
 define("DEFAULT_PROJECT", "__rodbox_sources__");
 
 define("WEB_SRC", "http://localhost:8888/___cmd___");
@@ -47,11 +49,22 @@ define("DIR_OVERIDES", DIR_VAR."/overides");
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 define("TERMINAL", "/Applications/Utilities/Terminal.app");
 
+
+
+define("SOFT", [
+    "PHOTOSHOP"   => "Adobe Photoshop CC.app",
+    "ILLUSTRATOR" => "Adobe Illustrator.app"
+    ]);
+
  # on attribut un editeur en fonction de l'extension
 define("EDITOR", [
     'default'         => 'default',
+    'xls'             => 'default',
+    'csv'             => 'default',
+    'sh'              => 'code',
+    'bat'             => 'code',
     'txt'             => 'txt',
-    'md '             => 'txt',
+    'md'              => 'txt',
     'pdf'             => 'pdf',
     'svg'             => 'img',
     'jpg'             => 'img',

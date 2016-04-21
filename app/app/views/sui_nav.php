@@ -13,6 +13,7 @@
 </div><?php $c->view("editor","editor-contextmenu"); ?>
 <div class="sui-editor "  data-cb-r-click='toggleMouseMenu'>
     <div class="sui-editor-body">
+
 <!--
         <div id="sui-editor-grid-1" class="sui-editor-grid">
             <?php $c->menu("editor","editor-menu"); ?>
@@ -36,7 +37,6 @@
         </iframe>
     </div>
     <div class="sui-console">
-
             <iframe id="console" src="http://localhost:8000/_console/_console">
             </iframe>
             <div class="sui-console-body">

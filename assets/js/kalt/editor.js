@@ -4,7 +4,7 @@ $.shortcut={
     },
     keydown: function(e){
 
-        console.log($("#keyconsole").html(e.keyCode));
+        $("#keyconsole").html(e.keyCode);
 
         if(e.keyCode == 83 && $.kalte("onCmd")){
             e.preventDefault();

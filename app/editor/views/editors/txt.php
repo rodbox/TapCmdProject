@@ -1,1 +1,1 @@
-<textarea name="editor" id="" cols="30" rows="10" class="summernote form-control">{{text}}</textarea>
+<textarea name="editor" id="summernote-<?php echo $d['id'] ?>" class="summernote form-control"><?php echo file_get_contents($d['file']) ?></textarea>

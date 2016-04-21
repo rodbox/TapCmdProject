@@ -14,9 +14,31 @@
     };
 })(jQuery);
 
-$(document).fileext();
+(function($) {
+    $.qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+            var p=a[i].split('=');
+            if (p.length != 2) continue;
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'))
+})(jQuery);
+
+
+
 
 $(document).ready(function($) {
+    $(document).fileext();
+
+    $.def = function (value, defaultValue){
+        return (value == undefined)?defaultValue:value;
+    }
+
+
     $(".context-sidebar-body").fileext();
     // Stock les callbacks des fichiers app-cb.js
     $.cb = {};
@@ -128,7 +150,6 @@ $(document).ready(function($) {
         };
 
         if(!$.lock.is(t)){
-
             $.lock.on(t);
 
             $.post(t.attr('href'), data, function(json) {
@@ -241,10 +262,10 @@ $(document).ready(function($) {
         e.preventDefault();
         var t = $(this);
 
-        if (t.data('cb'))
-            $.cb['app'][t.data('cb')](t, e);
-        else
-            $.cb['app']['default'](t, e);
+        var app =  (t.data('cb-app'))?t.data('cb-app'):'app';
+        var cb  =  (t.data('cb'))?t.data('cb'):'default';
+
+        $.cb[app][cb](t, e);
     })
 
 
@@ -535,9 +556,7 @@ $(document).ready(function($) {
     },'json');
 
 
-    $.def = function (value, defaultValue){
-        return (value == undefined)?defaultValue:value;
-    }
+
 
     $.a = function (t, json){
         if (json.target != undefined) {

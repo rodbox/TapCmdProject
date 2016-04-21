@@ -29,6 +29,11 @@
      * Decodage Base 64
      */
     $unencodedData = base64_decode($img);
+
+
+
+
+
     $img           = str_replace('data:image/'.$ext.';base64,', '', $img);
     $img           = str_replace(' ', '+', $img);
     $data          = base64_decode($img);

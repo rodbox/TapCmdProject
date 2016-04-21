@@ -60,6 +60,9 @@
 /*------------------------------------*\
     END : z-index control
 \*------------------------------------*/
+.overflow {
+  overflow: auto;
+}
 /*------------------------------------*\
     Vertical align
 \*------------------------------------*/
@@ -360,6 +363,18 @@
 /* End : Margin */
 .h-inherit {
   height: inherit!important;
+}
+.h-10 {
+  height: 10vh;
+}
+.h-15 {
+  height: 15vh;
+}
+.h-30 {
+  height: 30vh;
+}
+.h-50 {
+  height: 50vh;
 }
 .w-inherit {
   width: inherit!important;
@@ -1146,31 +1161,40 @@ h2 {
 }
 [data-sui-editor-grid="2"] #sui-editor-grid-1 {
   display: block !important;
+  height: 100% !important;
 }
 [data-sui-editor-grid="2"] #sui-editor-grid-2 {
   display: block !important;
+  height: 100% !important;
 }
 [data-sui-editor-grid="3"] #sui-editor-grid-3 {
   display: block !important;
+  height: 50% !important;
   width: 100% !important;
 }
 [data-sui-editor-grid="3"] #sui-editor-grid-2 {
   display: block !important;
+  height: 50% !important;
 }
 [data-sui-editor-grid="3"] #sui-editor-grid-1 {
   display: block !important;
+  height: 50% !important;
 }
 [data-sui-editor-grid="4"] #sui-editor-grid-1 {
   display: block !important;
+  height: 50% !important;
 }
 [data-sui-editor-grid="4"] #sui-editor-grid-2 {
   display: block !important;
+  height: 50% !important;
 }
 [data-sui-editor-grid="4"] #sui-editor-grid-3 {
   display: block !important;
+  height: 50% !important;
 }
 [data-sui-editor-grid="4"] #sui-editor-grid-4 {
   display: block !important;
+  height: 50% !important;
 }
 .sui-editor-parse {
   display: none;
@@ -1388,7 +1412,7 @@ h2 {
   width: 100%;
 }
 .sui-editor .sui-editor-body .tab-content {
-  height: calc(100vh -  85px);
+  height: calc(100% -  85px);
 }
 .sui-sidebar {
   position: fixed;
@@ -2400,4 +2424,30 @@ div.onLoad i {
 }
 .sui-editor-grid {
   border-left: 1px solid #000;
+}
+.note-editable {
+  color: #7F807F !important;
+  padding: 3rem;
+}
+.note-editor.note-frame {
+  border-width: 0px;
+}
+.note-editor.note-frame,
+.note-editor.note-frame .note-editing-area,
+.note-editor.note-frame .note-editable {
+  height: 100% !important;
+}
+.note-editor.note-frame .note-toolbar,
+.note-editor.note-frame .btn-default {
+  border-color: #171817 !important;
+  background-color: #171817 !important;
+  color: #7F807F !important;
+}
+.canvas-container {
+  height: 100% !important;
+  width: 100%;
+  overflow: hidden !important;
+}
+.h-100 {
+  height: 100% !important;
 }

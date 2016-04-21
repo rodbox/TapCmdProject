@@ -3,19 +3,9 @@ $(document).ready(function($) {
 
 
 
-    /**
-     * le cm en focus
-     */
-    $.editor = {};
 
-    /**
-     * Contient la liste de tout les cm indexer par id
-     */
-    $.editors = {};
-        $.cm = {
+    $.cm = {
             init : function (id){
-
-
                 var list = [
                     'routes'
                 ];
@@ -110,38 +100,38 @@ $(document).ready(function($) {
     }
 
 
-    /**
-     * Bouton codemirror
-     */
-    $(document).on("click",".btn-cm",function (e){
-        e.preventDefault();
-        var t            = $(this);
+    // /**
+    //  * Bouton codemirror
+    //  */
+    // $(document).on("click",".btn-cm",function (e){
+    //     e.preventDefault();
+    //     var t            = $(this);
 
-        var editorActive = t.parents('.sui-editor-grid').find('.nav-link.files-editor.active').first();
+    //     var editorActive = t.parents('.sui-editor-grid').find('.nav-link.files-editor.active').first();
 
-        var id           = editorActive.attr('data-editor');
+    //     var id           = editorActive.attr('data-editor');
 
-        var editor       = $.editors[id];
-        var dir          = editorActive.attr('data-rel');
-        var content      = editor.getValue();
+    //     var editor       = $.editors[id];
+    //     var dir          = editorActive.attr('data-rel');
+    //     var content      = editor.getValue();
 
-        $.lock.on(t);
-        var data = {
-            dir: dir,
-            content : content,
-            id: id
-        }
+    //     $.lock.on(t);
+    //     var data = {
+    //         dir: dir,
+    //         content : content,
+    //         id: id
+    //     }
 
-        $.post(t.attr('href'), data, function(json, textStatus, xhr) {
-            $.lock[json.infotype](t, json.msg);
+    //     $.post(t.attr('href'), data, function(json, textStatus, xhr) {
+    //         $.lock[json.infotype](t, json.msg);
 
-            if(t.data('cb'))
-                $.cb['editor'][t.data('cb')](t, json, e);
-        },'json').error(function (err){
-            var t = $(this);
-            $.lock.error(t,$err);
-        });
-    })
+    //         if(t.data('cb'))
+    //             $.cb['editor'][t.data('cb')](t, json, e);
+    //     },'json').error(function (err){
+    //         var t = $(this);
+    //         $.lock.error(t,$err);
+    //     });
+    // })
 
 $(document).on("click",".btn-cm-modal",function (e){
     e.preventDefault();

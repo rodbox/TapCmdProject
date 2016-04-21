@@ -5,9 +5,11 @@
     $parse   = new parse();
     $editor  = new editor();
     $dirFile = $dir.'/'.$file;
-    $edit = $editor->file($dirFile);
-    $content = file_get_contents($dirFile);
+
     $rand    = (isset($key))?$key:substr( md5(rand()), 0, 8);
+
+    $edit    = $editor->file($dirFile, $rand, $_GET['force'] ?? false);
+    $content = $edit['content'];
 
     $ws      = $app->getWorkspace();
     $autopen = isset($autopen) ?? false;
@@ -15,7 +17,7 @@
 
     $info    = pathinfo($dirFile);
 
-    $parse   = $parse->file($dirFile);
+    $parse   = ($edit['editor']=="code")?$parse->file($dirFile):[];
 
     if (!$inarray || $autopen == 'true') {
 
@@ -57,6 +59,7 @@
             'msg'      => "ok editor",
             'dir'      => $dir,
             'file'     => $file,
+            'editor'   => $edit['editor'],
             'content'  => $content,
             'target'   => $target,
             'edit'     => $edit,

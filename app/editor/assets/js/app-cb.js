@@ -68,8 +68,42 @@ $(document).ready(function($) {
         openDir: function (t, json, e){
             console.log(json);
         },
-        editorSave: function (t, json, e){
-            $.protect.off(json.id);
+        editorSave: function (t, e){
+            var tab     = t.parents('.sui-editor-grid').find('a.nav-link.active');
+            var id      = tab.attr('data-editor');
+            var file    = tab.attr('data-rel');
+            var type    = $.editorsType[tab.attr('data-editor')];
+            var content = $.editorGetValue[type](id);
+             $.lock.on(t);
+
+            var url = $.generate.url.exec('editor','save');
+            var data = {
+                file:file,
+                dir:file,
+                id:id,
+                content:content
+            }
+
+
+
+            console.log(data);
+
+
+
+              $.post(url, data, function(json, textStatus, xhr) {
+
+
+                $.lock[json.infotype](t, json.msg);
+                $.protect.off(json.id);
+                // if(json.cb)
+                //   $.callback[json.cb](t,e,json);
+                //  callback return
+                // else if (t.data('callback'))
+                //   $.callback[t.data('callback')](t,e,json);
+
+              },'json');
+
+
 
             if($.sui.is('autorefresh','true'))
                 $.cb['editor']['refresh'](t, json, e);
@@ -173,7 +207,10 @@ $(document).ready(function($) {
             });
         },
         editor_init: function (t, json, e){
+
             var grid = $('.editor-'+json.id+'.nav-link').parents('.sui-editor-grid');
+
+            $.editorsType[json.id] = json.editor;
 
             grid.find('.files-editor.nav-link').removeClass('active').attr('aria-expanded','false');
             grid.find('.files-editor.tab-pane').removeClass('active').attr('aria-expanded','false');

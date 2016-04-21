@@ -14,6 +14,7 @@ class app extends controller
 
     function __construct($k='')
     {
+        $this->getProject();
         $this->k = $k;
     }
 
@@ -36,6 +37,34 @@ class app extends controller
        return DIR_PROJECTS.'/'.self::cur();
     }
 
+
+    /**
+     * convertision du chemin en url
+     */
+    public function src_to_web($dir)
+    {
+        return str_replace($this->dirProject(), $this->webLocal(), $dir);
+    }
+
+
+    /**
+     * url local du projet
+     */
+    static public function webLocal()
+    {
+        return WEB_PROJECT.'/'.self::cur();
+    }
+
+
+    /**
+     * url local du projet
+     */
+    static public function webServer()
+    {
+
+
+        return $this->project['server']['web'];
+    }
 
 
     /**

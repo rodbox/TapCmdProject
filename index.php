@@ -28,10 +28,13 @@
         <link rel="stylesheet" href="assets/vendor/codemirror/addon/hint/show-hint.css">
         <!-- end Code mirror css -->
 
+        <link rel="stylesheet" href="assets/vendor/summernote/dist/summernote.css">
+
         <link href="assets/css/app.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/vendor/paper/dist/paper-full.js" ></script>
     </head>
     <body>
         <?php //$c->view('app','header'); ?>
@@ -52,7 +55,6 @@
         <script type="text/javascript" src="assets/vendor/notiny/dist/notiny.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
 
-
         <script type="text/javascript" src="assets/vendor/select2/dist/js/select2.full.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/clipboard/dist/clipboard.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>
@@ -69,10 +71,13 @@
 
         <script type="text/javascript" src="app/editor/assets/js/app-cb.js"></script>
         <script type="text/javascript" src="app/editor/assets/js/app-file.js"></script>
-        <!-- <script type="text/javascript" src="app/editor/assets/js/app-filter.js"></script> -->
+        <script type="text/javascript" src="app/editor/assets/js/app-editor.js"></script>
         <script type="text/javascript" src="app/editor/assets/js/app-codemirror-circlemenu.js"></script>
 
+            <script type="text/javascript" src="assets/vendor/summernote/dist/summernote.min.js"></script>
+
         <!-- Code mirror JS-->
+
         <script type="text/javascript" src="assets/vendor/codemirror/lib/codemirror.js"></script>
         <script type="text/javascript" src="assets/vendor/codemirror/addon/hint/show-hint.js"></script>
         <!-- Addon codemirror -->

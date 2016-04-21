@@ -20,15 +20,28 @@
         }
 
 
-        public function file($file, $id ='')
+        public function file($file, $id = '', $force = false)
         {
-            return pathinfo($file);
+            $info   = pathinfo($file);
+            $editor = EDITOR[$info['extension']] ?? 'default';
+            $src    = EDITOR_SRC[$editor];
+            $url = $this->src_to_web($file);
 
-            // $info   = pathinfo($file);
-            // $editor = EDITOR[$info['extension']];
-            // $src    = EDITOR_SRC[$editor];
+            $data   = [
+                'id'    => $id,
+                'force' => $force,
+                'file'  => $file,
+                'url'  => $url,
+                'src'   => $src
+            ];
 
-            // return $this->viewsAsync('editor','editors/'.$editor, $info);
+            return [
+                'info'    => $info,
+                'editor'  => $editor,
+                'src'     => $src,
+                'url'  => $url,
+                'content' => $this->viewsAsync('editor','editors/'.$editor, $data)
+            ];
         }
 
 

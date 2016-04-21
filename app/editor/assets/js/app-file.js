@@ -52,6 +52,7 @@ $(document).ready(function($) {
     $(document).on("click",".btn-f-edit",function (e){
         e.preventDefault();
         var t = $(this);
+        t.attr('data-force',$.force());
         $('.rel-active').removeClass('rel-active');
         $('[data-rel="'+t.data('rel')+'"]').addClass('rel-active');
 
@@ -67,10 +68,9 @@ $(document).ready(function($) {
                     $.opens(1);
                 });
 
+                $.editorInit[json.editor](t, json, e);
                 $.cb['editor'][json.cb](t, json, e);
-                    $.cm.init(json.id);
 
-                $.cb.editor.setEditor(t, json, e);
             },'json');
         }
     })
@@ -98,6 +98,8 @@ $(document).ready(function($) {
         var sibling = (tabs.is(':first-child'))?tabs.next():tabs.prev();
         sibling.find('.nav-link').trigger('click');
         $("[data-editor="+id+"]").remove();
+        delete $.editorsType[id];
+        delete $.editors[id];
         $.opens(-1);
     }
 });
