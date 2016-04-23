@@ -35,6 +35,7 @@
 
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="assets/vendor/paper/dist/paper-full.js" ></script>
+        <script type="text/javascript">$.cb = {};</script>
     </head>
     <body>
         <?php //$c->view('app','header'); ?>

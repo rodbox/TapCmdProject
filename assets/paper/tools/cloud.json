@@ -1,0 +1,16 @@
+{
+    "minDistance": 20,
+    "onMouseDown": onMouseDown,
+    "onMouseDrag": function(event){
+        path.arcTo(event.point);
+    },
+    "onMouseMove": function(event){console(event);},
+    "onMouseUp": function(event){
+        path.smooth();
+        $.pjs.updLayer();
+    },
+    "onClick": function(event){console(event);},
+    "onDoubleClick": function(event){console(event);},
+    "onMouseEnter": function(event){console(event);},
+    "onMouseLeave": function(event){console(event);}
+}

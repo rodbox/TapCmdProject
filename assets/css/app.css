@@ -2451,3 +2451,84 @@ div.onLoad i {
 .h-100 {
   height: 100% !important;
 }
+li.active i,
+li.active a {
+  color: #fff !important;
+}
+.draw-page *,
+.draw-page select,
+.draw-page option,
+.draw-page input,
+.draw-page label,
+.draw-page textarea,
+.draw-page a,
+.draw-page button,
+.draw-page :focus,
+.draw-page :active,
+.draw-page .btn {
+  outline: none !important;
+}
+.draw-page .bg-inverse {
+  background-color: #171817 !important;
+}
+.draw-page .c-menu,
+.draw-page .c-menu .btn,
+.draw-page .c-menu .form-control {
+  background-color: transparent !important;
+}
+.draw-page .c-menu .btn {
+  margin-bottom: 0px;
+}
+.draw-page .c-menu .btn:hover,
+.draw-page .c-menu .btn.active,
+.draw-page .c-menu .btn:hover *,
+.draw-page .c-menu .btn.active * {
+  color: #fff !important;
+}
+.draw-page * {
+  font-size: 0.9rem !important;
+}
+.draw-page .colorpicker.dropdown-menu {
+  left: 0px !important;
+}
+.draw-page .colorpicker.dropdown-menu.colorpicker-right::before,
+.draw-page .colorpicker.dropdown-menu.colorpicker-right::after {
+  left: 5px;
+  right: auto !important;
+}
+.colorpicker-2x .colorpicker-saturation {
+  width: 200px;
+  height: 200px;
+}
+.colorpicker-2x .colorpicker-hue,
+.colorpicker-2x .colorpicker-alpha {
+  width: 30px;
+  height: 200px;
+}
+.colorpicker-2x .colorpicker-color,
+.colorpicker-2x .colorpicker-color div {
+  height: 30px;
+}
+.remove,
+.selector,
+.visible {
+  opacity: 0.2;
+}
+.remove.active,
+.selector.active,
+.visible.active {
+  opacity: 1;
+}
+.active .selector {
+  opacity: 1;
+}
+.input-colors .input-group-addon,
+.input-colors .form-control {
+  border-width: 0px !important;
+}
+.input-colors .form-control {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.input-colors i {
+  width: 42px;
+}

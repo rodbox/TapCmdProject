@@ -49,7 +49,7 @@ define("DIR_OVERIDES", DIR_VAR."/overides");
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 define("TERMINAL", "/Applications/Utilities/Terminal.app");
 
-
+define("DIR_TOOLS", DIR_SRC."/assets/paper/tools");
 
 define("SOFT", [
     "PHOTOSHOP"   => "Adobe Photoshop CC.app",

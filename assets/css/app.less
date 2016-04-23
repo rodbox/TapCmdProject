@@ -562,3 +562,92 @@ div.onLoad{
 .h-100{
     height: 100% !important;
 }
+
+li.active{
+    i,
+    a{
+        color:#fff !important;
+    }
+}
+
+.draw-page{
+
+    *,
+    select,
+    option,
+    input,
+    label,
+    textarea,
+    a,
+    button,
+    :focus,
+    :active,
+    .btn{
+        outline:none !important;
+    }
+
+    .bg-inverse{
+        background-color: #171817 !important;
+    }
+    .c-menu{
+        &,
+        .btn,
+        .form-control{
+            background-color: transparent !important;
+        }
+        .btn{
+            margin-bottom: 0px;
+            &:hover,
+            &.active
+            {
+                &,
+                *{
+                    color:#fff !important;
+                }
+
+            }
+        }
+    }
+
+    *{
+        font-size: 0.9rem !important;
+    }
+
+    .colorpicker.dropdown-menu{
+        left:0px !important;
+
+        &.colorpicker-right::before,
+        &.colorpicker-right::after{
+          left:5px;
+          right:auto !important;
+        }
+    }
+}
+ .colorpicker-2x .colorpicker-saturation { width: 200px; height: 200px; } .colorpicker-2x .colorpicker-hue, .colorpicker-2x .colorpicker-alpha { width: 30px; height: 200px; } .colorpicker-2x .colorpicker-color, .colorpicker-2x .colorpicker-color div { height: 30px; }
+.remove,
+.selector,
+.visible{
+    .opacity(0.2);
+    &.active{
+        .opacity(1);
+    }
+}
+.active{
+    .selector{
+        .opacity(1);
+    }
+}
+
+.input-colors{
+    .input-group-addon,
+    .form-control{
+        border-width: 0px !important;
+    }
+    .form-control{
+        background-color: rgba(255,255,255,0.5) !important;
+    }
+    i{
+        width:42px;
+    }
+}
+

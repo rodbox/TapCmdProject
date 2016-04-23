@@ -20,10 +20,10 @@ for (var i = 0; i < points; i++)
 function onMouseMove(event) {
     path.firstSegment.point = event.point;
     for (var i = 0; i < points - 1; i++) {
-        var segment = path.segments[i];
-        var nextSegment = segment.next;
-        var vector = segment.point - nextSegment.point;
-        vector.length = length;
+        var segment       = path.segments[i];
+        var nextSegment   = segment.next;
+        var vector        = segment.point - nextSegment.point;
+        vector.length     = length;
         nextSegment.point = segment.point - vector;
     }
     path.smooth({ type: 'continuous' });

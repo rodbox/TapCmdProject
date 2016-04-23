@@ -29,8 +29,6 @@
 })(jQuery);
 
 
-
-
 $(document).ready(function($) {
     $(document).fileext();
 
@@ -41,7 +39,7 @@ $(document).ready(function($) {
 
     $(".context-sidebar-body").fileext();
     // Stock les callbacks des fichiers app-cb.js
-    $.cb = {};
+
 
     $(document).on("click",".btn-cmd ",function (e){
         e.preventDefault();
@@ -100,8 +98,8 @@ $(document).ready(function($) {
     });
 
 
+    $(document).on("click",".btn-exec", function (e){
 
-    $(document).on("click",".btn-exec",function (e){
         e.preventDefault();
         var t = $(this);
 
@@ -309,7 +307,6 @@ $(document).ready(function($) {
 
         if(!$.lock.is(submit)){
             $.lock.on(submit);
-
             $.post(t.attr('action'), data, function(json, textStatus, xhr) {
                 $.lock.off(submit);
 
@@ -386,14 +383,10 @@ $(document).ready(function($) {
 
 
     $.bcbt = function (t, e){
-        // var bcbapp = (t.data('bcb-app')==undefined)?'app':t.data('bcb-app');
         var bcbapp = $.def(t.data('bcb-app'),'app');
         var bcb    = $.def(t.data('bcb'),'before_default');
 
-        if (t.data('bcb'))
-            $.cb[bcbapp][t.data('cb')](t, e);
-        else
-            $.cb[bcbapp]['before_default'](t, e);
+        $.cb[bcbapp][bcb](t, e);
     }
     /**
      * END CBT BCBT

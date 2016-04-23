@@ -18,14 +18,7 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <strong>Attention</strong> le bouton save enregistre directement l'image dans le dossier de gestion du projet.
-    </div>
-
-    <div class="alert alert-warning alert-dismissible fade in" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      La prévisualisation se fait en passant la sourie apres avoir cliquer sur la baguette ou sur un input color.
+      <strong>Attention</strong> le bouton save ( <i class="fa fa-floppy-o"></i> ) enregistre directement l'image dans le dossier de gestion du projet et dans les assets du projet en local.
     </div>
 
 <?php endif ?>
@@ -34,7 +27,7 @@
 <form id="form-paper" action="#"> <!-- BEGIN COL : col-md-2 col-lg-2  -->
 
         <nav>
-            <button class='btn-tools btn btn-sm btn-secondary'><i class="fa fa-magic"></i></button>
+            <button class='btn-tools btn btn-sm btn-secondary autoclick'><i class="fa fa-magic"></i></button>
             <a href="<?php $c->urlExec('app','icon') ?>" data-form='#form-project' class="btn btn-secondary btn-sm btn-canvas" data-canvas="icon75" title="save"><i class="fa fa-floppy-o"></i></a>
         </nav>
         <hr>
@@ -52,11 +45,11 @@
         <div class="form-group">
         <label for="size" class="col-sm-2 form-control-label"><i class="fa fa-font"></i>
         </label>
-            <input type="range" min="7" max="75" id="size">
+            <input type="range" min="7" max="75" id="size" value="30">
         </div>
         <div class="form-group">
         <label for="top" class="col-sm-2 form-control-label">Top</label>
-            <input type="range" min="0" max="75" id="top">
+            <input type="range" min="0" max="75" id="top" value="50">
         </div>
         </div>
         <!-- END COL : col-md-8 col-lg-8  -->
@@ -114,7 +107,7 @@
             var top      = parseInt($('#top').val());
             var fontSize = $('#size').val();
 
-
+            paper.clear();
             paper.setup(canvasIco);
 
             var path         = new Path();
@@ -141,13 +134,15 @@
 
 
 
-        $(document).on("change click","#form-paper input, .btn-tools",function (e){
+        $(document).on("change click","#form-paper input, .input-colors , #form-paper select, .btn-tools",function (e){
             e.preventDefault();
             var t = $(this);
-            ico(75);
 
+            ico(75);
+            paper.view.update();
         })
 
+        $('.autoclick').trigger('click');
     };
 </script>
 </fieldset>

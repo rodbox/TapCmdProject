@@ -1,0 +1,26 @@
+{
+    onMouseDown: function(event){
+        path = new Path();
+        $.i = $.i + 1;
+        var rand = Math.random().toString(36).substring(2);
+        path.name = 'item '+$.i;
+        path.fillColor = $.getColor(1);
+        path.add(event.point);
+    },
+    onMouseDrag: function(event){
+        var step = event.delta / 2;
+        step.angle += 90;
+        var top = event.middlePoint + step;
+        var bottom = event.middlePoint - step;
+        path.add(top);
+        path.insert(0, bottom);
+        path.smooth();
+    },
+    onMouseUp: function(event){
+        path.add(event.point);
+        path.closed = true;
+        path.smooth();
+        $.pjs.updLayer();
+        console.log(path.name);
+    }
+};
