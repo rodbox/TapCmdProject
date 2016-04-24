@@ -37,6 +37,18 @@ $(document).ready(function($) {
     }
 
 
+    $(document).on("change",".val-session",function (e){
+        e.preventDefault();
+        var t = $(this);
+
+        var url = $.generate.url.exec('app','session');
+        $.get(url,{
+            id:t.attr('id'),
+            value:t.val()
+        });
+    })
+
+
     $(".context-sidebar-body").fileext();
     // Stock les callbacks des fichiers app-cb.js
 
@@ -578,13 +590,4 @@ $(document).ready(function($) {
         Blink : (isChrome || isOpera) && !!window.CSS,
     }
 
-
-
-
-
-
-
-
 });
-
-

@@ -1,0 +1,1 @@
+<input type="text" class="slider" data-slider-min="0" data-slider-max="10">

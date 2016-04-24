@@ -3,15 +3,15 @@
      * load tool
      */
 
-    // $tool = $c->getJson(DIR_TOOL.'/'.$toolName.'.json');
-    $tool = preg_replace('/\n/','',file_get_contents(DIR_TOOLS.'/default.json'));
+    $menu = $c->viewsAsync("editor","editors/menu/tools/".$toolName);
 
     if (true) {
     $dataView    = [];
         $r           = [
             'infotype' => "success",
             'msg'      => "ok exec load tool",
-            'tool'     => $tool
+            'a'   => 'html',
+            'target'   => ['#toolMenu'=>$menu]
         ];
     }
 

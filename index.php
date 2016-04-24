@@ -8,7 +8,7 @@
 
 <?php else: ?>
 <!DOCTYPE html>
-<html lang="fr" data-sui-a="false" <?php $c->attrSui(); ?> >
+<html lang="fr" data-sui-a="false" data-sui-k="editor" <?php $c->attrSui(); ?> >
     <head>
         <meta charset="UTF-8">
         <title><?php $c->title(); ?></title>

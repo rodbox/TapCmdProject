@@ -24,7 +24,13 @@ window.app = {
             $.i = $.i + 1;
             path.name = 'path'+$.i;
             path.strokeColor = $.colorFill();
+            path.strokeWidth = $.strokeSize();
+            path.strokeCap = "round";
+
             path.add(event.point);
+
+            if($.dashMode())
+                path.dashArray = $.dash();
         },
         onMouseDrag: function(event){
             path.add(event.middlePoint);
@@ -32,21 +38,28 @@ window.app = {
         },
         onMouseUp: function(event){
             $.pjs.updLayer();
+            $.history.add(path);
         }
     }),
     circle: new Tool({
         onMouseDrag : function (event){
               var path = new Path.Circle({
                     center: event.downPoint,
-                    radius: (event.downPoint - event.point).length
+                    radius: (event.downPoint - event.point).length,
+                    strokeWidth : $.strokeSize()
                 });
-              path.fillColor = $.colorFill();
-              path.strokeColor = $.colorStroke();
-              path.name ="circle";
-            path.removeOnDrag();
+                path.fillColor   = $.colorFill();
+                path.strokeColor = $.colorStroke();
+                if($.dashMode())
+                    path.dashArray = $.dash();
+                path.name        = "circle";
+
+                $.history.add(path);
+                path.removeOnDrag();
+
         },
         onMouseUp   : function (event) {
-
+            $.history.add(path);
             $.pjs.updLayer();
 
         },
@@ -57,16 +70,22 @@ window.app = {
                 point: [event.downPoint.x, event.downPoint.y],
                 size: [event.point.x-event.downPoint.x, event.point.y-event.        downPoint.y]
             });
+
+            if($.dashMode())
+                    path.dashArray = $.dash();
+
             if ($.colorFill()!=""){
                 path.fillColor = $.colorFill();
                 // path.fillColor.alpha = alphaFill();
-                }
+            }
             if ($.colorStroke()!=""){
                 path.strokeColor =  $.colorStroke();
-            // path.strokeColor.alpha = alphaStroke();
-                }
-                path.name = "rectangle";
-               path.removeOnDrag();
+                // path.strokeColor.alpha = alphaStroke();
+            }
+            path.name = "rectangle";
+
+            path.removeOnDrag();
+
             },
         onMouseUp   : function (event) {
 
@@ -111,9 +130,18 @@ window.app = {
                 justification: 'center',
                 fontSize:13
             }).rotate(-90).removeOnDrag().removeOnUp();
+
+            /**
+            * TODO : Gestion du hit test pour la selection dans le rectangle de select
+            **/
+
         }
     }),
     brush: new Tool({
+        onKeyDown: function(event){
+            console.log($.kalte('onAlt'));
+            console.log(event.middlePoint);
+        },
         onMouseDown: function(event){
             path = new Path();
             $.i = $.i + 1;
@@ -135,6 +163,7 @@ window.app = {
             path.add(event.point);
             path.closed = true;
             path.smooth();
+            $.history.add(path);
             $.pjs.updLayer();
             console.log(path.name);
         }
@@ -142,6 +171,11 @@ window.app = {
 };
 app.default.activate();
 
+
+
+/**
+* TODO : Optimiser la gestion des parametrages des tools
+**/
 
 $.getColor = function (index){
     return $('#color'+index).val();
@@ -153,6 +187,23 @@ $.colorFill = function (){
 $.colorStroke = function (){
    return $('#color2').val();
 }
+$.strokeSize = function(){
+    return $('#size').val();
+}
+
+$.dash = function(){
+    var arr = new Array();
+    arr.push($("#dash_x").val());
+    arr.push($("#dash_w").val());
+    return arr;
+}
+
+$.dashMode = function(){
+    return $('#dash').prop('checked');
+}
+/*
+Jusqu ici !!!!
+ */
 
 
 $(".btn-pjs").on("click",function (e){
@@ -163,7 +214,39 @@ $(".btn-pjs").on("click",function (e){
 })
 
 
+$.history = {
+    max: 50,
+    list: [],
+    listRedo: [],
+    undo:function (){
+        var last = $.history.list.pop();
+        $.history.listRedo.push(last);
 
+        last.remove();
+        project.view.update();
+        $.pjs.updLayer();
+        console.log(last);
+    },
+    redo:function(){
+        /**
+        * TODO : Corriger le redo
+        **/
+        var last = $.history.listRedo.pop();
+        $.history.list.push(last);
+
+        console.log(last);
+        last.clone()
+        // new last;
+        project.view.update();
+    },
+    add:function(item){
+
+        if($.history.list.length >= $.history.max)
+            $.history.list.shift();
+
+        $.history.list.push(item);
+    }
+}
 
 
 $.rename = {
@@ -211,28 +294,53 @@ $(document).on("change",".setSelect",function (e){
     var t = $(this);
     var items = project.selectedItems;
     $.each(items, function(index, val) {
-        val[t.attr('data-properties')] = t.val();
+        if (val.selected)
+            val[t.attr('data-properties')] = t.val();
     });
     project.view.update();
 })
 
 
 $.pjs = {
-    undo: function(){},
-    redo: function(){},
+    undo: function(){
+        $.history.undo();
+    },
+    redo: function(){
+        $.history.redo();
+    },
+    createLayer: function(){
+        /**
+        * TODO : Fixer la gestion des layers
+        **/
+        var layer       = new Layer();
+        layer.name      = 'layer';
+        layer.className = 'layer';
+
+        project.addLayer(layer);
+
+        $.pjs.updLayer();
+    },
+    createGroup: function(){
+        var group       = new Group();
+        group.name      = 'group';
+        group.className = 'group';
+        $.pjs.updLayer();
+    },
     updLayer: function(){
         var layersChildren = project.layers[0]._children;
-        var liModel        = $("<li>",{class:'list-group-item'});
-        $('#layers').html('');
+        var trModel        = $("<tr>",{class:''});
+
+        $('#layers tbody').html("");
+
         $.each(layersChildren, function(index, val) {
 
-            var li = liModel.clone();
+            var tr = trModel.clone();
 
-            li.attr('data-item', index);
+            tr.attr('data-item', index);
 
             if (val.selected)
-                li.addClass('active');
-
+                tr.addClass('table-active');
+            tr.addClass(val.className);
             var name = (val.name != undefined)?val.name:'item '+index;
 
             var aShow = $("<a>",{
@@ -242,7 +350,6 @@ $.pjs = {
                     class   : (val.visible)?'visible active':'visible',
                     style   : 'margin-right:0.275rem'
                 }).html('<i class="fa fa-eye"></i>');
-
 
             var aName = $("<a>",{
                     href    : "#",
@@ -259,13 +366,23 @@ $.pjs = {
 
                 }).html('<i class="fa fa-caret-right"></i>');
 
+            var aToggleChild = $("<a>",{
+                    href    : "#",
+                    'data-children':index,
+                    class   : 'toggle',
 
+                }).html('<i class="fa fa-caret-right"></i>');
+            var aRemove = $("<a>",{
+                    href    : "#",
+                    id      : "path_"+index,
+                    class   : 'remove pull-right'
+                }).html('<i class="fa fa-close"></i>');
 
-            li.click(function(e) {
-                e.stopImmediatePropagation();
+            tr.click(function(e) {
+                e.preventDefault();
                 var t        = $(this);
-                t.toggleClass('active');
-                val.selected = t.hasClass('active');
+                t.toggleClass('table-active');
+                val.selected = t.hasClass('table-active');
                 project.view.update();
             });
 
@@ -278,41 +395,46 @@ $.pjs = {
             aToggle.click(function(e) {
                 console.log(val);
             });
+
             aName.dblclick(function(e) {
                 var t = $(this);
                 $.rename.on(t);
             });
-            var aRemove = $("<a>",{
-                    href    : "#",
-                    id      : "path_"+index,
-                    class   : 'remove pull-right'
-                }).html('<i class="fa fa-close"></i>');
+
 
             aRemove.click(function(e) {
                 e.preventDefault();
                 if (confirm('Supprimer')) {
-                    li.remove();
+                    tr.remove();
                     val.remove();
                     project.view.update();
                 }
 
             });
 
-            // li.html(aCheck);
-            li.html(aShow);
+            var tdShow        = $("<td>").html(aShow);
 
-            li.append(aName);
-            li.append(aToggle);
-            li.append(aRemove);
+            var tdToggleChild = $("<td>").html((val.className == 'Group')?aToggleChild:'');
+            // var tdToggleChild = $("<td>").html(val.className);
 
-            $('#layers').append(li);
+            var tdName        = $("<td>").html(aName);
+            var tdToggle      = $("<td>").html(aToggle);
+            var tdRemove      = $("<td>").html(aRemove);
+
+            tr.html(tdShow);
+            tr.append(tdToggleChild);
+            tr.append(tdName);
+            tr.append(tdToggle);
+            tr.append(tdRemove);
+
+            $('#layers tbody').append(tr);
         });
 
         /**
         * TODO : Synchroniser avec le canvas
         **/
-        $('#layers').sortable('destroy');
-        $('#layers').sortable().on('sortupdate', function(e, obj){
+        $('#layers tbody').sortable('destroy');
+        $('#layers tbody').sortable().on('sortupdate', function(e, obj){
                 var t = $(obj.item[0]);
 
                 var idItem = t.attr('data-item');
@@ -336,18 +458,10 @@ $.pjs = {
     loadTool: function(t, e){
         t.parents('div').first().find('.active').removeClass('active');
         t.addClass('active');
+
+        var url = $.generate.url.exec('editor','draw_load_tool');
+
         app[t.attr('data-tool')].activate();
-
-        // var data = {
-
-        // };
-
-        //  $.post('./assets/paper/tools/default.json', data, function(json) {
-        //     $.toolSelected = json;
-        //     console.log($.toolSelected);
-        // },'json');
-
-         // new tool($.toolSelected);
     },
     load:function(t, e){
         var data = {
@@ -383,9 +497,22 @@ $.pjs = {
            $.notiny({ text: json.msg, position: 'right-top',theme: 'light' });
         },'json');
     }
-
-
-    // $.pjs.raster();
-
-
 }
+    $(document).on("mousedown","#circle-mouse",function (e){
+        e.preventDefault();
+        var t = $(this);
+        if (e.button == 2)
+            $.toggleMouseMenu(e);
+
+    })
+
+ $(document).on("mousedown",function (e){
+        var t = $(this);
+        if (e.button == 2){
+            $(document)[0].oncontextmenu = function() {
+                return false;
+            }
+            $.toggleMouseMenu(e);
+        }
+
+    })

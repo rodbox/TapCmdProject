@@ -8,6 +8,13 @@ $(document).ready(function($) {
         default : function (t, json, e){
             alert(json.msg);
         },
+        initDrawMenu: function(){
+            $('#toolMenu .slider').slider({
+                tooltip:false
+            }).on("slide", function(slideEvt) {
+                $(this).next('.value').text(slideEvt.value);
+            });
+        },
         setEditor: function (t, json, e){
             var ext   = t.attr('data-ext');
             var mode  = ($.mode[ext]==undefined)?'default':$.mode[ext];

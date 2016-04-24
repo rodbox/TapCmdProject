@@ -39,7 +39,7 @@
                 'info'    => $info,
                 'editor'  => $editor,
                 'src'     => $src,
-                'url'  => $url,
+                'url'     => $url,
                 'content' => $this->viewsAsync('editor','editors/'.$editor, $data)
             ];
         }

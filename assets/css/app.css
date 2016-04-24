@@ -2392,7 +2392,7 @@ div.onLoad i {
 .btn-sui-collapse + div {
   margin-bottom: 2rem;
 }
-.sortable:hover {
+.sortable:hover:not(tbody) {
   background-color: rgba(0, 0, 0, 0.05);
 }
 .sortable .sortable {
@@ -2509,6 +2509,17 @@ li.active a {
 .colorpicker-2x .colorpicker-color div {
   height: 30px;
 }
+tbody .sortable-placeholder {
+  height: 32px !important;
+}
+#layers .rename {
+  width: 150px !important;
+  display: block !important;
+}
+#layers input {
+  font-size: 0.7rem;
+  border-width: 0px;
+}
 .remove,
 .selector,
 .visible {
@@ -2530,5 +2541,49 @@ li.active a {
   background-color: rgba(255, 255, 255, 0.5) !important;
 }
 .input-colors i {
-  width: 42px;
+  width: 40px !important;
+}
+.tooltip {
+  position: absolute !important;
+  margin-top: -131px !important;
+}
+.tooltip .tooltip-inner {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.5rem !important;
+}
+.slider.slider-horizontal .slider-track {
+  height: 6px;
+  left: 0;
+  margin-top: -15px;
+  top: 50%;
+  width: 100%;
+}
+.slider.slider-horizontal .slider-track .slider-handle {
+  margin-top: -8px;
+  background-image: none !important;
+}
+.slider.slider-horizontal .slider-track .slider-selection {
+  box-shadow: none !important;
+}
+.bg-grey {
+  background-color: #D5D5D5 !important;
+}
+#toolMenu {
+  min-height: 32px;
+}
+#toolMenu .tooltip {
+  display: none !important;
+}
+#toolMenu input {
+  border-width: 0px !important;
+  border-radius: 4px !important;
+  padding: 0.075rem 0.35rem;
+}
+#toolMenu .input-group-addon {
+  background-color: transparent !important;
+  border-width: 0px !important;
+  padding: 0.075rem 0.35rem;
+}
+#toolMenu .slider.slider-horizontal .slider-track {
+  margin-top: 1px !important;
 }

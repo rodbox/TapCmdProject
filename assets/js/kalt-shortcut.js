@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $.sui.set('k','editor');
+  $.sui.set('k',$('body').attr('data-sui-k'));
 
   $.getScript('assets/js/kalt/'+$.sui.get('k')+'.js');
 

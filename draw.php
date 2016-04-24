@@ -12,49 +12,61 @@
                 <link href="assets/vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" >
         <link href="assets/css/icomoon/style.css" rel="stylesheet">
         <link href="assets/css/app.css" rel="stylesheet">
+        <link href="app/editor/assets/css/app-paper-circlemenu.css" rel="stylesheet">
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="assets/vendor/paper/dist/paper-full.js" ></script>
         <script type="text/javascript">$.cb = {};</script>
     </head>
-    <body class="h-100">
+    <body class="h-100 " data-sui-k="draw" >
+      <div class="container-fluid">
       <?php
         extract($_GET);
         $rand  = substr( md5(rand()), 0, 8);
       ?>
-
-  <!-- BEGIN COL : col-xs-3 col-lg-8  -->
-      <!-- BEGIN ROW  -->
-      <div class="row bg-inverse">
-          <div class="col-xs-3 ">
-            <?php $c->menu("editor","editors/panel/img-action","",$_GET); ?>
-          </div>
-          <div class="col-xs-6 text-center">
-            <?php $c->view("editor","editors/panel/img-class","",$_GET); ?>
-          </div>
-          <div class="col-xs-3 ">
-            <?php $c->menu('editor','editors/menu/img',$_GET); ?>
-          </div>
-      </div>
-      <!-- END ROW  -->
-      <div class="row ">
-            <div class=" col-xs-3 " style="left:0px">
-              <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
+        <!-- BEGIN ROW  -->
+        <div class="row bg-inverse">
+            <div class="col-xs-3 ">
+              <?php $c->menu("editor","editors/panel/img-action","",$_GET); ?>
             </div>
-            <!-- BEGIN COL : col-lg-8  -->
-            <div class="col-xs-6 text-center h-100 text-center" style="vertical-align: middle;" >
-              <div class='text-center'>
-                      <div class="btn-group">
-                        <a href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-undo"></i></a>
-                        <a href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-repeat"></i></a>
-                      </div>
+            <div class="col-xs-6 text-center">
+              <?php $c->view("editor","editors/panel/img-class","",$_GET); ?>
+            </div>
+            <div class="col-xs-3 ">
+              <?php $c->menu('editor','editors/menu/img',$_GET); ?>
+            </div>
+        </div>
+        <!-- BEGIN ROW  -->
+        <div class="row bg-grey">
+          <!-- BEGIN COL : col-xs-12  -->
+          <div class="col-xs-12 ">
+            <form id="toolMenu" action="#" class="form-inline"></form>
+          </div>
+          <!-- END COL : col-xs-12  -->
+        </div>
+        <!-- END ROW  -->
+        <!-- END ROW  -->
+        <div class="row ">
+              <div class=" col-xs-3 " style="left:-15px">
+                <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
+
               </div>
-              <canvas id="<?php echo $_GET['id']; ?>" style="" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>" style="background-color: rgba(0,0,0,0.2);"></canvas>
-            </div>
-            <div class=" col-xs-3 " >
-              <?php $c->view("editor","editors/panel/img-layer","",$_GET); ?>
-            </div>
+              <!-- BEGIN COL : col-lg-8  -->
+              <div class="col-xs-6 text-center h-100 text-center" style="vertical-align: middle;" >
+                <div class='text-center'>
+                        <div class="btn-group">
+                          <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-undo"></i></a>
+                          <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-repeat"></i></a>
+                        </div>
+                </div>
+                <?php $c->view("editor","draw-contextmenu"); ?>
+                <canvas id="<?php echo $_GET['id']; ?>" class="" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>" style="background-color: rgba(0,0,0,0.2);"></canvas>
+              </div>
+              <div class=" col-xs-3 " >
+                <?php $c->view("editor","editors/panel/img-layer","",$_GET); ?>
+              </div>
+        </div>
       </div>
-
+          <?php $c->view('app','modal'); ?>
         <script type="text/javascript" src="assets/vendor/tether/dist/js/tether.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/notiny/dist/notiny.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
@@ -92,11 +104,7 @@
             customClass: 'colorpicker-2x'}
           );
 
-          $('.slider').slider({
-            formatter: function(value) {
-              return 'Current value: ' + value;
-            }
-          });
+          $('.slider').slider();
 
          });
 

@@ -494,7 +494,10 @@ div.onLoad{
 .sortable{
     // padding:0.5rem 0.2rem;
     &:hover{
-        background-color: rgba(0,0,0,0.05);
+        &:not(tbody){
+            background-color: rgba(0,0,0,0.05);
+        }
+
     }
     .sortable{
         margin-left: 2rem;
@@ -623,7 +626,33 @@ li.active{
         }
     }
 }
- .colorpicker-2x .colorpicker-saturation { width: 200px; height: 200px; } .colorpicker-2x .colorpicker-hue, .colorpicker-2x .colorpicker-alpha { width: 30px; height: 200px; } .colorpicker-2x .colorpicker-color, .colorpicker-2x .colorpicker-color div { height: 30px; }
+
+
+
+.colorpicker-2x .colorpicker-saturation { width: 200px; height: 200px; }
+.colorpicker-2x .colorpicker-hue, .colorpicker-2x .colorpicker-alpha { width: 30px; height: 200px; }
+.colorpicker-2x .colorpicker-color, .colorpicker-2x .colorpicker-color div { height: 30px; }
+
+tbody{
+    .sortable-placeholder{
+        height:32px !important;
+    }
+}
+
+#layers{
+    .Group{
+
+    }
+    .rename{
+        width:150px !important;
+        display:block !important;
+    }
+    input{
+        font-size: 0.7rem;
+        border-width: 0px;
+    }
+}
+
 .remove,
 .selector,
 .visible{
@@ -647,7 +676,53 @@ li.active{
         background-color: rgba(255,255,255,0.5) !important;
     }
     i{
-        width:42px;
+        width:40px !important;;
     }
 }
 
+.tooltip{
+
+
+    position:absolute !important;
+    margin-top: -131px !important;
+    .tooltip-inner{
+        font-size: 0.7rem;
+        padding: 0.1rem 0.5rem !important;
+    }
+}
+
+.slider.slider-horizontal .slider-track {
+    height: 6px;
+    left: 0;
+    margin-top: -15px;
+    top: 50%;
+    width: 100%;
+    .slider-handle{
+        margin-top: -8px;
+        background-image: none !important;
+    }
+    .slider-selection{
+        box-shadow: none !important;
+    }
+}
+.bg-grey{
+    background-color: #D5D5D5 !important;
+}
+#toolMenu{
+    .tooltip{
+        display:none !important;
+    }
+    min-height: 32px;
+    input{
+        border-width: 0px !important;
+        border-radius: 4px !important;
+        padding: 0.075rem 0.35rem
+    }
+    .input-group-addon{
+        background-color: transparent !important;
+        border-width: 0px !important;padding: 0.075rem 0.35rem
+    }
+    .slider.slider-horizontal .slider-track{
+        margin-top: 1px !important;
+    }
+}
