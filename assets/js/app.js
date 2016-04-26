@@ -309,6 +309,18 @@ $(document).ready(function($) {
     })
 
 
+    $(document).on("click",".btn-fullscreen",function (e){
+        e.preventDefault();
+        var t = $(this);
+          var element = document.getElementById(t.attr('data-target'));
+    if (element.mozRequestFullScreen)
+      element.mozRequestFullScreen(element.ALLOW_KEYBOARD_INPUT);
+    else if (element.webkitRequestFullScreen)
+      element.webkitRequestFullScreen(element.ALLOW_KEYBOARD_INPUT);
+
+    })
+
+
 
     $(document).on("submit",".form-live",function (e){
         e.preventDefault();

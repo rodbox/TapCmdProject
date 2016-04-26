@@ -1,0 +1,272 @@
+
+.draw-page{
+
+    *,
+    select,
+    option,
+    input,
+    label,
+    textarea,
+    a,
+    button,
+    :focus,
+    :active,
+    .btn{
+        outline:none !important;
+    }
+
+    .bg-inverse{
+        background-color: #171817 !important;
+    }
+    .c-menu{
+        &,
+        .btn,
+        .form-control{
+            background-color: transparent !important;
+        }
+        .btn{
+            margin-bottom: 0px;
+            &:hover,
+            &.active
+            {
+                &,
+                *{
+                    color:#fff !important;
+                }
+
+            }
+        }
+    }
+
+    *{
+        font-size: 0.8rem !important;
+    }
+
+    .colorpicker.dropdown-menu{
+        left:0px !important;
+
+        &.colorpicker-right::before,
+        &.colorpicker-right::after{
+          left:5px;
+          right:auto !important;
+        }
+    }
+}
+
+.colorpicker-2x {
+    .colorpicker-saturation { width: 200px; height: 200px; }
+
+    .colorpicker-hue,
+    .colorpicker-alpha { width: 30px; height: 200px; }
+
+    .colorpicker-color,
+    .colorpicker-color div { height: 30px; }
+}
+
+
+tbody{
+    .sortable-placeholder{
+        height:32px !important;
+    }
+}
+
+#layers{
+    table{
+        margin-bottom: 0px !important;
+        &,
+        tr,
+        thead,
+        tbody{
+            width:100% !important;
+        }
+        &.table{
+            &
+            *{
+                border-width: 0px;
+            }
+        }
+    }
+    th{
+        width: 16px !important;
+        display: inline-block !important;
+        text-align: center;
+        &.thName{
+            text-align: left !important;
+            width: 100px !important;
+        }
+    }
+    .Group{
+
+    }
+    .rename{
+        width:100px !important;
+        display:block !important;
+    }
+    input{
+        font-size: 0.7rem;
+        border-width: 0px;
+    }
+
+    .list-group-item{
+        padding:0rem !important;
+
+        .table{
+            th{
+                border-top: 0px !important;
+            }
+        }
+    }
+}
+
+.remove,
+.selector,
+.visible{
+    .opacity(0.2);
+    &.active{
+        .opacity(1);
+    }
+}
+.active{
+    .selector{
+        .opacity(1);
+    }
+}
+
+.input-colors{
+    .input-group-addon,
+    .form-control{
+        border-width: 0px !important;
+    }
+    .form-control{
+        background-color: rgba(255,255,255,0.5) !important;
+    }
+    i{
+        width:39px !important;;
+    }
+}
+
+.tooltip{
+
+
+    position:absolute !important;
+    margin-top: -131px !important;
+    .tooltip-inner{
+        font-size: 0.7rem;
+        padding: 0.1rem 0.5rem !important;
+    }
+}
+
+.slider.slider-horizontal .slider-track {
+    height: 6px;
+    left: 0;
+    margin-top: -15px;
+    top: 50%;
+    width: 100%;
+    .slider-handle{
+        height: 13px;
+        width: 13px;
+        margin-top: -4px;
+        background-image: none !important;
+    }
+    .slider-selection{
+        box-shadow: none !important;
+    }
+}
+.bg-grey{
+    background-color: #D5D5D5 !important;
+}
+#toolMenu{
+    .tooltip{
+        display:none !important;
+    }
+    min-height: 32px;
+    input{
+        border-width: 0px !important;
+        border-radius: 4px !important;
+        padding: 0.075rem 0.35rem
+    }
+    .input-group-addon{
+        background-color: transparent !important;
+        border-width: 0px !important;padding: 0.075rem 0.35rem
+    }
+    .slider.slider-horizontal .slider-track{
+        margin-top: -3px !important;
+    }
+    .input-group{
+        padding:0.3rem !important;
+    }
+    .value{
+        width: 32px;
+    }
+    .form-control{
+        &.xs{
+            width: 32px;
+        }
+    }
+}
+
+.btn-group-vertical{
+    .btn{
+        border-radius: 0px !important;
+    }
+}
+.table-sm td, .table-sm th {
+    padding: 0.1rem;
+}
+
+.card{
+    .card-block{
+        padding:0.25rem 0.7rem !important;
+    }
+}
+td{
+    table{
+        margin-left: 16px !important;
+    }
+}
+div.meta{
+
+    padding:0.25rem;
+    .form-control{padding:0.25rem;
+        + .form-control{
+            // margin-top: 0.25rem;
+        }
+
+    }
+}
+
+label.sm{
+    margin-bottom: 0.5rem;
+    margin-top: 0.7rem !important;
+    font-size: 0.7rem;
+}
+
+#panelbar{
+    position: fixed;
+    right: calc(~"25% - 30px");
+    label{
+
+    }
+
+    .open > .dropdown-menu {
+        margin-top: -32px;
+        display: block;
+        left: -185px;
+        position: absolute;
+        border-width: 0px !important;
+        label.sm {
+            font-size: 0.7rem;
+            margin-bottom: 0.1rem;
+            margin-top: 0.3rem !important;
+        }
+    }
+}
+
+
+.header-menu{
+   ::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+}

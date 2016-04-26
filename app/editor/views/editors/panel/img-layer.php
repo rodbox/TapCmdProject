@@ -15,14 +15,16 @@
        <?php endforeach ?>
        </select>
    </div>
-   <div class="btn-group-sm" style="padding:0rem 1rem ;">
-       <a href="#" class="btn-pjs btn btn-default" data-pjs="createGroup"><i class="fa fa-folder-o"></i></a>
-       <a href="#" class="btn-pjs btn btn-default" data-pjs="createLayer"><i class="fa fa-plus"></i></a>
-      </div>
-   <div class="card-block h-50 overflow">
 
-      <table id="layers" class="table table-sm ">
-        <tbody class="sortable"></tbody>
-      </table>
+   <div class="btn-group-sm" style="padding:0rem 1rem ;">
+       <a id="createGroup" href="#" class="btn-pjs btn btn-default" data-pjs="createGroup" title="createGroup"><i class="fa fa-folder-o"></i></a>
+       <a id="createLayer" href="#" class="btn-pjs btn btn-default" data-pjs="createLayer" title="createLayer"><i class="fa fa-plus"></i></a>
+       <a id="unselect" href="#" class="btn-pjs btn btn-default" data-pjs="unselect" title="unselect"><i class="fa fa-check-square"></i></a>
+       <input id="searchLayer" type="text" class="btn btn-secondary" style="width:110px;" />
+      </div>
+
+   <div class="card-block h-50 overflow">
+      <ul id="layers" class="sortable list-group">
+      </ul>
    </div>
 </div>

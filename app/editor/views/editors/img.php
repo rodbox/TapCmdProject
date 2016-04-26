@@ -13,4 +13,5 @@
     ]);
 
 ?>
+<a href="draw.php?<?php echo $query; ?>">open</a>
 <iframe src="draw.php?<?php echo $query; ?>" class="canvas-container" style="border-width: 0px;"></iframe>

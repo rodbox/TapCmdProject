@@ -10,6 +10,7 @@
 @import 'custom-files.less';
 @import 'custom-helper.less';
 
+
 body{
     color:@body1;
     background-color: @body2;
@@ -179,7 +180,7 @@ fieldset{
             padding: 0rem;
             i,
             .add-on i{
-                height: 36px;
+                height: 31px;
                 width:42px;
             }
         }
@@ -562,6 +563,10 @@ div.onLoad{
     overflow: hidden !important;
 }
 
+canvas{
+    cursor: crosshair !important;
+}
+
 .h-100{
     height: 100% !important;
 }
@@ -573,156 +578,4 @@ li.active{
     }
 }
 
-.draw-page{
-
-    *,
-    select,
-    option,
-    input,
-    label,
-    textarea,
-    a,
-    button,
-    :focus,
-    :active,
-    .btn{
-        outline:none !important;
-    }
-
-    .bg-inverse{
-        background-color: #171817 !important;
-    }
-    .c-menu{
-        &,
-        .btn,
-        .form-control{
-            background-color: transparent !important;
-        }
-        .btn{
-            margin-bottom: 0px;
-            &:hover,
-            &.active
-            {
-                &,
-                *{
-                    color:#fff !important;
-                }
-
-            }
-        }
-    }
-
-    *{
-        font-size: 0.9rem !important;
-    }
-
-    .colorpicker.dropdown-menu{
-        left:0px !important;
-
-        &.colorpicker-right::before,
-        &.colorpicker-right::after{
-          left:5px;
-          right:auto !important;
-        }
-    }
-}
-
-
-
-.colorpicker-2x .colorpicker-saturation { width: 200px; height: 200px; }
-.colorpicker-2x .colorpicker-hue, .colorpicker-2x .colorpicker-alpha { width: 30px; height: 200px; }
-.colorpicker-2x .colorpicker-color, .colorpicker-2x .colorpicker-color div { height: 30px; }
-
-tbody{
-    .sortable-placeholder{
-        height:32px !important;
-    }
-}
-
-#layers{
-    .Group{
-
-    }
-    .rename{
-        width:150px !important;
-        display:block !important;
-    }
-    input{
-        font-size: 0.7rem;
-        border-width: 0px;
-    }
-}
-
-.remove,
-.selector,
-.visible{
-    .opacity(0.2);
-    &.active{
-        .opacity(1);
-    }
-}
-.active{
-    .selector{
-        .opacity(1);
-    }
-}
-
-.input-colors{
-    .input-group-addon,
-    .form-control{
-        border-width: 0px !important;
-    }
-    .form-control{
-        background-color: rgba(255,255,255,0.5) !important;
-    }
-    i{
-        width:40px !important;;
-    }
-}
-
-.tooltip{
-
-
-    position:absolute !important;
-    margin-top: -131px !important;
-    .tooltip-inner{
-        font-size: 0.7rem;
-        padding: 0.1rem 0.5rem !important;
-    }
-}
-
-.slider.slider-horizontal .slider-track {
-    height: 6px;
-    left: 0;
-    margin-top: -15px;
-    top: 50%;
-    width: 100%;
-    .slider-handle{
-        margin-top: -8px;
-        background-image: none !important;
-    }
-    .slider-selection{
-        box-shadow: none !important;
-    }
-}
-.bg-grey{
-    background-color: #D5D5D5 !important;
-}
-#toolMenu{
-    .tooltip{
-        display:none !important;
-    }
-    min-height: 32px;
-    input{
-        border-width: 0px !important;
-        border-radius: 4px !important;
-        padding: 0.075rem 0.35rem
-    }
-    .input-group-addon{
-        background-color: transparent !important;
-        border-width: 0px !important;padding: 0.075rem 0.35rem
-    }
-    .slider.slider-horizontal .slider-track{
-        margin-top: 1px !important;
-    }
-}
+@import 'custom-draw.less';

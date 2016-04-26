@@ -20,6 +20,21 @@ $.shortcut={
             $('a.btn-tool').eq(e.keyCode - 49).trigger('click');
         }
 
+        else if ($.kalte("onAlt") && e.keyCode == 68){
+            e.preventDefault();
+            $.pjs.unselect();
+        }
+
+        else if ($.kalte("onAlt") && e.keyCode == 65){
+            e.preventDefault();
+            $.pjs.selectAll();
+        }
+
+        else if ($.kalte("onAlt") && $.kalte("onMaj")){
+            e.preventDefault();
+            $("#searchLayer").focus();
+        }
+
         else if ($.kalte("onAlt") && e.keyCode == 88){
             e.preventDefault();
             var color1 = $('#color1').val();

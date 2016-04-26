@@ -6,7 +6,8 @@ var path;
 
 var toolsList = ['default'];
 $.toolSelected = {};
-
+$.selected = {};
+$.selectedDown = {};
 // $.each(toolsList, function(index, val) {
 //      $.get('./assets/paper/tools/'+val+'.json', function(json) {
 //             window.app = {
@@ -17,8 +18,36 @@ $.toolSelected = {};
 //
 //
 
+var x = 0, y = 0;
+$.canvasPos  = $("canvas").position();
+document.addEventListener('mousemove', function(e){
+    x = e.layerX - $.canvasPos.left,
+    y = e.layerY - 35;
+
+}, false);
+
+
+$( window ).resize(function (e){
+    $.canvasPos  = $("canvas").position();
+})
+
+
+
+
+
+
+
+
+
+
 window.app = {
     default: new Tool({
+        onKeyDown: function(){
+           $.mouselock = {
+                x:x,
+                y:y
+            };
+        },
         onMouseDown: function(event){
             path = new Path();
             $.i = $.i + 1;
@@ -33,7 +62,25 @@ window.app = {
                 path.dashArray = $.dash();
         },
         onMouseDrag: function(event){
-            path.add(event.middlePoint);
+
+            if($.kalte('onAlt')){
+                var point = {
+                    x:$.mouselock.x,
+                    y:event.point.y
+                };
+            }
+            else if($.kalte('onMaj')){
+                var point = {
+                    x:event.point.x,
+                    y:$.mouselock.y
+                };
+
+            }
+            else{
+                var point = event.middlePoint;
+            }
+
+            path.add(point);
             path.smooth();
         },
         onMouseUp: function(event){
@@ -93,54 +140,76 @@ window.app = {
             },
         }),
     select: new Tool({
+        onMouseDown : function (event){
+            $.selected = project.selectedItems;
+            $.selectedDown = {};
+            $.each($.selected, function(index, val) {
+                 $.selectedDown[index] = val.position;
+            });
+        },
         onMouseDrag : function (event){
+
             var downPointX = event.downPoint.x;
             var downPointY = event.downPoint.y;
             var sizeX = event.point.x-downPointX;
             var sizeY = event.point.y-downPointY;
 
-            var path = new Path.Rectangle({
-                point: [downPointX,downPointY],
-                size: [sizeX, sizeY]
-            });
 
-            path.fillColor = "black";
-            path.fillColor.alpha = "0.1";
-            path.strokeColor =  "grey";
-            path.strokeWidth =  "1";
-            path.strokeJoin = 'round';
-            path.dashArray = [5, 5];
-          /*  path.miterLimit(1);*/
-            path.removeOnDrag();
-            path.removeOnUp();
+            if($.kalte('onAlt')){
+                $.each($.selected, function(index, item) {
+                     /* iterate through array or object */
+                       item.position.x = $.selectedDown[index].x + sizeX;
+                       item.position.y = $.selectedDown[index].y + sizeY;
+                     // item.position.x = $.selectedDown[index].x + sizeY;
+                });
+            }
+            else{
+                var path = new Path.Rectangle({
+                    point: [downPointX,downPointY],
+                    size: [sizeX, sizeY]
+                });
 
-            var textX = new PointText({
-                point: [downPointX+(sizeX/2), downPointY+13],
-                content:  Math.abs(sizeX),
-                fillColor: 'black',
+                path.fillColor = "black";
+                path.fillColor.alpha = "0.1";
+                path.strokeColor =  "grey";
+                path.strokeWidth =  "1";
+                path.strokeJoin = 'round';
+                path.dashArray = [5, 5];
+              /*  path.miterLimit(1);*/
+                path.removeOnDrag();
+                path.removeOnUp();
 
-                justification: 'center',
-                fontSize:13
-            }).removeOnDrag().removeOnUp();
+                var textX = new PointText({
+                    point: [downPointX+(sizeX/2), downPointY+13],
+                    content:  Math.abs(sizeX),
+                    fillColor: 'black',
 
-            var textY = new PointText({
-                point: [downPointX+11, downPointY+(sizeY/2)],
-                content:  Math.abs(sizeY),
-                fillColor: 'black',
-                justification: 'center',
-                fontSize:13
-            }).rotate(-90).removeOnDrag().removeOnUp();
+                    justification: 'center',
+                    fontSize:13
+                }).removeOnDrag().removeOnUp();
 
+                var textY = new PointText({
+                    point: [downPointX+11, downPointY+(sizeY/2)],
+                    content:  Math.abs(sizeY),
+                    fillColor: 'black',
+                    justification: 'center',
+                    fontSize:13
+                }).rotate(-90).removeOnDrag().removeOnUp();
+            }
             /**
             * TODO : Gestion du hit test pour la selection dans le rectangle de select
             **/
 
+
         }
     }),
     brush: new Tool({
-        onKeyDown: function(event){
-            console.log($.kalte('onAlt'));
-            console.log(event.middlePoint);
+
+        onKeyDown: function(){
+           $.mouselock = {
+                x:x,
+                y:y
+            };
         },
         onMouseDown: function(event){
             path = new Path();
@@ -151,11 +220,34 @@ window.app = {
             path.add(event.point);
         },
         onMouseDrag: function(event){
-            var step = event.delta / 2;
+            var step = event.delta / 4;
             step.angle += 90;
             var top = event.middlePoint + step;
             var bottom = event.middlePoint - step;
-            path.add(top);
+
+
+
+            if($.kalte('onAlt')){
+                var point = {
+                    x:$.mouselock.x,
+                    y:event.point.y
+                };
+            }
+            else if($.kalte('onMaj')){
+                var point = {
+                    x:event.point.x,
+                    y:$.mouselock.y
+                };
+
+            }
+            else{
+                var point = event.middlePoint;
+            }
+
+
+
+
+            path.add(point);
             path.insert(0, bottom);
             path.smooth();
         },
@@ -163,6 +255,8 @@ window.app = {
             path.add(event.point);
             path.closed = true;
             path.smooth();
+            path.reduce();
+
             $.history.add(path);
             $.pjs.updLayer();
             console.log(path.name);
@@ -250,7 +344,7 @@ $.history = {
 
 
 $.rename = {
-    on:function (t){
+    on:function (t, item){
         t.attr('data-content',t.html());
         var input = $("<input>",{
             "type":"text",
@@ -259,7 +353,8 @@ $.rename = {
             if(e.keyCode == 13){
                 var name = ($(this).val() != '')?$(this).val():t.attr('data-content');
                 // project.layers[0]._children[]['name'] = $(this).val();
-                $.item.set(t.attr('data-children'),'name',name);
+               item.name = name;
+                // $.item.set(t.attr('data-children'),'name',name);
                 t.attr('data-content',name);
 
                 $.rename.off(t);
@@ -272,7 +367,7 @@ $.rename = {
         t.html(input);
 
     },
-    off:function (t){
+    off:function (t, item){
         t.html(t.attr('data-content'));
     }
 }
@@ -291,14 +386,359 @@ $.item = {
 
 $(document).on("change",".setSelect",function (e){
     e.preventDefault();
-    var t = $(this);
+    var t     = $(this);
     var items = project.selectedItems;
     $.each(items, function(index, val) {
+        if (t.attr('data-properties') == 'rotation') {
+
+        }
         if (val.selected)
             val[t.attr('data-properties')] = t.val();
     });
     project.view.update();
 })
+
+
+
+
+
+
+
+
+
+
+// /**
+//  * Element de représentation du projet
+//  */
+// $.layerItemHeader = function (val){
+//     var table = $("<table>",{"id":val.name,"class":"layerPath table table-sm"});
+
+//             if (val.selected)
+//                 tr.addClass('table-active');
+//             tr.addClass(val.className);
+//             var name = (val.name != undefined)?val.name:'item '+index;
+
+//             tr.click(function(e) {
+//                 e.preventDefault();
+//                 var t        = $(this);
+//                 t.toggleClass('table-active');
+//                 val.selected = t.hasClass('table-active');
+//                 project.view.update();
+//             });
+
+
+//             var tdShow        = $("<td>").html(aShow);
+
+//             var tdToggleChild = $("<td>").html((val.className == 'Group')?aToggleChild:'');
+//             // var tdToggleChild = $("<td>").html(val.className);
+
+//             var tdName        = $("<td>").html(aName);
+//             var tdToggle      = $("<td>").html(aToggle);
+//             var tdRemove      = $("<td>").html(aRemove);
+
+//             tr.html(tdShow);
+//             tr.append(tdToggleChild);
+//             tr.append(tdName);
+//             tr.append(tdToggle);
+//             tr.append(tdRemove);
+
+//             // table.find('tbody').append(tr);
+// }
+
+
+
+
+
+
+    $.aCheck = function(item, metaList) {
+        return $("<a>",{
+                href    : "#",
+                id      : "path_check_"+item.index,
+                'data-children':item.index,
+                style   : 'margin-right:0.275rem',
+                class   : 'btn-check'
+            })
+            .html('<i class="fa fa-check"></i>')
+            .click(function(e) {
+                e.preventDefault();
+                var t        = $(this);
+                var p        = t.parents('tr');
+                p.toggleClass('table-active');
+                // item.selected = p.hasClass('table-active');
+
+                var div = $.meta.load(item,metaList);
+                $.selectedMode(item,p.hasClass('table-active'));
+                $('#metaView').html(div);
+                $.meta.init();
+            });
+    }
+
+    $.aShow = function(item) {
+        return $("<a>",{
+                href    : "#",
+                id      : "path_show_"+item.index,
+                'data-children':item.index,
+                class   : (item.visible)?'visible active btn-show':'visible btn-show',
+                style   : 'margin-right:0.275rem'
+            })
+            .html('<i class="fa fa-eye"></i>')
+            .click(function(e) {
+                $(this).toggleClass('active');
+                item.visible = $(this).hasClass('active');
+                project.view.update();
+            });
+    }
+
+    $.aName = function(item){
+        return $("<a>",{
+            href    : "#",
+            id      : "path_"+item,
+            'data-children':item,
+            class   : 'rename',
+            style   : 'margin-right:0.275rem'
+        }).html((item.name==undefined||item.name=="")?'layer':item.name).dblclick(function(e) {
+            var t = $(this);
+            $.rename.on(t,item);
+        });
+    }
+
+    $.aToggle = function(item){
+        return $("<a>",{
+            href    : "#",
+            'data-children':item,
+            class   : 'toggle btn-toggle',
+
+        }).html('<i class="fa fa-caret-right"></i>').click(function(e) {
+            console.log(item);
+        });
+    }
+
+    $.aToggleMeta = function(item, metaList){
+        return $("<a>",{
+            href    : "#",
+            'data-children':item,
+            class   : 'toggle-meta btn-meta',
+        }).html('<i class="fa fa-list"></i>').click(function(){
+            console.log(item);
+            var div = $.meta.load(item,metaList);
+            $('#metaView').html(div);
+        });
+    }
+
+    $.aRemove = function(item){
+        return $("<a>",{
+            href    : "#",
+            id      : "path_"+item,
+            class   : 'remove pull-right btn-remove'
+        }).html('<i class="fa fa-close"></i>').click(function(e) {
+            e.preventDefault();
+            if (confirm('Supprimer')) {
+                item.remove();
+                $.pjs.updLayer();
+                project.view.update();
+            }
+        })
+    };
+
+
+
+$.meta = {
+    load:function(item, index){
+        var attrMetas = {
+            'name'      : {
+                class : 'form-control text',
+            },
+            'opacity'   : {
+                class : 'form-control slider',
+                'data-slider-step':0.01,
+                'data-slider-max':1,
+                'data-slider-min':0,
+
+            },
+            'className' : {
+                class : 'form-control text',
+            },
+            'fillColor' : {
+                class : 'form-control colorpicker',
+            },
+            'strokeWidth' : {
+                class : 'form-control slider',
+                'data-slider-step':1,
+                'data-slider-max':50,
+                'data-slider-min':1,
+            },
+            'strokeColor' : {
+                class : 'form-control colorpicker',
+            }
+        };
+
+        var div = $("<div>",{class:"meta"});
+        $.each(index, function(index, val) {
+             var attrMeta                = attrMetas[val];
+             attrMeta['data-properties'] = val;
+             var input                   = $("<input>",attrMeta);
+
+             input.val(item[val]);
+             var label = $("<label>",{class:"sm"}).html(val);
+             div.append(label);
+             div.append(input);
+        });
+        return div;
+    },
+    init :  function(){
+        $('.meta .colorpicker').colorpicker({
+
+        });
+
+        $('.meta .slider').slider();
+
+        $('.meta input').on('change',function(event) {
+            item[val] = input.val();
+            project.view.update();
+        });
+    }
+};
+$.rotore = {};
+$.selectedMode = function(item, bool){
+    if(bool){
+        console.log(item);
+        var path = $.rotore = new Path.Circle({
+            center: {
+                x:100,
+                y:100
+            },
+            radius: 5,
+            fillColor : '#000',
+            id:'rotore',
+            name:'rotore'
+        });
+        console.log(item.bounds);
+
+    }
+    else
+        $.rotore.remove();
+
+    item.selected = bool;
+    project.view.update();
+}
+
+$.layerPath  = function(path){
+    var table = $("<table>",{"id":path.name,"class":"layerPath"});
+    var thead = $("<thead>",{"id":"th_"+path.name,"class":"th_layerPath"});
+    var tbody = $("<tbody>",{"id":"tb_"+path.name,"class":"tb_layerPath"});
+
+    var metaList = [
+        'name',
+        'opacity',
+        'className',
+        'fillColor',
+        'strokeWidth',
+        'strokeColor'
+    ];
+
+
+    var ths  = {
+        thShow   : $("<th>",{"class":"thShow"}).html($.aShow(path)),
+        thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(path, metaList)),
+        thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
+        thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(path)),
+        thName   : $("<th>",{"class":"thName"}).html($.aName(path)),
+
+        thRemove : $("<th>",{"class":"thRemove"}).html($.aRemove(path))
+    }
+
+    var tr  = $("<tr>")
+    if (path.selected){
+        tr.addClass('table-active');
+        tr.addClass(path.className);
+        var name = (path.name != undefined)?path.name:'item '+index;
+    }
+
+    $.each(ths, function(index, th) {
+        tr.append(th);
+    });
+
+    var trs = $("<tr>").append($("<td>",{class:'pathmeta', colspan:5}).hide());
+
+    thead.append(tr);
+    thead.append(trs);
+    table.append(thead);
+
+    $.each(path._children, function(index, children) {
+        tbody.append($.pathPath(children));
+    });
+
+
+    table.append(tbody);
+
+    return table;
+}
+
+$.layerGroup = function(val){
+    var table = $("<table>",{"id":val.name,"class":"layerGroup"});
+    var tbody = $("<tbody>",{"id":"tb_"+val.name,"class":"tb_layerGroup"});
+}
+
+
+$.layerLayer = function(layer){
+    var table = $("<table>",{"id":layer.name,"class":"layerLayer table table-sm"});
+    var thead = $("<thead>",{"id":"th_"+layer.name,"class":"th_layerLayer"});
+    var tbody = $("<tbody>",{"id":"tb_"+layer.name,"class":"tb_layerLayer"});
+
+    var metaList = [
+        'name',
+        'opacity',
+        'className',
+        'fillColor',
+        'strokeWidth',
+        'strokeColor'
+    ];
+
+    var ths  = {
+        thShow   : $("<th>",{"class":"thShow"}).html($.aShow(layer)),
+        thCheck   : $("<th>",{"class":"thCheck"}).html($.aCheck(layer)),
+        thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(layer)).click(function(){
+            tbody.toggle();
+        }),
+        thMeta   : $("<th>",{"class":"pull-right thMeta"}).html($.aToggleMeta(layer, metaList)),
+        thName   : $("<th>",{"class":"thName"}).html($.aName(layer)),
+        thRemove : $("<th>",{"class":"pull-right thRemove"}).html($.aRemove(layer))
+
+    }
+
+    var tr  = $("<tr>");
+
+    $.each(ths, function(index, th) {
+        tr.append(th);
+    });
+
+    var trs = $("<tr>").append($("<td>",{class:'pathmeta', colspan:5}).hide());
+
+    thead.append(tr);
+    thead.append(trs);
+    table.append(thead);
+
+
+    $.each(layer._children, function(index, children) {
+        var tr = $("<tr>");
+        var td = $("<td>",{
+            colspan:5
+        });
+
+        td.html($.layerPath(children))
+        tr.append(td);
+        tbody.append(tr);
+    });
+
+
+    table.append(tbody);
+
+    return table;
+
+}
+
+
+
 
 
 $.pjs = {
@@ -308,15 +748,30 @@ $.pjs = {
     redo: function(){
         $.history.redo();
     },
+    unselect: function(){
+        var items = project.selectedItems;
+        $.each(items, function(index, item) {
+           $.selectedMode(item, false);
+        });
+        project.view.update();
+    },
+    selectAll: function(){
+        if ($.kalte('onCmd'))
+            console.log('all');
+        else
+            console.log('layer active layer');
+    },
     createLayer: function(){
+        $.i = $.i + 1;
         /**
         * TODO : Fixer la gestion des layers
         **/
-        var layer       = new Layer();
-        layer.name      = 'layer';
-        layer.className = 'layer';
+        var layer  = new Layer();
+        layer.name = 'layer '+$.i;
 
-        project.addLayer(layer);
+        // layer.className = 'layer';
+
+        // project.addLayer(layer);
 
         $.pjs.updLayer();
     },
@@ -327,114 +782,25 @@ $.pjs = {
         $.pjs.updLayer();
     },
     updLayer: function(){
-        var layersChildren = project.layers[0]._children;
-        var trModel        = $("<tr>",{class:''});
-
-        $('#layers tbody').html("");
-
-        $.each(layersChildren, function(index, val) {
-
-            var tr = trModel.clone();
-
-            tr.attr('data-item', index);
-
-            if (val.selected)
-                tr.addClass('table-active');
-            tr.addClass(val.className);
-            var name = (val.name != undefined)?val.name:'item '+index;
-
-            var aShow = $("<a>",{
-                    href    : "#",
-                    id      : "path_show_"+index,
-                    'data-children':index,
-                    class   : (val.visible)?'visible active':'visible',
-                    style   : 'margin-right:0.275rem'
-                }).html('<i class="fa fa-eye"></i>');
-
-            var aName = $("<a>",{
-                    href    : "#",
-                    id      : "path_"+index,
-                    'data-children':index,
-                    class   : 'rename',
-                    style   : 'margin-right:0.275rem'
-                }).html(name);
-
-            var aToggle = $("<a>",{
-                    href    : "#",
-                    'data-children':index,
-                    class   : 'toggle',
-
-                }).html('<i class="fa fa-caret-right"></i>');
-
-            var aToggleChild = $("<a>",{
-                    href    : "#",
-                    'data-children':index,
-                    class   : 'toggle',
-
-                }).html('<i class="fa fa-caret-right"></i>');
-            var aRemove = $("<a>",{
-                    href    : "#",
-                    id      : "path_"+index,
-                    class   : 'remove pull-right'
-                }).html('<i class="fa fa-close"></i>');
-
-            tr.click(function(e) {
-                e.preventDefault();
-                var t        = $(this);
-                t.toggleClass('table-active');
-                val.selected = t.hasClass('table-active');
-                project.view.update();
-            });
-
-            aShow.click(function(e) {
-                $(this).toggleClass('active');
-                val.visible = $(this).hasClass('active');
-                project.view.update();
-            });
-
-            aToggle.click(function(e) {
-                console.log(val);
-            });
-
-            aName.dblclick(function(e) {
-                var t = $(this);
-                $.rename.on(t);
-            });
+        var layers = project.layers;
 
 
-            aRemove.click(function(e) {
-                e.preventDefault();
-                if (confirm('Supprimer')) {
-                    tr.remove();
-                    val.remove();
-                    project.view.update();
-                }
+        $('#layers').html("");
 
-            });
+        $.each(layers, function(index, layer) {
+           var li = $("<li>",{class:'list-group-item'}).html($.layerLayer(layer));
 
-            var tdShow        = $("<td>").html(aShow);
+           $('#layers').append(li);
 
-            var tdToggleChild = $("<td>").html((val.className == 'Group')?aToggleChild:'');
-            // var tdToggleChild = $("<td>").html(val.className);
-
-            var tdName        = $("<td>").html(aName);
-            var tdToggle      = $("<td>").html(aToggle);
-            var tdRemove      = $("<td>").html(aRemove);
-
-            tr.html(tdShow);
-            tr.append(tdToggleChild);
-            tr.append(tdName);
-            tr.append(tdToggle);
-            tr.append(tdRemove);
-
-            $('#layers tbody').append(tr);
         });
 
         /**
         * TODO : Synchroniser avec le canvas
         **/
         $('#layers tbody').sortable('destroy');
-        $('#layers tbody').sortable().on('sortupdate', function(e, obj){
+        $('#layers tbody').sortable({
+             connectWith: '#layers tbody'
+        }).on('sortupdate', function(e, obj){
                 var t = $(obj.item[0]);
 
                 var idItem = t.attr('data-item');
@@ -516,3 +882,51 @@ $.pjs = {
         }
 
     })
+
+
+
+
+/* créer la regexp pour trouver le resultat */
+function createRegExp(strFind) {
+    var strReg = "";
+    var regexp = "[a-zA-Z0-9\\.\.\\s\_\-]{0,}";
+    for (var i = 0; i < strFind.length; i++) strReg = strReg  + strFind[i] + "{1}(" + regexp + ")";
+    return strReg;
+}
+
+
+ $(document).on("keyup","#searchLayer",function (e){
+     var t = $(this);
+     var layers = $('.layerPath');
+     t.attr('data-count',layers.is('.show').length);
+     var cur = parseInt(t.attr('data-layer-cur'));
+     if(e.keyCode == 38)
+        var active = layers.eq(cur--);
+     else if(e.keyCode == 40)
+        var active = layers.eq(cur++);
+     else if(t.val()!=''){
+        var val = t.val();
+        var reg = createRegExp(val);
+        var patt = new RegExp(reg, "i");
+
+        layers.find('thead').hide().removeClass('show');
+
+        $.each(layers, function(index, val) {
+            var eval = patt.test($(val).attr('id'));
+            if(eval){
+                $(val).find('thead').show().addClass('show');
+                $(val).find('.btn-check').trigger('click');
+            }
+            t.attr('data-layer-cur',1);
+        });
+    console.log(active);
+        if(e.keyCode == 27)
+            t.val("");
+     }
+
+     else{
+         layers.find('thead').show();
+     }
+
+ })
+$('#tool_default').trigger('click');

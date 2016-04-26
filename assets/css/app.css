@@ -2155,7 +2155,7 @@ fieldset + fieldset {
 }
 .colorpicker-element .input-group-addon i,
 .colorpicker-element .input-group-addon .add-on i {
-  height: 36px;
+  height: 31px;
   width: 42px;
 }
 canvas {
@@ -2448,6 +2448,9 @@ div.onLoad i {
   width: 100%;
   overflow: hidden !important;
 }
+canvas {
+  cursor: crosshair !important;
+}
 .h-100 {
   height: 100% !important;
 }
@@ -2486,7 +2489,7 @@ li.active a {
   color: #fff !important;
 }
 .draw-page * {
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
 }
 .draw-page .colorpicker.dropdown-menu {
   left: 0px !important;
@@ -2512,13 +2515,40 @@ li.active a {
 tbody .sortable-placeholder {
   height: 32px !important;
 }
+#layers table {
+  margin-bottom: 0px !important;
+}
+#layers table,
+#layers table tr,
+#layers table thead,
+#layers table tbody {
+  width: 100% !important;
+}
+#layers table.table * {
+  border-width: 0px;
+}
+#layers th {
+  width: 16px !important;
+  display: inline-block !important;
+  text-align: center;
+}
+#layers th.thName {
+  text-align: left !important;
+  width: 100px !important;
+}
 #layers .rename {
-  width: 150px !important;
+  width: 100px !important;
   display: block !important;
 }
 #layers input {
   font-size: 0.7rem;
   border-width: 0px;
+}
+#layers .list-group-item {
+  padding: 0rem !important;
+}
+#layers .list-group-item .table th {
+  border-top: 0px !important;
 }
 .remove,
 .selector,
@@ -2541,7 +2571,7 @@ tbody .sortable-placeholder {
   background-color: rgba(255, 255, 255, 0.5) !important;
 }
 .input-colors i {
-  width: 40px !important;
+  width: 39px !important;
 }
 .tooltip {
   position: absolute !important;
@@ -2559,7 +2589,9 @@ tbody .sortable-placeholder {
   width: 100%;
 }
 .slider.slider-horizontal .slider-track .slider-handle {
-  margin-top: -8px;
+  height: 13px;
+  width: 13px;
+  margin-top: -4px;
   background-image: none !important;
 }
 .slider.slider-horizontal .slider-track .slider-selection {
@@ -2585,5 +2617,59 @@ tbody .sortable-placeholder {
   padding: 0.075rem 0.35rem;
 }
 #toolMenu .slider.slider-horizontal .slider-track {
-  margin-top: 1px !important;
+  margin-top: -3px !important;
+}
+#toolMenu .input-group {
+  padding: 0.3rem !important;
+}
+#toolMenu .value {
+  width: 32px;
+}
+#toolMenu .form-control.xs {
+  width: 32px;
+}
+.btn-group-vertical .btn {
+  border-radius: 0px !important;
+}
+.table-sm td,
+.table-sm th {
+  padding: 0.1rem;
+}
+.card .card-block {
+  padding: 0.25rem 0.7rem !important;
+}
+td table {
+  margin-left: 16px !important;
+}
+div.meta {
+  padding: 0.25rem;
+}
+div.meta .form-control {
+  padding: 0.25rem;
+}
+label.sm {
+  margin-bottom: 0.5rem;
+  margin-top: 0.7rem !important;
+  font-size: 0.7rem;
+}
+#panelbar {
+  position: fixed;
+  right: calc(25% - 30px);
+}
+#panelbar .open > .dropdown-menu {
+  margin-top: -32px;
+  display: block;
+  left: -185px;
+  position: absolute;
+  border-width: 0px !important;
+}
+#panelbar .open > .dropdown-menu label.sm {
+  font-size: 0.7rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.3rem !important;
+}
+.header-menu ::after {
+  clear: both;
+  content: "";
+  display: table;
 }

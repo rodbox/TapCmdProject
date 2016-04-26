@@ -1,6 +1,6 @@
 <?php include_once('controller/controller.php'); ?>
 <!DOCTYPE html>
-<html lang="fr" class="h-100 draw-page">
+<html id="draw-page" lang="fr" class="h-100 draw-page">
     <head>
         <meta charset="UTF-8">
         <title>Draw</title>
@@ -25,15 +25,16 @@
       ?>
         <!-- BEGIN ROW  -->
         <div class="row bg-inverse">
-            <div class="col-xs-3 ">
+            <div class="col-xs-2 ">
               <?php $c->menu("editor","editors/panel/img-action","",$_GET); ?>
             </div>
-            <div class="col-xs-6 text-center">
+            <div class="col-xs-offset-1 col-xs-6  text-center">
               <?php $c->view("editor","editors/panel/img-class","",$_GET); ?>
             </div>
             <div class="col-xs-3 ">
               <?php $c->menu('editor','editors/menu/img',$_GET); ?>
             </div>
+
         </div>
         <!-- BEGIN ROW  -->
         <div class="row bg-grey">
@@ -41,27 +42,37 @@
           <div class="col-xs-12 ">
             <form id="toolMenu" action="#" class="form-inline"></form>
           </div>
+
           <!-- END COL : col-xs-12  -->
         </div>
         <!-- END ROW  -->
         <!-- END ROW  -->
-        <div class="row ">
-              <div class=" col-xs-3 " style="left:-15px">
+        <div class="block ">
+              <div class=" col-xs-2 col-md-3" style="left:-2rem">
                 <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
-
               </div>
               <!-- BEGIN COL : col-lg-8  -->
-              <div class="col-xs-6 text-center h-100 text-center" style="vertical-align: middle;" >
+              <div class="col-xs-8 col-md-6 text-center h-100 text-center" style="vertical-align: middle;" >
                 <div class='text-center'>
                         <div class="btn-group">
-                          <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-undo"></i></a>
-                          <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-repeat"></i></a>
+                          <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-long-arrow-left"></i></a>
+                          <!-- <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-repeat"></i></a> -->
                         </div>
                 </div>
                 <?php $c->view("editor","draw-contextmenu"); ?>
                 <canvas id="<?php echo $_GET['id']; ?>" class="" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>" style="background-color: rgba(0,0,0,0.2);"></canvas>
               </div>
-              <div class=" col-xs-3 " >
+                <div id="panelbar" class="" >
+                  <div class="btn-group-vertical btn-group-sm"><!-- BEGIN DROPDOWN HOVER  -->
+    <a data-toggle="dropdown" href="#" class="btn btn-sm">
+    <i class="fa fa-list"></i>
+    </a>
+    <div id="metaView" class="dropdown-menu">
+
+    </div>
+                  </div>
+                </div>
+              <div class=" col-xs-4 col-md-3 " style="right:-2rem" >
                 <?php $c->view("editor","editors/panel/img-layer","",$_GET); ?>
               </div>
         </div>
@@ -99,10 +110,8 @@
 
          jQuery(document).ready(function($) {
           $('.input-colors').colorpicker({
-            inline:true,
-            align:"right",
-            customClass: 'colorpicker-2x'}
-          );
+            customClass: 'colorpicker-2x'
+          });
 
           $('.slider').slider();
 
