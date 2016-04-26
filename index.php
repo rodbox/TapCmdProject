@@ -63,6 +63,7 @@
         <script type="text/javascript" src="assets/vendor/checkdown/dist/js/checkdown.js" ></script>
         <script type="text/javascript" src="assets/vendor/html.sortable/dist/html.sortable.min.js" ></script>
         <script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript" src="assets/js/app-serializeobject.js"></script>
         <script type="text/javascript" src="assets/js/app-tictac.js"></script>
         <script type="text/javascript" src="assets/js/app-sui.js"></script>
         <script type="text/javascript" src="assets/js/kalt.js"></script>

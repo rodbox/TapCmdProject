@@ -20,6 +20,14 @@ $d =  [
     [
         'name'=>'circle',
         'ico'=>'fa fa-circle-o'
+    ],
+    [
+        'name'=>'stroke',
+        'ico'=>'icomoon-pencil-ruler'
+    ],
+    [
+        'name'=>'rope',
+        'ico'=>'icomoon-compass3 '
     ]
 ];
 

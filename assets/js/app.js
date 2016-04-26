@@ -423,9 +423,13 @@ $(document).ready(function($) {
             var cont = (container != undefined)?container:'body';
 
             $(cont+' .input-colors').colorpicker();
+            $(cont+' .input-colors-right').colorpicker({
+                customClass: 'colorpicker-right'
+            });
             $(cont+' .btn-popover').popover();
-            $(cont+' .select2').select2();
 
+            $(cont+' .select2').select2();
+            $(cont+' .slider').slider();
             $(cont+' .sortable').sortable({
                 connectWith: '.sortable'
             }).on('sortupdate', function(e, obj){

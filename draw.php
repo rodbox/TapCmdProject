@@ -40,7 +40,8 @@
         <div class="row bg-grey">
           <!-- BEGIN COL : col-xs-12  -->
           <div class="col-xs-12 ">
-            <form id="toolMenu" action="#" class="form-inline"></form>
+            <form id="pathMenu" action="#" class="form-inline"> <?php $c->view("editor","editors/menu/path","draw_path");?> </form>
+
           </div>
 
           <!-- END COL : col-xs-12  -->
@@ -48,8 +49,9 @@
         <!-- END ROW  -->
         <!-- END ROW  -->
         <div class="block ">
-              <div class=" col-xs-2 col-md-3" style="left:-2rem">
+              <div id="toolbar" class=" col-xs-2 col-md-3" style="left:-2rem">
                 <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
+                <form id="toolMenu" action="#" class=""></form>
               </div>
               <!-- BEGIN COL : col-lg-8  -->
               <div class="col-xs-8 col-md-6 text-center h-100 text-center" style="vertical-align: middle;" >
@@ -59,17 +61,12 @@
                           <!-- <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-repeat"></i></a> -->
                         </div>
                 </div>
-                <?php $c->view("editor","draw-contextmenu"); ?>
-                <canvas id="<?php echo $_GET['id']; ?>" class="" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>" style="background-color: rgba(0,0,0,0.2);"></canvas>
+                <?php $c->view("editor","draw-contextmenu"); ?><i id="pivot" class="fa fa-crosshairs"></i>
+                <canvas id="<?php echo $_GET['id']; ?>" class="" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>" style="background-color: rgba(0,0,0,0.2);">
+
+                </canvas>
               </div>
                 <div id="panelbar" class="" >
-                  <div class="btn-group-vertical btn-group-sm"><!-- BEGIN DROPDOWN HOVER  -->
-    <a data-toggle="dropdown" href="#" class="btn btn-sm">
-    <i class="fa fa-list"></i>
-    </a>
-    <div id="metaView" class="dropdown-menu">
-
-    </div>
                   </div>
                 </div>
               <div class=" col-xs-4 col-md-3 " style="right:-2rem" >
@@ -88,6 +85,7 @@
         <script type="text/javascript" src="app/editor/assets/js/app-cb.js"></script>
 
         <script type="text/javascript" src="assets/vendor/html.sortable/dist/html.sortable.min.js" ></script>
+        <script type="text/javascript" src="assets/js/app-serializeobject.js"></script>
         <script type="text/javascript" src="assets/js/app-tictac.js"></script>
         <script type="text/javascript" src="assets/js/app-sui.js"></script>
         <script type="text/javascript" src="assets/js/kalt.js"></script>
@@ -109,11 +107,46 @@
          });
 
          jQuery(document).ready(function($) {
-          $('.input-colors').colorpicker({
-            customClass: 'colorpicker-2x'
-          });
 
-          $('.slider').slider();
+$(document).on("mousedown","#pivot",function (e){
+
+    var t = $(this);
+    t.addClass('drag-me');
+    $('body').attr('data-drag',true);
+})
+$(document).on("mousemove",function (e){
+
+    var t = $(this);
+    if ($('body').attr('data-drag') == 'true') {
+        $('.drag-me').css({
+            top:e.clientY,
+            left:e.clientX,
+        })
+    }
+})
+
+$(document).on("mouseup",function (e){
+
+    $('#pivot').removeClass('drag-me');
+    var pos = $('#pivot').position();
+    var posCanvas = $('canvas').offset();
+    console.log(posCanvas);
+    $("#pivot_x").val(Math.round(pos.left - posCanvas.left));
+    $("#pivot_y").val(Math.round(pos.top - posCanvas.top));
+
+    $('body').attr('data-drag',false);
+})
+
+$(document).on("change",".pivot",function (e){
+  e.preventDefault();
+  var t = $(this);
+
+    var posCanvas = $('canvas').offset();
+  $('#pivot').css({
+            top:posCanvas + $('#pivot_y').val(),
+            left:posCanvas + $('#pivot_x').val(),
+        })
+})
 
          });
 

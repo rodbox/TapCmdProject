@@ -38,10 +38,15 @@ $.shortcut={
         else if ($.kalte("onAlt") && e.keyCode == 88){
             e.preventDefault();
             var color1 = $('#color1').val();
+            var fillColor = $('#fillColor').val();
             var color2 = $('#color2').val();
+            var strokeColor = $('#strokeColor').val();
 
             $('#color1').val(color2).trigger('change');
             $('#color2').val(color1).trigger('change');
+
+            $('#fillColor').val(strokeColor).trigger('change');
+            $('#strokeColor').val(fillColor).trigger('change');
         }
 
         else if ($.kalte("onCtrl") && e.keyCode >= 49 && e.keyCode <=57){

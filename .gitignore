@@ -3,6 +3,7 @@ var/project/*
 var/cmd/*
 var/tictac/*
 var/themes/
+var/templates/fonts/*
 /vendor/*
 
 var/project/fez.json

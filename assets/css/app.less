@@ -578,4 +578,18 @@ li.active{
     }
 }
 
+.layerLayer{
+    &.active{
+        .bg-grey;
+    }
+    tbody{
+        display:none;
+    }
+    &.open{
+        tbody{
+            display:block;
+        }
+    }
+}
+
 @import 'custom-draw.less';

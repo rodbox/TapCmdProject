@@ -1,5 +1,3 @@
-tool.minDistance = 10;
-tool.maxDistance = 45;
 $.i = 0;
 var path;
 
@@ -51,15 +49,15 @@ window.app = {
         onMouseDown: function(event){
             path = new Path();
             $.i = $.i + 1;
-            path.name = 'path'+$.i;
-            path.strokeColor = $.colorFill();
-            path.strokeWidth = $.strokeSize();
-            path.strokeCap = "round";
+            path.name        = 'path'+$.i;
+            path.strokeColor = $.getStrokeColor();
+            path.strokeWidth = $.getW();
+            path.strokeCap   = $.getCap();
 
             path.add(event.point);
 
             if($.dashMode())
-                path.dashArray = $.dash();
+                path.dashArray = $.getDash();
         },
         onMouseDrag: function(event){
 
@@ -93,12 +91,13 @@ window.app = {
               var path = new Path.Circle({
                     center: event.downPoint,
                     radius: (event.downPoint - event.point).length,
-                    strokeWidth : $.strokeSize()
+                    strokeWidth : $.getW()
                 });
-                path.fillColor   = $.colorFill();
-                path.strokeColor = $.colorStroke();
+
+                path.fillColor   = $.getFillColor();
+                path.strokeColor = $.getStrokeColor();
                 if($.dashMode())
-                    path.dashArray = $.dash();
+                    path.dashArray = $.getDash();
                 path.name        = "circle";
 
                 $.history.add(path);
@@ -114,30 +113,22 @@ window.app = {
     rectangle: new Tool({
         onMouseDrag : function (event){
             var path = new Path.Rectangle({
-                point: [event.downPoint.x, event.downPoint.y],
-                size: [event.point.x-event.downPoint.x, event.point.y-event.        downPoint.y]
+                point       : [event.downPoint.x, event.downPoint.y],
+                size        : [event.point.x-event.downPoint.x, event.point.y-event.downPoint.y],
+                fillColor   : $.getFillColor(),
+                strokeColor : $.getStrokeColor()
             });
 
             if($.dashMode())
-                    path.dashArray = $.dash();
-
-            if ($.colorFill()!=""){
-                path.fillColor = $.colorFill();
-                // path.fillColor.alpha = alphaFill();
-            }
-            if ($.colorStroke()!=""){
-                path.strokeColor =  $.colorStroke();
+                path.dashArray = $.getDash();
+                path.name = "rectangle";
+                path.removeOnDrag();
                 // path.strokeColor.alpha = alphaStroke();
-            }
-            path.name = "rectangle";
-
-            path.removeOnDrag();
-
             },
+
         onMouseUp   : function (event) {
-
                 $.pjs.updLayer();
-            },
+            }
         }),
     select: new Tool({
         onMouseDown : function (event){
@@ -151,9 +142,8 @@ window.app = {
 
             var downPointX = event.downPoint.x;
             var downPointY = event.downPoint.y;
-            var sizeX = event.point.x-downPointX;
-            var sizeY = event.point.y-downPointY;
-
+            var sizeX      = event.point.x-downPointX;
+            var sizeY      = event.point.y-downPointY;
 
             if($.kalte('onAlt')){
                 $.each($.selected, function(index, item) {
@@ -165,25 +155,24 @@ window.app = {
             }
             else{
                 var path = new Path.Rectangle({
-                    point: [downPointX,downPointY],
-                    size: [sizeX, sizeY]
+                    point           : [downPointX,downPointY],
+                    size            : [sizeX, sizeY],
+                    fillColor       : "black",
+                    strokeColor     : "grey",
+                    strokeWidth     : "1",
+                    strokeJoin      : 'round',
+                    dashArray       : [5, 5]
                 });
-
-                path.fillColor = "black";
                 path.fillColor.alpha = "0.1";
-                path.strokeColor =  "grey";
-                path.strokeWidth =  "1";
-                path.strokeJoin = 'round';
-                path.dashArray = [5, 5];
+
               /*  path.miterLimit(1);*/
                 path.removeOnDrag();
                 path.removeOnUp();
 
                 var textX = new PointText({
-                    point: [downPointX+(sizeX/2), downPointY+13],
-                    content:  Math.abs(sizeX),
-                    fillColor: 'black',
-
+                    point       : [downPointX+(sizeX/2), downPointY+13],
+                    content     :  Math.abs(sizeX),
+                    fillColor   : 'black',
                     justification: 'center',
                     fontSize:13
                 }).removeOnDrag().removeOnUp();
@@ -216,32 +205,51 @@ window.app = {
             $.i = $.i + 1;
             var rand = Math.random().toString(36).substring(2);
             path.name = 'brush '+$.i;
-            path.fillColor = $.getColor(1);
+            path.fillColor = $.getFillColor(1);
             path.add(event.point);
         },
         onMouseDrag: function(event){
             var step = event.delta / 4;
             step.angle += 90;
-            var top = event.middlePoint + step;
-            var bottom = event.middlePoint - step;
+
 
 
 
             if($.kalte('onAlt')){
-                var point = {
-                    x:$.mouselock.x,
-                    y:event.point.y
-                };
+
+                var point = event.middlePoint + step;
+                var bottom = event.middlePoint - step;
+
+                // var point = {
+                //     x:$.mouselock.x,
+                //     y:event.point.y
+                // };
             }
             else if($.kalte('onMaj')){
+
+                // var point = event.middlePoint + step;
+                // var bottom = event.middlePoint - step;
+
                 var point = {
-                    x:event.point.x,
-                    y:$.mouselock.y
+                    x:event.middlePoint.x  + step,
+                    y:event.middlePoint.y  + step
                 };
+
+
+                var bottom = {
+                    x:event.middlePoint.x  - step,
+                    y:event.middlePoint.y  - step,
+                };
+
+
 
             }
             else{
-                var point = event.middlePoint;
+
+                var point = event.middlePoint + step;
+                var bottom = event.middlePoint - step;
+
+                // var point = event.middlePoint;
             }
 
 
@@ -261,7 +269,52 @@ window.app = {
             $.pjs.updLayer();
             console.log(path.name);
         }
+    }),
+    stroke: new Tool({
+        onMouseDrag : function (event){
+
+            var path         = new Path();
+            path.strokeColor = 'black';
+
+            path.strokeWidth = $.getW();
+            path.strokeColor = $.getStrokeColor();
+            path.strokeCap   = $.getCap();
+
+            if($.dashMode())
+                path.dashArray = $.getDash();
+
+            path.add(new Point(event.downPoint.x, event.downPoint.y));
+            path.add(new Point(event.point.x, event.point.y));
+
+            path.name = "stroke";
+            path.removeOnDrag();
+        },
+
+        onMouseUp   : function (event) {
+                $.pjs.updLayer();
+            }
+        }),
+    rope: new Tool({
+        onKeyDown : function (event){
+            path             = new Path();
+            $.i              = $.i + 1;
+            path.name        = 'path'+$.i;
+            path.strokeColor = $.getStrokeColor();
+            path.fillColor   = $.getFillColor();
+            path.strokeWidth = $.getW();
+            path.strokeCap   = $.getCap();
+        },
+        onMouseDown : function (event){
+            path.add(event.point);
+        },
+        onKeyUp : function (event){
+            path.closed = true;
+            $.history.add(path);
+            $.pjs.updLayer();
+        }
     })
+
+
 };
 app.default.activate();
 
@@ -271,26 +324,20 @@ app.default.activate();
 * TODO : Optimiser la gestion des parametrages des tools
 **/
 
-$.getColor = function (index){
-    return $('#color'+index).val();
-}
-$.colorFill = function (){
-   return $('#color1').val();
-}
+// $.getColor = function (index){
+//     return $('#color'+index).val();
+// }
+// $.colorFill = function (){
+//    return $('#color1').val();
+// }
 
-$.colorStroke = function (){
-   return $('#color2').val();
-}
-$.strokeSize = function(){
-    return $('#size').val();
-}
+// $.colorStroke = function (){
+//    return $('#color2').val();
+// }
+// $.strokeSize = function(){
+//     return $('#size').val();
+// }
 
-$.dash = function(){
-    var arr = new Array();
-    arr.push($("#dash_x").val());
-    arr.push($("#dash_w").val());
-    return arr;
-}
 
 $.dashMode = function(){
     return $('#dash').prop('checked');
@@ -373,6 +420,28 @@ $.rename = {
 }
 
 
+$.path = {
+    set:function(index, val){
+        return $("#"+index).val(val)
+    },
+    get:function(index, defaultValue){
+        var val = $("#"+index).val();
+
+        return $.def(val, '');
+    }
+}
+
+$.getW           = function(){ return $.path.get('strokeWidth');}
+$.getCap         = function(){ return $.path.get('strokeCap');}
+$.getDash        = function(){ return [$.path.get('dash_x'),$.path.get('dash_w')];}
+$.getStrokeColor = function(){ return $.path.get('strokeColor');}
+$.getFillColor   = function(){ return $.path.get('fillColor');}
+$.getPivot       = function(){ return [$.path.get('pivot_x'),$.path.get('pivot_y')];}
+
+
+
+
+
 $.item = {
     set:function(itemIndex, attr, value){
         project.layers[0]._children[itemIndex][attr] = value;
@@ -384,18 +453,51 @@ $.item = {
 }
 
 
-$(document).on("change",".setSelect",function (e){
+
+$(document).on("submit","#pathMenu",function (e){
+    e.preventDefault();
+    var t = $(this);
+
+    var data = t.serializeObject();
+
+    var items = project.selectedItems;
+    // console.log(t.attr('data-properties'));
+
+
+
+    // $.each(items, function(index, val) {
+    //     if (t.attr('data-properties') == 'rotation') {
+
+    //     }
+    //     if (val.selected)
+    //         val[t.attr('data-properties')] = t.val();
+    // });
+    project.view.update();
+})
+
+$(document).on("change keyup",".setSelect",function (e){
     e.preventDefault();
     var t     = $(this);
+
+    var form = t.parents('form').serializeObject();
     var items = project.selectedItems;
+
     $.each(items, function(index, val) {
         if (t.attr('data-properties') == 'rotation') {
-
+            project.activeLayer.pivot = $.getPivot();
+            project.activeLayer.rotation = form[t.attr('data-properties')];
         }
-        if (val.selected)
-            val[t.attr('data-properties')] = t.val();
+        else{
+            if (val.selected)
+                val[t.attr('data-properties')] = form[t.attr('data-properties')];
+        }
+
     });
-    project.view.update();
+
+        project.view.update();
+
+
+    // $('#pathMenu').trigger('submit');
 })
 
 
@@ -469,7 +571,7 @@ $(document).on("change",".setSelect",function (e){
                 var div = $.meta.load(item,metaList);
                 $.selectedMode(item,p.hasClass('table-active'));
                 $('#metaView').html(div);
-                $.meta.init();
+                // $.meta.init();
             });
     }
 
@@ -483,6 +585,7 @@ $(document).on("change",".setSelect",function (e){
             })
             .html('<i class="fa fa-eye"></i>')
             .click(function(e) {
+                e.preventDefault();
                 $(this).toggleClass('active');
                 item.visible = $(this).hasClass('active');
                 project.view.update();
@@ -506,24 +609,26 @@ $(document).on("change",".setSelect",function (e){
         return $("<a>",{
             href    : "#",
             'data-children':item,
-            class   : 'toggle btn-toggle',
+            class   : (item.open)?'open toggle btn-toggle ':'toggle btn-toggle ',
 
         }).html('<i class="fa fa-caret-right"></i>').click(function(e) {
-            console.log(item);
+            e.preventDefault();
+            $(this).toggleClass('open');
+            item.open = $(this).hasClass('open');
         });
     }
 
-    $.aToggleMeta = function(item, metaList){
-        return $("<a>",{
-            href    : "#",
-            'data-children':item,
-            class   : 'toggle-meta btn-meta',
-        }).html('<i class="fa fa-list"></i>').click(function(){
-            console.log(item);
-            var div = $.meta.load(item,metaList);
-            $('#metaView').html(div);
-        });
-    }
+    // $.aToggleMeta = function(item, metaList){
+    //     return $("<a>",{
+    //         href    : "#",
+    //         'data-children':item,
+    //         class   : 'toggle-meta btn-meta',
+    //     }).html('<i class="fa fa-list"></i>').click(function(){
+    //         e.preventDefault();
+    //         var div = $.meta.load(item,metaList);
+    //         $('#metaView').html(div);
+    //     });
+    // }
 
     $.aRemove = function(item){
         return $("<a>",{
@@ -574,49 +679,55 @@ $.meta = {
 
         var div = $("<div>",{class:"meta"});
         $.each(index, function(index, val) {
-             var attrMeta                = attrMetas[val];
-             attrMeta['data-properties'] = val;
-             var input                   = $("<input>",attrMeta);
-
-             input.val(item[val]);
-             var label = $("<label>",{class:"sm"}).html(val);
-             div.append(label);
-             div.append(input);
+            $('#'+val).val(index[val]);
+            // $('#'+val).trigger('change');
         });
         return div;
-    },
-    init :  function(){
-        $('.meta .colorpicker').colorpicker({
-
-        });
-
-        $('.meta .slider').slider();
-
-        $('.meta input').on('change',function(event) {
-            item[val] = input.val();
-            project.view.update();
-        });
     }
 };
-$.rotore = {};
+// $.rotore = {};
+$.bound = {};
+
 $.selectedMode = function(item, bool){
     if(bool){
-        console.log(item);
-        var path = $.rotore = new Path.Circle({
-            center: {
-                x:100,
-                y:100
-            },
-            radius: 5,
-            fillColor : '#000',
-            id:'rotore',
-            name:'rotore'
-        });
-        console.log(item.bounds);
+        // console.log(item);
+        // var path = $.rotore = new Path.Circle({
+        //     center: {
+        //         x:100,
+        //         y:100
+        //     },
+        //     radius: 5,
+        //     fillColor : '#000',
+        //     id:'rotore',
+        //     name:'rotore'
+        // });
+
+
+        var b = item.bounds;
+        // console.log(item.bounds);
+
+console.log("item");
+console.log(item);
+
+        item.pivot = $.getPivot();
+        $.bound[item.index] = new Path.Rectangle(b);
+
+        $.bound[item.index].className = 'bound';
+        $.bound[item.index].name = 'bound';
+        // var bound = new Path.Rectangle({
+        //         point: [b.x - item.strokeWidth, b.y  - item.strokeWidth],
+        //         size: [b.width  + item.strokeWidth, b.height  + item.strokeWidth],
+        //         dashArray : [5,10],
+        //         strokeColor : '#000'
+        //     });
 
     }
     else
-        $.rotore.remove();
+        {
+
+        $.bound[item.index].remove();
+
+        }
 
     item.selected = bool;
     project.view.update();
@@ -640,7 +751,7 @@ $.layerPath  = function(path){
     var ths  = {
         thShow   : $("<th>",{"class":"thShow"}).html($.aShow(path)),
         thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(path, metaList)),
-        thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
+        // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
         thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(path)),
         thName   : $("<th>",{"class":"thName"}).html($.aName(path)),
 
@@ -651,7 +762,7 @@ $.layerPath  = function(path){
     if (path.selected){
         tr.addClass('table-active');
         tr.addClass(path.className);
-        var name = (path.name != undefined)?path.name:'item '+index;
+        var name = (path.name != undefined)?path.name:'item '+path.index;
     }
 
     $.each(ths, function(index, th) {
@@ -681,12 +792,20 @@ $.layerGroup = function(val){
 
 
 $.layerLayer = function(layer){
-    var table = $("<table>",{"id":layer.name,"class":"layerLayer table table-sm"});
-    var thead = $("<thead>",{"id":"th_"+layer.name,"class":"th_layerLayer"});
-    var tbody = $("<tbody>",{"id":"tb_"+layer.name,"class":"tb_layerLayer"});
+    var open        = $.def(layer.open,false);
+    var openClass   = (open)?'open':'';
 
-    var metaList = [
-        'name',
+    var active        = $.def(layer.active,false);
+    var activeClass = (active)?'active':'';
+
+
+
+    var table       = $("<table>",{"id":layer.name,"class":"layerLayer table table-sm "+openClass + " "+activeClass});
+    var thead       = $("<thead>",{"id":"th_"+layer.name,"class":"th_layerLayer"});
+    var tbody       = $("<tbody>",{"id":"tb_"+layer.name,"class":"tb_layerLayer"});
+
+    var metaList    = [
+        // 'name',
         'opacity',
         'className',
         'fillColor',
@@ -696,11 +815,12 @@ $.layerLayer = function(layer){
 
     var ths  = {
         thShow   : $("<th>",{"class":"thShow"}).html($.aShow(layer)),
-        thCheck   : $("<th>",{"class":"thCheck"}).html($.aCheck(layer)),
+        thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(layer)),
+        // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(layer, metaList)),
         thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(layer)).click(function(){
             tbody.toggle();
         }),
-        thMeta   : $("<th>",{"class":"pull-right thMeta"}).html($.aToggleMeta(layer, metaList)),
+
         thName   : $("<th>",{"class":"thName"}).html($.aName(layer)),
         thRemove : $("<th>",{"class":"pull-right thRemove"}).html($.aRemove(layer))
 
@@ -716,6 +836,16 @@ $.layerLayer = function(layer){
 
     thead.append(tr);
     thead.append(trs);
+
+    thead.on('click',function(){
+
+        $('.layerLayer.active').removeClass('active');
+
+        table.addClass('active');
+
+        $.pjs.activeLayer(layer);
+    })
+
     table.append(thead);
 
 
@@ -732,6 +862,9 @@ $.layerLayer = function(layer){
 
 
     table.append(tbody);
+
+
+
 
     return table;
 
@@ -761,6 +894,13 @@ $.pjs = {
         else
             console.log('layer active layer');
     },
+    activeLayer: function(layer){
+         $.each(project.layers, function(index, val) {
+             val.active = false;
+        });
+        layer.active = true;
+        layer.activate();
+    },
     createLayer: function(){
         $.i = $.i + 1;
         /**
@@ -769,6 +909,7 @@ $.pjs = {
         var layer  = new Layer();
         layer.name = 'layer '+$.i;
 
+        $.pjs.activeLayer(layer);
         // layer.className = 'layer';
 
         // project.addLayer(layer);
@@ -900,10 +1041,18 @@ function createRegExp(strFind) {
      var layers = $('.layerPath');
      t.attr('data-count',layers.is('.show').length);
      var cur = parseInt(t.attr('data-layer-cur'));
-     if(e.keyCode == 38)
+     if(e.keyCode == 38){
+        /**
+        * TODO : nav avec les fleches
+        **/
         var active = layers.eq(cur--);
-     else if(e.keyCode == 40)
+    }
+     else if(e.keyCode == 40){
+        /**
+        * TODO : nav avec les fleches
+        **/
         var active = layers.eq(cur++);
+    }
      else if(t.val()!=''){
         var val = t.val();
         var reg = createRegExp(val);
@@ -930,3 +1079,7 @@ function createRegExp(strFind) {
 
  })
 $('#tool_default').trigger('click');
+
+
+
+

@@ -42,25 +42,15 @@
         font-size: 0.8rem !important;
     }
 
-    .colorpicker.dropdown-menu{
-        left:0px !important;
+    // .colorpicker.dropdown-menu{
+    //     left:0px !important;
 
-        &.colorpicker-right::before,
-        &.colorpicker-right::after{
-          left:5px;
-          right:auto !important;
-        }
-    }
-}
-
-.colorpicker-2x {
-    .colorpicker-saturation { width: 200px; height: 200px; }
-
-    .colorpicker-hue,
-    .colorpicker-alpha { width: 30px; height: 200px; }
-
-    .colorpicker-color,
-    .colorpicker-color div { height: 30px; }
+    //     &.colorpicker-right::before,
+    //     &.colorpicker-right::after{
+    //       left:5px;
+    //       right:auto !important;
+    //     }
+    // }
 }
 
 
@@ -131,8 +121,11 @@ tbody{
         .opacity(1);
     }
 }
-
-.input-colors{
+.colorpicker-right{
+    left: 0px !important;
+}
+.input-colors,
+.input-colors-right{
     .input-group-addon,
     .form-control{
         border-width: 0px !important;
@@ -146,8 +139,6 @@ tbody{
 }
 
 .tooltip{
-
-
     position:absolute !important;
     margin-top: -131px !important;
     .tooltip-inner{
@@ -175,7 +166,17 @@ tbody{
 .bg-grey{
     background-color: #D5D5D5 !important;
 }
+#pathMenu,
 #toolMenu{
+    i{
+        height: 19px !important;
+    }
+    label.sm{
+        margin:0rem !important;
+        padding:0rem !important;
+        font-size: 0.6rem !important;
+        opacity: 0.4;
+    }
     .tooltip{
         display:none !important;
     }
@@ -199,8 +200,13 @@ tbody{
         width: 32px;
     }
     .form-control{
+        padding-right: 0.5rem !important;
         &.xs{
             width: 32px;
+            &[type=number]{
+                width:42px !important;
+                text-align: right !important;
+            }
         }
     }
 }
@@ -262,11 +268,27 @@ label.sm{
     }
 }
 
-
-.header-menu{
-   ::after {
-    clear: both;
-    content: "";
-    display: table;
+.input-colors {
+    .input-group-addon{
+        width:39px !important;
+    }
+    .form-control{
+       display:none;
+    }
+    &:hover,
+    &.open,
+    {
+     .form-control{
+       display:block;
+    }
+    }
 }
+
+#pivot{
+    position: fixed !important;
+    margin-top: -12px;
+    margin-left: -12px;
+    font-size: 24px !important;
+    opacity: 0.5;
+    .z-max();
 }

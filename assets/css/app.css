@@ -2458,6 +2458,15 @@ li.active i,
 li.active a {
   color: #fff !important;
 }
+.layerLayer.active {
+  background-color: #D5D5D5 !important;
+}
+.layerLayer tbody {
+  display: none;
+}
+.layerLayer.open tbody {
+  display: block;
+}
 .draw-page *,
 .draw-page select,
 .draw-page option,
@@ -2490,27 +2499,6 @@ li.active a {
 }
 .draw-page * {
   font-size: 0.8rem !important;
-}
-.draw-page .colorpicker.dropdown-menu {
-  left: 0px !important;
-}
-.draw-page .colorpicker.dropdown-menu.colorpicker-right::before,
-.draw-page .colorpicker.dropdown-menu.colorpicker-right::after {
-  left: 5px;
-  right: auto !important;
-}
-.colorpicker-2x .colorpicker-saturation {
-  width: 200px;
-  height: 200px;
-}
-.colorpicker-2x .colorpicker-hue,
-.colorpicker-2x .colorpicker-alpha {
-  width: 30px;
-  height: 200px;
-}
-.colorpicker-2x .colorpicker-color,
-.colorpicker-2x .colorpicker-color div {
-  height: 30px;
 }
 tbody .sortable-placeholder {
   height: 32px !important;
@@ -2563,14 +2551,21 @@ tbody .sortable-placeholder {
 .active .selector {
   opacity: 1;
 }
+.colorpicker-right {
+  left: 0px !important;
+}
 .input-colors .input-group-addon,
-.input-colors .form-control {
+.input-colors-right .input-group-addon,
+.input-colors .form-control,
+.input-colors-right .form-control {
   border-width: 0px !important;
 }
-.input-colors .form-control {
+.input-colors .form-control,
+.input-colors-right .form-control {
   background-color: rgba(255, 255, 255, 0.5) !important;
 }
-.input-colors i {
+.input-colors i,
+.input-colors-right i {
   width: 39px !important;
 }
 .tooltip {
@@ -2600,33 +2595,61 @@ tbody .sortable-placeholder {
 .bg-grey {
   background-color: #D5D5D5 !important;
 }
+#pathMenu,
 #toolMenu {
   min-height: 32px;
 }
+#pathMenu i,
+#toolMenu i {
+  height: 19px !important;
+}
+#pathMenu label.sm,
+#toolMenu label.sm {
+  margin: 0rem !important;
+  padding: 0rem !important;
+  font-size: 0.6rem !important;
+  opacity: 0.4;
+}
+#pathMenu .tooltip,
 #toolMenu .tooltip {
   display: none !important;
 }
+#pathMenu input,
 #toolMenu input {
   border-width: 0px !important;
   border-radius: 4px !important;
   padding: 0.075rem 0.35rem;
 }
+#pathMenu .input-group-addon,
 #toolMenu .input-group-addon {
   background-color: transparent !important;
   border-width: 0px !important;
   padding: 0.075rem 0.35rem;
 }
+#pathMenu .slider.slider-horizontal .slider-track,
 #toolMenu .slider.slider-horizontal .slider-track {
   margin-top: -3px !important;
 }
+#pathMenu .input-group,
 #toolMenu .input-group {
   padding: 0.3rem !important;
 }
+#pathMenu .value,
 #toolMenu .value {
   width: 32px;
 }
+#pathMenu .form-control,
+#toolMenu .form-control {
+  padding-right: 0.5rem !important;
+}
+#pathMenu .form-control.xs,
 #toolMenu .form-control.xs {
   width: 32px;
+}
+#pathMenu .form-control.xs[type=number],
+#toolMenu .form-control.xs[type=number] {
+  width: 42px !important;
+  text-align: right !important;
 }
 .btn-group-vertical .btn {
   border-radius: 0px !important;
@@ -2668,8 +2691,21 @@ label.sm {
   margin-bottom: 0.1rem;
   margin-top: 0.3rem !important;
 }
-.header-menu ::after {
-  clear: both;
-  content: "";
-  display: table;
+.input-colors .input-group-addon {
+  width: 39px !important;
+}
+.input-colors .form-control {
+  display: none;
+}
+.input-colors:hover .form-control,
+.input-colors.open .form-control {
+  display: block;
+}
+#pivot {
+  position: fixed !important;
+  margin-top: -12px;
+  margin-left: -12px;
+  font-size: 24px !important;
+  opacity: 0.5;
+  z-index: 2001;
 }
