@@ -92,14 +92,14 @@
   box-shadow: 0 0 0 48px rgba(11, 11, 11, 0.98);
   background-color: #030303;
   width: 160px;
+  height: 160px;
   line-height: 58px;
   text-align: center;
   font-size: 20px;
   vertical-align: middle;
-  height: 160px;
   border-radius: 50%;
-  position: absolute;
-  display: inline-block;
+  position: absolute !important;
+  display: inline-block !important;
   z-index: 900;
 }
 .circle .circle-center a {
@@ -208,6 +208,20 @@
   -ms-transform: translateX(56px) translateY(0px) scale(1);
   transform: translateX(56px) translateY(0px) scale(1);
 }
+.circle .circle-2.pos-11 {
+  -moz-transform: translateX(56px) translateY(56px) scale(0.8);
+  -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
+  -o-transform: translateX(56px) translateY(56px) scale(0.8);
+  -ms-transform: translateX(56px) translateY(56px) scale(0.8);
+  transform: translateX(56px) translateY(56px) scale(0.8);
+}
+.circle.open .circle-2.pos-11 {
+  -moz-transform: translateX(113px) translateY(144px) scale(1);
+  -webkit-transform: translateX(113px) translateY(144px) scale(1);
+  -o-transform: translateX(113px) translateY(144px) scale(1);
+  -ms-transform: translateX(113px) translateY(144px) scale(1);
+  transform: translateX(113px) translateY(144px) scale(1);
+}
 .circle .circle-2.pos-10 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
   -webkit-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -216,11 +230,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-10 {
-  -moz-transform: translateX(118px) translateY(141px) scale(1);
-  -webkit-transform: translateX(118px) translateY(141px) scale(1);
-  -o-transform: translateX(118px) translateY(141px) scale(1);
-  -ms-transform: translateX(118px) translateY(141px) scale(1);
-  transform: translateX(118px) translateY(141px) scale(1);
+  -moz-transform: translateX(151px) translateY(100px) scale(1);
+  -webkit-transform: translateX(151px) translateY(100px) scale(1);
+  -o-transform: translateX(151px) translateY(100px) scale(1);
+  -ms-transform: translateX(151px) translateY(100px) scale(1);
+  transform: translateX(151px) translateY(100px) scale(1);
 }
 .circle .circle-2.pos-9 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -230,11 +244,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-9 {
-  -moz-transform: translateX(155px) translateY(89px) scale(1);
-  -webkit-transform: translateX(155px) translateY(89px) scale(1);
-  -o-transform: translateX(155px) translateY(89px) scale(1);
-  -ms-transform: translateX(155px) translateY(89px) scale(1);
-  transform: translateX(155px) translateY(89px) scale(1);
+  -moz-transform: translateX(159px) translateY(42px) scale(1);
+  -webkit-transform: translateX(159px) translateY(42px) scale(1);
+  -o-transform: translateX(159px) translateY(42px) scale(1);
+  -ms-transform: translateX(159px) translateY(42px) scale(1);
+  transform: translateX(159px) translateY(42px) scale(1);
 }
 .circle .circle-2.pos-8 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -244,11 +258,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-8 {
-  -moz-transform: translateX(155px) translateY(24px) scale(1);
-  -webkit-transform: translateX(155px) translateY(24px) scale(1);
-  -o-transform: translateX(155px) translateY(24px) scale(1);
-  -ms-transform: translateX(155px) translateY(24px) scale(1);
-  transform: translateX(155px) translateY(24px) scale(1);
+  -moz-transform: translateX(135px) translateY(-12px) scale(1);
+  -webkit-transform: translateX(135px) translateY(-12px) scale(1);
+  -o-transform: translateX(135px) translateY(-12px) scale(1);
+  -ms-transform: translateX(135px) translateY(-12px) scale(1);
+  transform: translateX(135px) translateY(-12px) scale(1);
 }
 .circle .circle-2.pos-7 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -258,11 +272,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-7 {
-  -moz-transform: translateX(118px) translateY(-28px) scale(1);
-  -webkit-transform: translateX(118px) translateY(-28px) scale(1);
-  -o-transform: translateX(118px) translateY(-28px) scale(1);
-  -ms-transform: translateX(118px) translateY(-28px) scale(1);
-  transform: translateX(118px) translateY(-28px) scale(1);
+  -moz-transform: translateX(86px) translateY(-43px) scale(1);
+  -webkit-transform: translateX(86px) translateY(-43px) scale(1);
+  -o-transform: translateX(86px) translateY(-43px) scale(1);
+  -ms-transform: translateX(86px) translateY(-43px) scale(1);
+  transform: translateX(86px) translateY(-43px) scale(1);
 }
 .circle .circle-2.pos-6 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -272,11 +286,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-6 {
-  -moz-transform: translateX(56px) translateY(-48px) scale(1);
-  -webkit-transform: translateX(56px) translateY(-48px) scale(1);
-  -o-transform: translateX(56px) translateY(-48px) scale(1);
-  -ms-transform: translateX(56px) translateY(-48px) scale(1);
-  transform: translateX(56px) translateY(-48px) scale(1);
+  -moz-transform: translateX(27px) translateY(-43px) scale(1);
+  -webkit-transform: translateX(27px) translateY(-43px) scale(1);
+  -o-transform: translateX(27px) translateY(-43px) scale(1);
+  -ms-transform: translateX(27px) translateY(-43px) scale(1);
+  transform: translateX(27px) translateY(-43px) scale(1);
 }
 .circle .circle-2.pos-5 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -286,11 +300,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-5 {
-  -moz-transform: translateX(-5px) translateY(-28px) scale(1);
-  -webkit-transform: translateX(-5px) translateY(-28px) scale(1);
-  -o-transform: translateX(-5px) translateY(-28px) scale(1);
-  -ms-transform: translateX(-5px) translateY(-28px) scale(1);
-  transform: translateX(-5px) translateY(-28px) scale(1);
+  -moz-transform: translateX(-22px) translateY(-12px) scale(1);
+  -webkit-transform: translateX(-22px) translateY(-12px) scale(1);
+  -o-transform: translateX(-22px) translateY(-12px) scale(1);
+  -ms-transform: translateX(-22px) translateY(-12px) scale(1);
+  transform: translateX(-22px) translateY(-12px) scale(1);
 }
 .circle .circle-2.pos-4 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -300,11 +314,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-4 {
-  -moz-transform: translateX(-42px) translateY(24px) scale(1);
-  -webkit-transform: translateX(-42px) translateY(24px) scale(1);
-  -o-transform: translateX(-42px) translateY(24px) scale(1);
-  -ms-transform: translateX(-42px) translateY(24px) scale(1);
-  transform: translateX(-42px) translateY(24px) scale(1);
+  -moz-transform: translateX(-46px) translateY(42px) scale(1);
+  -webkit-transform: translateX(-46px) translateY(42px) scale(1);
+  -o-transform: translateX(-46px) translateY(42px) scale(1);
+  -ms-transform: translateX(-46px) translateY(42px) scale(1);
+  transform: translateX(-46px) translateY(42px) scale(1);
 }
 .circle .circle-2.pos-3 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -314,11 +328,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-3 {
-  -moz-transform: translateX(-42px) translateY(89px) scale(1);
-  -webkit-transform: translateX(-42px) translateY(89px) scale(1);
-  -o-transform: translateX(-42px) translateY(89px) scale(1);
-  -ms-transform: translateX(-42px) translateY(89px) scale(1);
-  transform: translateX(-42px) translateY(89px) scale(1);
+  -moz-transform: translateX(-38px) translateY(100px) scale(1);
+  -webkit-transform: translateX(-38px) translateY(100px) scale(1);
+  -o-transform: translateX(-38px) translateY(100px) scale(1);
+  -ms-transform: translateX(-38px) translateY(100px) scale(1);
+  transform: translateX(-38px) translateY(100px) scale(1);
 }
 .circle .circle-2.pos-2 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -328,11 +342,11 @@
   transform: translateX(56px) translateY(56px) scale(0.8);
 }
 .circle.open .circle-2.pos-2 {
-  -moz-transform: translateX(-5px) translateY(141px) scale(1);
-  -webkit-transform: translateX(-5px) translateY(141px) scale(1);
-  -o-transform: translateX(-5px) translateY(141px) scale(1);
-  -ms-transform: translateX(-5px) translateY(141px) scale(1);
-  transform: translateX(-5px) translateY(141px) scale(1);
+  -moz-transform: translateX(0px) translateY(144px) scale(1);
+  -webkit-transform: translateX(0px) translateY(144px) scale(1);
+  -o-transform: translateX(0px) translateY(144px) scale(1);
+  -ms-transform: translateX(0px) translateY(144px) scale(1);
+  transform: translateX(0px) translateY(144px) scale(1);
 }
 .circle .circle-2.pos-1 {
   -moz-transform: translateX(56px) translateY(56px) scale(0.8);
@@ -347,4 +361,17 @@
   -o-transform: translateX(57px) translateY(160px) scale(1);
   -ms-transform: translateX(57px) translateY(160px) scale(1);
   transform: translateX(57px) translateY(160px) scale(1);
+}
+.circle canvas {
+  background-color: transparent !important;
+  position: absolute;
+  margin-left: -128px !important;
+  margin-top: -96px !important;
+}
+.circle input {
+  margin-top: 0px !important;
+  margin-left: -17px !important;
+  width: 30px !important;
+  height: 71px !important;
+  color: #fff !important;
 }

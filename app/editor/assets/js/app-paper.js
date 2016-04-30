@@ -1,23 +1,17 @@
+
+paper.setup()
+
 $.i = 0;
+$.iLayers = project.layers.length;
 var path;
 
-
-var toolsList = ['default'];
+var toolsList  = ['default'];
 $.toolSelected = {};
-$.selected = {};
+$.selected     = {};
 $.selectedDown = {};
-// $.each(toolsList, function(index, val) {
-//      $.get('./assets/paper/tools/'+val+'.json', function(json) {
-//             window.app = {
-//                 default : new Tool(json)
-//             };
-//         },'json');
-// });
-//
-//
 
-var x = 0, y = 0;
-$.canvasPos  = $("canvas").position();
+var x          = 0, y = 0;
+$.canvasPos    = $("canvas.draw-paper").position();
 document.addEventListener('mousemove', function(e){
     x = e.layerX - $.canvasPos.left,
     y = e.layerY - 35;
@@ -26,16 +20,16 @@ document.addEventListener('mousemove', function(e){
 
 
 $( window ).resize(function (e){
-    $.canvasPos  = $("canvas").position();
+    $.canvasPos  = $("canvas.draw-paper").position();
 })
 
 
-
-
-
-
-
-
+var hitOptions = {
+    segments: true,
+    stroke: true,
+    fill: true,
+    tolerance: 5
+};
 
 
 window.app = {
@@ -47,43 +41,71 @@ window.app = {
             };
         },
         onMouseDown: function(event){
-            path = new Path();
-            $.i = $.i + 1;
-            path.name        = 'path'+$.i;
-            path.strokeColor = $.getStrokeColor();
-            path.strokeWidth = $.getW();
-            path.strokeCap   = $.getCap();
-
-            path.add(event.point);
-
-            if($.dashMode())
-                path.dashArray = $.getDash();
-        },
-        onMouseDrag: function(event){
-
-            if($.kalte('onAlt')){
-                var point = {
-                    x:$.mouselock.x,
-                    y:event.point.y
-                };
-            }
-            else if($.kalte('onMaj')){
-                var point = {
-                    x:event.point.x,
-                    y:$.mouselock.y
-                };
+            if($.kalte('onCmd')){
 
             }
             else{
-                var point = event.middlePoint;
-            }
+                path             = new Path();
+                $.i              = $.i + 1;
+                path.name        = 'path'+$.i;
+                path.strokeColor = $.getStrokeColor();
+                path.strokeWidth = $.getW();
+                path.strokeCap   = $.getCap();
 
-            path.add(point);
-            path.smooth();
+                path.add(event.point);
+                if($.dashMode())
+                    path.dashArray = $.getDash();
+            }
+        },
+        onMouseDrag: function(event){
+            if($.kalte('onCmd')){
+                var w = Math.round(Math.abs(event.event.clientY - $.mouselock.y)/5);
+                $.pjs.strokeResize(w);
+                 $('#strokeWidthPreview').css({
+                    left:event.event.clientX,
+                    top:event.event.clientY
+                }).addClass('mousedrag');
+            }
+            else if($.kalte('onAlt')){
+                var point = {
+                    x   : $.mouselock.x,
+                    y   : event.point.y
+                };
+                path.add(point);
+                path.smooth();
+
+
+            }
+            else if($.kalte('onMaj')){
+                var point = {
+                    x   : event.point.x,
+                    y   : $.mouselock.y
+                };
+                path.add(point);
+                path.smooth();
+
+             $('#strokeWidthPreview').css({
+                    left:'inherit',
+                    top:'inherit'
+                }).removeClass('mousedrag');
+            }
+            else{
+                var point = event.middlePoint;
+
+                path.add(point);
+                path.smooth();
+            }
         },
         onMouseUp: function(event){
+            $('#strokeWidthPreview').css({
+                left:'inherit',
+                top:'inherit'
+            }).removeClass('mousedrag');
+
             $.pjs.updLayer();
+            path.simplify();
             $.history.add(path);
+
         }
     }),
     circle: new Tool({
@@ -121,7 +143,7 @@ window.app = {
 
             if($.dashMode())
                 path.dashArray = $.getDash();
-                path.name = "rectangle";
+                path.name      = "rectangle";
                 path.removeOnDrag();
                 // path.strokeColor.alpha = alphaStroke();
             },
@@ -132,28 +154,69 @@ window.app = {
         }),
     select: new Tool({
         onMouseDown : function (event){
-            $.selected = project.selectedItems;
+            if (event.item)
+                event.item.selected = true;
+
+            $.selected     = project.selectedItems;
             $.selectedDown = {};
             $.each($.selected, function(index, val) {
                  $.selectedDown[index] = val.position;
             });
+
+            /**
+             * test from tuto hittest
+             * @type {[type]}
+             */
+            // segment = path = null;
+            // var hitResult = project.hitTest(event.point, hitOptions);
+            // if (!hitResult)
+            //      return;
+            // if (event.modifiers.shift) {
+            //  if (hitResult.type == 'segment') {
+            //      hitResult.segment.remove();
+            //  };
+            //  return;
+            //  }
+
+            // if (hitResult) {
+            //     path = hitResult.item;
+            //     if (hitResult.type == 'segment') {
+            //         segment = hitResult.segment;
+            //     } else if (hitResult.type == 'stroke') {
+            //         var location = hitResult.location;
+            //         segment = path.insert(location.index + 1, event.point);
+            //         path.smooth();
+            //     }
+            // }
+            // movePath = hitResult.type == 'fill';
+
+            // if (movePath){
+            //     project.activeLayer.addChild(hitResult.item);
+            // }
+            /**
+             * END test from tuto hittest
+             */
+        },
+        onMouseMove : function (event) {
+            // console.log($.kalte('onCmd'));
+
+            // console.log(project);
+            if($.kalte('onCmd')){
+
+                console.log();
+                project.selectedItems.selected = false;
+
+                if (event.item)
+                    event.item.selected = true;
+            }
         },
         onMouseDrag : function (event){
-
             var downPointX = event.downPoint.x;
             var downPointY = event.downPoint.y;
             var sizeX      = event.point.x-downPointX;
             var sizeY      = event.point.y-downPointY;
 
             if($.kalte('onAlt')){
-                $.each($.selected, function(index, item) {
-                     /* iterate through array or object */
-                       item.position.x = $.selectedDown[index].x + sizeX;
-                       item.position.y = $.selectedDown[index].y + sizeY;
-                     // item.position.x = $.selectedDown[index].x + sizeY;
-                });
-            }
-            else{
                 var path = new Path.Rectangle({
                     point           : [downPointX,downPointY],
                     size            : [sizeX, sizeY],
@@ -165,7 +228,7 @@ window.app = {
                 });
                 path.fillColor.alpha = "0.1";
 
-              /*  path.miterLimit(1);*/
+                /* path.miterLimit(1); */
                 path.removeOnDrag();
                 path.removeOnUp();
 
@@ -185,15 +248,28 @@ window.app = {
                     fontSize:13
                 }).rotate(-90).removeOnDrag().removeOnUp();
             }
+
+
+            else{
+                $.each($.selected, function(index, item) {
+                     /* iterate through array or object */
+                       item.position.x = $.selectedDown[index].x + sizeX;
+                       item.position.y = $.selectedDown[index].y + sizeY;
+                     // item.position.x = $.selectedDown[index].x + sizeY;
+                });
+            }
+
             /**
             * TODO : Gestion du hit test pour la selection dans le rectangle de select
             **/
 
 
+        },
+        onMouseUp : function(){
+            $.history.add();
         }
     }),
     brush: new Tool({
-
         onKeyDown: function(){
            $.mouselock = {
                 x:x,
@@ -211,9 +287,6 @@ window.app = {
         onMouseDrag: function(event){
             var step = event.delta / 4;
             step.angle += 90;
-
-
-
 
             if($.kalte('onAlt')){
 
@@ -272,7 +345,6 @@ window.app = {
     }),
     stroke: new Tool({
         onMouseDrag : function (event){
-
             var path         = new Path();
             path.strokeColor = 'black';
 
@@ -356,36 +428,44 @@ $(".btn-pjs").on("click",function (e){
 
 
 $.history = {
-    max: 50,
-    list: [],
+    max: 10,
+    listUndo: [],
     listRedo: [],
     undo:function (){
-        var last = $.history.list.pop();
+        var last = $.history.listUndo.pop();
         $.history.listRedo.push(last);
 
-        last.remove();
+        // last.remove();
+        project.clear();
+        var state = project.importJSON(last);
         project.view.update();
+
         $.pjs.updLayer();
-        console.log(last);
     },
     redo:function(){
-        /**
-        * TODO : Corriger le redo
-        **/
         var last = $.history.listRedo.pop();
-        $.history.list.push(last);
+        $.history.listUndo.push(last);
 
-        console.log(last);
-        last.clone()
-        // new last;
+        project.clear();
+        var state = project.importJSON(last);
         project.view.update();
+        $.pjs.updLayer();
     },
     add:function(item){
+        $.history.listRedo = [];
+        var state = project.exportJSON();
+        if($.history.listUndo.length >= $.history.max)
+            $.history.listUndo.shift();
 
-        if($.history.list.length >= $.history.max)
-            $.history.list.shift();
+        $.history.listUndo.push(state);
+        $.history.setProtect(true);
 
-        $.history.list.push(item);
+    },
+    setProtect: function(bool){
+        project.protect = bool;
+    },
+    getProtect: function(){
+        return project.protect;
     }
 }
 
@@ -475,84 +555,57 @@ $(document).on("submit","#pathMenu",function (e){
     project.view.update();
 })
 
+
+
+$.setSelect = function(properties, value){
+    var form = $('#pathMenu').serializeObject();
+    console.log("properties");
+    console.log(properties);
+    console.log(form);
+    var items = project.selectedItems;
+    var value = $.def(value,form[properties]);
+    if (properties == 'rotation') {
+        project.activeLayer.pivot = $.getPivot();
+        project.activeLayer.rotation = form[properties];
+    }
+    else{
+
+
+        $.each(items, function(index, item) {
+            if (item.selected)
+                item[properties] = value;
+        })
+    }
+
+    project.view.update();
+    $.history.add();
+}
+
 $(document).on("change keyup",".setSelect",function (e){
     e.preventDefault();
     var t     = $(this);
 
-    var form = t.parents('form').serializeObject();
-    var items = project.selectedItems;
-
-    $.each(items, function(index, val) {
-        if (t.attr('data-properties') == 'rotation') {
-            project.activeLayer.pivot = $.getPivot();
-            project.activeLayer.rotation = form[t.attr('data-properties')];
-        }
-        else{
-            if (val.selected)
-                val[t.attr('data-properties')] = form[t.attr('data-properties')];
-        }
+    $.setSelect(t.attr('data-properties'));
 
     });
 
-        project.view.update();
-
-
-    // $('#pathMenu').trigger('submit');
-})
-
-
-
-
-
-
-
-
-
-
-// /**
-//  * Element de représentation du projet
-//  */
-// $.layerItemHeader = function (val){
-//     var table = $("<table>",{"id":val.name,"class":"layerPath table table-sm"});
-
-//             if (val.selected)
-//                 tr.addClass('table-active');
-//             tr.addClass(val.className);
-//             var name = (val.name != undefined)?val.name:'item '+index;
-
-//             tr.click(function(e) {
-//                 e.preventDefault();
-//                 var t        = $(this);
-//                 t.toggleClass('table-active');
-//                 val.selected = t.hasClass('table-active');
-//                 project.view.update();
-//             });
-
-
-//             var tdShow        = $("<td>").html(aShow);
-
-//             var tdToggleChild = $("<td>").html((val.className == 'Group')?aToggleChild:'');
-//             // var tdToggleChild = $("<td>").html(val.className);
-
-//             var tdName        = $("<td>").html(aName);
-//             var tdToggle      = $("<td>").html(aToggle);
-//             var tdRemove      = $("<td>").html(aRemove);
-
-//             tr.html(tdShow);
-//             tr.append(tdToggleChild);
-//             tr.append(tdName);
-//             tr.append(tdToggle);
-//             tr.append(tdRemove);
-
-//             // table.find('tbody').append(tr);
-// }
-
-
-
-
-
-
     $.aCheck = function(item, metaList) {
+
+        /**
+        * TODO : return Layer Thumb SVG
+        **/
+        var svg = $("<svg>",{
+            "id":'preview_'+item.id,
+            "class":"layer-preview",
+             x:"0",
+             y:"0",
+             width:"24",
+             height:"24",
+             version:"1.1",
+             xmlns:"http://www.w3.org/2000/svg",
+             'xmlns:xlink':"http://www.w3.org/1999/xlink"
+        }).html(item.exportSVG());
+
         return $("<a>",{
                 href    : "#",
                 id      : "path_check_"+item.index,
@@ -560,7 +613,7 @@ $(document).on("change keyup",".setSelect",function (e){
                 style   : 'margin-right:0.275rem',
                 class   : 'btn-check'
             })
-            .html('<i class="fa fa-check"></i>')
+            .html(svg)
             .click(function(e) {
                 e.preventDefault();
                 var t        = $(this);
@@ -690,51 +743,25 @@ $.bound = {};
 
 $.selectedMode = function(item, bool){
     if(bool){
-        // console.log(item);
-        // var path = $.rotore = new Path.Circle({
-        //     center: {
-        //         x:100,
-        //         y:100
-        //     },
-        //     radius: 5,
-        //     fillColor : '#000',
-        //     id:'rotore',
-        //     name:'rotore'
-        // });
-
-
         var b = item.bounds;
-        // console.log(item.bounds);
-
-console.log("item");
-console.log(item);
 
         item.pivot = $.getPivot();
         $.bound[item.index] = new Path.Rectangle(b);
 
         $.bound[item.index].className = 'bound';
-        $.bound[item.index].name = 'bound';
-        // var bound = new Path.Rectangle({
-        //         point: [b.x - item.strokeWidth, b.y  - item.strokeWidth],
-        //         size: [b.width  + item.strokeWidth, b.height  + item.strokeWidth],
-        //         dashArray : [5,10],
-        //         strokeColor : '#000'
-        //     });
-
+        $.bound[item.index].name = 'bound'+item.index;
     }
-    else
-        {
-
-        $.bound[item.index].remove();
-
-        }
+    else{
+        if ($.bound[item.index] != undefined)
+            $.bound[item.index].remove();
+    }
 
     item.selected = bool;
     project.view.update();
 }
 
 $.layerPath  = function(path){
-    var table = $("<table>",{"id":path.name,"class":"layerPath"});
+    var table = $("<table>",{"id":path.name,"class":"layerPath layers table table-sm "+path.className});
     var thead = $("<thead>",{"id":"th_"+path.name,"class":"th_layerPath"});
     var tbody = $("<tbody>",{"id":"tb_"+path.name,"class":"tb_layerPath"});
 
@@ -748,16 +775,31 @@ $.layerPath  = function(path){
     ];
 
 
-    var ths  = {
-        thShow   : $("<th>",{"class":"thShow"}).html($.aShow(path)),
-        thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(path, metaList)),
-        // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
-        thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(path)),
-        thName   : $("<th>",{"class":"thName"}).html($.aName(path)),
+    if(path.className == 'Group'){
+        var ths  = {
+                thShow   : $("<th>",{"class":"thShow"}).html($.aShow(path)),
+                // thPreview   : $("<th>",{"class":"thPreview"}).html($.aPreview(path)),
+                thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(path, metaList)),
+                // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
+                thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(path)),
+                thName   : $("<th>",{"class":"thName"}).html($.aName(path)),
 
-        thRemove : $("<th>",{"class":"thRemove"}).html($.aRemove(path))
+            thRemove : $("<th>",{"class":"thRemove"}).html($.aRemove(path))
+        }
     }
+    else{
+        var ths  = {
+            thShow   : $("<th>",{"class":"thShow"}).html($.aShow(path)),
+            // thPreview   : $("<th>",{"class":"thPreview"}).html($.aPreview(path)),
+            thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(path, metaList)),
+            // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(path, metaList)),
+            // thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(path)),
+            thName   : $("<th>",{"class":"thName"}).html($.aName(path)),
 
+            thRemove : $("<th>",{"class":"thRemove"}).html($.aRemove(path))
+        }
+
+    }
     var tr  = $("<tr>")
     if (path.selected){
         tr.addClass('table-active');
@@ -769,7 +811,10 @@ $.layerPath  = function(path){
         tr.append(th);
     });
 
-    var trs = $("<tr>").append($("<td>",{class:'pathmeta', colspan:5}).hide());
+    var trs = $("<tr>").append($("<td>",{
+        class:'pathmeta',
+        olspan:ths.length
+    }).hide());
 
     thead.append(tr);
     thead.append(trs);
@@ -785,11 +830,6 @@ $.layerPath  = function(path){
     return table;
 }
 
-$.layerGroup = function(val){
-    var table = $("<table>",{"id":val.name,"class":"layerGroup"});
-    var tbody = $("<tbody>",{"id":"tb_"+val.name,"class":"tb_layerGroup"});
-}
-
 
 $.layerLayer = function(layer){
     var open        = $.def(layer.open,false);
@@ -798,10 +838,8 @@ $.layerLayer = function(layer){
     var active        = $.def(layer.active,false);
     var activeClass = (active)?'active':'';
 
-
-
-    var table       = $("<table>",{"id":layer.name,"class":"layerLayer table table-sm "+openClass + " "+activeClass});
-    var thead       = $("<thead>",{"id":"th_"+layer.name,"class":"th_layerLayer"});
+    var table       = $("<table>",{"id":"layer_"+layer.name,"data-layer-name":layer.name,"class":"layerLayer  table table-sm "+openClass + " "+activeClass});
+    var thead       = $("<thead>",{"id":"th_"+layer.name,"data-layer-name":layer.name,"class":"th_layerLayer"});
     var tbody       = $("<tbody>",{"id":"tb_"+layer.name,"class":"tb_layerLayer"});
 
     var metaList    = [
@@ -816,14 +854,11 @@ $.layerLayer = function(layer){
     var ths  = {
         thShow   : $("<th>",{"class":"thShow"}).html($.aShow(layer)),
         thCheck  : $("<th>",{"class":"thCheck"}).html($.aCheck(layer)),
-        // thMeta   : $("<th>",{"class":"thMeta"}).html($.aToggleMeta(layer, metaList)),
         thToggle : $("<th>",{"class":"thToggle"}).html($.aToggle(layer)).click(function(){
             tbody.toggle();
         }),
-
         thName   : $("<th>",{"class":"thName"}).html($.aName(layer)),
         thRemove : $("<th>",{"class":"pull-right thRemove"}).html($.aRemove(layer))
-
     }
 
     var tr  = $("<tr>");
@@ -832,7 +867,7 @@ $.layerLayer = function(layer){
         tr.append(th);
     });
 
-    var trs = $("<tr>").append($("<td>",{class:'pathmeta', colspan:5}).hide());
+    var trs = $("<tr>").append($("<td>",{class:'pathmeta', colspan:6}).hide());
 
     thead.append(tr);
     thead.append(trs);
@@ -852,29 +887,60 @@ $.layerLayer = function(layer){
     $.each(layer._children, function(index, children) {
         var tr = $("<tr>");
         var td = $("<td>",{
-            colspan:5
+            colspan:ths.length
         });
-
+        // console.log(children.className);
         td.html($.layerPath(children))
         tr.append(td);
-        tbody.append(tr);
+        tbody.prepend(tr);
     });
 
 
     table.append(tbody);
 
-
-
-
     return table;
-
 }
 
+$.each($('.knob'), function(index, val) {
+    var t = $(this);
+     t.knob({
+                change: function (v){
+                    $.setSelect('rotation',v);
 
+                }
+            })
+});
 
 
 
 $.pjs = {
+    new: function(t){
+        $.pjs.protect(t, function(){
+            project.clear();
+            // $.pjs.createLayer();
+            $.iLayers = project.layers.length;
+            project.view.update();
+            $.pjs.updLayer();
+        })
+    },
+    protect: function(t, func){
+        if($.history.getProtect()){
+            var msg = $.def(t.attr('data-msg-confirm'),'Attention les modifications n\'ont pas été enregistrée' );
+            if(confirm(msg)){
+                func();
+            }
+        }
+        else
+            func();
+    },
+    selectRemove: function(){
+        var items = project.selectedItems;
+        $.each(items, function(index, item) {
+           item.remove();
+        });
+        $.pjs.updLayer();
+        project.view.update();
+    },
     undo: function(){
         $.history.undo();
     },
@@ -902,25 +968,48 @@ $.pjs = {
         layer.activate();
     },
     createLayer: function(){
-        $.i = $.i + 1;
+        $.iLayers = parseInt($.iLayers) + 1;
+
         /**
         * TODO : Fixer la gestion des layers
         **/
         var layer  = new Layer();
-        layer.name = 'layer '+$.i;
+        layer.name = 'layer '+$.iLayers;
 
         $.pjs.activeLayer(layer);
-        // layer.className = 'layer';
-
-        // project.addLayer(layer);
 
         $.pjs.updLayer();
     },
     createGroup: function(){
-        var group       = new Group();
-        group.name      = 'group';
-        group.className = 'group';
+        var count       = project.activeLayer.children;
+        count           = count.length;
+
+        var group       = new Group({
+            name      : 'Group_'+count+'',
+            className : 'group'
+        });
+
         $.pjs.updLayer();
+    },
+    hierarchy: function(t, e){
+        var items = project.selectedItems;
+        var layer = project.activeLayer;
+
+        console.log(t.attr('data-hierarchy'));
+
+        // layer[t.attr('data-hierarchy')]();
+
+        $.each(items, function(index, item) {
+            var hierarchyItem = (t.attr('data-hierarchy-item')!=undefined)?item[t.attr('data-hirarchy-item')]:'';
+            console.log(hierarchyItem);
+            if(item.selected)
+             item[t.attr('data-hierarchy')](hierarchyItem);
+        });
+
+        $.pjs.updLayer();
+        project.view.update();
+
+
     },
     updLayer: function(){
         var layers = project.layers;
@@ -929,29 +1018,54 @@ $.pjs = {
         $('#layers').html("");
 
         $.each(layers, function(index, layer) {
-           var li = $("<li>",{class:'list-group-item'}).html($.layerLayer(layer));
+           var li = $("<li>",{'data-index':layer.index, class:'list-group-item'}).html($.layerLayer(layer));
 
-           $('#layers').append(li);
+           $('#layers').prepend(li);
 
         });
 
         /**
         * TODO : Synchroniser avec le canvas
         **/
-        $('#layers tbody').sortable('destroy');
-        $('#layers tbody').sortable({
-             connectWith: '#layers tbody'
+        $('.layers').sortable('destroy');
+        $('.layers').sortable({
+             connectWith: '.layers'
         }).on('sortupdate', function(e, obj){
                 var t = $(obj.item[0]);
 
-                var idItem = t.attr('data-item');
-                var item = $.item.get(idItem);
-                console.log(item);
-                t.addClass('active');
-                item.selected = true;
-                item.activeLayer = true;
-                project.view.update();
-            });;
+
+                var layer = project.layers[t.attr('data-index')];
+                console.log(layer);
+                // project.insertLayer(t.attr('data-index'), layer);
+                //
+                // var idItem = t.attr('data-item');
+                // var item = $.item.get(idItem);
+                // console.log(item);
+                // t.addClass('active');
+                // item.selected = true;
+                // item.activeLayer = true;
+                // project.view.update();
+                // $.pjs.updLayer();
+            });
+    },
+    cleanEmpty: function(){
+        var i = 0;
+        $.each(project.layers, function(indexLayer, layer) {
+             $.each(layer.children, function(indexChildren, children) {
+                if (children.isEmpty() || children.className=="bound") {
+                    if (children != undefined) {
+                        i++;
+                        console.log('clean');
+
+                        children.remove();
+                    }
+                }
+             });
+
+        });
+        console.log(i);
+        $.pjs.updLayer();
+
     },
     raster: function (){
         var rand = Math.random().toString(36).substring(2);
@@ -972,19 +1086,22 @@ $.pjs = {
     },
     load:function(t, e){
         var data = {
-            file:$('canvas').attr('data-file')
+            file:$('canvas.draw-paper').attr('data-file')
         };
         $.post(t.attr('href'), data, function(json) {
             project.clear()
             project.importJSON(json.project);
             $.pjs.updLayer();
             project.view.update();
+            $.iLayers = project.layers.length;
+            $.history.setProtect(false)
+
         },'json');
 
 
     },
     save:function(t, e){
-        var img      = document.getElementById($('canvas').attr('id'));
+        var img      = document.getElementById($('canvas.draw-paper').attr('id'));
         var context  = img.getContext('2d');
         var ext      = 'png';
         var imgData  = img.toDataURL("image/"+ext);
@@ -994,7 +1111,9 @@ $.pjs = {
         // var svg = "project.exportSVG()";
 
         var data = {
-            file:$('canvas').attr('data-file'),
+            file:$('canvas.draw-paper').attr('data-file'),
+            newName: $('#filename').val(),
+            copy:  $('#file-copy').prop('checked'),
             contentSvg:svg,
             contentJson:project.exportJSON(),
             contentRaster:imgData
@@ -1002,18 +1121,112 @@ $.pjs = {
 
         $.post(t.attr('href'), data, function(json) {
            $.notiny({ text: json.msg, position: 'right-top',theme: 'light' });
+           $.history.setProtect(false)
         },'json');
+    },
+    resizeCanvas: function (){
+        var w = $('#draw_w').val();
+        var h = $('#draw_h').val();
+
+        // project.view.size(w,h);
+
+        project.view.viewSize.width = w;
+        project.view.viewSize.height = h;
+
+        console.log();
+
+        project.view.update();
+        $("canvas.draw-paper").css({
+            width:w,
+            height:h
+        }).attr({
+            'width':w,
+            'height':h
+        });
+    },
+    exportSvg: function(){
+        var url = $.generate.url.exec('editor','svg_export');
+        var data = {
+            frame  : $.frames.cur,
+            svg  : project.exportSVG({asString:true}),
+            file : $('canvas.draw-paper').attr('data-file'),
+            soft : 'ILLUSTRATOR'
+        };
+
+        $.post(url,data);
+    },
+    importSvg: function(){
+        var url = $.generate.url.exec('editor','svg_import');
+        var data = {
+            frame  : $.frames.cur,
+            file : $('canvas.draw-paper').attr('data-file'),
+            soft : 'ILLUSTRATOR'
+        };
+
+        $.post(url,data,function(json){
+            project.clear();
+            project.importSVG(json.svg);
+
+            project.view.update();
+            $.pjs.updLayer();
+            $.history.add();
+        },'json');
+    },
+    strokeResize: function(w){
+        $('#strokeWidth').val(w);
+        $.pjs.stroleWidthPreview(w);
+    },
+    stroleWidthPreview: function(w){
+         $('#strokeWidthPreview').css({
+            width:w,
+            'margin-top':0 - ( w / 2)+'px',
+            height:w,
+            'margin-left':0 - ( w / 2)+'px'
+        });
     }
+
 }
-    $(document).on("mousedown","#circle-mouse",function (e){
-        e.preventDefault();
-        var t = $(this);
-        if (e.button == 2)
-            $.toggleMouseMenu(e);
 
-    })
 
- $(document).on("mousedown",function (e){
+
+    $.frames = {
+        cur : 1,
+        frames : 5,
+        add : function(){
+            $.frames.frames = $.frames.frames + 1;
+        },
+        clone : function(frame_index){
+            $.frames.frames = $.frames.frames + 1;
+        },
+        get : function(frame_index){
+            if(frame_index <= 0)
+                frame_index = $.frames.frames;
+            else if(frame_index > $.frames.frames)
+                frame_index = 1;
+
+            $.frames.cur = frame_index;
+
+            $('.frame').removeClass('active');
+            $(".frame_"+frame_index).addClass('active');
+
+        },
+        export : function(frame_index){
+
+        },
+        import : function(){
+
+        },
+    }
+
+    // $(document).on("mousedown","#circle-mouse",function (e){
+    //     e.preventDefault();
+    //     var t = $(this);
+    //     if (e.button == 2)
+    //         $.toggleMouseMenu(e);
+
+    // })
+
+ $(document).on("mousedown","canvas.draw-paper",function (e){
         var t = $(this);
         if (e.button == 2){
             $(document)[0].oncontextmenu = function() {
@@ -1024,7 +1237,13 @@ $.pjs = {
 
     })
 
+$(document).on("click",".btn-frame",function (e){
+    e.preventDefault();
+    var t = $(this);
 
+    $.frames.get(t.attr('data-frame'));
+
+})
 
 
 /* créer la regexp pour trouver le resultat */
@@ -1036,9 +1255,13 @@ function createRegExp(strFind) {
 }
 
 
+console.log(projects);
+
+
+
  $(document).on("keyup","#searchLayer",function (e){
      var t = $(this);
-     var layers = $('.layerPath');
+     var layers = $('.layerLayer');
      t.attr('data-count',layers.is('.show').length);
      var cur = parseInt(t.attr('data-layer-cur'));
      if(e.keyCode == 38){
@@ -1054,21 +1277,21 @@ function createRegExp(strFind) {
         var active = layers.eq(cur++);
     }
      else if(t.val()!=''){
-        var val = t.val();
-        var reg = createRegExp(val);
+        var val  = t.val();
+        var reg  = createRegExp(val);
         var patt = new RegExp(reg, "i");
 
-        layers.find('thead').hide().removeClass('show');
+        layers.find('thead.th_layerLayer').hide().removeClass('show');
 
         $.each(layers, function(index, val) {
             var eval = patt.test($(val).attr('id'));
             if(eval){
-                $(val).find('thead').show().addClass('show');
+                $(val).find('thead.th_layerLayer').show().addClass('show');
                 $(val).find('.btn-check').trigger('click');
             }
             t.attr('data-layer-cur',1);
         });
-    console.log(active);
+
         if(e.keyCode == 27)
             t.val("");
      }
@@ -1079,7 +1302,17 @@ function createRegExp(strFind) {
 
  })
 $('#tool_default').trigger('click');
+$('.autoclick').trigger("click");
 
+$(document).on("change keyup",".input-pjs",function (e){
+    e.preventDefault();
+    var t = $(this);
 
+    $.pjs[t.attr('data-pjs')]();
+})
 
-
+// $('.slider-frames').slider().on("change",function (e){
+//     e.preventDefault();
+//     var t = $(this);
+//     $.frames.get(t.val());
+// });

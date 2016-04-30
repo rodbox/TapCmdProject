@@ -1,5 +1,15 @@
+@wPreview : 24px;
+@frameThumb: 64px;
+@bgInverse: #242424;
+@bgLight: #ededed;
+
 
 .draw-page{
+
+
+
+
+
 
     *,
     select,
@@ -51,7 +61,17 @@
     //       right:auto !important;
     //     }
     // }
+    footer{
+        width: 100%;
+        .row{
+            padding-top: 1.5rem;
+            .slider{
+                .inline-block;
+            }
+        }
+    }
 }
+
 
 
 tbody{
@@ -76,15 +96,50 @@ tbody{
             }
         }
     }
+
+    tr{
+        th.thShow{
+            padding-left: 0.5rem !important;
+        }
+        th.thRemove{
+            padding-right: 0.5rem !important;
+        }
+    }
+
     th{
-        width: 16px !important;
+        &,
+        *{
+          line-height: @wPreview !important;
+          vertical-align: middle;
+        }
+        padding: 0.2rem ;
+        width: 32px !important;
         display: inline-block !important;
         text-align: center;
+
         &.thName{
             text-align: left !important;
             width: 100px !important;
         }
+        &.thCheck{
+            width: @wPreview !important;
+            .layer-preview{
+                border: 1px solid rgba(0,0,0,0.1) !important;
+                display: inline-block !important;
+                width: @wPreview !important;
+                height: @wPreview !important;
+            }
+        }
+
     }
+
+    .table .table{
+        .thCheck{
+            padding-left: 16px;
+            width: 46px !important;
+        }
+    }
+
     .Group{
 
     }
@@ -227,7 +282,9 @@ tbody{
 }
 td{
     table{
-        margin-left: 16px !important;
+        .thPreview{
+            padding-left: 16px !important;
+        }
     }
 }
 div.meta{
@@ -247,7 +304,23 @@ label.sm{
     font-size: 0.7rem;
 }
 
+
+#quickbar{
+    .card{
+        &,
+        .card-header{
+            border-radius:0px;
+            border-width: 0px;
+            background-color: lighten(#d5d5d5,6%) !important;
+        }
+    }
+    .list-group-item{
+        border-width: 0px;
+        background-color: transparent !important;
+    }
+}
 #panelbar{
+    width:38px !important;
     position: fixed;
     right: calc(~"25% - 30px");
     label{
@@ -265,6 +338,9 @@ label.sm{
             margin-bottom: 0.1rem;
             margin-top: 0.3rem !important;
         }
+    }
+    .btn-group-vertical{
+        margin-bottom: 0.5rem !important;
     }
 }
 
@@ -291,4 +367,85 @@ label.sm{
     font-size: 24px !important;
     opacity: 0.5;
     .z-max();
+}
+canvas.draw-paper{
+    background-color: fade(#000,5%);
+}
+
+.table{
+    tbody{
+        .table{
+            width: calc(~"100% - 16px") !important;
+            background-color: transparent !important;
+        }
+    }
+}
+
+.thRemove{
+    float: right;
+}
+.btn-toggle.open{
+    i{
+        .rotate-90;
+    }
+
+}
+footer,
+.c-menu{
+    .form-inverse{
+        &.form-control{
+            background-color: rgba(255,255,255,0.1) !important;
+            border-width: 0px !important;
+            padding:0.2rem 0.5rem  !important;
+            display:inline;
+            width:150px;
+            &.xs{
+                width: 48px;
+            }
+        }
+    }
+}
+
+.list-inline{
+    display:inline-block;
+    li{
+        float:left;
+        margin: 0.3rem !important;
+        a{
+            border: 3px solid transparent;
+            &.active{
+                border: 3px solid #fff !important;
+            }
+            .inline-block;
+            height: @frameThumb !important;
+            line-height: @frameThumb !important;
+            .frame-thumb{
+                width: @frameThumb;
+                height: @frameThumb;
+
+                background-color: rgba(255,255,255,0.1) !important;
+            }
+        }
+    }
+    list-style: none !important;
+    margin:0px;
+    padding:0px;
+}
+
+#toolMenu{
+  background-color: #cbcbcb !important;
+
+}
+
+#strokeWidthPreview{
+    position :absolute;
+    display:inline-block !important;
+    margin:1rem !important;
+    border-radius: 50%;
+    border: 1px solid fade(#000, 10%);
+    background-color: fade(#000, 7%);
+    &.mousedrag{
+        .z-max(100);
+        .fixed;
+    }
 }

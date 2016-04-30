@@ -20,6 +20,18 @@ $.shortcut={
             $('a.btn-tool').eq(e.keyCode - 49).trigger('click');
         }
 
+        else if (e.keyCode >= 49 && e.keyCode <=57){
+            $.frames.get(e.keyCode - 48);
+        }
+
+        else if (e.keyCode == 39){
+            $.frames.get($.frames.cur + 1);
+        }
+
+        else if (e.keyCode == 37){
+            $.frames.get($.frames.cur - 1);
+        }
+
         else if ($.kalte("onAlt") && e.keyCode == 68){
             e.preventDefault();
             $.pjs.unselect();
@@ -47,6 +59,11 @@ $.shortcut={
 
             $('#fillColor').val(strokeColor).trigger('change');
             $('#strokeColor').val(fillColor).trigger('change');
+        }
+
+
+        else if ($.kalte("onCmd") && e.keyCode == 8){
+            $.pjs.selectRemove();
         }
 
         else if ($.kalte("onCtrl") && e.keyCode >= 49 && e.keyCode <=57){

@@ -6,7 +6,7 @@
 @cCm4 : @cInverse1; // color link bread
 @cCmShadow : @cInverse1; // color link bread
 
-@elem: 7,10;
+@elem: 7,11;
 
 @radius: 80;
 @size : 48;
@@ -142,14 +142,15 @@
 		.shadow(0);
 		background-color: @circleColor;
 		width: unit(@radius*2, @unit);
+		height: unit(@radius*2, @unit);
 		line-height: unit(@size + 10, @unit);
 		text-align: center;
 		font-size: unit(@radius/4, @unit);
 		vertical-align: middle;
-		height: unit(@radius*2, @unit);
+
 		border-radius: 50%;
-		position: absolute;
-		display: inline-block;
+		position: absolute !important;
+		display: inline-block !important;
 		z-index: 900;
 		& a{
 			text-decoration: none;
@@ -192,3 +193,18 @@
 }
 .circle-loop ();
 
+.circle{
+	canvas{
+		background-color: transparent !important;
+		position:absolute;
+		margin-left: -128px !important;
+		margin-top: -96px !important;
+	}
+	input{
+		margin-top: 0px !important;
+		margin-left: -17px !important;
+		width: 30px !important;
+		height: 71px !important;
+		color: #fff !important;
+	}
+}

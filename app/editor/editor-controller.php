@@ -52,6 +52,29 @@
                 echo'<div id="filesPanes-'.$id.'" class="tab-content" data-pane-id="'.$id.'" ></div>
             </div>';
         }
+
+
+        public function compilePaper()
+        {
+            $d  = $this->model('editor','draw_papermeta');
+
+            foreach ($d as $key => $value) {
+
+                $data =  $value;
+
+                if(is_array($value['extends'])){
+                    foreach ($value['extends'] as $keyExtends => $valueExtends) {
+                        $data = array_merge_recursive($d[$valueExtends], $data);
+                    }
+                }
+                else
+                    $data = $value;
+
+                $dir = DIR_APP.'/editor/assets/papermeta/'.$key.'.json';
+                $this->setJson($dir,$data);
+            }
+
+        }
     }
 
     $editor = new editor();

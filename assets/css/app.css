@@ -2158,9 +2158,6 @@ fieldset + fieldset {
   height: 31px;
   width: 42px;
 }
-canvas {
-  background-color: rgba(0, 0, 0, 0.05);
-}
 a,
 a * {
   color: #282A32;
@@ -2467,6 +2464,9 @@ li.active a {
 .layerLayer.open tbody {
   display: block;
 }
+.input-group.xs .slider {
+  width: 50px;
+}
 .draw-page *,
 .draw-page select,
 .draw-page option,
@@ -2500,6 +2500,15 @@ li.active a {
 .draw-page * {
   font-size: 0.8rem !important;
 }
+.draw-page footer {
+  width: 100%;
+}
+.draw-page footer .row {
+  padding-top: 1.5rem;
+}
+.draw-page footer .row .slider {
+  display: inline-block;
+}
 tbody .sortable-placeholder {
   height: 32px !important;
 }
@@ -2515,14 +2524,39 @@ tbody .sortable-placeholder {
 #layers table.table * {
   border-width: 0px;
 }
+#layers tr th.thShow {
+  padding-left: 0.5rem !important;
+}
+#layers tr th.thRemove {
+  padding-right: 0.5rem !important;
+}
 #layers th {
-  width: 16px !important;
+  padding: 0.2rem ;
+  width: 32px !important;
   display: inline-block !important;
   text-align: center;
+}
+#layers th,
+#layers th * {
+  line-height: 24px !important;
+  vertical-align: middle;
 }
 #layers th.thName {
   text-align: left !important;
   width: 100px !important;
+}
+#layers th.thCheck {
+  width: 24px !important;
+}
+#layers th.thCheck .layer-preview {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  display: inline-block !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+#layers .table .table .thCheck {
+  padding-left: 16px;
+  width: 46px !important;
 }
 #layers .rename {
   width: 100px !important;
@@ -2661,8 +2695,8 @@ tbody .sortable-placeholder {
 .card .card-block {
   padding: 0.25rem 0.7rem !important;
 }
-td table {
-  margin-left: 16px !important;
+td table .thPreview {
+  padding-left: 16px !important;
 }
 div.meta {
   padding: 0.25rem;
@@ -2675,7 +2709,18 @@ label.sm {
   margin-top: 0.7rem !important;
   font-size: 0.7rem;
 }
+#quickbar .card,
+#quickbar .card .card-header {
+  border-radius: 0px;
+  border-width: 0px;
+  background-color: #e4e4e4 !important;
+}
+#quickbar .list-group-item {
+  border-width: 0px;
+  background-color: transparent !important;
+}
 #panelbar {
+  width: 38px !important;
   position: fixed;
   right: calc(25% - 30px);
 }
@@ -2690,6 +2735,9 @@ label.sm {
   font-size: 0.7rem;
   margin-bottom: 0.1rem;
   margin-top: 0.3rem !important;
+}
+#panelbar .btn-group-vertical {
+  margin-bottom: 0.5rem !important;
 }
 .input-colors .input-group-addon {
   width: 39px !important;
@@ -2708,4 +2756,88 @@ label.sm {
   font-size: 24px !important;
   opacity: 0.5;
   z-index: 2001;
+}
+canvas.draw-paper {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.table tbody .table {
+  width: calc(100% - 16px) !important;
+  background-color: transparent !important;
+}
+.thRemove {
+  float: right;
+}
+.btn-toggle.open i {
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+footer .form-inverse.form-control,
+.c-menu .form-inverse.form-control {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-width: 0px !important;
+  padding: 0.2rem 0.5rem  !important;
+  display: inline;
+  width: 150px;
+}
+footer .form-inverse.form-control.xs,
+.c-menu .form-inverse.form-control.xs {
+  width: 48px;
+}
+.list-inline {
+  display: inline-block;
+  list-style: none !important;
+  margin: 0px;
+  padding: 0px;
+}
+.list-inline li {
+  float: left;
+  margin: 0.3rem !important;
+}
+.list-inline li a {
+  border: 3px solid transparent;
+  display: inline-block;
+  height: 64px !important;
+  line-height: 64px !important;
+}
+.list-inline li a.active {
+  border: 3px solid #fff !important;
+}
+.list-inline li a .frame-thumb {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+#toolMenu {
+  background-color: #cbcbcb !important;
+}
+#strokeWidthPreview {
+  position: absolute;
+  display: inline-block !important;
+  margin: 1rem !important;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.07);
+}
+#strokeWidthPreview.mousedrag {
+  z-index: 2100;
+  position: fixed;
+}
+canvas.frame {
+  display: none;
+}
+canvas.frame.active {
+  display: inline-block;
+}
+#toolbar,
+#quickbar {
+  position: fixed;
+}
+#toolbar {
+  left: -1rem;
+}
+#quickbar {
+  right: -1rem;
 }

@@ -9,11 +9,11 @@
     <div class="input-group input-colors colorpicker-element">
         <label for="fillColor" class="sm block">fillColor</label>
         <span class="input-group-addon block"><i style=""></i></span>
-        <input type="text" value="#242424" data-properties="fillColor" class=" setSelect form-control hide" name="fillColor" id="fillColor">
+        <input type="text" value="#fff" data-properties="fillColor" class=" setSelect form-control hide" name="fillColor" id="fillColor">
     </div>
 <div class="input-group">|</div>
     <div class="input-group">
-        <select id="strokeCap" name="strokeCap" data-properties="strokeCap" class="c-select form-control setSelect">
+        <select id="strokeCap" name="strokeCap" data-properties="strokeCap" class="c-select setSelect">
             <option value="round">round</option>
             <option value="square">square</option>
             <option value="butt">butt</option>
@@ -32,15 +32,17 @@
     <input id="dash_w" name="dash[1]" type="number" class=" setSelect form-control xs"  min="0"  value="<?php echo $d['val']['dash_w']?? "10" ?>">
 </div>
 <div class="input-group">|</div>
-<div class="input-group">
+<div class="input-group xs">
    <label for="opacity" class="sm block">Opacity</label>
-        <input id='opacity' name="opacity" data-slider-id='opacity' class="setSelect slider" data-properties="opacity" type="text" data-slider-min='0' data-slider-max='1' data-slider-step="0.01" value='1'>
+        <input id='opacity' name="opacity" data-slider-width="100" data-slider-id='opacity' class="setSelect slider" data-properties="opacity" type="text" data-slider-min='0' data-slider-max='1' data-slider-step="0.01" value='1'>
 </div>
+
 <div class="input-group">|</div>
 <div class="input-group">
     <label for="rotation" class="sm block">Rotation</label>
-    <input id='rotation' name="rotation" data-slider-id='rotation' class="setSelect slider form-control xs" data-properties="rotation" type="number" data-slider-min='0' data-slider-max='360' data-slider-step="1" value='0'>
+    <input id='rotation' name="rotation" data-slider-id='rotation' class="setSelect  form-control xs" data-width="32" data-height="32" data-properties="rotation" type="number" data-min='0' data-max='360' data-step="1" value='0' data-displayInput=false>
 </div>
+<div class="input-group">|</div>
 <div class="input-group">
     <label for="pivot_x" class="sm block">Pivot x</label>
     <input id='pivot_x' class="setSelect form-control xs" name="pivot[0]" data-properties="pivot_x" type="number" value='0'>
@@ -57,4 +59,12 @@
 <div class="input-group">
     <label for="position" class="sm block">Position y</label>
     <input id='position_y' class="setSelect form-control xs" name="position[y]" data-properties="position_y" type="number" value='0'>
+</div>
+<div class="input-group">|</div>
+<div class="input-group">
+    <select id='blendMode' class="setSelect c-select form-control" data-properties="blendMode" name="blendMode"  min='0' max='1' >
+        <?php foreach (DRAW_BLEND as $key => $value): ?>
+            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+        <?php endforeach ?>
+    </select>
 </div>

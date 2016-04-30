@@ -29,7 +29,7 @@
         <!-- end Code mirror css -->
 
         <link rel="stylesheet" href="assets/vendor/summernote/dist/summernote.css">
-
+        <link href="assets/vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" rel="stylesheet" >
         <link href="assets/css/app.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
@@ -55,7 +55,7 @@
         <script type="text/javascript" src="assets/vendor/tether/dist/js/tether.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/notiny/dist/notiny.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>
-
+        <script type="text/javascript" src="assets/vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/select2/dist/js/select2.full.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/clipboard/dist/clipboard.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js" ></script>

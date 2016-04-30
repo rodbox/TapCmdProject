@@ -185,9 +185,7 @@ fieldset{
             }
         }
     }
-canvas{
-    background-color: fade(#000,5%);
-}
+
 
 a{
     &,
@@ -592,4 +590,27 @@ li.active{
     }
 }
 
+.input-group.xs{
+    .slider{
+        width: 50px;
+    }
+}
 @import 'custom-draw.less';
+
+
+canvas.frame{
+    display:none;
+    &.active{
+        .inline-block;
+    }
+}
+#toolbar,
+#quickbar{
+    .fixed;
+}
+#toolbar{
+    left:-1rem;
+}
+#quickbar{
+    right:-1rem;
+}
