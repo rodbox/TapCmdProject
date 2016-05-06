@@ -3,8 +3,12 @@
 $d =  [
     [
         'name'  => 'select',
-        'ico'   => 'fa fa-mouse-pointer',
+        'ico'   => 'icomoon-cursor',
         'class' => 'autoclick'
+    ],
+    [
+        'name'  => 'selectPoint',
+        'ico'   => 'icomoon-cursor2'
     ],
     [
         'name' => 'default',
@@ -29,6 +33,14 @@ $d =  [
     [
         'name' => 'rope',
         'ico'  => 'icomoon-compass3 '
+    ],
+    [
+        'name' => 'eraser',
+        'ico'  => 'fa fa-eraser'
+    ],
+    [
+        'name' => 'angle',
+        'ico'  => 'fa fa-compass'
     ]
 ];
 

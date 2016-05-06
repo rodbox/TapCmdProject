@@ -1,22 +1,348 @@
-
-paper.setup()
-
 $.i = 0;
 $.iLayers = project.layers.length;
 var path;
 
-var toolsList  = ['default'];
+var segment, path;
+var movePath = false;
+
+var hitOptions = {
+      fill: true,
+      stroke: true,
+      segments: true,
+      bounds: true,
+      tolerance:10
+};
+
+
+
 $.toolSelected = {};
 $.selected     = {};
 $.selectedDown = {};
 
+$.time         = {};
+$.rotate       = 0;
 var x          = 0, y = 0;
 $.canvasPos    = $("canvas.draw-paper").position();
+
+$.angle = function (cx, cy, ex, ey) {
+  var dy = ey - cy;
+  var dx = ex - cx;
+  var theta = Math.atan2(dy, dx); // range (-PI, PI]
+  theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+  //if (theta < 0) theta = 360 + theta; // range [0, 360)
+  return theta;
+}
+
+
+
+
+
+
+/**
+ * http://paperjs.org/features/
+ */
+project.currentStyle.fillColor = 'black';
+
+var values = {
+    fixLength: false,
+    fixAngle: false,
+    showCircle: false,
+    showAngleLength: true,
+    showCoordinates: false
+};
+
+var vector, vectorPrevious;
+var vectorItem, items, dashedItems;
+
+var vectorStart = view.center;
+
+function processVector(event, drag) {
+    vector = event.point - vectorStart;
+    if (vectorPrevious) {
+        if (values.fixLength && values.fixAngle) {
+            vector = vectorPrevious;
+        } else if (values.fixLength) {
+            vector.length = vectorPrevious.length;
+        } else if (values.fixAngle) {
+            vector = vector.project(vectorPrevious);
+        }
+    }
+    drawVector(drag);
+}
+
+function drawVector(drag) {
+    if (items) {
+        for (var i = 0, l = items.length; i < l; i++) {
+            items[i].remove();
+        }
+    }
+    if (vectorItem)
+        vectorItem.remove();
+    items = [];
+    var arrowVector = vector.normalize(10);
+    var end = vectorStart + vector;
+    vectorItem = new Group([
+        new Path([vectorStart, end]),
+        new Path([
+            end + arrowVector.rotate(135),
+            end,
+            end + arrowVector.rotate(-135)
+        ])
+    ]);
+    vectorItem.style = {
+        strokeWidth: 0.75,
+        strokeColor: '#e4141b',
+        dashArray: [],
+        fillColor: null
+    };
+    // Display:
+    dashedItems = [];
+    // Draw Circle
+    if (values.showCircle) {
+        dashedItems.push(new Path.Circle({
+            center: vectorStart,
+            radius: vector.length
+        }));
+    }
+    // Draw Labels
+    if (values.showAngleLength) {
+        if (drawAngle(vectorStart, vector, !drag) && !drag) {
+            drawLength(vectorStart, end, vector.angle < 0 ? -1 : 1, true);
+        }
+    }
+    var quadrant = vector.quadrant;
+    if (values.showCoordinates && !drag) {
+        drawLength(vectorStart, vectorStart + [vector.x, 0],
+                [1, 3].indexOf(quadrant) != -1 ? -1 : 1, true, vector.x, 'x: ');
+        drawLength(vectorStart, vectorStart + [0, vector.y],
+                [1, 3].indexOf(quadrant) != -1 ? 1 : -1, true, vector.y, 'y: ');
+    }
+    for (var i = 0, l = dashedItems.length; i < l; i++) {
+        var item = dashedItems[i];
+        item.style = {
+            strokeColor: '#8b8b8b',
+            fillColor: null,
+            dashArray: [1, 2]
+        };
+        items.push(item);
+    }
+    // Update palette
+    values.x = vector.x;
+    values.y = vector.y;
+    values.length = vector.length;
+    values.angle = vector.angle;
+}
+
+function drawAngle(center, vector, label) {
+    var radius = 25, threshold = 10;
+    if (vector.length > radius + threshold) {
+        var from = new Point(radius, 0);
+        var through = from.rotate(vector.angle / 2);
+        var to = from.rotate(vector.angle);
+        var end = center + to;
+        dashedItems.push(new Path.Line(center,
+                center + new Point(radius + threshold, 0)));
+        dashedItems.push(new Path.Arc(center + from, center + through, end));
+        if (Math.abs(vector.angle) > 15) {
+            var arrowVector = to.normalize(7.5).rotate(vector.angle < 0 ? -90 : 90);
+            dashedItems.push(new Path([
+                    end + arrowVector.rotate(135),
+                    end,
+                    end + arrowVector.rotate(-135)
+            ]));
+        }
+        if (label) {
+            // Angle Label
+            var text = new PointText(center
+                    + through.normalize(radius + 10) + new Point(0, 3));
+            text.content = 'angle: ' + Math.floor(vector.angle * 100) / 100 + '°';
+            text.fontSize = 12;
+            items.push(text);
+        }
+        return true;
+    }
+    return false;
+}
+
+function drawLength(from, to, sign, label, value, prefix) {
+    var lengthSize = 5;
+    var vector = to - from;
+    var awayVector = vector.normalize(lengthSize).rotate(90 * sign);
+    var upVector = vector.normalize(lengthSize).rotate(45 * sign);
+    var downVector = upVector.rotate(-90 * sign);
+    var lengthVector = vector.normalize(
+            vector.length / 2 - lengthSize * Math.sqrt(2));
+    var line = new Path();
+    line.add(from + awayVector);
+    line.lineBy(upVector);
+    line.lineBy(lengthVector);
+    line.lineBy(upVector);
+    var middle = line.lastSegment.point;
+    line.lineBy(downVector);
+    line.lineBy(lengthVector);
+    line.lineBy(downVector);
+    dashedItems.push(line);
+    if (label) {
+        // Length Label
+        var textAngle = Math.abs(vector.angle) > 90
+                ? textAngle = 180 + vector.angle : vector.angle;
+        // Label needs to move away by different amounts based on the
+        // vector's quadrant:
+        var away = (sign >= 0 ? [1, 4] : [2, 3]).indexOf(vector.quadrant) != -1
+                ? 8 : 0;
+        var text = new PointText({
+            point: middle + awayVector.normalize(away + lengthSize),
+            fontSize: 12,
+            justification: 'center'
+        });
+        text.rotate(textAngle);
+        value = value || vector.length;
+        text.content = '' + (prefix || '') + Math.floor(value * 1000) / 1000;
+        items.push(text);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Mouse Handling
+
+var dashItem;
+/**
+ * end feature :http://paperjs.org/features/
+ *
+ */
+
+
+
+
+
+
+
+function MouseWheelHandler(e) {
+
+    // cross-browser wheel delta
+    var e = window.event || e; // old IE support
+    var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+    console.log(delta);
+    return delta;
+}
+
+$.matrixRotate = function(item, angle){
+    item.pivot = $.getPivot();
+    angle = angle-$.rotate;
+    item.rotate(angle);
+
+
+    // console.log(item.matrix);
+
+    // var a  = Math.cos(angle);
+    // var b  = -Math.sin(angle);
+    // var c  = Math.sin(angle);
+    // var d  = Math.cos(angle);
+    // var tx = item.pivot.x;
+    // var ty = item.pivot.y;
+
+    // item.matrix.set(a,b,c,d,tx,ty);
+    // item.matrix.apply();
+
+
+
+    $.rotate = angle;
+
+    return item;
+}
+
+
+$.getMatrix = function (item, rotation){
+    // var rot = $.def(rotation,0);
+
+    // var rotation = 180;
+
+    // var matrix = item.matrix; // valeur de départ
+    // var matrix2 =  item.matrix; // valeur apres transformation
+
+    // $("#matrix_1_a").val(matrix.a);
+    // $("#matrix_1_b").val(matrix.b);
+    // $("#matrix_1_c").val(matrix.c);
+    // $("#matrix_1_d").val(matrix.d);
+    // $("#matrix_1_tx").val(matrix.tx);
+    // $("#matrix_1_ty").val(matrix.ty);
+
+    // console.log(rotation);
+
+    // $('#matrix_rotation').val(rotation);
+
+    item.pivot    = $.getPivot();
+    // item.rotation = rotation
+
+
+    // item.matrixset({
+    //     a  : Math.cos(rotation),
+    //     b  : -Math.sin(rotation),
+    //     c  : Math.sin(rotation),
+    //     d  : Math.cos(rotation),
+    //     tx : 0,
+    //     ty : 0
+    // })
+    console.log(item);
+      /**
+     * Formule de rotation
+     */
+
+    // var newMatrix = new Matrix(a, c, b, d, tx, ty);
+    //  item.transform(newMatrix);
+    //     console.log(newMatrix);
+    // var m2 = item.matrix.set(a,b,c,d,tx,ty);
+
+    // console.log('sin');
+    // console.log(b);
+    // console.log('-sin');
+    // console.log(-b);
+
+    // console.log(matrix2);
+
+
+
+    // $("#matrix_2_a").val(matrix2.a);
+    // $("#matrix_2_b").val(matrix2.b);
+    // $("#matrix_2_c").val(matrix2.c);
+    // $("#matrix_2_d").val(matrix2.d);
+    // $("#matrix_2_tx").val(matrix2.tx);
+    // $("#matrix_2_ty").val(matrix2.ty);
+
+    project.view.update();
+}
+
+function showIntersections(path1, path2) {
+    var intersections = path1.getIntersections(path2);
+    for (var i = 0; i < intersections.length; i++) {
+        new Path.Circle({
+            center: intersections[i].point,
+            radius: 5,
+            fillColor: '#009dec'
+        }).removeOnMove();
+    }
+}
+
 document.addEventListener('mousemove', function(e){
     x = e.layerX - $.canvasPos.left,
     y = e.layerY - 35;
-
 }, false);
+
+if (document.addEventListener) {
+    // IE9, Chrome, Safari, Opera
+    document.addEventListener("mousewheel", MouseWheelHandler, false);
+    // Firefox
+    document.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+}
+// IE 6/7/8
+else document.attachEvent("onmousewheel", MouseWheelHandler);
+
+
+
+/**
+ * Les frames sont contenue dans les layers de premier niveau
+ * est sont activer comme layer active par la fonction $.frames.cur
+ */
 
 
 $( window ).resize(function (e){
@@ -28,7 +354,7 @@ var hitOptions = {
     segments: true,
     stroke: true,
     fill: true,
-    tolerance: 5
+    tolerance: 40
 };
 
 
@@ -94,18 +420,21 @@ window.app = {
 
                 path.add(point);
                 path.smooth();
+                path.clearHandles();
             }
         },
         onMouseUp: function(event){
-            $('#strokeWidthPreview').css({
-                left:'inherit',
-                top:'inherit'
-            }).removeClass('mousedrag');
-
-            $.pjs.updLayer();
-            path.simplify();
-            $.history.add(path);
-
+            if($.kalte('onMaj')){
+                $('#strokeWidthPreview').css({
+                    left:'inherit',
+                    top:'inherit'
+                }).removeClass('mousedrag');
+            }
+            else{
+                $.pjs.updLayer();
+                path.simplify();
+                $.history.add(path);
+            }
         }
     }),
     circle: new Tool({
@@ -152,10 +481,75 @@ window.app = {
                 $.pjs.updLayer();
             }
         }),
+    selectPoint: new Tool({
+        onMouseDown : function(event) {
+            segment = path = null;
+            var hitResult = project.hitTest(event.point, hitOptions);
+            if (!hitResult)
+                return;
+
+            if (event.modifiers.shift) {
+                if (hitResult.type == 'segment') {
+                    hitResult.segment.remove();
+                };
+                return;
+            }
+
+            if (hitResult) {
+                path = hitResult.item;
+                if (hitResult.type == 'segment') {
+                    segment = hitResult.segment;
+                } else if (hitResult.type == 'stroke') {
+                    var location = hitResult.location;
+                    segment = path.insert(location.index + 1, event.point);
+                    path.smooth();
+                }
+            }
+            movePath = hitResult.type == 'fill';
+            if (movePath)
+                project.activeLayer.addChild(hitResult.item);
+        },
+        onMouseMove : function(event) {
+            project.activeLayer.fullySelected = false;
+            if (event.item)
+                event.item.fullySelected = true;
+        },
+        onMouseDrag : function(event) {
+            if (segment) {
+                segment.point += event.delta;
+                path.smooth();
+            }
+            else if (path) {
+                path.position += event.delta;
+            }
+        }
+    }),
     select: new Tool({
         onMouseDown : function (event){
-            if (event.item)
-                event.item.selected = true;
+            $.selected     = project.selectedItems;
+            // project.selectedItems.selected = false;
+
+            if($.kalte('onCmd')){
+                if (event.item){
+                    event.item.selected = true;
+
+                    // event.item.fitBounds(view.bounds);
+                }
+            }
+            else{
+
+                if (event.item){
+                    event.item.selected = !event.item.selected;
+                    // $.getMatrix(event.item);
+                }
+
+
+                  $.each($.selected, function(index, intem) {
+                    intem.selected = false;
+                });
+            }
+
+
 
             $.selected     = project.selectedItems;
             $.selectedDown = {};
@@ -163,52 +557,26 @@ window.app = {
                  $.selectedDown[index] = val.position;
             });
 
-            /**
-             * test from tuto hittest
-             * @type {[type]}
-             */
-            // segment = path = null;
-            // var hitResult = project.hitTest(event.point, hitOptions);
-            // if (!hitResult)
-            //      return;
-            // if (event.modifiers.shift) {
-            //  if (hitResult.type == 'segment') {
-            //      hitResult.segment.remove();
-            //  };
-            //  return;
-            //  }
-
-            // if (hitResult) {
-            //     path = hitResult.item;
-            //     if (hitResult.type == 'segment') {
-            //         segment = hitResult.segment;
-            //     } else if (hitResult.type == 'stroke') {
-            //         var location = hitResult.location;
-            //         segment = path.insert(location.index + 1, event.point);
-            //         path.smooth();
-            //     }
-            // }
-            // movePath = hitResult.type == 'fill';
-
-            // if (movePath){
-            //     project.activeLayer.addChild(hitResult.item);
-            // }
-            /**
-             * END test from tuto hittest
-             */
         },
         onMouseMove : function (event) {
             // console.log($.kalte('onCmd'));
 
             // console.log(project);
-            if($.kalte('onCmd')){
+            // if($.kalte('onMaj')){
+            //     console.log();
+            //     project.selectedItems.selected = false;
 
-                console.log();
-                project.selectedItems.selected = false;
+            //     if (event.item)
+            //         event.item.selected = true;
+            // }
 
-                if (event.item)
-                    event.item.selected = true;
-            }
+            // if($.kalte('onAlt')){
+            //     console.log();
+            //     project.selectedItems.selected = false;
+
+            //     if (event.item)
+            //         event.item.selected = false;
+            // }
         },
         onMouseDrag : function (event){
             var downPointX = event.downPoint.x;
@@ -249,6 +617,14 @@ window.app = {
                 }).rotate(-90).removeOnDrag().removeOnUp();
             }
 
+            else if($.kalte('onCmd')){
+
+                var angle = $.angle(downPointX,downPointY,event.point.x,event.point.y);
+                console.log($.selected);
+                var item = $.selected[0];
+                $.matrixRotate(item,angle);
+
+            }
 
             else{
                 $.each($.selected, function(index, item) {
@@ -293,15 +669,8 @@ window.app = {
                 var point = event.middlePoint + step;
                 var bottom = event.middlePoint - step;
 
-                // var point = {
-                //     x:$.mouselock.x,
-                //     y:event.point.y
-                // };
             }
             else if($.kalte('onMaj')){
-
-                // var point = event.middlePoint + step;
-                // var bottom = event.middlePoint - step;
 
                 var point = {
                     x:event.middlePoint.x  + step,
@@ -313,20 +682,11 @@ window.app = {
                     x:event.middlePoint.x  - step,
                     y:event.middlePoint.y  - step,
                 };
-
-
-
             }
             else{
-
                 var point = event.middlePoint + step;
                 var bottom = event.middlePoint - step;
-
-                // var point = event.middlePoint;
             }
-
-
-
 
             path.add(point);
             path.insert(0, bottom);
@@ -368,21 +728,156 @@ window.app = {
         }),
     rope: new Tool({
         onKeyDown : function (event){
-            path             = new Path();
-            $.i              = $.i + 1;
-            path.name        = 'path'+$.i;
-            path.strokeColor = $.getStrokeColor();
-            path.fillColor   = $.getFillColor();
-            path.strokeWidth = $.getW();
-            path.strokeCap   = $.getCap();
+            path.closed = true;
+            $.isFirst = true;
         },
         onMouseDown : function (event){
-            path.add(event.point);
+            if($.isFirst == undefined || $.isFirst ){
+                path             = new Path();
+                $.i              = $.i + 1;
+                path.name        = 'path'+$.i;
+                path.strokeColor = $.getStrokeColor();
+                path.fillColor   = $.getFillColor();
+                path.strokeWidth = $.getW();
+                path.strokeCap   = $.getCap();
+                path.add(event.point);
+                $.isFirst = false;
+            }
+            else{
+                path.add(event.point);
+            }
         },
         onKeyUp : function (event){
             path.closed = true;
             $.history.add(path);
             $.pjs.updLayer();
+        }
+    }),
+    eraser: new Tool({
+        onMouseDown: function(event){
+            circle = new Path.Circle({
+                center: event.downPoint,
+                radius: 20,
+                strokeWidth : $.getW(),
+                strokeColor: '#fff',
+                opacity: 0.5,
+                selected : false
+            });
+        },
+        onMouseDrag : function(event){
+            // console.log(X);
+
+            circle.position.x = event.event.offsetX;
+            circle.position.y = event.event.offsetY;
+            circle.selected = false;
+
+            /**
+            * TODO : fonction eraser
+            **/
+            var hitResult = project.hitTest(event.point);
+            project.activeLayer.selected = false;
+            if (hitResult && hitResult.type=="fill"){
+                console.log(hitResult);
+                // var cross = hitResult.item.getCrossings(circle)
+                // console.log(cross);
+                // showIntersections(circle, hitResult.item);
+                hitResult.item.selected = true;
+                 // console.log(hitResult.type);
+            }
+        },
+        onMouseUp : function (event){
+            circle.remove();
+        }
+    }),
+    angle: new Tool({
+        onMouseDown  : function(event){
+
+            var end = vectorStart + vector;
+            var create = false;
+            if (event.modifiers.shift && vectorItem) {
+                vectorStart = end;
+                create = true;
+            } else {
+                vectorStart = event.point;
+            }
+            if (create) {
+                dashItem = vectorItem;
+                vectorItem = null;
+            }
+            processVector(event, true);
+
+
+        },
+        onMouseMove : function(event) {
+
+        },
+        onMouseDrag  : function(event){
+
+
+            if (!event.modifiers.shift && values.fixLength && values.fixAngle)
+                vectorStart = event.point;
+            processVector(event, event.modifiers.shift);
+
+            // var dash = [1,2];
+
+            // var point1 = new Point(event.downPoint);
+            // var point2 = new Point(event.point);
+            // var pathdrag = new Path([point1,point2]);
+            // pathdrag.strokeWidth=2;
+            // pathdrag.strokeColor='#000';
+
+
+
+            // var pathdragX = new Path([point1,{x:point2.x, y:point1.y}]);
+            // pathdragX.strokeWidth=1;
+            // pathdragX.strokeColor='#8D8D8D';
+            // pathdragX.dashArray=dash;
+            // pathdragX.removeOnDrag().removeOnUp();
+
+            // var pathdragY = new Path([{x:point2.x, y:point1.y},point2]);
+            // pathdragY.strokeWidth=1;
+            // pathdragY.strokeColor='#8D8D8D';
+            // pathdragY.dashArray=dash;
+
+            // pathdragY.removeOnDrag().removeOnUp();
+
+            // // var radiusArc = 100;
+
+            // // var arc = new Path.Arc({
+            // //     from: [point1.x, point1.y],
+            // //     through: [60, 10],
+            // //     to: point2,
+            // //     strokeColor: 'black',
+            // //     dashArray:[5,5]
+            // // }).removeOnDrag().removeOnUp();
+
+
+            // var vector = point2 - point1;
+            // var textPosition = (point1+vector/2);
+            // textPosition.y -= 10;
+
+
+            // if ((vector.angle < -90) || (vector.angle < 180 && vector.angle >= 90))
+            //     textAngle = vector.angle + 180;
+            // else
+            //     textAngle = vector.angle
+            //     console.log(vector.angle);
+            //     var textY = new PointText({
+            //         point: textPosition,
+            //         content:  Math.round(vector.length,2),
+            //         fillColor: 'black',
+            //         justification: 'center',
+            //         fontSize:13
+            //     }).rotate(textAngle).removeOnDrag().removeOnUp();
+
+
+
+            // pathdrag.removeOnDrag().removeOnUp();
+        },
+        onMouseUp : function (event){
+            // processVector({ point: new Point(view.size * 0.75) }, false);
+            // pathdrag.removeOnUp();
+            // point1.removeOnUp();
         }
     })
 
@@ -390,34 +885,9 @@ window.app = {
 };
 app.default.activate();
 
-
-
-/**
-* TODO : Optimiser la gestion des parametrages des tools
-**/
-
-// $.getColor = function (index){
-//     return $('#color'+index).val();
-// }
-// $.colorFill = function (){
-//    return $('#color1').val();
-// }
-
-// $.colorStroke = function (){
-//    return $('#color2').val();
-// }
-// $.strokeSize = function(){
-//     return $('#size').val();
-// }
-
-
 $.dashMode = function(){
     return $('#dash').prop('checked');
 }
-/*
-Jusqu ici !!!!
- */
-
 
 $(".btn-pjs").on("click",function (e){
     e.preventDefault();
@@ -425,6 +895,32 @@ $(".btn-pjs").on("click",function (e){
 
     $.pjs[t.data('pjs')](t, e);
 })
+
+
+$.groupSelect = {
+    list : {},
+    add : function(children){
+        $.groupSelect.list.addChild(children);
+    },
+    init : function(childrens){
+console.log(childrens);
+
+        var group  = new Group(childrens);
+        // console.log('init');
+        // group.name = 'selection';
+        // group.id   = 'selection';
+
+        // console.log(group);
+        // $.groupSelect.list = group;
+
+        return group;
+    },
+    clear: function (){
+        // $.groupSelect.list.removeChild(0,$.groupSelect.length);
+
+        // console.log($.groupSelect.list);
+    }
+}
 
 
 $.history = {
@@ -541,44 +1037,40 @@ $(document).on("submit","#pathMenu",function (e){
     var data = t.serializeObject();
 
     var items = project.selectedItems;
-    // console.log(t.attr('data-properties'));
 
-
-
-    // $.each(items, function(index, val) {
-    //     if (t.attr('data-properties') == 'rotation') {
-
-    //     }
-    //     if (val.selected)
-    //         val[t.attr('data-properties')] = t.val();
-    // });
     project.view.update();
 })
 
 
-
 $.setSelect = function(properties, value){
     var form = $('#pathMenu').serializeObject();
-    console.log("properties");
-    console.log(properties);
-    console.log(form);
-    var items = project.selectedItems;
-    var value = $.def(value,form[properties]);
+    // items = project.selectedItems;
+    var items = $.groupSelect.init(project.selectedItems);
+    // var value = $.def(value,form[properties]);
+
     if (properties == 'rotation') {
-        project.activeLayer.pivot = $.getPivot();
-        project.activeLayer.rotation = form[properties];
-    }
-    else{
 
 
-        $.each(items, function(index, item) {
-            if (item.selected)
-                item[properties] = value;
-        })
+        // items.pivot    = $.getPivot();
+
+
+        $.getMatrix(items, form[properties]);
     }
+
+    // else if (properties == 'scaling') {
+    //     items.pivot    = $.getPivot();
+    //     items.matrix.scale(form[properties]);
+    // }
+    // else{
+    //     $.each(items.children, function(index, item) {
+    //         if (item.selected)
+    //             item[properties] = value;
+    //     })
+    // }
 
     project.view.update();
-    $.history.add();
+    // clearTimeout($.time);
+    // $.time = setTimeout($.history.add(),1000);
 }
 
 $(document).on("change keyup",".setSelect",function (e){
@@ -606,24 +1098,24 @@ $(document).on("change keyup",".setSelect",function (e){
              'xmlns:xlink':"http://www.w3.org/1999/xlink"
         }).html(item.exportSVG());
 
+        var css = (item.selected)?'btn-check active':'btn-check';
+
         return $("<a>",{
                 href    : "#",
                 id      : "path_check_"+item.index,
                 'data-children':item.index,
                 style   : 'margin-right:0.275rem',
-                class   : 'btn-check'
+                class   : css
             })
             .html(svg)
             .click(function(e) {
                 e.preventDefault();
                 var t        = $(this);
-                var p        = t.parents('tr');
-                p.toggleClass('table-active');
-                // item.selected = p.hasClass('table-active');
 
-                var div = $.meta.load(item,metaList);
-                $.selectedMode(item,p.hasClass('table-active'));
-                $('#metaView').html(div);
+                t.toggleClass('active');
+
+                $.sel.add(item,t.hasClass('active'));
+                // $('#metaView').html(div);
                 // $.meta.init();
             });
     }
@@ -662,26 +1154,15 @@ $(document).on("change keyup",".setSelect",function (e){
         return $("<a>",{
             href    : "#",
             'data-children':item,
-            class   : (item.open)?'open toggle btn-toggle ':'toggle btn-toggle ',
+            class   : (item.data.open)?'open toggle btn-toggle ':'toggle btn-toggle ',
 
         }).html('<i class="fa fa-caret-right"></i>').click(function(e) {
             e.preventDefault();
             $(this).toggleClass('open');
-            item.open = $(this).hasClass('open');
+            $(this).parents('table').first().toggleClass('open');
+            item.data.open = $(this).hasClass('open');
         });
     }
-
-    // $.aToggleMeta = function(item, metaList){
-    //     return $("<a>",{
-    //         href    : "#",
-    //         'data-children':item,
-    //         class   : 'toggle-meta btn-meta',
-    //     }).html('<i class="fa fa-list"></i>').click(function(){
-    //         e.preventDefault();
-    //         var div = $.meta.load(item,metaList);
-    //         $('#metaView').html(div);
-    //     });
-    // }
 
     $.aRemove = function(item){
         return $("<a>",{
@@ -733,7 +1214,6 @@ $.meta = {
         var div = $("<div>",{class:"meta"});
         $.each(index, function(index, val) {
             $('#'+val).val(index[val]);
-            // $('#'+val).trigger('change');
         });
         return div;
     }
@@ -741,27 +1221,53 @@ $.meta = {
 // $.rotore = {};
 $.bound = {};
 
-$.selectedMode = function(item, bool){
-    if(bool){
-        var b = item.bounds;
+$.sel = {
+    list: {},
+    single:function(item, bool){
+        if(bool){
+            var b = item.bounds;
 
-        item.pivot = $.getPivot();
-        $.bound[item.index] = new Path.Rectangle(b);
+            item.pivot = $.getPivot();
+            // $.bound[item.index] = new Path.Rectangle(b);
+            // $.bound[item.index].className = 'bound';
+            // $.bound[item.index].name = 'bound'+item.index;
+        }
+        else{
+            // if ($.bound[item.index] != undefined)
+            //     $.bound[item.index].remove();
+        }
 
-        $.bound[item.index].className = 'bound';
-        $.bound[item.index].name = 'bound'+item.index;
+        item.selected = bool;
+        project.view.update();
+    },
+    add:function(item, bool){
+
+        // if(!$.kalte('onCmd')){
+        //     // $.sel.clear();
+        // }
+
+        item.selected = bool;
+        if(bool)
+            item.fitBounds(view.bounds);
+        $.pjs.updLayer();
+        project.view.update();
+    },
+    toggle:function(){},
+    clear: function(){
+        var items = project.selectedItems;
+        $.each(items, function(index, item) {
+           $.sel.add(item, false);
+        });
+        project.view.update();
     }
-    else{
-        if ($.bound[item.index] != undefined)
-            $.bound[item.index].remove();
-    }
-
-    item.selected = bool;
-    project.view.update();
 }
 
-$.layerPath  = function(path){
-    var table = $("<table>",{"id":path.name,"class":"layerPath layers table table-sm "+path.className});
+$.itemPath  = function(path){
+    var open        = $.def(path.data.open,false);
+    var openClass   = (open)?'open':'';
+
+
+    var table = $("<table>",{"id":path.name,"class":"layerPath layers table table-sm "+path.className+" "+openClass});
     var thead = $("<thead>",{"id":"th_"+path.name,"class":"th_layerPath"});
     var tbody = $("<tbody>",{"id":"tb_"+path.name,"class":"tb_layerPath"});
 
@@ -801,11 +1307,11 @@ $.layerPath  = function(path){
 
     }
     var tr  = $("<tr>")
-    if (path.selected){
-        tr.addClass('table-active');
-        tr.addClass(path.className);
-        var name = (path.name != undefined)?path.name:'item '+path.index;
-    }
+    // if (path.selected){
+    //     tr.addClass('table-active');
+    //     tr.addClass(path.className);
+    //     var name = (path.name != undefined)?path.name:'item '+path.index;
+    // }
 
     $.each(ths, function(index, th) {
         tr.append(th);
@@ -821,7 +1327,8 @@ $.layerPath  = function(path){
     table.append(thead);
 
     $.each(path._children, function(index, children) {
-        tbody.append($.pathPath(children));
+        // console.log(children);
+        tbody.append($.itemPath(children));
     });
 
 
@@ -832,18 +1339,22 @@ $.layerPath  = function(path){
 
 
 $.layerLayer = function(layer){
-    var open        = $.def(layer.open,false);
+    var open        = $.def(layer.data.open,false);
     var openClass   = (open)?'open':'';
 
     var active        = $.def(layer.active,false);
     var activeClass = (active)?'active':'';
 
-    var table       = $("<table>",{"id":"layer_"+layer.name,"data-layer-name":layer.name,"class":"layerLayer  table table-sm "+openClass + " "+activeClass});
+    var table       = $("<table>",{
+        "id":"layer_"+layer.name,
+        "data-layer-name":layer.name,
+        "data-contextmenu":'item',
+        "class":"layerLayer  table table-sm btn-context "+openClass + " "+activeClass
+    });
     var thead       = $("<thead>",{"id":"th_"+layer.name,"data-layer-name":layer.name,"class":"th_layerLayer"});
     var tbody       = $("<tbody>",{"id":"tb_"+layer.name,"class":"tb_layerLayer"});
 
     var metaList    = [
-        // 'name',
         'opacity',
         'className',
         'fillColor',
@@ -889,8 +1400,7 @@ $.layerLayer = function(layer){
         var td = $("<td>",{
             colspan:ths.length
         });
-        // console.log(children.className);
-        td.html($.layerPath(children))
+        td.html($.itemPath(children))
         tr.append(td);
         tbody.prepend(tr);
     });
@@ -918,7 +1428,9 @@ $.pjs = {
         $.pjs.protect(t, function(){
             project.clear();
             // $.pjs.createLayer();
-            $.iLayers = project.layers.length;
+
+            $.iLayers    = project.layers.length;
+            $.frames.clear('');
             project.view.update();
             $.pjs.updLayer();
         })
@@ -934,12 +1446,15 @@ $.pjs = {
             func();
     },
     selectRemove: function(){
-        var items = project.selectedItems;
+       if (confirm('Supprimer la selection ?')) {
+         var items = project.selectedItems;
         $.each(items, function(index, item) {
            item.remove();
         });
         $.pjs.updLayer();
         project.view.update();
+
+       }
     },
     undo: function(){
         $.history.undo();
@@ -950,15 +1465,16 @@ $.pjs = {
     unselect: function(){
         var items = project.selectedItems;
         $.each(items, function(index, item) {
-           $.selectedMode(item, false);
+          item.selected = false;
         });
         project.view.update();
     },
     selectAll: function(){
-        if ($.kalte('onCmd'))
-            console.log('all');
-        else
-            console.log('layer active layer');
+       var layerItems = project.activeLayer.children;
+       $.each(layerItems, function(index, item) {
+            item.selected = true;
+       });
+
     },
     activeLayer: function(layer){
          $.each(project.layers, function(index, val) {
@@ -981,13 +1497,31 @@ $.pjs = {
         $.pjs.updLayer();
     },
     createGroup: function(){
+
         var count       = project.activeLayer.children;
         count           = count.length;
+        var defaultName =  'Group_'+count;
+        var name = prompt('nom du groupe',defaultName);
 
         var group       = new Group({
-            name      : 'Group_'+count+'',
+            name      : name,
             className : 'group'
         });
+
+        $.each(project.selectedItems, function(index, item) {
+            group.addChild(item);
+        });
+
+
+        $.pjs.updLayer();
+    },
+    createFrame: function(){
+       $.iLayers = parseInt($.iLayers) + 1;
+
+        var layer  = new Layer();
+        layer.name = 'layer '+$.iLayers;
+
+        $.pjs.activeLayer(layer);
 
         $.pjs.updLayer();
     },
@@ -1001,7 +1535,6 @@ $.pjs = {
 
         $.each(items, function(index, item) {
             var hierarchyItem = (t.attr('data-hierarchy-item')!=undefined)?item[t.attr('data-hirarchy-item')]:'';
-            console.log(hierarchyItem);
             if(item.selected)
              item[t.attr('data-hierarchy')](hierarchyItem);
         });
@@ -1014,28 +1547,25 @@ $.pjs = {
     updLayer: function(){
         var layers = project.layers;
 
-
         $('#layers').html("");
 
         $.each(layers, function(index, layer) {
            var li = $("<li>",{'data-index':layer.index, class:'list-group-item'}).html($.layerLayer(layer));
-
            $('#layers').prepend(li);
-
         });
 
-        /**
-        * TODO : Synchroniser avec le canvas
-        **/
         $('.layers').sortable('destroy');
         $('.layers').sortable({
              connectWith: '.layers'
         }).on('sortupdate', function(e, obj){
                 var t = $(obj.item[0]);
 
-
                 var layer = project.layers[t.attr('data-index')];
-                console.log(layer);
+
+                if($.kalte('onCmd')){
+                    console.log(obj.item[0]);
+                }
+
                 // project.insertLayer(t.attr('data-index'), layer);
                 //
                 // var idItem = t.attr('data-item');
@@ -1047,6 +1577,8 @@ $.pjs = {
                 // project.view.update();
                 // $.pjs.updLayer();
             });
+
+        $.pjs.updSymbols();
     },
     cleanEmpty: function(){
         var i = 0;
@@ -1092,9 +1624,18 @@ $.pjs = {
             project.clear()
             project.importJSON(json.project);
             $.pjs.updLayer();
+            $.pjs.updSymbols();
             project.view.update();
+
+            console.log(project.symbols);
+
             $.iLayers = project.layers.length;
-            $.history.setProtect(false)
+            $.history.setProtect(false);
+
+
+
+
+
 
         },'json');
 
@@ -1116,7 +1657,8 @@ $.pjs = {
             copy:  $('#file-copy').prop('checked'),
             contentSvg:svg,
             contentJson:project.exportJSON(),
-            contentRaster:imgData
+            contentRaster:imgData,
+            contentSymbole: project.symbols
         };
 
         $.post(t.attr('href'), data, function(json) {
@@ -1132,8 +1674,6 @@ $.pjs = {
 
         project.view.viewSize.width = w;
         project.view.viewSize.height = h;
-
-        console.log();
 
         project.view.update();
         $("canvas.draw-paper").css({
@@ -1183,20 +1723,144 @@ $.pjs = {
             height:w,
             'margin-left':0 - ( w / 2)+'px'
         });
-    }
+    },
+    createSymbole: function(){
+        var name = prompt('nom du symbol');
+        var i = 0;
 
+
+        var group       = new Group(project.selectedItems);
+        group.name = name;
+        group.id = name;
+
+
+        var symbol = new Symbol(group);
+        symbol.name=name;
+        //     symbol.name = name+"_"+i;
+        // name      : name,
+        //     className : 'group'
+        // $.each(, function(index, item) {
+        //     i++;
+        //     var symbol = new Symbol(item);
+        //     symbol.name = name+"_"+i;
+        // });
+
+        $.pjs.updSymbols();
+    },
+    updSymbols: function(){
+        var symbols = project.symbols;
+
+        $('#symbols').html("");
+
+        $.each(symbols, function(index, symbol) {
+           var li = $("<li>",{'id':'symbole_'+symbol.name+'_'+$.i,'data-index':symbol.index, class:'list-group-item symbol'}).html(symbol.name);
+
+           li.click(function(){
+            $.pjs.placeSymbol(index);
+           })
+
+           $('#symbols').prepend(li);
+           $.i++;
+        });
+    },
+    placeSymbol: function (symbol_index){
+        console.log(symbol_index);
+
+        var symbol = project.symbols[symbol_index];
+
+        var instance = new PlacedSymbol(symbol);
+         // Move the instance to a random position within the view:
+        instance.position = Point.random() * view.size;
+
+
+        project.view.update();
+    },
+    addFrame: function(){
+        $.frames.add();
+    },
+    copy: function(){
+        $.each($.selected, function(index, item) {
+             var clone = item.clone();
+             item.selected = false;
+             clone.position.x += 50;
+             clone.position.y += 50;
+        });
+        project.view.update();
+    },
+    flipVertical: function(){
+        $.each($.selected, function(index, item) {
+             console.log(item.matrix.inverted());
+        });
+        project.view.update();
+    },
+    flipHorizontal: function(){
+        $.each($.selected, function(index, item) {
+             console.log(item.matrix.inverted());
+        });
+        project.view.update();
+    }
 }
 
 
 
     $.frames = {
         cur : 1,
-        frames : 5,
+        frames : 1,
+        clear: function(){
+            $('#frames').html("");
+            $.frames.cur = 1;
+            $.frames.thumb(1);
+
+            // $.frames.add(1);
+        },
+        thumb: function(f){
+            var li  = $("<li>");
+
+            var a   = $("<a>",{"id":"frame_"+f,
+                "data-frame":f,
+                "class":"btn-frame frame_"+f+" frame active"
+            }).css({'display':'block'}).html('');
+
+            var svg = $("<svg>",{
+                "id":"frame_preview_"+f,
+                "class":"frame-thumb"
+            }).html("");
+
+            a.append(svg);
+            li.html(a);
+            $('#frames').append(li);
+            $('#frames').sortable('destroy');
+            $('#frames').sortable();
+
+        },
         add : function(){
-            $.frames.frames = $.frames.frames + 1;
+            $('.frame.active').removeClass('active');
+            var f   = $.frames.frames = $.frames.frames + 1;
+
+            $.frames.thumb(f);
+
+            $.pjs.updLayer();
+            var layer  = new Layer();
+            layer.name = 'frame_'+f;
+            layer.id   = 'frame_'+f;
+            layer.className   = 'frame';
+
+            $.frames.get(f);
+            project.view.update();
+        },
+        remove: function(frame_index){
+            var frame  =  project.layers[frame_index-1];
+            var f      = $.frames.frames = $.frames.frames - 1;
+            frame.remove();
+            $('#frames .frame_'+frame_index).parents('li').remove();
         },
         clone : function(frame_index){
-            $.frames.frames = $.frames.frames + 1;
+           var frame  =  project.layers[frame_index-1];
+           var f      = $.frames.frames = $.frames.frames + 1;
+           var clone  = frame.clone();
+           clone.id   = f+'_copy';
+           clone.name = f+'_copy';
+           $.frames.thumb(f);
         },
         get : function(frame_index){
             if(frame_index <= 0)
@@ -1206,8 +1870,34 @@ $.pjs = {
 
             $.frames.cur = frame_index;
 
-            $('.frame').removeClass('active');
-            $(".frame_"+frame_index).addClass('active');
+            var curFrame = project.activeLayer;
+            curFrame.visible = false;
+
+            var frame =  project.layers[frame_index-1];
+
+            frame.visible = true;
+            frame.activate();
+
+            // gestion de l'affichage des frames du footer
+            $('a.frame').removeClass('active');
+            $("a.frame_"+frame_index).addClass('active');
+
+
+            $('.curFrame').html(frame_index);
+            $.pjs.updLayer();
+
+            project.view.update();
+
+
+            var layers = project.layers;
+            console.log(layers);
+
+            //  var frames = project.getItems({
+            //     class: Layer,
+            //     className: 'frame'
+            // })
+            // console.log(frames);
+
 
         },
         export : function(frame_index){
@@ -1237,12 +1927,23 @@ $.pjs = {
 
     })
 
+
+
+
 $(document).on("click",".btn-frame",function (e){
     e.preventDefault();
     var t = $(this);
 
     $.frames.get(t.attr('data-frame'));
+})
 
+$(document).on("dblclick",".btn-frame",function (e){
+    e.preventDefault();
+    var t = $(this);
+    if($.kalte('onCmd'))
+        $.frames.remove(t.attr('data-frame'))
+    else
+        $.frames.clone(t.attr('data-frame'));
 })
 
 
@@ -1253,9 +1954,6 @@ function createRegExp(strFind) {
     for (var i = 0; i < strFind.length; i++) strReg = strReg  + strFind[i] + "{1}(" + regexp + ")";
     return strReg;
 }
-
-
-console.log(projects);
 
 
 
@@ -1311,6 +2009,8 @@ $(document).on("change keyup",".input-pjs",function (e){
     $.pjs[t.attr('data-pjs')]();
 })
 
+
+$('#frames').sortable();
 // $('.slider-frames').slider().on("change",function (e){
 //     e.preventDefault();
 //     var t = $(this);

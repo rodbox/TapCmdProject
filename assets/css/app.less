@@ -583,9 +583,13 @@ li.active{
     tbody{
         display:none;
     }
+
+}
+
+.table{
     &.open{
-        tbody{
-            display:block;
+        > tbody{
+            display:block !important;
         }
     }
 }
@@ -613,4 +617,54 @@ canvas.frame{
 }
 #quickbar{
     right:-1rem;
+}
+.tb_layerPath{
+    padding-left: 2rem;
+}
+
+
+.btn-frame{
+    &.frame{
+        &:before{
+            content:attr(data-frame);
+            position:absolute;
+            display:block;
+            color: #fff;
+            font-size: 0.7rem;
+            padding:0.4rem;
+            margin-top: -1.6rem !important;
+        }
+    }
+}
+
+#contextmenu{
+    .fixed;
+
+}
+
+#matrix{
+    .z-max(100);
+
+    .fixed;
+    bottom:0px;
+
+    background-color: #fff;
+    width:100%;
+
+    .item-matrix{
+        width:200px;
+        td{
+            &,
+            .form-control{
+                width:50px;
+            }
+        }
+    }
+
+}
+#itemMatrix_1{
+    float:right;
+}
+#itemMatrix_2{
+
 }

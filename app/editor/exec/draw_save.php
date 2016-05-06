@@ -2,9 +2,14 @@
 
     $app           = new app();
 
-    $svg           = $file.'.svg';
-    $json          = $file.'.json';
-    $raster        = $file.'.raster.png';
+    $date = date('y-m-d___H_i');
+
+ $copy_suffix = ($copy == "true")?'__copy_'.$date:'';
+
+
+    $svg           = $file.$copy_suffix.'.svg';
+    $json          = $file.$copy_suffix.'.json';
+    $raster        = $file.$copy_suffix.'.raster.png';
 
     $ext           = 'png';
 

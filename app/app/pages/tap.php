@@ -43,5 +43,9 @@
     <a href="<?php $c->urlExec('editor','bundles_index') ?>" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Bundles index</a>
     <a href="<?php $c->urlPage('editor','overide'); ?>" class="btn btn-primary btn-sm btn-modal" title="overide"  data-form="#form-project" data-modal="modalM"  data-backdrop="static">Overide</a>
 </div>
+<div class="btn-group">
+    <a href="http://localhost:8000/" class="btn btn-primary btn-sm" target="_blank" data-cb="false" title="term">Front</a>
+    <a href="http://localhost:8000/admin" class="btn btn-primary btn-sm " target="_blank" title="overide">Admin</a>
+</div>
 <!-- BEGIN ROW  -->
 </footer>

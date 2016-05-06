@@ -49,24 +49,24 @@
         <!-- END ROW  -->
         <!-- END ROW  -->
         <div class="block ">
-              <div id="toolbar" class=" col-xs-2 col-md-3" style="">
+              <div id="toolbar" class=" col-xs-2 col-md-3 col-lg-2 " style="">
                 <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
+
+
 
               </div>
               <!-- BEGIN COL : col-lg-8  -->
-              <div class="col-md-offset-3  col-xs-8 col-md-6 h-100 text-center" style="vertical-align: middle;" >
+              <div class="col-md-offset-3 col-lg-offset-2  col-xs-8  col-lg-7 col-md-6 h-100 text-center" style="vertical-align: middle;" >
                 <div class='text-center'>
+
                         <div class="btn-group">
                           <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-long-arrow-left"></i></a>
+                          <span class="btn frame_title">frame <span class="curFrame">1</span></span>
                           <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-long-arrow-right"></i></a>
                         </div>
                 </div>
                 <?php $c->view("editor","draw-contextmenu"); ?><i id="pivot" class="fa fa-crosshairs"></i>
-                <canvas id="<?php echo $_GET['id']; ?>_1" data-open="<?php echo $_GET['id']; ?>" data-frame="1" class="frame_1 frame draw-paper active" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
-                <canvas id="<?php echo $_GET['id']; ?>_2" data-open="<?php echo $_GET['id']; ?>" data-frame="2" class="frame_2 frame draw-paper" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
-                <canvas id="<?php echo $_GET['id']; ?>_3" data-open="<?php echo $_GET['id']; ?>" data-frame="3" class="frame_3 frame draw-paper" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
-                <canvas id="<?php echo $_GET['id']; ?>_4" data-open="<?php echo $_GET['id']; ?>" data-frame="4" class="frame_4 frame draw-paper" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
-                <canvas id="<?php echo $_GET['id']; ?>_5" data-open="<?php echo $_GET['id']; ?>" data-frame="5" class="frame_5 frame draw-paper" data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
+                <canvas id="<?php echo $_GET['id']; ?>" data-open="<?php echo $_GET['id']; ?>" data-frame="1" class="draw-paper " data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
               </div>
                 <div id="panelbar" class="" >
                   <?php $c->view("editor","editors/menu/hierarchy"); ?>
@@ -80,6 +80,7 @@
         <!-- BEGIN ROW  -->
 
         <footer>
+
         <div class="row bg-inverse">
         <div class="col-xs-12 text-center">
               <?php $c->view("editor","editors/panel/img-frames","",$_GET); ?>
@@ -165,7 +166,7 @@
 
       </script>
 
-      <script type="text/paperscript" src="app/editor/assets/js/app-paper.js"  canvas="<?php echo $_GET['id']; ?>_1"></script>
+      <script type="text/paperscript" src="app/editor/assets/js/app-paper.js"  canvas="<?php echo $_GET['id']; ?>"></script>
 
 
  </body>

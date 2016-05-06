@@ -123,11 +123,18 @@ tbody{
         }
         &.thCheck{
             width: @wPreview !important;
+
             .layer-preview{
                 border: 1px solid rgba(0,0,0,0.1) !important;
                 display: inline-block !important;
                 width: @wPreview !important;
                 height: @wPreview !important;
+            }
+             a.active{
+                .layer-preview{
+                    -webkit-box-shadow: 0 0 0 3px #BA0404;
+box-shadow: 0 0 0 3px #BA0404;
+                }
             }
         }
 
@@ -408,7 +415,9 @@ footer,
 
 .list-inline{
     display:inline-block;
+    .sortable-placeholder,
     li{
+
         float:left;
         margin: 0.3rem !important;
         a{
@@ -418,12 +427,14 @@ footer,
             }
             .inline-block;
             height: @frameThumb !important;
+            width: @frameThumb;
+            background-color: rgba(255,255,255,0.1) !important;
             line-height: @frameThumb !important;
             .frame-thumb{
                 width: @frameThumb;
                 height: @frameThumb;
 
-                background-color: rgba(255,255,255,0.1) !important;
+
             }
         }
     }

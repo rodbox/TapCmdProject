@@ -20,6 +20,7 @@
 
 
     <div class="circle-center">
+    <a href="#" class="btn-pjs" data-pjs="unselect"> <i class="fa fa-check-square"></i></a>
     <!-- <input type="text" value="75" class="knob setSelect" data-width="256" data-height="256" data-bgColor="#262828" data-fgColor="#3F4141" data-displayPrevious="true" data-thickness =."4" data-properties="rotation"> -->
     </div>
 </div>

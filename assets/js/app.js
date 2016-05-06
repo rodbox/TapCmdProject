@@ -591,6 +591,50 @@ $(document).ready(function($) {
     }
 
 
+$.toggleContextMenu = function(e, t, bool){
+
+    if(bool){
+        var url  = $.generate.url.exec('editor','contextmenu');
+        $.get(url, {
+            menu: t.attr('data-contextmenu'),
+            data: t.data()
+        },function(json){
+            $('#contextmenu').remove();
+            var menu = $("<div>",{"id":"contextmenu"}).css({
+                top: e.clientY,
+                left:e.clientX
+            }).html(json.menu);
+
+            $('body').append(menu);
+        },'json')
+    }
+    else
+        $('#contextmenu').remove();
+};
+$(document).on("mousedown",".btn-context",function (e){
+        var t = $(this);
+        if (e.button == 2){
+            $(document)[0].oncontextmenu = function() {
+                return false;
+            }
+            t.toggleClass('activeContext');
+            $.toggleContextMenu(e,t,t.hasClass('activeContext'));
+        }
+
+    })
+$(document).on("mousedown","#contextmenu",function (e){
+        var t = $(this);
+        if (e.button == 2){
+            $(document)[0].oncontextmenu = function() {
+                return false;
+            }
+
+            $.toggleContextMenu(e,t,false);
+        }
+
+    })
+
+
     var isOpera   = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
     var isFirefox = typeof InstallTrigger !== 'undefined';
     var isSafari  = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;

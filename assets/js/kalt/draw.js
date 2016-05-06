@@ -32,12 +32,12 @@ $.shortcut={
             $.frames.get($.frames.cur - 1);
         }
 
-        else if ($.kalte("onAlt") && e.keyCode == 68){
+        else if ($.kalte("onCmd") && e.keyCode == 68){
             e.preventDefault();
             $.pjs.unselect();
         }
 
-        else if ($.kalte("onAlt") && e.keyCode == 65){
+        else if ($.kalte("onCmd") && e.keyCode == 65){
             e.preventDefault();
             $.pjs.selectAll();
         }
@@ -47,7 +47,18 @@ $.shortcut={
             $("#searchLayer").focus();
         }
 
-        else if ($.kalte("onAlt") && e.keyCode == 88){
+        else if ($.kalte("onCmd") && e.keyCode == 71){
+            e.preventDefault();
+            $.pjs.createGroup();
+        }
+
+
+        else if ($.kalte("onCmd") && e.keyCode == 78){
+            e.preventDefault();
+            $.pjs.new();
+        }
+
+        else if ($.kalte("onCmd") && e.keyCode == 88){
             e.preventDefault();
             var color1 = $('#color1').val();
             var fillColor = $('#fillColor').val();

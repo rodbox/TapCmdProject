@@ -6,8 +6,13 @@
 
 $app = new app();
 
-    $info = pathinfo($dir);
-    $ext  = $info['extension'];
+$info = pathinfo($dir);
+$ext  = $info['extension'];
+
+
+
+
+
     if ($ext =='png' || $ext =='jpg'){
         /**
          * Decodage Base 64

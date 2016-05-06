@@ -36,11 +36,15 @@
    <label for="opacity" class="sm block">Opacity</label>
         <input id='opacity' name="opacity" data-slider-width="100" data-slider-id='opacity' class="setSelect slider" data-properties="opacity" type="text" data-slider-min='0' data-slider-max='1' data-slider-step="0.01" value='1'>
 </div>
+<div class="input-group xs">
+   <label for="scaling" class="sm block">scaling</label>
+        <input id='scaling' name="scaling" data-slider-width="100" data-slider-id='scaling' class="setSelect slider" data-properties="scaling" type="text" data-slider-min='0' data-slider-max='100' data-slider-step="10" value='1'>
+</div>
 
 <div class="input-group">|</div>
-<div class="input-group">
+<div class="input-group ">
     <label for="rotation" class="sm block">Rotation</label>
-    <input id='rotation' name="rotation" data-slider-id='rotation' class="setSelect  form-control xs" data-width="32" data-height="32" data-properties="rotation" type="number" data-min='0' data-max='360' data-step="1" value='0' data-displayInput=false>
+    <input id='rotation' name="rotation" data-slider-id='rotation' class="setSelect  form-control xs" data-width="32" data-height="32" data-properties="rotation" type="number" data-slider-min='0' data-slider-max='360' data-slider-step="1" data-slider-value='0' value='0' data-displayInput=false>
 </div>
 <div class="input-group">|</div>
 <div class="input-group">
@@ -53,18 +57,15 @@
 </div>
 <div class="input-group">|</div>
 <div class="input-group">
-    <label for="position" class="sm block">Position x</label>
-    <input id='position_x' class="setSelect form-control xs" name="position[x]" data-properties="position_x" type="number" value='0'>
-</div>
-<div class="input-group">
-    <label for="position" class="sm block">Position y</label>
-    <input id='position_y' class="setSelect form-control xs" name="position[y]" data-properties="position_y" type="number" value='0'>
-</div>
-<div class="input-group">|</div>
-<div class="input-group">
     <select id='blendMode' class="setSelect c-select form-control" data-properties="blendMode" name="blendMode"  min='0' max='1' >
         <?php foreach (DRAW_BLEND as $key => $value): ?>
             <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
         <?php endforeach ?>
     </select>
+</div>
+<div class="input-group">|</div>
+<div class="btn-group btn-group-sm">
+   <a href="#" class="btn btn-primary btn-pjs" data-pjs="copy"><i class="icomoon-copy3 "></i></a>
+<!--    <a href="#" class="btn btn-primary btn-pjs" data-pjs="flipVertical"><i class="icomoon-flip-vertical2 "></i></a>
+   <a href="#" class="btn btn-primary btn-pjs" data-pjs="flipHorizontal"><i class="icomoon-flip-horizontal2 "></i></a> -->
 </div>
