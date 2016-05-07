@@ -24,9 +24,9 @@
 
     $cmd = "php ".$app->dirProject()."/bin/console ";
     // $cmd1 = $cmd.'cache:clear';
-    $cmd2 = $cmd.'doctrine:schema:update --force';
-    $cmd1 = $cmd.'doctrine:database:create';
 
+    $cmd1 = $cmd.'doctrine:database:create';
+    $cmd2 = $cmd.'doctrine:schema:update --force';
 
     $out1 = shell_exec($cmd1);
     $out2 = shell_exec($cmd2);
@@ -38,7 +38,7 @@
         $r           = [
             'infotype' => "success",
             'msg'      => "ok exec action db create",
-            'data'     => $out2,
+            'data'     => $cmd1,
 
             'cb'       => $cb,
             'a'        => $a

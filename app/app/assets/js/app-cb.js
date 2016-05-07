@@ -19,7 +19,7 @@ $(document).ready(function($) {
         before_default: function(t, e){
             console.log('before default');
         },
-        refresh: function (t, json, e){
+        refresh: function (t, e){
             window.location.reload();
         },
         redirect: function (t, json, e){

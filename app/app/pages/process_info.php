@@ -6,6 +6,7 @@
           symfony new <?php echo $_GET['name'] ?><br>
           cd <?php echo $_GET['name'] ?> <br>
           curl https://getcomposer.org/composer.phar > composer.phar<br>
+          php composer.phar require stof/doctrine-extensions-bundle "^1.2"<br>
           php composer.phar require doctrine/doctrine-fixtures-bundle "@dev"<br>
           php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
           php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
@@ -15,6 +16,7 @@
           php composer.phar require rodbox/rodboxtrans "@dev"<br>
           php composer.phar require rodbox/rodboxfront "@dev"<br>
           php composer.phar require rodbox/rodboxuser "@dev"<br>
+          php composer.phar require rodbox/rodboxnote "@dev"<br>
           php composer.phar require rodbox/rodboxadmin "@dev"<br>
           php composer.phar require rodbox/rodboxblog "@dev"<br>
 
