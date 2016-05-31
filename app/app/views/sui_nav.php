@@ -1,9 +1,7 @@
 <div class="sui-sidebar">
     <?php $c->view("app","header"); ?>
     <div class="sui-sidebar-body">
-
         <?php $c->view("editor","files-workspace","workspace"); ?>
-
         <div class="">
         <a href="#collapse_files" class="btn-sui-collapse"><h2>Fichiers</h2></a>
         <div id="collapse_files">
@@ -13,15 +11,8 @@
 </div><?php $c->view("editor","editor-contextmenu"); ?>
 <div class="sui-editor "  data-cb-r-click='toggleMouseMenu'>
     <div class="sui-editor-body">
-
-<!--
-        <div id="sui-editor-grid-1" class="sui-editor-grid">
-            <?php $c->menu("editor","editor-menu"); ?>
-            <div id="filesPanes" class="tab-content"></div>
-        </div> -->
         <?php
-        $editor = new editor();
-
+            $editor = new editor();
             $editor->editorTab(1);
             $editor->editorTab(2);
             $editor->editorTab(3);

@@ -1,1 +1,0 @@
-    - { resource: "@RBNoteBundle/Resources/config/services.yml" }

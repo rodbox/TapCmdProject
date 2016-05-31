@@ -2011,6 +2011,9 @@ div[data-file$="Bundle.php"] .only-bundle {
 .popover {
   z-index: 2111 !important;
 }
+.m-b {
+  margin-bottom: 0.2rem;
+}
 body {
   color: #282A32;
   background-color: #EDEDED;
@@ -2224,6 +2227,9 @@ footer {
   right: 0px;
   bottom: 0px;
   z-index: 2001;
+}
+footer.tap {
+  width: 100%;
 }
 footer .btn-group-vertical {
   border-radius: 3px;
@@ -2881,4 +2887,7 @@ canvas.frame.active {
 }
 #itemMatrix_1 {
   float: right;
+}
+.btn-sm {
+  font-size: 0.7rem;
 }

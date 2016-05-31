@@ -42,7 +42,6 @@ $.shortcut={
         else if ($.kalte("onCtrl") && e.keyCode == 39){
             e.preventDefault();
             $('#filesTabs a.files-editor.active').parents('.nav-item').nextAll().first().find('.nav-link').trigger('click');
-
         }
 
         else if ($.kalte("onCmd") && e.keyCode == 84){
@@ -70,6 +69,11 @@ $.shortcut={
         }
         else if ($.kalte('onCmd') && $.kalte('onCtrl')){
             $('.btn-sui-suggest').trigger('click');
+        }
+
+        else if ($.kalte('onCmd') && e.keyCode == 79){
+            e.preventDefault();
+            $('#openDir').trigger('click');
         }
     }
 };

@@ -10,6 +10,9 @@
 @import 'custom-files.less';
 @import 'custom-helper.less';
 
+.m-b{
+    margin-bottom:unit(@marg, @margUnit)
+}
 
 body{
     color:@body1;
@@ -258,10 +261,13 @@ iframe{
     }
 }
 
-footer{position:fixed;
+footer{
+    position:fixed;
     right:0px;
     bottom:0px;
-
+    &.tap{
+        width:100%;
+    }
     .z-max();
     .btn-group-vertical{
         border-radius: 3px;
@@ -667,4 +673,8 @@ canvas.frame{
 }
 #itemMatrix_2{
 
+}
+
+.btn-sm{
+    font-size:0.7rem;
 }

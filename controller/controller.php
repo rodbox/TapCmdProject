@@ -317,6 +317,18 @@ class controller
     }
 
 
+    public function getCurl($url, $file)
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        return file_put_contents($file, $data);
+    }
+
 
     /**
      * un index string se transform en un jeu de clés associatives
@@ -330,6 +342,16 @@ class controller
         eval($imp);
 
         return (is_array($r))?$r:[];
+    }
+
+
+    public function clean($string) {
+       $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+       $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+
+       $string = preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+
+       return strtolower($string);
     }
 
 
@@ -585,12 +607,12 @@ class controller
     /**
      * Bouton clipboard
      */
-    public function clipme($target="clipme",$content="")
+    public function clipme($target="clipme",$content="",$title="title")
     {
-        echo '<button data-clipboard-target="#'.$target.'" class="btn btn-sm btn-secondary btn-clip"><i class="fa fa-clipboard"></i></button>';
+        echo '<button data-clipboard-target="#'.$target.'" class="btn  btn-primary btn-clip btn-sm" title="'.$title.'"><i class="fa fa-clipboard"></i> '.$title.'</button>';
         if ($content!='') {
-          echo "<div id='".$target."' class='sm'>";
-          echo $content;
+          echo "<div id='".$target."' class='sm absolute' style='left:-10000px;'>";
+          echo $content."<br>";
           echo "</div>";
         }
     }

@@ -2,3 +2,8 @@ rb_admin:
     resource: "@RBAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+rb_note:
+    resource: "@RBNoteBundle/Controller/"
+    type:     annotation
+    prefix:   /admin/note

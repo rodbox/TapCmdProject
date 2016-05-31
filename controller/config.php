@@ -42,6 +42,8 @@ define("WEB_COMBO", WEB_APP."/exec_combo.php");
 define("WEB_TICTAC", WEB_APP."/tictac.php");
 define("DIR_TICTAC", DIR_VAR."/tictac");
 
+define("DIR_CURLME", DIR_VAR."/curlme");
+
 
 define("WEB_OVERIDES", WEB_APP."/overides");
 define("DIR_OVERIDES", DIR_VAR."/overides");

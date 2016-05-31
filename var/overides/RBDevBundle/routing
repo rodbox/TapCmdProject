@@ -2,3 +2,6 @@ rb_dev:
     resource: "@RBDevBundle/Controller/"
     type:     annotation
     prefix:   /dev
+_console:
+    resource: "@CoreSphereConsoleBundle/Resources/config/routing.yml"
+    prefix: /_console

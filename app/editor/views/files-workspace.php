@@ -10,7 +10,6 @@
 <ul id="filesStars" class="files ">
     <?php foreach ($d['star'] ?? [] as $key => $file): ?>
         <li>
-
         <?php $info = pathinfo($file); ?>
 
         <a href="<?php $c->urlExec('editor','ws_del',[

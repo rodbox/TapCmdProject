@@ -14,24 +14,25 @@
           php composer.phar require rodbox/rodboxcore "@dev"<br>
           php composer.phar require rodbox/rodboxbower "@dev"<br>
           php composer.phar require rodbox/rodboxtrans "@dev"<br>
+          php composer.phar require rodbox/rodboxmenu "@dev"<br>
           php composer.phar require rodbox/rodboxfront "@dev"<br>
           php composer.phar require rodbox/rodboxuser "@dev"<br>
           php composer.phar require rodbox/rodboxnote "@dev"<br>
           php composer.phar require rodbox/rodboxadmin "@dev"<br>
           php composer.phar require rodbox/rodboxblog "@dev"<br>
-
           php composer.phar require rodbox/rodboxdev "@dev"<br>
 
           php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>
-
-          php bin/console cache:clear<br>
-         </div>
+          </div>
           <span class="input-group-btn">
             <?php $c->clipme('clipme1'); ?>
           </span>
     </div>
 </div><div class="form-group">
-    <?php $c->clipme('clipme2','php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>'); ?>
+<div id="clipme2" class="form-control sm-2">
+  php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>
+</div>
+    <?php $c->clipme('clipme2'); ?>
 </div>
 
 <div class="form-group">
@@ -44,9 +45,18 @@
 <?php
   $content = "bower install jquery<br>
   bower install bootstrap#v4.0.0-alpha.2<br>
+  bower install tether<br>
+  bower install summernote<br>
+  bower install https://github.com/Nanakii/summernote-plugins.git<br>
   bower install select2<br>
+  bower install https://github.com/FaroeMedia/selectator.git<br>
   bower install https://github.com/moxiecode/plupload.git<br>
   bower install font-awesome<br>
+  bower install https://github.com/fat/zoom.js.git<br>
+  bower install velocity<br>
+  bower install codemirror<br>
+  bower install notiny<br>
+  bower install clipboard<br>
   bower install html.sortable --save<br>
   ";
 $c->clipme('clipme3', $content);
@@ -60,6 +70,9 @@ $c->clipme('clipme3', $content);
 <div class="form-group">
 <?php $c->helper('Overide','Overide','5'); ?>
 <a href="<?php $c->urlExec('editor','bundles_overides',['bundles'=>['FOSUserBundle','RBFrontBundle']]) ?>" class="btn btn-primary btn-sm btn-exec" title="title">Overide front</a>
+</div>
+<div class="alert">
+  <p>Penser a surcharger les controllers des Bundles Admin et Front </p>
 </div>
 <div class="form-group">
 <?php $c->helper('Bower','Base de donnée','6'); ?>

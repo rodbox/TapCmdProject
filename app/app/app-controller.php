@@ -447,7 +447,7 @@ class app extends controller
         $bundleSrc    = $bundles['src'][$bundleDest];
 
         $dirSrc       = $this->dirProject().'/'.$bundleSrc['dir'];
-        $dirVendor       = $this->dirProject().'/'.$bundleVendor['dir'];
+        $dirVendor    = $this->dirProject().'/'.$bundleVendor['dir'];
 
         if ($bundleDest == '')
             $dirDest = $this->dirProject().'/app/Resources/'.$bundleName.'/views/';

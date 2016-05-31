@@ -1,1 +1,2 @@
     new RB\AdminBundle\RBAdminBundle(),
+    new RB\NoteBundle\RBNoteBundle(),

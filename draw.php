@@ -41,9 +41,7 @@
           <!-- BEGIN COL : col-xs-12  -->
           <div class="col-xs-12 ">
             <form id="pathMenu" action="#" class="form-inline"> <?php $c->view("editor","editors/menu/path","draw_path");?> </form>
-
           </div>
-
           <!-- END COL : col-xs-12  -->
         </div>
         <!-- END ROW  -->
@@ -51,43 +49,38 @@
         <div class="block ">
               <div id="toolbar" class=" col-xs-2 col-md-3 col-lg-2 " style="">
                 <?php $c->view("editor","editors/panel/img-tools","draw_tools",$_GET); ?>
-
-
-
               </div>
               <!-- BEGIN COL : col-lg-8  -->
               <div class="col-md-offset-3 col-lg-offset-2  col-xs-8  col-lg-7 col-md-6 h-100 text-center" style="vertical-align: middle;" >
                 <div class='text-center'>
-
-                        <div class="btn-group">
-                          <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-long-arrow-left"></i></a>
-                          <span class="btn frame_title">frame <span class="curFrame">1</span></span>
-                          <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-long-arrow-right"></i></a>
-                        </div>
+                  <div class="btn-group">
+                    <a id="draw_undo" href="#" class="btn-pjs btn btn-default" data-pjs="undo"><i class="fa fa-long-arrow-left"></i></a>
+                      <span class="btn frame_title">frame <span class="curFrame">1</span></span>
+                    <a id="draw_redo" href="#" class="btn-pjs btn btn-default" data-pjs="redo"><i class="fa fa-long-arrow-right"></i></a>
+                  </div>
                 </div>
                 <?php $c->view("editor","draw-contextmenu"); ?><i id="pivot" class="fa fa-crosshairs"></i>
                 <canvas id="<?php echo $_GET['id']; ?>" data-open="<?php echo $_GET['id']; ?>" data-frame="1" class="draw-paper " data-file="<?php echo $file ?>" width="<?php echo $size[0] ?>" height="<?php echo $size[1] ?>"></canvas>
               </div>
-                <div id="panelbar" class="" >
-                  <?php $c->view("editor","editors/menu/hierarchy"); ?>
-                  <div class="btn-group-vertical btn-group-sm"><a href="#" class="btn btn-primary btn-pjs" data-pjs="cleanEmpty"><i class="fa fa-eraser"></i></a></div>
-                </div>
+              <div id="panelbar" class="" >
+                <?php $c->view("editor","editors/menu/hierarchy"); ?>
+                <div class="btn-group-vertical btn-group-sm"><a href="#" class="btn btn-primary btn-pjs" data-pjs="cleanEmpty"><i class="fa fa-eraser"></i></a></div>
+              </div>
           </div>
               <div id="quickbar" class=" col-xs-4 col-md-3 " style="" >
                 <?php $c->view("editor","editors/panel/img-layer","",$_GET); ?>
               </div>
-
         <!-- BEGIN ROW  -->
-
         <footer>
+          <div class="row bg-inverse">
+            <div class="col-xs-12 text-center">
+                  <?php $c->view("editor","editors/panel/img-frames","",$_GET); ?>
+                </div>
+          </div>
+        </footer>
+        </div>
+        <?php $c->view('app','modal'); ?>
 
-        <div class="row bg-inverse">
-        <div class="col-xs-12 text-center">
-              <?php $c->view("editor","editors/panel/img-frames","",$_GET); ?>
-            </div>
-      </div>
-      </footer></div>
-          <?php $c->view('app','modal'); ?>
         <script type="text/javascript" src="assets/vendor/tether/dist/js/tether.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/notiny/dist/notiny.min.js" ></script>
         <script type="text/javascript" src="assets/vendor/bootstrap/dist/js/bootstrap.min.js" ></script>

@@ -27,7 +27,7 @@
 <form id="form-paper" action="#"> <!-- BEGIN COL : col-md-2 col-lg-2  -->
 
         <nav>
-            <button class='btn-tools btn btn-sm btn-secondary autoclick'><i class="fa fa-magic"></i></button>
+            <button class='btn-tools btn btn-sm btn-secondary '><i class="fa fa-magic"></i></button>
             <a href="<?php $c->urlExec('app','icon') ?>" data-form='#form-project' class="btn btn-secondary btn-sm btn-canvas" data-canvas="icon75" title="save"><i class="fa fa-floppy-o"></i></a>
         </nav>
         <hr>
