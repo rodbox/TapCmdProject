@@ -267,6 +267,16 @@ $(document).ready(function($) {
     })
 
 
+    $(document).on("click",".btn-project",function (e){
+        e.preventDefault();
+        var t = $(this);
+        $(".projects .active").removeClass('active');
+        $.get(t.attr('href'), function(json) {
+            t.addClass('active');
+        },'json');
+    })
+
+
 
     $(document).on("click",".btn-cb",function (e){
         e.preventDefault();
