@@ -1,13 +1,12 @@
 <?php
 
-define("TITLE", "Rodbox DeepTap");
+define("OS", "osx");
 
-define("DIR_PROJECT", "/Applications/MAMP/htdocs");
-define("WEB_PROJECT", "http://localhost:8888");
+include('config-'.OS.'.php');
 
 define("DEFAULT_PROJECT", "__rodbox_sources__");
 
-define("WEB_SRC", "http://localhost:8888/___cmd___");
+define("TITLE", "Rodbox DeepTap");
 define("REL_SRC", ".");
 
 define("DIR_SRC", DIR_PROJECT."/___cmd___");
@@ -48,15 +47,7 @@ define("DIR_CURLME", DIR_VAR."/curlme");
 define("WEB_OVERIDES", WEB_APP."/overides");
 define("DIR_OVERIDES", DIR_VAR."/overides");
 
-define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
-define("TERMINAL", "/Applications/Utilities/Terminal.app");
-
 define("DIR_TOOLS", DIR_SRC."/assets/paper/tools");
-
-define("SOFT", [
-    "PHOTOSHOP"   => "Adobe Photoshop CC.app",
-    "ILLUSTRATOR" => "Adobe Illustrator.app"
-    ]);
 
  # on attribut un editeur en fonction de l'extension
 define("EDITOR", [
@@ -129,5 +120,7 @@ define("CSS_SETTING_COLORS", [
 define("CSS_SETTING_VARS", [
     'padSize'      => '5'
     ]);
+
+
 
 ?>

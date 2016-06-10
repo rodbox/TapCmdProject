@@ -5,24 +5,7 @@
           <div id="clipme1" class="form-control sm-2">
           symfony new <?php echo $_GET['name'] ?><br>
           cd <?php echo $_GET['name'] ?> <br>
-          curl https://getcomposer.org/composer.phar > composer.phar<br>
-          php composer.phar require stof/doctrine-extensions-bundle "^1.2"<br>
-          php composer.phar require doctrine/doctrine-fixtures-bundle "@dev"<br>
-          php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
-          php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
-          php composer.phar require coresphere/console-bundle "@dev"<br>
-          php composer.phar require rodbox/rodboxcore "@dev"<br>
-          php composer.phar require rodbox/rodboxbower "@dev"<br>
-          php composer.phar require rodbox/rodboxtrans "@dev"<br>
-          php composer.phar require rodbox/rodboxmenu "@dev"<br>
-          php composer.phar require rodbox/rodboxfront "@dev"<br>
-          php composer.phar require rodbox/rodboxuser "@dev"<br>
-          php composer.phar require rodbox/rodboxnote "@dev"<br>
-          php composer.phar require rodbox/rodboxadmin "@dev"<br>
-          php composer.phar require rodbox/rodboxblog "@dev"<br>
-          php composer.phar require rodbox/rodboxdev "@dev"<br>
-
-          php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>
+          <?php echo PROCESS[0] ?>
           </div>
           <span class="input-group-btn">
             <?php $c->clipme('clipme1'); ?>
@@ -30,7 +13,7 @@
     </div>
 </div><div class="form-group">
 <div id="clipme2" class="form-control sm-2">
-  php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>
+<?php echo PROCESS[1] ?>
 </div>
     <?php $c->clipme('clipme2'); ?>
 </div>
@@ -43,23 +26,7 @@
 <?php $c->helper('Ne pas oublier de déplacer la ligne d\' include dans le fichier config','Installation des éléments bower','3'); ?>
 <div class="form-group">
 <?php
-  $content = "bower install jquery<br>
-  bower install bootstrap#v4.0.0-alpha.2<br>
-  bower install tether<br>
-  bower install summernote<br>
-  bower install https://github.com/Nanakii/summernote-plugins.git<br>
-  bower install select2<br>
-  bower install https://github.com/FaroeMedia/selectator.git<br>
-  bower install https://github.com/moxiecode/plupload.git<br>
-  bower install font-awesome<br>
-  bower install https://github.com/fat/zoom.js.git<br>
-  bower install velocity<br>
-  bower install codemirror<br>
-  bower install notiny<br>
-  bower install clipboard<br>
-  bower install html.sortable --save<br>
-  ";
-$c->clipme('clipme3', $content);
+$c->clipme('clipme3', PROCESS[2]);
 ?>
 </div>
 
