@@ -2,6 +2,7 @@ var/tmp/*
 var/project/*
 var/cmd/*
 var/tictac/*
+var/curlme/*
 var/themes/
 var/templates/fonts/*
 /vendor/*

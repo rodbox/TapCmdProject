@@ -46,6 +46,8 @@ define("PROCESS", [
     bower install notiny<br>
     bower install clipboard<br>
     bower install html.sortable --save<br>
+    bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
+    bower install https://github.com/jquery/jquery-migrate.git<br>
     ']
     )
  ?>

@@ -11,8 +11,7 @@ define("SOFT", [
     "ILLUSTRATOR" => "Adobe Illustrator.app"
     ]);
 define("PROCESS", [
-    '
-    composer require stof/doctrine-extensions-bundle "^1.2"<br>
+    0 => 'composer require stof/doctrine-extensions-bundle "^1.2"<br>
     composer require doctrine/doctrine-fixtures-bundle "@dev"<br>
     composer require friendsofsymfony/user-bundle "~2.0@dev"<br>
     composer require friendsofsymfony/jsrouting-bundle "^1.5"<br>
@@ -27,6 +26,24 @@ define("PROCESS", [
     composer require rodbox/rodboxadmin "@dev"<br>
     composer require rodbox/rodboxblog "@dev"<br>
     composer require rodbox/rodboxdev "@dev"<br>
-    php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>'
-    ])
+    php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>',
+    1 => 'php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>',
+    2 => 'bower install jquery<br>
+    bower install bootstrap#v4.0.0-alpha.2<br>
+    bower install tether<br>
+    bower install summernote<br>
+    bower install https://github.com/Nanakii/summernote-plugins.git<br>
+    bower install select2<br>
+    bower install https://github.com/FaroeMedia/selectator.git<br>
+    bower install https://github.com/moxiecode/plupload.git<br>
+    bower install font-awesome<br>
+    bower install https://github.com/fat/zoom.js.git<br>
+    bower install velocity<br>
+    bower install codemirror<br>
+    bower install notiny<br>
+    bower install clipboard<br>
+    bower install html.sortable --save<br>
+    bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
+    bower install https://github.com/jquery/jquery-migrate.git<br>
+    '])
  ?>
