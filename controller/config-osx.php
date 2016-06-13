@@ -31,6 +31,7 @@ define("PROCESS", [
     php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>'
     ,
     1 => 'php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>',
+
     2 => 'bower install jquery<br>
     bower install bootstrap#v4.0.0-alpha.2<br>
     bower install tether<br>
@@ -48,6 +49,10 @@ define("PROCESS", [
     bower install html.sortable --save<br>
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
-    ']
+    bower install mustache<br>
+    bower install uglify-js<br>
+    ',
+    3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
+    ]
     )
  ?>

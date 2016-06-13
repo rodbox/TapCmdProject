@@ -23,11 +23,11 @@
         <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript">$.cb = {};</script>
     </head>
-    <body>
+    <body><?php $c->view('app','click_project','projects'); ?>
         <div id="wrapper" >
             <div class="container-fluid">
                 <div id="popup-page">
-                    <?php $c->view('app','click_project','projects'); ?>
+
                     <?php $c->page($_GET['app'] ?? 'app' ,$_GET['page'] ?? 'index'); ?>
                 </div>
             </div>

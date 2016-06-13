@@ -17,7 +17,12 @@
 </div>
     <?php $c->clipme('clipme2'); ?>
 </div>
-
+<?php $c->helper('Créer le controller pour le input Admin'); ?>
+<div class="form-group">
+<?php
+$c->clipme('clip_controller', PROCESS[3]);
+?>
+</div>
 <div class="form-group">
 <?php $c->helper('Nettoyage des éléments de démo et installation des paramétrages des require de composer','Nettoyage des éléments de démo','2'); ?>
 <a href="<?php $c->urlExec('app','clean_symfony') ?>" class="btn btn-primary btn-sm btn-exec" title="title">clean</a>
