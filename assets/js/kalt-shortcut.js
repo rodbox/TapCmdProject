@@ -8,17 +8,6 @@ $(document).ready(function(){
     // $.shortcut['all'][e.type](e);
     var t = $(this);
   });
-
-
-
-
-
-
-
-
-
-
-
 })
 
 

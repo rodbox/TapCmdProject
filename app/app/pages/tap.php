@@ -11,8 +11,8 @@
     </div>
 </div>
 <footer class="tap" style="padding: 0.2rem;">
-
 <div class="m-b">
+    <a href="<?php $c->urlExec('app','assets_symfony') ?>" class="btn btn-primary btn-sm btn-exec" data-cb="false" title="term">Assets</a>
     <div id="clipme4" class="absolute " style='left:-10000px;'>
         php bin/console doctrine:database:drop --force <br>
         php bin/console doctrine:database:create<br>
@@ -23,7 +23,6 @@
     <?php $c->clipme('clipme5','php bin/console server:run','Server run'); ?>
     <?php $c->clipme('clipme6','php bin/console assets:install','Assets install'); ?>
     <?php $c->clipme('clipme7','php composer.phar update','Composer update'); ?>
-
 </div>
 
 <div class="m-b">

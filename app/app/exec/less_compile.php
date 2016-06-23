@@ -24,16 +24,18 @@
             $info    = pathinfo($value);
             $dirCss  = $dir.'/'.$info['dirname'].'/'.$info['filename'].'.css';
 
-            $parser->parseFile($dirLess, $dir.'/web/css');
-            $css            = $parser->getCss();
-            $imported_files = $parser->allParsedFiles();
-            file_put_contents($dirCss, $css, true);
+            $parser->parseFile($dirLess, $dirCss);
+            $cssCompile            = $parser->getCss();
+            // $imported_files = $parser->allParsedFiles();
+            // file_put_contents($dirCss, $css, true);
+
+            $css[]=$cssCompile;
         }
     }
 
    $r = [
         'infotype' => 'success',
         'msg'      => 'Less Compilation',
-        'project'  => $imported_files
+        'project'  => $css
     ];
 ?>

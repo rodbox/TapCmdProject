@@ -33,7 +33,8 @@ define("PROCESS", [
     bower install tether<br>
     bower install summernote<br>
     bower install https://github.com/Nanakii/summernote-plugins.git<br>
-    bower install select2<br>
+    bower install chosen<br>
+    bower install chosen-bootstrap<br>
     bower install https://github.com/FaroeMedia/selectator.git<br>
     bower install https://github.com/moxiecode/plupload.git<br>
     bower install font-awesome<br>
@@ -43,10 +44,11 @@ define("PROCESS", [
     bower install notiny<br>
     bower install clipboard<br>
     bower install html.sortable --save<br>
-    bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
-    bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install mustache<br>
     bower install uglify-js<br>
+    bower install history<br>
+    bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
+    bower install https://github.com/jquery/jquery-migrate.git<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ])
