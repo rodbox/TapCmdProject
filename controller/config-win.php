@@ -10,12 +10,16 @@ define("SOFT", [
     "PHOTOSHOP"   => "Adobe Photoshop CC.app",
     "ILLUSTRATOR" => "Adobe Illustrator.app"
     ]);
+
 define("PROCESS", [
     0 => 'composer require stof/doctrine-extensions-bundle "^1.2"<br>
     composer require doctrine/doctrine-fixtures-bundle "@dev"<br>
     composer require friendsofsymfony/user-bundle "~2.0@dev"<br>
     composer require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     composer require coresphere/console-bundle "@dev"<br>
+    composer require whiteoctober/tcpdf-bundle "^1.0"<br>
+    composer require symfony/assetic-bundle "@dev"<br>
+    composer require liuggio/ExcelBundle "@dev"<br>
     composer require rodbox/rodboxcore "@dev"<br>
     composer require rodbox/rodboxbower "@dev"<br>
     composer require rodbox/rodboxtrans "@dev"<br>
@@ -49,6 +53,7 @@ define("PROCESS", [
     bower install history<br>
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
+    bower install eonasdan-bootstrap-datetimepicker<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ])

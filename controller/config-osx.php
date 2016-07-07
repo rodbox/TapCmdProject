@@ -18,6 +18,9 @@ define("PROCESS", [
     php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
     php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     php composer.phar require coresphere/console-bundle "@dev"<br>
+    php composer.phar require whiteoctober/tcpdf-bundle "^1.0"<br>
+    php composer.phar require symfony/assetic-bundle "@dev"<br>
+    php composer.phar require liuggio/ExcelBundle "@dev"<br>
     php composer.phar require rodbox/rodboxcore "@dev"<br>
     php composer.phar require rodbox/rodboxbower "@dev"<br>
     php composer.phar require rodbox/rodboxtrans "@dev"<br>
@@ -53,6 +56,7 @@ define("PROCESS", [
     bower install mustache<br>
     bower install uglify-js<br>
     bower install history<br>
+    bower install eonasdan-bootstrap-datetimepicker<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ]
