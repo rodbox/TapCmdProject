@@ -17,6 +17,8 @@ define("PROCESS", [
     php composer.phar require doctrine/doctrine-fixtures-bundle "@dev"<br>
     php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
     php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
+    php composer.phar require friendsofsymfony/rest-bundle-bundle "@dev"<br>
+    php composer.phar require jms/serializer-bundle "@dev"<br>
     php composer.phar require coresphere/console-bundle "@dev"<br>
     php composer.phar require whiteoctober/tcpdf-bundle "^1.0"<br>
     php composer.phar require symfony/assetic-bundle "@dev"<br>
@@ -54,7 +56,7 @@ define("PROCESS", [
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install mustache<br>
-    bower install uglify-js<br>
+    bower install plupload<br>
     bower install history<br>
     bower install eonasdan-bootstrap-datetimepicker<br>
     ',
