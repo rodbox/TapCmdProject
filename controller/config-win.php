@@ -16,8 +16,6 @@ define("PROCESS", [
     composer require doctrine/doctrine-fixtures-bundle "@dev"<br>
     composer require friendsofsymfony/user-bundle "~2.0@dev"<br>
     composer require friendsofsymfony/jsrouting-bundle "^1.5"<br>
-    composer require friendsofsymfony/rest-bundle-bundle "@dev"<br>
-    composer require jms/serializer-bundle "@dev"<br>
     composer require coresphere/console-bundle "@dev"<br>
     composer require whiteoctober/tcpdf-bundle "^1.0"<br>
     composer require symfony/assetic-bundle "@dev"<br>
@@ -51,7 +49,7 @@ define("PROCESS", [
     bower install clipboard<br>
     bower install html.sortable --save<br>
     bower install mustache<br>
-    bower install plupload<br>
+    bower install uglify-js<br>
     bower install history<br>
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
