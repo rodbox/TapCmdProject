@@ -23,12 +23,10 @@ define("PROCESS", [
     composer require rodbox/rodboxcore "@dev"<br>
     composer require rodbox/rodboxbower "@dev"<br>
     composer require rodbox/rodboxtrans "@dev"<br>
-    composer require rodbox/rodboxmenu "@dev"<br>
     composer require rodbox/rodboxfront "@dev"<br>
     composer require rodbox/rodboxuser "@dev"<br>
     composer require rodbox/rodboxnote "@dev"<br>
     composer require rodbox/rodboxadmin "@dev"<br>
-    composer require rodbox/rodboxblog "@dev"<br>
     composer require rodbox/rodboxdev "@dev"<br>
     php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>',
     1 => 'php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>',
@@ -54,6 +52,7 @@ define("PROCESS", [
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install eonasdan-bootstrap-datetimepicker<br>
+    bower install jquery-resizable-columns<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ])

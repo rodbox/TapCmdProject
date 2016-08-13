@@ -24,12 +24,10 @@ define("PROCESS", [
     php composer.phar require rodbox/rodboxcore "@dev"<br>
     php composer.phar require rodbox/rodboxbower "@dev"<br>
     php composer.phar require rodbox/rodboxtrans "@dev"<br>
-    php composer.phar require rodbox/rodboxmenu "@dev"<br>
     php composer.phar require rodbox/rodboxfront "@dev"<br>
     php composer.phar require rodbox/rodboxuser "@dev"<br>
     php composer.phar require rodbox/rodboxnote "@dev"<br>
     php composer.phar require rodbox/rodboxadmin "@dev"<br>
-    php composer.phar require rodbox/rodboxblog "@dev"<br>
     php composer.phar require rodbox/rodboxdev "@dev"<br>
     php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>'
     ,
@@ -57,6 +55,7 @@ define("PROCESS", [
     bower install uglify-js<br>
     bower install history<br>
     bower install eonasdan-bootstrap-datetimepicker<br>
+    bower install jquery-resizable-columns<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ]
