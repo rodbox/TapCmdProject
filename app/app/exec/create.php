@@ -10,6 +10,7 @@
         $dataTemplate = [
             'RENAME'      => $name,
             'NAME'        => $name,
+            'DOMAIN'      => $name,
             'FRONTBUNDLE' => ucfirst($name).'Bundle',
             'TYPE'        => $type,
             'DESCRIPTION' => $description ?? '',
@@ -73,6 +74,11 @@
         * TODO : si la variable new est true on install le projet depuis le dossier template
         **/
 
+
+        /**
+         * Template VHOST
+         */
+        templateFile('vhost.conf', DIR_VHOST.'/'.$name, $dataTemplate);
     }
 
 

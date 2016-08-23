@@ -1,5 +1,10 @@
 <?php
 
+define("SEP", "/");
+
+// a definir
+define("DIR_VHOST", "/Applications/MAMP/htdocs");
+
 define("DIR_PROJECT", "/Applications/MAMP/htdocs");
 define("WEB_PROJECT", "http://localhost:8888");
 
@@ -18,16 +23,16 @@ define("PROCESS", [
     php composer.phar require friendsofsymfony/user-bundle "~2.0@dev"<br>
     php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     php composer.phar require coresphere/console-bundle "@dev"<br>
-    php composer.phar require whiteoctober/tcpdf-bundle "^1.0"<br>
-    php composer.phar require symfony/assetic-bundle "@dev"<br>
-    php composer.phar require liuggio/ExcelBundle "@dev"<br>
+    php composer.phar require picqer/php-barcode-generator "@dev"<br>
     php composer.phar require rodbox/rodboxcore "@dev"<br>
     php composer.phar require rodbox/rodboxbower "@dev"<br>
     php composer.phar require rodbox/rodboxtrans "@dev"<br>
+    php composer.phar require rodbox/rodboxmenu "@dev"<br>
     php composer.phar require rodbox/rodboxfront "@dev"<br>
     php composer.phar require rodbox/rodboxuser "@dev"<br>
     php composer.phar require rodbox/rodboxnote "@dev"<br>
     php composer.phar require rodbox/rodboxadmin "@dev"<br>
+    php composer.phar require rodbox/rodboxblog "@dev"<br>
     php composer.phar require rodbox/rodboxdev "@dev"<br>
     php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>'
     ,
@@ -38,8 +43,7 @@ define("PROCESS", [
     bower install tether<br>
     bower install summernote<br>
     bower install https://github.com/Nanakii/summernote-plugins.git<br>
-    bower install chosen<br>
-    bower install chosen-bootstrap<br>
+    bower install select2<br>
     bower install https://github.com/FaroeMedia/selectator.git<br>
     bower install https://github.com/moxiecode/plupload.git<br>
     bower install font-awesome<br>
@@ -52,10 +56,8 @@ define("PROCESS", [
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install mustache<br>
-    bower install uglify-js<br>
-    bower install history<br>
-    bower install eonasdan-bootstrap-datetimepicker<br>
-    bower install jquery-resizable-columns<br>
+    bower install mustache-wax<br>
+    bower install handsontable<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ]

@@ -1,32 +1,36 @@
 <?php
 
-define("DIR_PROJECT", "/Applications/MAMP/htdocs");
-define("WEB_PROJECT", "http://localhost:8888");
+define("SEP", "\\");
 
-define("WEB_SRC", "http://localhost:8888/___cmd___");
-define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
-define("TERMINAL", "/Applications/Utilities/Terminal.app");
+// a definir
+define("DIR_VHOST", "C:/wamp64/bin/apache/apache2.4.17/conf/");
+
+define("DIR_PROJECT", "C:/wamp64/www/");
+define("WEB_PROJECT", "http://localhost");
+
+define("WEB_SRC", "http://localhost/___cmd___");
+define("DIR_EDITOR", "C:\Program Files\Sublime Text 3\sublime_text.exe");
+define("TERMINAL", "C:\Windows\System32\cmd.exe");
 define("SOFT", [
     "PHOTOSHOP"   => "Adobe Photoshop CC.app",
     "ILLUSTRATOR" => "Adobe Illustrator.app"
     ]);
-
 define("PROCESS", [
     0 => 'composer require stof/doctrine-extensions-bundle "^1.2"<br>
     composer require doctrine/doctrine-fixtures-bundle "@dev"<br>
     composer require friendsofsymfony/user-bundle "~2.0@dev"<br>
     composer require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     composer require coresphere/console-bundle "@dev"<br>
-    composer require whiteoctober/tcpdf-bundle "^1.0"<br>
-    composer require symfony/assetic-bundle "@dev"<br>
-    composer require liuggio/ExcelBundle "@dev"<br>
+    composer require picqer/php-barcode-generator "@dev"<br>
     composer require rodbox/rodboxcore "@dev"<br>
     composer require rodbox/rodboxbower "@dev"<br>
     composer require rodbox/rodboxtrans "@dev"<br>
+    composer require rodbox/rodboxmenu "@dev"<br>
     composer require rodbox/rodboxfront "@dev"<br>
     composer require rodbox/rodboxuser "@dev"<br>
     composer require rodbox/rodboxnote "@dev"<br>
     composer require rodbox/rodboxadmin "@dev"<br>
+    composer require rodbox/rodboxblog "@dev"<br>
     composer require rodbox/rodboxdev "@dev"<br>
     php bin/console generate:bundle --namespace=APP/FrontBundle --bundle-name=FrontBundle --format=annotation<br>',
     1 => 'php bin/console generate:bundle --namespace=APP/AdminBundle --bundle-name=AdminBundle --format=annotation<br>',
@@ -35,8 +39,7 @@ define("PROCESS", [
     bower install tether<br>
     bower install summernote<br>
     bower install https://github.com/Nanakii/summernote-plugins.git<br>
-    bower install chosen<br>
-    bower install chosen-bootstrap<br>
+    bower install select2<br>
     bower install https://github.com/FaroeMedia/selectator.git<br>
     bower install https://github.com/moxiecode/plupload.git<br>
     bower install font-awesome<br>
@@ -46,13 +49,11 @@ define("PROCESS", [
     bower install notiny<br>
     bower install clipboard<br>
     bower install html.sortable --save<br>
-    bower install mustache<br>
-    bower install uglify-js<br>
-    bower install history<br>
     bower install https://code.jquery.com/jquery-3.0.0.min.js<br>
     bower install https://github.com/jquery/jquery-migrate.git<br>
-    bower install eonasdan-bootstrap-datetimepicker<br>
-    bower install jquery-resizable-columns<br>
+    bower install mustache<br>
+    bower install mustache-wax<br>
+    bower install handsontable<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ])
