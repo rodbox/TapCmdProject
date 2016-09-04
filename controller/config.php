@@ -1,15 +1,15 @@
 <?php
 
-define("OS", "osx");
+define("OS", "linux");
 
 include('config-'.OS.'.php');
 
-define("DEFAULT_PROJECT", "__rodbox_sources__");
+define("DEFAULT_PROJECT", "__rodbox_taproject__");
 
 define("TITLE", "Rodbox DeepTap");
 define("REL_SRC", ".");
 
-define("DIR_SRC", DIR_PROJECT."/___cmd___");
+define("DIR_SRC", DIR_PROJECT."/__rodbox_taproject__");
 
 define("DIR_APP", DIR_SRC."/app");
 define("WEB_APP", WEB_SRC."/app");
@@ -81,7 +81,7 @@ define("EDITOR", [
     'sublime-snippet' => 'code'
 ]);
 
-    # on attribut la source a envoyer a l'editeur en fonction de son type.
+# on attribut la source a envoyer a l'editeur en fonction de son type.
 define("EDITOR_SRC", [
     'default' => 'content',
     'txt'     => 'content',
@@ -92,7 +92,6 @@ define("EDITOR_SRC", [
 ]);
 
 // SETTING
-
 define('TRANS_SETTING', [
     'en'=>'en',
     'fr'=>'fr',

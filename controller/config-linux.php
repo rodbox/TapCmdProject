@@ -3,12 +3,12 @@
 define("SEP", "/");
 
 // a definir
-define("DIR_VHOST", "/Applications/MAMP/htdocs");
+define("DIR_VHOST", "/etc/apache2/sites-available/");
 
-define("DIR_PROJECT", "/Applications/MAMP/htdocs");
-define("WEB_PROJECT", "http://localhost:8888");
+define("DIR_PROJECT", "/var/www/html/");
+define("WEB_PROJECT", "http://127.0.0.1:8888");
 
-define("WEB_SRC", "http://localhost:8888/___cmd___");
+define("WEB_SRC", "http://127.0.0.1:8888/__rodbox_taproject__");
 define("DIR_EDITOR", "/Applications/Utilitaires/Sublime Text.app");
 define("TERMINAL", "/Applications/Utilities/Terminal.app");
 define("SOFT", [
@@ -24,7 +24,7 @@ define("PROCESS", [
     php composer.phar require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     php composer.phar require coresphere/console-bundle "@dev"<br>
     php composer.phar require picqer/php-barcode-generator "@dev"<br>
-    php composer.phar require lexik/form-filter-bundle dev-master<br>
+    php composer.phar require lexik/form-filter-bundle "@dev"<br>
     php composer.phar require rodbox/rodboxcore "@dev"<br>
     php composer.phar require rodbox/rodboxbower "@dev"<br>
     php composer.phar require rodbox/rodboxtrans "@dev"<br>
@@ -58,8 +58,8 @@ define("PROCESS", [
     bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install mustache<br>
     bower install mustache-wax<br>
-    bower install handsontable<br>
     bower install bootstrap-touchspin<br>
+    bower install handsontable<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ]

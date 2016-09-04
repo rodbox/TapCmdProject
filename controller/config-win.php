@@ -22,6 +22,7 @@ define("PROCESS", [
     composer require friendsofsymfony/jsrouting-bundle "^1.5"<br>
     composer require coresphere/console-bundle "@dev"<br>
     composer require picqer/php-barcode-generator "@dev"<br>
+    composer require lexik/form-filter-bundle "@dev"<br>
     composer require rodbox/rodboxcore "@dev"<br>
     composer require rodbox/rodboxbower "@dev"<br>
     composer require rodbox/rodboxtrans "@dev"<br>
@@ -53,7 +54,9 @@ define("PROCESS", [
     bower install https://github.com/jquery/jquery-migrate.git<br>
     bower install mustache<br>
     bower install mustache-wax<br>
+    bower install bootstrap-touchspin<br>
     bower install handsontable<br>
+    bower install bootstrap-touchspin<br>
     ',
     3=> 'php bin/console generate:controller --controller=AdminBundle:AdminInput --template-format=twig --route-format=annotation<br>',
     ])
